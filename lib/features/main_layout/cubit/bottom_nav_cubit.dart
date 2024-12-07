@@ -1,6 +1,7 @@
 
 
 
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:delivery_app/features/account/views/account_view.dart';
 import 'package:delivery_app/features/delivery/views/delivery_view.dart';
 import 'package:delivery_app/features/home/view/home_view.dart';
@@ -24,34 +25,20 @@ class BottomNavCubit extends Cubit<BottomNavStates> {
   }
 
 
-  List<BottomNavigationBarItem> bottomNavItems = const  [
-    BottomNavigationBarItem(
-        icon: BottomNavBarItemWidget(
-          icon: FontAwesomeIcons.house,
-        ),
-        label: "الرئيسية"),
-    BottomNavigationBarItem(
-        icon: BottomNavBarItemWidget(
-          icon: Icons.delivery_dining,
-        ),
-        label: "الديلفرات"),
-    BottomNavigationBarItem(
-        icon: BottomNavBarItemWidget(
-          icon: Icons.chat,
-        ),
-        label: "الدردشات"),
-    BottomNavigationBarItem(
-        icon: BottomNavBarItemWidget(
-          icon: Icons.person,
-        ),
-        label: "الحساب"),
+  List<TabItem> bottomNavTabs =[
+    const TabItem(icon: FontAwesomeIcons.house, title: 'الرئيسية'),
+    const TabItem(icon: Icons.delivery_dining, title: 'الديلفرات'),
+    const TabItem(icon: Icons.add, title: 'Add'),
+    const TabItem(icon:  Icons.chat, title: 'الدردشات'),
+    const TabItem(icon: Icons.person, title: 'الحساب'),
   ];
 
   List<Widget> screens = [
-    HomeView(),
-    DeliveryView(),
+    const HomeView(),
+    const DeliveryView(),
     Container(),
-    AccountView(),
+    Container(),
+    const AccountView(),
   ];
 
 }
