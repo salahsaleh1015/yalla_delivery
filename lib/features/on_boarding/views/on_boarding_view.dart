@@ -8,6 +8,7 @@ class OnBoardingView extends StatelessWidget {
     super.key,
   });
   static String id = 'OnBoardingView';
+  final PageController _pageController = PageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,10 +26,11 @@ class OnBoardingView extends StatelessWidget {
           begin: Alignment.topCenter,
         )),
         child: PageView(
+          controller:_pageController,
           scrollDirection: Axis.horizontal,
-          children: const [
-            OnBoardingBodyOneWidget(),
-            OnBoardingBodyTwoWidget(),
+          children:  [
+            OnBoardingBodyOneWidget(pageController: _pageController,),
+           const  OnBoardingBodyTwoWidget(),
           ],
         ),
       ),

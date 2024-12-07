@@ -1,6 +1,7 @@
 import 'package:delivery_app/features/authentication/views/sign_up_vew.dart';
 import 'package:delivery_app/features/on_boarding/widgets/dot_widget.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
+import 'package:delivery_app/resources/constants_manager.dart';
 import 'package:delivery_app/resources/routes_manager.dart';
 
 import 'package:flutter/material.dart';
@@ -10,28 +11,26 @@ import '../../../resources/values_manager.dart';
 import '../../global_widgets/global_button_widget.dart';
 
 class OnBoardingBodyOneWidget extends StatelessWidget {
-   const OnBoardingBodyOneWidget({super.key});
-
-
+  const OnBoardingBodyOneWidget({super.key, required this.pageController});
+  final PageController pageController;
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       children: [
-SizedBox(
-          height: AppSize.s50.h,
-),
         SizedBox(
-          //color: Colors.black,
+          height: AppSize.s50.h,
+        ),
+        SizedBox(
+            //color: Colors.black,
             height: AppSize.s315.h,
             width: AppSize.s408.w,
             child: Image.asset("assets/images/on_boarding_one.png")),
-
         Text(
           "أهلاً بك في",
           style: Theme.of(context).textTheme.displaySmall,
         ),
-         SizedBox(
-          height:AppSize.s10.h,
+        SizedBox(
+          height: AppSize.s10.h,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -46,7 +45,7 @@ SizedBox(
             ),
           ],
         ),
-         SizedBox(
+        SizedBox(
           height: AppSize.s15.h,
         ),
         Container(
@@ -58,14 +57,13 @@ SizedBox(
             textAlign: TextAlign.center,
           ),
         ),
-
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             DotWidget(
               color: ColorManager.primary,
             ),
-             SizedBox(
+            SizedBox(
               width: AppSize.s15.w,
             ),
             DotWidget(
@@ -73,14 +71,17 @@ SizedBox(
             ),
           ],
         ),
-         SizedBox(
+        SizedBox(
           height: AppSize.s33.h,
         ),
         GlobalButtonWidget(
           width: AppSize.s312.w,
           text: "ابدا",
           onTap: () {
-            Navigator.pushNamed(context, SignUpView.id);
+            pageController.nextPage(
+              duration: const Duration(milliseconds: AppConstant.onboardingTransitionDelay),
+              curve: Curves.easeIn,
+            );
           },
         )
       ],
