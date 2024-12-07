@@ -101,7 +101,7 @@ class VerificationView extends StatelessWidget {
                             .labelSmall!
                             .copyWith(color: ColorManager.primary),
                       )),
-                  Text("In",
+                  Text("خلال",
                       style: Theme.of(context)
                           .textTheme
                           .labelSmall!
