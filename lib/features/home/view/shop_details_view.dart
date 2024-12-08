@@ -16,29 +16,25 @@ class ShopDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-          const  ShopImageItem(),
-            SizedBox(
-              height: AppSize.s10.h,
-            ),
-           const ShopInfoItemWidget(),
-            Divider(
-              indent: AppSize.s20.w,
-              endIndent: AppSize.s20.w,
-              color: ColorManager.socialButtonColor,
-            ),
-            SizedBox(
-              height: AppSize.s10.h,
-            ),
-           const ProductsSectionItemWidget(),
-            SizedBox(
-              height: AppSize.s50.h,
-            ),
-          ],
-        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+        const  ShopImageItem(),
+          SizedBox(
+            height: AppSize.s10.h,
+          ),
+         const ShopInfoItemWidget(),
+          Divider(
+            indent: AppSize.s20.w,
+            endIndent: AppSize.s20.w,
+            color: ColorManager.socialButtonColor,
+          ),
+          SizedBox(
+            height: AppSize.s10.h,
+          ),
+         const ProductsSectionItemWidget(),
+
+        ],
       ),
       bottomNavigationBar: const PriceCardItemWidget(),
     );

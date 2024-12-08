@@ -15,7 +15,7 @@ class GlobalDecoratedContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Container(
       padding: EdgeInsets.all(AppPadding.p10.r),
-      width:width?? double.infinity,
+      width:width?? MediaQuery.of(context).size.width,
       height: height,
       decoration: BoxDecoration(
         border: Border.all(

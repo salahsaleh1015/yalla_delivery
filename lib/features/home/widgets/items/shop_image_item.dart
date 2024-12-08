@@ -13,7 +13,7 @@ class ShopImageItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: AppSize.s180.h,
+      height: AppSize.s150.h,
       width: double.infinity,
       decoration: const BoxDecoration(
           image: DecorationImage(

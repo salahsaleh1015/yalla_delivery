@@ -11,12 +11,12 @@ class ProductCardsListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return   SizedBox(
+
         width: double.infinity,
-        height: AppSize.s250.h,
-        child: ListView.separated(
-            separatorBuilder:(context, index) =>  SizedBox(width: AppSize.s10.w),
-            scrollDirection: Axis.horizontal,
-            itemCount: 1,
+        height: MediaQuery.of(context).size.height * 0.35,
+        child: ListView.builder(
+
+            itemCount: 10,
             itemBuilder:
                 (context, index) => const ProductCardItemWidget()));
   }

@@ -16,7 +16,7 @@ class BottomNavCubit extends Cubit<BottomNavStates> {
   BottomNavCubit() : super(BottomNavInitialState());
 
   static BottomNavCubit get(context)=>BlocProvider.of(context);
-  int currentIndex = 0;
+  int currentIndex = 2;
 
 
   void changeIndex(int index) {
