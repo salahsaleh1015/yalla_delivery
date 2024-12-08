@@ -3,6 +3,7 @@ import 'package:delivery_app/features/authentication/authentication_widgets/or_b
 import 'package:delivery_app/features/authentication/authentication_widgets/terms_text.dart';
 import 'package:delivery_app/features/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/features/global_widgets/global_circular_button_widget.dart';
+import 'package:delivery_app/features/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/features/main_layout/views/main_layout_view.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:delivery_app/resources/routes_manager.dart';
@@ -19,19 +20,14 @@ class VerificationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding:  EdgeInsets.symmetric(
-          horizontal: AppPadding.p20.w,
-        ),
-        child: SingleChildScrollView(
+      body: GlobalPaddingWidget(
+        child : SingleChildScrollView(
           scrollDirection: Axis.vertical,
           physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               SizedBox(
-                height: AppSize.s50.h,
-              ),
+
               GlobalCircularButtonWidget(
                 onTap: () {
                   Navigator.pop(context);

@@ -1,4 +1,5 @@
 import 'package:delivery_app/features/global_widgets/global_app_bar.dart';
+import 'package:delivery_app/features/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,12 +15,7 @@ class DeliveryView extends StatelessWidget {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.only(
-            top: AppPadding.p40.h,
-            left: AppPadding.p10.w,
-            right: AppPadding.p10.w,
-          ),
+        body: GlobalPaddingWidget(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

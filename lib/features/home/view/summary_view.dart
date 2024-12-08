@@ -1,6 +1,7 @@
 import 'package:delivery_app/features/global_widgets/global_app_bar.dart';
 import 'package:delivery_app/features/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/features/global_widgets/global_dialog.dart';
+import 'package:delivery_app/features/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/features/home/widgets/items/edit_location_card_item_widget.dart';
 import 'package:delivery_app/features/home/widgets/items/notes_section_item_widget.dart';
 import 'package:delivery_app/features/home/widgets/items/summary_delivery_item_widget.dart';
@@ -19,12 +20,7 @@ class SummaryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.only(
-          top: AppPadding.p40.h,
-          left: AppPadding.p10.w,
-          right: AppPadding.p10.w,
-        ),
+      body: GlobalPaddingWidget(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

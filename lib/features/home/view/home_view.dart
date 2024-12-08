@@ -1,4 +1,5 @@
 import 'package:delivery_app/features/global_widgets/global_circular_button_widget.dart';
+import 'package:delivery_app/features/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/features/global_widgets/global_user_card_widget.dart';
 import 'package:delivery_app/features/home/view/vendors_view.dart';
 import 'package:delivery_app/features/global_widgets/global_search_card_item_widget.dart';
@@ -15,12 +16,7 @@ class HomeView extends StatelessWidget {
   static String id = 'HomeView';
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        top: AppPadding.p40.h,
-        left: AppPadding.p10.w,
-        right: AppPadding.p10.w,
-      ),
+    return GlobalPaddingWidget(
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,9 +48,9 @@ class HomeView extends StatelessWidget {
               height: AppSize.s10.h,
             ),
             const AdvertisementListWidget(),
-        
+
             Row(
-        
+
               children: [
                 Text("موزعي الخدمة",style: Theme.of(context).textTheme.titleSmall!.copyWith(
                     color: ColorManager.black

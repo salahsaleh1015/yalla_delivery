@@ -1,6 +1,7 @@
 import 'package:delivery_app/features/global_widgets/global_app_bar.dart';
 import 'package:delivery_app/features/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/features/global_widgets/global_delivery_card_widget.dart';
+import 'package:delivery_app/features/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/features/global_widgets/lists/global_delivery_cards_list_widget.dart';
 import 'package:delivery_app/features/home/view/summary_view.dart';
 import 'package:flutter/material.dart';
@@ -13,12 +14,7 @@ class ChooseDeliveryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.only(
-          top: AppPadding.p40.h,
-          left: AppPadding.p10.w,
-          right: AppPadding.p10.w,
-        ),
+      body: GlobalPaddingWidget(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
