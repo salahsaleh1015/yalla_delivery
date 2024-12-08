@@ -1,3 +1,4 @@
+import 'package:delivery_app/features/account/views/ads_partner_view.dart';
 import 'package:delivery_app/features/global_widgets/global_circular_button_widget.dart';
 import 'package:delivery_app/features/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/features/global_widgets/global_user_card_widget.dart';
@@ -56,10 +57,15 @@ class HomeView extends StatelessWidget {
                     color: ColorManager.black
                 ),),
                const Spacer(),
-               Text("عرض الكل",style: Theme.of(context).textTheme.bodySmall,),
-                IconButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const VendorsView(),));
-                }, icon: Icon(Icons.arrow_forward,color: ColorManager.primary,),)
+               TextButton(onPressed: (){
+                 Navigator.pushNamed(context, AdsPartnerView.id);
+               }, child: Row(
+                 children: [
+                   Text("عرض الكل",style: Theme.of(context).textTheme.bodySmall,),
+                   Icon(Icons.arrow_forward,color: ColorManager.primary,),
+                 ],
+               )),
+
               ],
             ),
             SizedBox(

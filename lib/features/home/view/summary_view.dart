@@ -56,24 +56,27 @@ class SummaryView extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: GlobalButtonWidget(
-        text: "تأكيد الطلب",
-        onTap: () {
-          showCustomDialog(
-            context,
-            content: const ConfirmOrderDialogContent(),
-            actionButtonCallBack: () {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                MainLayoutView.id,
-                    (Route<dynamic> route) => false,
-              );
-            },
-            actionButtonHint: "الرئيسية",
-            dialogTitle: "تغيير موقع التوصيل",
-          );
-        },
-        width: double.infinity,
+      bottomNavigationBar: Padding(
+        padding:  EdgeInsets.all(AppPadding.p8.r),
+        child: GlobalButtonWidget(
+          text: "تأكيد الطلب",
+          onTap: () {
+            showCustomDialog(
+              context,
+              content: const ConfirmOrderDialogContent(),
+              actionButtonCallBack: () {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  MainLayoutView.id,
+                      (Route<dynamic> route) => false,
+                );
+              },
+              actionButtonHint: "الرئيسية",
+              dialogTitle: "تغيير موقع التوصيل",
+            );
+          },
+          width: double.infinity,
+        ),
       ),
     );
   }

@@ -37,12 +37,15 @@ class ChooseDeliveryView extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: GlobalButtonWidget(
-        text: "استمر",
-        onTap: () {
-          Navigator.pushNamed(context, SummaryView.id);
-        },
-        width: double.infinity,
+      bottomNavigationBar: Padding(
+        padding:  EdgeInsets.all(AppPadding.p8.r),
+        child: GlobalButtonWidget(
+          text: "استمر",
+          onTap: () {
+            Navigator.pushNamed(context, SummaryView.id);
+          },
+          width: double.infinity,
+        ),
       ),
     );
   }
