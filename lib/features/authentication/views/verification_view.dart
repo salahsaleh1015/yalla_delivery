@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../authentication_widgets/resend_verification_text.dart';
+
 class VerificationView extends StatelessWidget {
   const VerificationView({super.key});
   static String id = 'VerificationView';
@@ -87,44 +89,7 @@ class VerificationView extends StatelessWidget {
                   );
                 },
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("لم تستلم رمزك؟",
-                      style: Theme.of(context).textTheme.labelSmall!),
-                  TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "أعد إرساله ",
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelSmall!
-                            .copyWith(color: ColorManager.primary),
-                      )),
-                  Text("خلال",
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelSmall!
-                          .copyWith(color: ColorManager.black)),
-                  Text("(",
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelSmall!
-                          .copyWith(color: ColorManager.black)),
-                  Text(
-                    "35 ثانية ",
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelSmall!
-                        .copyWith(color: ColorManager.primary),
-                  ),
-                  Text(")",
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelSmall!
-                          .copyWith(color: ColorManager.black)),
-                ],
-              ),
+              const ResendVerificationText(),
 
             ],
           ),
