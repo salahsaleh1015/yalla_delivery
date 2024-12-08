@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GlobalTextFieldWidget extends StatelessWidget {
-  const GlobalTextFieldWidget({super.key, required this.textInputType, required this.hintText, this.height});
+  const GlobalTextFieldWidget({super.key, required this.textInputType, required this.hintText, this.height, this.focusedBorder, this.enabledBorder});
   final double? height;
   final TextInputType textInputType;
   final String hintText;
+  final InputBorder ? focusedBorder;
+  final InputBorder ? enabledBorder;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,7 +24,11 @@ class GlobalTextFieldWidget extends StatelessWidget {
         keyboardType:textInputType,
         decoration: InputDecoration(
         contentPadding: EdgeInsets.only(bottom: AppPadding.p15.h,),
-            focusedBorder: UnderlineInputBorder(
+             enabledBorder:enabledBorder ?? UnderlineInputBorder(
+               borderSide: BorderSide(color: ColorManager.black),
+             ),
+
+            focusedBorder: focusedBorder ??UnderlineInputBorder(
                 borderSide: BorderSide(color: ColorManager.primary)),
             hintText: hintText,
             hintStyle: Theme.of(context)
