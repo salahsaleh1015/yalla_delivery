@@ -35,7 +35,7 @@ class EditAccountView extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: AppSize.s20.h,
+              height: AppSize.s10.h,
             ),
             const GlobalUserCardWidget(
               radius: AppSize.s80, // screen util added inside the widget
@@ -97,10 +97,34 @@ class EditAccountView extends StatelessWidget {
               hintText: "رقم الهاتف",
               textInputType: TextInputType.phone,
             ),
+            SizedBox(
+              height: AppSize.s30.h,
+            ),
+            Row(
+              children: [
+                Text("العنوان بالتفصيل",
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineMedium),
+                const Spacer(),
+              ],
+            ),
+            SizedBox(
+              height: AppSize.s10.h,
+            ),
+             GlobalTextFieldWidget(
+
+              height: AppSize.s100.h,
+              hintText: "العنوان بالتفصيل",
+              textInputType: TextInputType.text,
+            ),
           ],
         ),
       ),
-      bottomNavigationBar: GlobalButtonWidget(text: "تحديث", onTap: (){}, width: double.infinity),
+      bottomNavigationBar: Padding(
+        padding:  EdgeInsets.all(AppSize.s10.r),
+        child: GlobalButtonWidget(text: "تحديث", onTap: (){}, width: double.infinity),
+      ),
     );
   }
 }
