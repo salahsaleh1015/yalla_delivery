@@ -2,7 +2,7 @@ import 'package:delivery_app/features/account/widgets/account_info_bar_widget.da
 import 'package:delivery_app/features/account/widgets/account_info_section_widget.dart';
 import 'package:delivery_app/features/account/widgets/ads_bar_widget.dart';
 import 'package:delivery_app/features/account/widgets/logout_button_widget.dart';
-import 'package:delivery_app/features/global_widgets/global_decored_container.dart';
+import 'package:delivery_app/features/global_widgets/global_decorated_container.dart';
 import 'package:delivery_app/features/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/features/global_widgets/global_profile_card_widget.dart';
 import 'package:delivery_app/features/global_widgets/global_user_card_widget.dart';

@@ -1,4 +1,5 @@
 import 'package:delivery_app/features/global_widgets/global_app_bar.dart';
+import 'package:delivery_app/features/global_widgets/global_circular_button_widget.dart';
 import 'package:delivery_app/features/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +20,15 @@ class DeliveryView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GlobalAppBar(
-                title: "اختر التوصيل",
-                onTap: () {},
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: AppSize.s30.w,
+                  ),
+                  Text("كل المندوبين" ,style: Theme.of(context).textTheme.titleMedium,),
+                  GlobalCircularButtonWidget(onTap: (){}, icon: Icons.shopping_cart_outlined,),
+                ],
               ),
               SizedBox(
                 height: AppSize.s10.h,

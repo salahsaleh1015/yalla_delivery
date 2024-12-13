@@ -87,7 +87,12 @@ class ConfirmOrderDialogContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text("سنراجع طلبك ونقبله في أسرع وقت ممكن.",
-      style: Theme.of(context).textTheme.headlineSmall,);
+    return Padding(
+      padding:  EdgeInsets.symmetric(
+        vertical: AppPadding.p20.h,
+      ),
+      child: Text("سنراجع طلبك ونقبله في أسرع وقت ممكن.",
+        style: Theme.of(context).textTheme.headlineSmall,),
+    );
   }
 }

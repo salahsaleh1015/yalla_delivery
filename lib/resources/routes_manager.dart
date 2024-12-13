@@ -6,6 +6,7 @@ import 'package:delivery_app/features/authentication/views/sign_in_view.dart';
 import 'package:delivery_app/features/authentication/views/sign_up_vew.dart';
 import 'package:delivery_app/features/authentication/views/verification_view.dart';
 import 'package:delivery_app/features/delivery/views/delivery_view.dart';
+import 'package:delivery_app/features/home/view/all_vendors_view.dart';
 import 'package:delivery_app/features/home/view/choose_delivery_view.dart';
 import 'package:delivery_app/features/home/view/home_view.dart';
 import 'package:delivery_app/features/home/view/shop_details_view.dart';
@@ -21,7 +22,7 @@ Map<String, Widget Function(BuildContext)> routes = {
   SignUpView.id: (context) => const SignUpView(),
   SignInView.id: (context) => const SignInView(),
   VerificationView.id: (context) => const VerificationView(),
-  MainLayoutView.id: (context) => const MainLayoutView(),
+  MainLayoutView.id: (context) =>  const MainLayoutView(),
   HomeView.id: (context) => const HomeView(),
   ShopDetailsView.id: (context) => const ShopDetailsView(),
   ChooseDeliveryView.id: (context) => const ChooseDeliveryView(),
@@ -32,4 +33,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   EditAccountView.id: (context) => const EditAccountView(),
   AdsPartnerView.id: (context) => const AdsPartnerView(),
   AddOrderView.id: (context) => const AddOrderView(),
+  AllVendorsView.id: (context) => const AllVendorsView(),
 };

@@ -1,6 +1,7 @@
 
 import 'package:delivery_app/features/global_widgets/global_app_bar.dart';
 import 'package:delivery_app/features/global_widgets/global_button_widget.dart';
+import 'package:delivery_app/features/global_widgets/global_divider_widget.dart';
 import 'package:delivery_app/features/home/widgets/items/summary_details_item_widget.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:delivery_app/resources/values_manager.dart';
@@ -45,6 +46,13 @@ class SummaryDeliveryItemWidget extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(
+            height: AppSize.s10.h,
+          ),
+          const GlobalDividerWidget(),
+          SizedBox(
+            height: AppSize.s10.h,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -52,7 +60,7 @@ class SummaryDeliveryItemWidget extends StatelessWidget {
                 "التقييم",
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
-              RatingStars()
+              const RatingStars()
             ],
           ),
         ],

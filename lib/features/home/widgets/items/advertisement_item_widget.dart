@@ -1,5 +1,6 @@
 
 
+import 'package:delivery_app/features/global_widgets/global_secondary_decorated_container.dart';
 import 'package:delivery_app/resources/assets_manager.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:delivery_app/resources/values_manager.dart';
@@ -16,42 +17,27 @@ final double? height , width;
     return  Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(AppSize.s12.r),
-                topRight: Radius.circular(AppSize.s12.r),
-              )
+        ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(AppSize.s12.r),
+            topRight: Radius.circular(AppSize.s12.r),
           ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(AppSize.s12.r),
-              topRight: Radius.circular(AppSize.s12.r),
-            ),
-            child: Image.asset(
-                fit: BoxFit.fill,
-                width:width?? AppSize.s150.w,
-                height:height?? AppSize.s90.h,
-                AssetsManager.shopTest),
-          ),
+          child: Image.asset(
+              fit: BoxFit.fill,
+              width:width?? AppSize.s150.w,
+              height:height?? AppSize.s90.h,
+              AssetsManager.shopTest),
         ),
-        Container(
+        GlobalSecondaryDecoratedContainer(
           width:width?? AppSize.s150.w,
           height: AppSize.s40.h,
-          decoration: BoxDecoration(
-              color: ColorManager.white,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(AppSize.s12.r),
-                bottomRight: Radius.circular(AppSize.s12.r),
-              )
-
-          ),
           child: Center(
             child: Text("هارت اتاك",style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 color: ColorManager.primary
             ),),
           ),
         )
+
       ],
     );
   }

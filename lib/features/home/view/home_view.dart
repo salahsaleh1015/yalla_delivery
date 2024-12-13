@@ -2,6 +2,7 @@ import 'package:delivery_app/features/account/views/ads_partner_view.dart';
 import 'package:delivery_app/features/global_widgets/global_circular_button_widget.dart';
 import 'package:delivery_app/features/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/features/global_widgets/global_user_card_widget.dart';
+import 'package:delivery_app/features/home/view/all_vendors_view.dart';
 import 'package:delivery_app/features/home/view/vendors_view.dart';
 import 'package:delivery_app/features/global_widgets/global_search_card_item_widget.dart';
 import 'package:delivery_app/features/home/widgets/lists/advertisement_list_widget.dart';
@@ -58,7 +59,7 @@ class HomeView extends StatelessWidget {
                 ),),
                const Spacer(),
                TextButton(onPressed: (){
-                 Navigator.pushNamed(context, AdsPartnerView.id);
+                 Navigator.pushNamed(context, AllVendorsView.id);
                }, child: Row(
                  children: [
                    Text("عرض الكل",style: Theme.of(context).textTheme.bodySmall,),
@@ -71,9 +72,7 @@ class HomeView extends StatelessWidget {
             SizedBox(
               height: AppSize.s10.h,
             ),
-            const VendorListWidget(
-              axis: Axis.horizontal,
-            ),
+            const VendorListWidget(),
 
           ],
         ),

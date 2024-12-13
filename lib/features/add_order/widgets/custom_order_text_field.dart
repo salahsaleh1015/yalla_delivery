@@ -19,12 +19,6 @@ class CustomOrderTextField extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppSize.s8.r),
         child: GlobalTextFieldWidget(
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide.none,
-          ),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide.none,
-          ),
           height: AppSize.s200.h,
           hintText: "اكتب تفاصيل طلبك هنا...",
           textInputType: TextInputType.multiline,

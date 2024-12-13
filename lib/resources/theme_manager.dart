@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ThemeData getApplicationTheme(context) {
   return ThemeData(
+
       scaffoldBackgroundColor: ColorManager.scaffoldBackgroundColor,
       textTheme: TextTheme(
 

@@ -66,18 +66,24 @@ Future<void> showCustomDialog(
         actions: <Widget>[
           Row(
             children: [
-              GlobalSecondaryButton(
-                text: "إالغاء",
-                width: MediaQuery.of(context).size.width * 0.32,
-                onTap: () {
-                  Navigator.pop(context);
-                },
+              Padding(
+                padding: EdgeInsets.all(AppSize.s2.r),
+                child: GlobalSecondaryButton(
+                  text: "إالغاء",
+                  width: MediaQuery.of(context).size.width * 0.32,
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
               ),
-              GlobalButtonWidget(
-                color: actionButtonColor ?? ColorManager.primary,
-                onTap: actionButtonCallBack,
-                width: MediaQuery.of(context).size.width * 0.32,
-                text: actionButtonHint,
+              Padding(
+                padding: EdgeInsets.all(AppSize.s2.r),
+                child: GlobalButtonWidget(
+                  color: actionButtonColor ?? ColorManager.primary,
+                  onTap: actionButtonCallBack,
+                  width: MediaQuery.of(context).size.width * 0.32,
+                  text: actionButtonHint,
+                ),
               ),
             ],
           )

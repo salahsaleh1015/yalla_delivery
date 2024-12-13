@@ -1,5 +1,6 @@
 import 'package:delivery_app/features/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/features/global_widgets/global_secondary_button.dart';
+import 'package:delivery_app/features/global_widgets/global_secondary_decorated_container.dart';
 import 'package:delivery_app/features/home/view/shop_details_view.dart';
 import 'package:delivery_app/resources/assets_manager.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
@@ -9,41 +10,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class VendorItemWidget extends StatelessWidget {
-  const VendorItemWidget({super.key,  this.itemWidth, });
-
-  final double? itemWidth;
+  const VendorItemWidget({super.key,  this.width, this.height, });
+  final double? height;
+  final double? width;
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
+        ClipRRect(
+          borderRadius: BorderRadius.only(
             topLeft: Radius.circular(AppSize.s12.r),
             topRight: Radius.circular(AppSize.s12.r),
-          )),
-          child: ClipRRect(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(AppSize.s12.r),
-              topRight: Radius.circular(AppSize.s12.r),
-            ),
-            child: Image.asset(
-                fit: BoxFit.fill,
-                width:itemWidth?? AppSize.s250.w,
-                height: AppSize.s130.h,
-                AssetsManager.shopTest),
           ),
+          child: Image.asset(
+              fit: BoxFit.fill,
+              width:width?? AppSize.s250.w,
+              height:height?? AppSize.s140.h,
+              AssetsManager.shopTest),
         ),
-        Container(
-            width:itemWidth?? AppSize.s250.w,
-            height: AppSize.s150.h,
-            decoration: BoxDecoration(
-                color: ColorManager.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(AppSize.s12.r),
-                  bottomRight: Radius.circular(AppSize.s12.r),
-                )),
+        GlobalSecondaryDecoratedContainer(
+          width:width?? AppSize.s250.w,
+          height: height?? AppSize.s140.h,
             child: Padding(
               padding: EdgeInsets.all(AppPadding.p16.r),
               child: Column(
@@ -97,7 +85,9 @@ class VendorItemWidget extends StatelessWidget {
                   )
                 ],
               ),
-            ))
+            )
+        ),
+
       ],
     );
   }
