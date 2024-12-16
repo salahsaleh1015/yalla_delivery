@@ -1,5 +1,6 @@
 
 
+import 'package:delivery_app/features/cart/views/cart_view.dart';
 import 'package:delivery_app/features/global_widgets/global_circular_button_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class GlobalAppBar extends StatelessWidget {
 
         Text(title,style: Theme.of(context).textTheme.titleMedium,),
         GlobalCircularButtonWidget(onTap: (){
-          /// todo: navigate to cart view
+        Navigator.pushNamed(context, CartView.id);
         }, icon: Icons.shopping_cart_outlined,)
       ],
     );

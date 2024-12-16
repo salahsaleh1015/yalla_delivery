@@ -6,6 +6,7 @@ import 'package:delivery_app/features/add_order/views/choose_delivery_from_add_o
 import 'package:delivery_app/features/authentication/views/sign_in_view.dart';
 import 'package:delivery_app/features/authentication/views/sign_up_vew.dart';
 import 'package:delivery_app/features/authentication/views/verification_view.dart';
+import 'package:delivery_app/features/cart/views/cart_view.dart';
 import 'package:delivery_app/features/delivery/views/add_order_from_delivery_view.dart';
 import 'package:delivery_app/features/delivery/views/delivery_view.dart';
 import 'package:delivery_app/features/delivery/views/order_summary_from_delivery_view.dart';
@@ -43,4 +44,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   OrderSummaryFromDeliveryView.id: (context) => const OrderSummaryFromDeliveryView(),
   ChooseDeliveryFromAddOrderView.id: (context) => const ChooseDeliveryFromAddOrderView(),
   OrderSummaryFromAddOrderView.id: (context) => const OrderSummaryFromAddOrderView(),
+  CartView.id: (context) => const CartView(),
 };

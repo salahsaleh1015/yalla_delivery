@@ -1,4 +1,5 @@
 import 'package:delivery_app/features/add_order/widgets/add_order_view_body.dart';
+import 'package:delivery_app/features/cart/views/cart_view.dart';
 import 'package:delivery_app/features/global_widgets/global_custom_order_text_field.dart';
 import 'package:delivery_app/features/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/features/global_widgets/global_circular_button_widget.dart';
@@ -30,7 +31,9 @@ class AddOrderView extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               GlobalCircularButtonWidget(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, CartView.id);
+                },
                 icon: Icons.shopping_cart_outlined,
               ),
             ],

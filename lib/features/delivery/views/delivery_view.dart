@@ -1,3 +1,4 @@
+import 'package:delivery_app/features/cart/views/cart_view.dart';
 import 'package:delivery_app/features/global_widgets/global_app_bar.dart';
 import 'package:delivery_app/features/global_widgets/global_circular_button_widget.dart';
 import 'package:delivery_app/features/global_widgets/global_padding_widget.dart';
@@ -27,7 +28,9 @@ class DeliveryView extends StatelessWidget {
                     width: AppSize.s30.w,
                   ),
                   Text("كل المندوبين" ,style: Theme.of(context).textTheme.titleMedium,),
-                  GlobalCircularButtonWidget(onTap: (){}, icon: Icons.shopping_cart_outlined,),
+                  GlobalCircularButtonWidget(onTap: (){
+                    Navigator.pushNamed(context, CartView.id);
+                  }, icon: Icons.shopping_cart_outlined,),
                 ],
               ),
               SizedBox(

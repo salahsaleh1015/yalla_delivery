@@ -1,4 +1,5 @@
 import 'package:delivery_app/features/account/views/ads_partner_view.dart';
+import 'package:delivery_app/features/cart/views/cart_view.dart';
 import 'package:delivery_app/features/global_widgets/global_circular_button_widget.dart';
 import 'package:delivery_app/features/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/features/global_widgets/global_user_card_widget.dart';
@@ -30,7 +31,9 @@ class HomeView extends StatelessWidget {
                   radius: AppSize.s50, // screen util added inside the widget
                 ),
                 GlobalCircularButtonWidget(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, CartView.id);
+                  },
                   icon: Icons.shopping_cart_outlined,
                   iconColor: ColorManager.black,
                 ),
