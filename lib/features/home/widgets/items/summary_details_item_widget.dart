@@ -13,7 +13,7 @@ class SummaryDetailsItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlobalDecoratedContainer(
       width: double.infinity,
-      height: AppSize.s270.h,
+
       child: Padding(
         padding:  EdgeInsets.all(AppSize.s8.r),
         child: Column(

@@ -10,15 +10,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../resources/assets_manager.dart';
 
 class GlobalDeliveryCardWidget extends StatelessWidget {
-  const GlobalDeliveryCardWidget({super.key, required this.itemId, required this.isSelected, required this.onTap});
+  const GlobalDeliveryCardWidget({super.key, required this.itemId, required this.isSelected, required this.onTap, required this.arrowOnTap});
   final String itemId;
   final bool isSelected;
   final VoidCallback onTap;
+  final VoidCallback arrowOnTap;
   @override
   Widget build(BuildContext context) {
     return  GestureDetector(
       onTap: onTap,
       child: Container(
+        margin: EdgeInsets.symmetric(vertical: AppPadding.p4.h),
         width: double.infinity,
         height: AppSize.s80.h,
         decoration: BoxDecoration(
@@ -58,7 +60,7 @@ class GlobalDeliveryCardWidget extends StatelessWidget {
                 ],
               ),
               const Spacer(),
-              IconButton(onPressed: (){}, icon: Icon(Icons.arrow_forward,color: ColorManager.primary,size: AppSize.s25.r,),)
+              IconButton(onPressed: arrowOnTap, icon: Icon(Icons.arrow_forward,color: ColorManager.primary,size: AppSize.s25.r,),)
             ],
           ),
         ),

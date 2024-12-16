@@ -2,10 +2,13 @@ import 'package:delivery_app/features/account/views/account_view.dart';
 import 'package:delivery_app/features/account/views/ads_partner_view.dart';
 import 'package:delivery_app/features/account/views/edit_account_view.dart';
 import 'package:delivery_app/features/add_order/views/add_order_view.dart';
+import 'package:delivery_app/features/add_order/views/choose_delivery_from_add_order_view.dart';
 import 'package:delivery_app/features/authentication/views/sign_in_view.dart';
 import 'package:delivery_app/features/authentication/views/sign_up_vew.dart';
 import 'package:delivery_app/features/authentication/views/verification_view.dart';
+import 'package:delivery_app/features/delivery/views/add_order_from_delivery_view.dart';
 import 'package:delivery_app/features/delivery/views/delivery_view.dart';
+import 'package:delivery_app/features/delivery/views/order_summary_from_delivery_view.dart';
 import 'package:delivery_app/features/home/view/all_vendors_view.dart';
 import 'package:delivery_app/features/home/view/choose_delivery_view.dart';
 import 'package:delivery_app/features/home/view/home_view.dart';
@@ -16,6 +19,8 @@ import 'package:delivery_app/features/main_layout/views/main_layout_view.dart';
 import 'package:delivery_app/features/on_boarding/views/on_boarding_view.dart';
 import 'package:flutter/material.dart';
 
+import '../features/add_order/views/order_summary_from_add_order_view.dart';
+
 
 Map<String, Widget Function(BuildContext)> routes = {
   OnBoardingView.id: (context) => OnBoardingView(),
@@ -25,7 +30,7 @@ Map<String, Widget Function(BuildContext)> routes = {
   MainLayoutView.id: (context) =>  const MainLayoutView(),
   HomeView.id: (context) => const HomeView(),
   ShopDetailsView.id: (context) => const ShopDetailsView(),
-  ChooseDeliveryView.id: (context) => const ChooseDeliveryView(),
+  ChooseDeliveryView.id: (context) =>  ChooseDeliveryView(),
   //VendorsView.id: (context) => const VendorsView(),
   SummaryView.id: (context) => const SummaryView(),
   DeliveryView.id: (context) => const DeliveryView(),
@@ -34,4 +39,8 @@ Map<String, Widget Function(BuildContext)> routes = {
   AdsPartnerView.id: (context) => const AdsPartnerView(),
   AddOrderView.id: (context) => const AddOrderView(),
   AllVendorsView.id: (context) => const AllVendorsView(),
+  AddOrderFromDeliveryView.id: (context) => const AddOrderFromDeliveryView(),
+  OrderSummaryFromDeliveryView.id: (context) => const OrderSummaryFromDeliveryView(),
+  ChooseDeliveryFromAddOrderView.id: (context) => const ChooseDeliveryFromAddOrderView(),
+  OrderSummaryFromAddOrderView.id: (context) => const OrderSummaryFromAddOrderView(),
 };

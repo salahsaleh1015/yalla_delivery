@@ -17,7 +17,7 @@ class ProductCardItemWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: AppPadding.p2.h),
       child: GlobalDecoratedContainer(
-        height: AppSize.s100.h,
+
         child: Row(
           children: [
             Image.asset(

@@ -12,7 +12,7 @@ class GlobalProfileCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GlobalDecoratedContainer(
-      height:height ?? AppSize.s50.h,
+
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

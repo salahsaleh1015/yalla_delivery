@@ -4,8 +4,8 @@ import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomOrderTextField extends StatelessWidget {
-  const CustomOrderTextField({super.key});
+class GlobalCustomOrderTextField extends StatelessWidget {
+  const GlobalCustomOrderTextField({super.key});
 
   @override
   Widget build(BuildContext context) {
