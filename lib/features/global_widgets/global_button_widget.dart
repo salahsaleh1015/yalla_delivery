@@ -14,6 +14,7 @@ class GlobalButtonWidget extends StatelessWidget {
   final double? height;
   final Color? color;
   final double? borderRadius;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

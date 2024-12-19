@@ -6,11 +6,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class GlobalSecondaryButton extends StatelessWidget {
-  const GlobalSecondaryButton({super.key, required this.width, required this.text, required this.onTap});
+  const GlobalSecondaryButton({super.key, required this.width, required this.text, required this.onTap, this.height});
 
   final double width;
   final String text;
   final VoidCallback onTap;
+  final double? height;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -24,7 +25,7 @@ class GlobalSecondaryButton extends StatelessWidget {
           color: ColorManager.white,
           borderRadius: BorderRadius.circular(AppSize.s100.r),
         ),
-        height: AppSize.s40.h,
+        height:height?? AppSize.s40.h,
         width: width,
         child: Center(
           child: Text(text,style: Theme.of(context).textTheme.labelLarge,),

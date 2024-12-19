@@ -1,6 +1,7 @@
 import 'package:delivery_app/features/global_widgets/global_app_bar.dart';
 import 'package:delivery_app/features/global_widgets/global_button_widget.dart';
-import 'package:delivery_app/features/global_widgets/global_dialog.dart';
+import 'package:delivery_app/features/global_widgets/global_dialogs/confirm_order_dialog.dart';
+import 'package:delivery_app/features/global_widgets/global_dialogs/global_dialog.dart';
 import 'package:delivery_app/features/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/features/home/view/summary_view.dart';
 import 'package:delivery_app/features/home/widgets/items/edit_location_card_item_widget.dart';
@@ -51,19 +52,7 @@ static String id = 'OrderSummaryFromAddOrderView';
         child: GlobalButtonWidget(
           text: "تأكيد الطلب",
           onTap: () {
-            showCustomDialog(
-              context,
-              content: const ConfirmOrderDialogContent(),
-              actionButtonCallBack: () {
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  MainLayoutView.id,
-                      (Route<dynamic> route) => false,
-                );
-              },
-              actionButtonHint: "الرئيسية",
-              dialogTitle: "تم استلام طلبك!",
-            );
+            confirmOrderDialog(context);
           },
           width: double.infinity,
         ),

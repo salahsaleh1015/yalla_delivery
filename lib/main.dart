@@ -5,7 +5,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:delivery_app/resources/theme_manager.dart';
 import 'package:flutter/material.dart';
-
 import 'features/on_boarding/views/on_boarding_view.dart';
 //كتنساش تغير اسم التطبيق و ال package name
 
