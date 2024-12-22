@@ -1,3 +1,4 @@
+import 'package:delivery_app/features/add_order/views/choose_delivery_from_add_order_view.dart';
 import 'package:delivery_app/features/add_order/widgets/add_order_view_body.dart';
 import 'package:delivery_app/features/cart/views/cart_view.dart';
 import 'package:delivery_app/features/global_widgets/global_custom_order_text_field.dart';
@@ -41,7 +42,24 @@ class AddOrderView extends StatelessWidget {
           SizedBox(
             height: AppSize.s30.h,
           ),
-           const AddOrderViewBody(),
+          Text(
+            "أضف طلبك",
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+          SizedBox(
+            height: AppSize.s30.h,
+          ),
+          const GlobalCustomOrderTextField(),
+          SizedBox(
+            height: AppSize.s30.h,
+          ),
+          GlobalButtonWidget(
+            text: "استمر",
+            onTap: (){
+              Navigator.pushNamed(context, ChooseDeliveryFromAddOrderView.id);
+            },
+            width: double.infinity,
+          ),
         ],
       )),
     );
