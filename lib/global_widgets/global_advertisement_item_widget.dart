@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
-class AdvertisementItemWidget extends StatelessWidget {
-  const AdvertisementItemWidget({super.key, this.height, this.width});
+class GlobalAdvertisementItemWidget extends StatelessWidget {
+  const GlobalAdvertisementItemWidget({super.key, this.height, this.width});
 final double? height , width;
 
   @override

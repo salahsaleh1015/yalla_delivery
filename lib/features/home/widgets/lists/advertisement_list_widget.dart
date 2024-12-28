@@ -2,7 +2,7 @@
 
 
 
-import 'package:delivery_app/features/home/widgets/items/advertisement_item_widget.dart';
+import 'package:delivery_app/global_widgets/global_advertisement_item_widget.dart';
 import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,7 +19,7 @@ class AdvertisementListWidget extends StatelessWidget {
         separatorBuilder: (context, index) =>  SizedBox(width: AppSize.s10.w),
         scrollDirection: Axis.horizontal,
         itemCount: 10,
-          itemBuilder: (context, index) => const AdvertisementItemWidget(),
+          itemBuilder: (context, index) => const GlobalAdvertisementItemWidget(),
           ),
     );
   }

@@ -1,4 +1,6 @@
-import 'package:delivery_app/global_widgets/global_advertisement_item_widget.dart';
+
+
+import 'package:delivery_app/features/account/add_ads_button_widget.dart';
 import 'package:delivery_app/global_widgets/global_circular_button_widget.dart';
 import 'package:delivery_app/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/global_widgets/lists/global_advertisement_grid_view_widget.dart';
@@ -6,10 +8,10 @@ import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+class AdminAddAdsView extends StatelessWidget {
+  const AdminAddAdsView({super.key});
 
-class AdsPartnerView extends StatelessWidget {
-  const AdsPartnerView({super.key});
-  static const id = 'ads-partner';
+  static String id = "AdminAddAdsView";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +21,7 @@ class AdsPartnerView extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                 GlobalCircularButtonWidget(
+                GlobalCircularButtonWidget(
                     onTap: () {
                       Navigator.pop(context);
                     },
@@ -34,7 +36,19 @@ class AdsPartnerView extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: AppSize.s20.h,
+              height: AppSize.s10.h,
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: AppSize.s40.h,
+              child:  Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("المعلومات الشخصية",style: Theme.of(context).textTheme.bodyMedium,),
+                  const AddAdsButtonWidget(),
+
+                ],
+              ),
             ),
             const GlobalAdvertisementGridViewWidget(),
 
@@ -44,5 +58,3 @@ class AdsPartnerView extends StatelessWidget {
     );
   }
 }
-
-

@@ -1,6 +1,7 @@
 
 
 
+import 'package:delivery_app/admin_features/admin_account/views/admin_add_ads_view.dart';
 import 'package:delivery_app/admin_features/admin_account/views/admin_edit_account_view.dart';
 import 'package:delivery_app/global_widgets/global_account_widgets/global_account_info_bar_widget.dart';
 import 'package:delivery_app/global_widgets/global_account_widgets/global_account_info_section_widget.dart';
@@ -68,7 +69,9 @@ class AdminAccountView extends StatelessWidget {
             SizedBox(
               height: AppSize.s10.h,
             ),
-             GlobalAdsBarWidget(onPressed: () {  },),
+             GlobalAdsBarWidget(onPressed: () {
+               Navigator.pushNamed(context, AdminAddAdsView.id);
+             },),
             SizedBox(
               height: AppSize.s50.h,
             ),
