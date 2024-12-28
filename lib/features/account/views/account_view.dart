@@ -1,9 +1,11 @@
-import 'package:delivery_app/features/account/widgets/account_info_bar_widget.dart';
-import 'package:delivery_app/features/account/widgets/account_info_section_widget.dart';
-import 'package:delivery_app/features/account/widgets/ads_bar_widget.dart';
+import 'package:delivery_app/features/account/views/ads_partner_view.dart';
+import 'package:delivery_app/features/account/views/edit_account_view.dart';
+import 'package:delivery_app/global_widgets/global_account_widgets/global_account_info_bar_widget.dart';
+import 'package:delivery_app/global_widgets/global_account_widgets/global_account_info_section_widget.dart';
+import 'package:delivery_app/global_widgets/global_account_widgets/global_ads_bar_widget.dart';
 import 'package:delivery_app/global_widgets/global_logout_button_widget.dart';
 import 'package:delivery_app/global_widgets/global_padding_widget.dart';
-import 'package:delivery_app/global_widgets/global_profile_card_widget.dart';
+import 'package:delivery_app/global_widgets/global_account_widgets/global_profile_card_widget.dart';
 import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,7 +31,11 @@ class AccountView extends StatelessWidget {
             SizedBox(
               height: AppSize.s30.h,
             ),
-            const AccountInfoSectionWidget(),
+            const GlobalAccountInfoSectionWidget(
+              joinDate: "انضم منذ 12 اكتوبر 2024",
+
+              userName: "محمود الفيشاوي",
+            ),
             SizedBox(
               height: AppSize.s20.h,
             ),
@@ -40,7 +46,11 @@ class AccountView extends StatelessWidget {
             SizedBox(
               height: AppSize.s30.h,
             ),
-            const AccountInfoBarWidget(),
+            GlobalAccountInfoBarWidget(
+              onPressed: (){
+                Navigator.pushNamed(context, EditAccountView.id);
+              },
+            ),
             SizedBox(
               height: AppSize.s10.h,
             ),
@@ -63,7 +73,11 @@ class AccountView extends StatelessWidget {
               fieldName: "العنوان",
               fieldValue: "محافظة الجيزة , السادس من اكتوبر , الشيخ زايد",
             ),
-            const AdsBarWidget(),
+             GlobalAdsBarWidget(
+              onPressed: (){
+                Navigator.pushNamed(context, AdsPartnerView.id);
+              },
+            ),
             SizedBox(
               height: AppSize.s50.h,
             ),

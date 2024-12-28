@@ -2,11 +2,13 @@ import 'package:delivery_app/global_widgets/global_user_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../resources/values_manager.dart';
+import '../../resources/values_manager.dart';
 
-class AccountInfoSectionWidget extends StatelessWidget {
-  const AccountInfoSectionWidget({super.key});
+class GlobalAccountInfoSectionWidget extends StatelessWidget {
+  const GlobalAccountInfoSectionWidget({super.key, required this.userName, required this.joinDate});
 
+  final String userName;
+  final String joinDate;
   @override
   Widget build(BuildContext context) {
     return   Row(
@@ -20,8 +22,8 @@ class AccountInfoSectionWidget extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("محمود الفيشاوي",style: Theme.of(context).textTheme.titleMedium,),
-            Text("انضم منذ 12 اكتوبر 2024",style: Theme.of(context).textTheme.headlineSmall,),
+            Text(userName,style: Theme.of(context).textTheme.titleMedium,),
+            Text(joinDate,style: Theme.of(context).textTheme.headlineSmall,),
           ],
         )
       ],

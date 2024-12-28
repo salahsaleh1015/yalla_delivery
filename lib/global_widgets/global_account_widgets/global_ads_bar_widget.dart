@@ -2,8 +2,10 @@ import 'package:delivery_app/features/account/views/ads_partner_view.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:flutter/material.dart';
 
-class AdsBarWidget extends StatelessWidget {
-  const AdsBarWidget({super.key});
+class GlobalAdsBarWidget extends StatelessWidget {
+  const GlobalAdsBarWidget({super.key, required this.onPressed});
+
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +14,7 @@ class AdsBarWidget extends StatelessWidget {
       children: [
         Text("شركاء الاعلانات",style: Theme.of(context).textTheme.bodyMedium,),
         TextButton(
-          onPressed: (){
-         Navigator.pushNamed(context, AdsPartnerView.id);
-          },
+          onPressed: onPressed,
           child: Row(
             children: [
               Text("عرض",style: Theme.of(context).textTheme.labelLarge,),

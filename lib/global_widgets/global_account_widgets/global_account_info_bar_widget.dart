@@ -1,9 +1,11 @@
 import 'package:delivery_app/features/account/views/edit_account_view.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:flutter/material.dart';
-class AccountInfoBarWidget extends StatelessWidget {
-  const AccountInfoBarWidget({super.key});
+class GlobalAccountInfoBarWidget extends StatelessWidget {
+  const GlobalAccountInfoBarWidget({super.key, required this.onPressed});
 
+
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return    Row(
@@ -11,9 +13,7 @@ class AccountInfoBarWidget extends StatelessWidget {
       children: [
         Text("المعلومات الشخصية",style: Theme.of(context).textTheme.bodyMedium,),
         TextButton(
-          onPressed: (){
-     Navigator.pushNamed(context, EditAccountView.id);
-          },
+          onPressed: onPressed,
           child: Row(
             children: [
               Text("تغيير",style: Theme.of(context).textTheme.labelLarge,),
