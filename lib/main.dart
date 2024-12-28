@@ -1,4 +1,5 @@
 
+import 'package:delivery_app/admin_features/admin_main_layout/views/admin_main_layout.dart';
 import 'package:delivery_app/resources/routes_manager.dart';
 import 'package:delivery_app/translations/codegen_loader.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -41,8 +42,7 @@ class YallaDeliveryApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Yalla Delivery app',
         routes: routes,
-        initialRoute: OnBoardingView.id,
-      //home: const MainLayoutView(),
+        initialRoute: AdminMainLayout.id,
       ),
     );
   }

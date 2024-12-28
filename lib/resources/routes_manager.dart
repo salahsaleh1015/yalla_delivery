@@ -1,3 +1,4 @@
+import 'package:delivery_app/admin_features/admin_main_layout/views/admin_main_layout.dart';
 import 'package:delivery_app/features/account/views/account_view.dart';
 import 'package:delivery_app/features/account/views/ads_partner_view.dart';
 import 'package:delivery_app/features/account/views/edit_account_view.dart';
@@ -17,7 +18,6 @@ import 'package:delivery_app/features/home/view/choose_delivery_view.dart';
 import 'package:delivery_app/features/home/view/home_view.dart';
 import 'package:delivery_app/features/home/view/shop_details_view.dart';
 import 'package:delivery_app/features/home/view/summary_view.dart';
-import 'package:delivery_app/features/home/view/vendors_view.dart';
 import 'package:delivery_app/features/main_layout/views/main_layout_view.dart';
 import 'package:delivery_app/features/on_boarding/views/on_boarding_view.dart';
 import 'package:flutter/material.dart';
@@ -49,4 +49,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   CartView.id: (context) => const CartView(),
   CartOrderSummaryView.id: (context) => const CartOrderSummaryView(),
   CartChooseDelivery.id: (context) => const CartChooseDelivery(),
+  AdminMainLayout.id: (context) => const AdminMainLayout(),
 };
