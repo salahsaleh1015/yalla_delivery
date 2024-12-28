@@ -1,14 +1,10 @@
-import 'package:delivery_app/features/authentication/views/sign_up_vew.dart';
 import 'package:delivery_app/features/on_boarding/widgets/dot_widget.dart';
+import 'package:delivery_app/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:delivery_app/resources/constants_manager.dart';
-import 'package:delivery_app/resources/routes_manager.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../resources/values_manager.dart';
-import '../../global_widgets/global_button_widget.dart';
 
 class OnBoardingBodyOneWidget extends StatelessWidget {
   const OnBoardingBodyOneWidget({super.key, required this.pageController});

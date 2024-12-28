@@ -1,7 +1,7 @@
 
 
-import 'package:delivery_app/features/global_widgets/global_delivery_card_widget.dart';
 
+import 'package:delivery_app/global_widgets/global_delivery_card_widget.dart';
 import 'package:flutter/material.dart';
 
 

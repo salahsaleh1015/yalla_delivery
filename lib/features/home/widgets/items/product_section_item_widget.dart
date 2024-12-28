@@ -1,5 +1,6 @@
-import 'package:delivery_app/features/global_widgets/global_search_card_item_widget.dart';
+
 import 'package:delivery_app/features/home/widgets/lists/product_cards_list_widget.dart';
+import 'package:delivery_app/global_widgets/global_search_card_item_widget.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,7 @@
 import 'package:delivery_app/features/authentication/views/sign_in_view.dart';
 import 'package:delivery_app/features/authentication/views/sign_up_vew.dart';
-import 'package:delivery_app/features/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/features/on_boarding/widgets/dot_widget.dart';
+import 'package:delivery_app/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:delivery_app/resources/routes_manager.dart';
 import 'package:flutter/material.dart';

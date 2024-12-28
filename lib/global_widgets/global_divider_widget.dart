@@ -6,13 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GlobalDividerWidget extends StatelessWidget {
-  const GlobalDividerWidget({super.key});
+  const GlobalDividerWidget({super.key, this.color});
 
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     return Divider(
-      color: ColorManager.socialButtonColor,
-      height: AppSize.s1.h,
+      color: color ?? ColorManager.socialButtonColor,
+      height: AppSize.s5.h,
     );
   }
 }

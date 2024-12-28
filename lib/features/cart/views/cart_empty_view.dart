@@ -1,7 +1,7 @@
 
 
-import 'package:delivery_app/features/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/features/main_layout/views/main_layout_view.dart';
+import 'package:delivery_app/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

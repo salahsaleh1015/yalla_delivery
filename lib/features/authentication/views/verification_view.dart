@@ -1,10 +1,8 @@
-import 'package:delivery_app/features/authentication/authentication_widgets/auth_social_botton.dart';
-import 'package:delivery_app/features/authentication/authentication_widgets/or_break_widget.dart';
-import 'package:delivery_app/features/authentication/authentication_widgets/terms_text.dart';
-import 'package:delivery_app/features/global_widgets/global_button_widget.dart';
-import 'package:delivery_app/features/global_widgets/global_circular_button_widget.dart';
-import 'package:delivery_app/features/global_widgets/global_padding_widget.dart';
+
 import 'package:delivery_app/features/main_layout/views/main_layout_view.dart';
+import 'package:delivery_app/global_widgets/global_button_widget.dart';
+import 'package:delivery_app/global_widgets/global_circular_button_widget.dart';
+import 'package:delivery_app/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:delivery_app/resources/routes_manager.dart';
 import 'package:delivery_app/resources/values_manager.dart';

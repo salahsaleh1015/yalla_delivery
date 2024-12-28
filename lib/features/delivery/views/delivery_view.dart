@@ -1,13 +1,14 @@
 import 'package:delivery_app/features/cart/views/cart_view.dart';
-import 'package:delivery_app/features/global_widgets/global_app_bar.dart';
-import 'package:delivery_app/features/global_widgets/global_circular_button_widget.dart';
-import 'package:delivery_app/features/global_widgets/global_padding_widget.dart';
+import 'package:delivery_app/global_widgets/global_circular_button_widget.dart';
+import 'package:delivery_app/global_widgets/global_padding_widget.dart';
+
+import 'package:delivery_app/global_widgets/lists/global_delivery_cards_list_widget.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../resources/values_manager.dart';
-import '../../global_widgets/lists/global_delivery_cards_list_widget.dart';
+
 
 class DeliveryView extends StatelessWidget {
   const DeliveryView({super.key});

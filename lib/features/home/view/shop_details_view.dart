@@ -1,6 +1,4 @@
-import 'package:delivery_app/features/global_widgets/global_button_widget.dart';
-import 'package:delivery_app/features/global_widgets/global_decorated_bottom_container.dart';
-import 'package:delivery_app/features/home/widgets/items/product_card_item_widget.dart';
+
 import 'package:delivery_app/features/home/widgets/items/product_section_item_widget.dart';
 import 'package:delivery_app/features/home/widgets/items/shop_image_item.dart';
 import 'package:delivery_app/features/home/widgets/items/shop_info_item_widget.dart';

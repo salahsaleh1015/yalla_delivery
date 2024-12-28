@@ -1,8 +1,8 @@
-import 'package:delivery_app/features/global_widgets/global_button_widget.dart';
-import 'package:delivery_app/features/global_widgets/global_decorated_bottom_container.dart';
+
 import 'package:delivery_app/features/home/view/choose_delivery_view.dart';
+import 'package:delivery_app/global_widgets/global_button_widget.dart';
+import 'package:delivery_app/global_widgets/global_decorated_bottom_container.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
-import 'package:delivery_app/resources/routes_manager.dart';
 import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

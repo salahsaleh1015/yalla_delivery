@@ -1,7 +1,7 @@
 
 
 import 'package:delivery_app/features/cart/views/cart_view.dart';
-import 'package:delivery_app/features/global_widgets/global_circular_button_widget.dart';
+import 'package:delivery_app/global_widgets/global_circular_button_widget.dart';
 import 'package:flutter/material.dart';
 
 class GlobalAppBar extends StatelessWidget {

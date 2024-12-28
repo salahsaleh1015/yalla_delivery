@@ -1,9 +1,9 @@
 import 'package:delivery_app/features/add_order/views/choose_delivery_from_add_order_view.dart';
 import 'package:delivery_app/features/delivery/views/order_summary_from_delivery_view.dart';
-import 'package:delivery_app/features/global_widgets/global_app_bar.dart';
-import 'package:delivery_app/features/global_widgets/global_button_widget.dart';
-import 'package:delivery_app/features/global_widgets/global_custom_order_text_field.dart';
-import 'package:delivery_app/features/global_widgets/global_padding_widget.dart';
+import 'package:delivery_app/global_widgets/global_app_bar.dart';
+import 'package:delivery_app/global_widgets/global_button_widget.dart';
+import 'package:delivery_app/global_widgets/global_custom_order_text_field.dart';
+import 'package:delivery_app/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

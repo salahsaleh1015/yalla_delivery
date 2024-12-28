@@ -3,7 +3,7 @@
 
 import 'package:delivery_app/features/add_order/views/add_order_view.dart';
 import 'package:delivery_app/features/delivery/views/add_order_from_delivery_view.dart';
-import 'package:delivery_app/features/global_widgets/global_delivery_card_widget.dart';
+import 'package:delivery_app/global_widgets/global_delivery_card_widget.dart';
 import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

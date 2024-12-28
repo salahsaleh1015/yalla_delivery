@@ -1,9 +1,8 @@
 import 'package:delivery_app/features/cart/views/cart_order_summary_view.dart';
-import 'package:delivery_app/features/cart/widgets/cart_button.dart';
-import 'package:delivery_app/features/global_widgets/global_app_bar.dart';
-import 'package:delivery_app/features/global_widgets/global_button_widget.dart';
-import 'package:delivery_app/features/global_widgets/global_padding_widget.dart';
-import 'package:delivery_app/features/global_widgets/lists/global_delivery_cards_for_shop_list_widget.dart';
+import 'package:delivery_app/global_widgets/global_app_bar.dart';
+import 'package:delivery_app/global_widgets/global_button_widget.dart';
+import 'package:delivery_app/global_widgets/global_padding_widget.dart';
+import 'package:delivery_app/global_widgets/lists/global_delivery_cards_for_shop_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../resources/values_manager.dart';

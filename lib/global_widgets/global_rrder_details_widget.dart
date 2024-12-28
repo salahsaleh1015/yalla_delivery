@@ -1,4 +1,4 @@
-import 'package:delivery_app/features/global_widgets/global_decorated_container.dart';
+import 'package:delivery_app/global_widgets/global_decorated_container.dart';
 import 'package:delivery_app/resources/constants_manager.dart';
 import 'package:flutter/material.dart';
 

@@ -1,6 +1,7 @@
 
 import 'package:delivery_app/features/cart/views/cart_view.dart';
-import 'package:delivery_app/features/global_widgets/global_circular_button_widget.dart';
+import 'package:delivery_app/global_widgets/global_circular_button_widget.dart';
+
 import 'package:delivery_app/resources/assets_manager.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:delivery_app/resources/values_manager.dart';

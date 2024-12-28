@@ -1,4 +1,4 @@
-
+import 'package:delivery_app/global_widgets/global_decorated_container.dart';
 import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,17 +12,15 @@ class GlobalSearchCardItemWidget extends StatelessWidget {
     return SizedBox(
       height: AppSize.s55.h,
       width: double.infinity,
-      child: Card(
-        elevation: AppSize.s5.r,
-        color: Colors.white,
+      child: GlobalDecoratedContainer(
         child: Padding(
-          padding:  EdgeInsets.all(AppPadding.p8.r),
+          padding: EdgeInsets.all(AppPadding.p8.r),
           child: TextField(
-
             decoration: InputDecoration(
-
               hintText: hintText,
-              contentPadding: EdgeInsets.only(bottom: AppPadding.p15.h,),
+              contentPadding: EdgeInsets.only(
+                bottom: AppPadding.p8.h,
+              ),
               hintStyle: Theme.of(context).textTheme.labelSmall,
               prefixIcon: Icon(
                 Icons.search,

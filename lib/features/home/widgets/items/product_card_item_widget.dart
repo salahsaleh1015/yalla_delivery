@@ -1,7 +1,7 @@
-import 'package:delivery_app/features/global_widgets/global_button_widget.dart';
-import 'package:delivery_app/features/global_widgets/global_decorated_container.dart';
+
 import 'package:delivery_app/features/home/widgets/items/product_amount_section.dart';
 import 'package:delivery_app/features/home/widgets/items/product_info_section.dart';
+import 'package:delivery_app/global_widgets/global_decorated_container.dart';
 import 'package:delivery_app/resources/assets_manager.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:delivery_app/resources/font_manager.dart';

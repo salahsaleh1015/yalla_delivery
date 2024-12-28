@@ -1,13 +1,14 @@
 import 'package:delivery_app/features/account/views/ads_partner_view.dart';
 import 'package:delivery_app/features/cart/views/cart_view.dart';
-import 'package:delivery_app/features/global_widgets/global_circular_button_widget.dart';
-import 'package:delivery_app/features/global_widgets/global_padding_widget.dart';
-import 'package:delivery_app/features/global_widgets/global_user_card_widget.dart';
+
 import 'package:delivery_app/features/home/view/all_vendors_view.dart';
 import 'package:delivery_app/features/home/view/vendors_view.dart';
-import 'package:delivery_app/features/global_widgets/global_search_card_item_widget.dart';
 import 'package:delivery_app/features/home/widgets/lists/advertisement_list_widget.dart';
 import 'package:delivery_app/features/home/widgets/lists/vendor_list_widget.dart';
+import 'package:delivery_app/global_widgets/global_circular_button_widget.dart';
+import 'package:delivery_app/global_widgets/global_padding_widget.dart';
+import 'package:delivery_app/global_widgets/global_search_card_item_widget.dart';
+import 'package:delivery_app/global_widgets/global_user_card_widget.dart';
 import 'package:delivery_app/resources/assets_manager.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:delivery_app/resources/values_manager.dart';

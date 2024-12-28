@@ -1,7 +1,7 @@
 import 'package:delivery_app/features/cart/views/cart_view.dart';
 import 'package:delivery_app/features/cart/widgets/cart_order_list_view.dart';
-import 'package:delivery_app/features/global_widgets/global_decorated_container.dart';
-import 'package:delivery_app/features/global_widgets/global_dialogs/delete_all_orders_dialog.dart';
+import 'package:delivery_app/global_widgets/global_decorated_container.dart';
+import 'package:delivery_app/global_widgets/global_dialogs/delete_all_orders_dialog.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';

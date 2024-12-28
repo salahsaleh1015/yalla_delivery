@@ -1,6 +1,6 @@
-import 'package:delivery_app/features/global_widgets/global_button_widget.dart';
-import 'package:delivery_app/features/global_widgets/global_secondary_button.dart';
-import 'package:delivery_app/features/global_widgets/global_text_field_widget.dart';
+
+import 'package:delivery_app/global_widgets/global_button_widget.dart';
+import 'package:delivery_app/global_widgets/global_secondary_button.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:delivery_app/resources/font_manager.dart';
 import 'package:delivery_app/resources/values_manager.dart';
