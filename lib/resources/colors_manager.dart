@@ -20,5 +20,6 @@ class ColorManager {
   static Color inActiveRateColor = const Color(0xffa3a3a3);
   static Color lightRedColor = const Color(0xffeac9c9);
   static Color darkPrimary = const  Color(0xffe85c34);
+  static Color transparent = Colors.transparent;
 
 }

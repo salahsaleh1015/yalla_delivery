@@ -18,6 +18,7 @@ class CartChooseDelivery extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const GlobalAppBar(
+
               title: "اختر التوصيل",
             ),
             SizedBox(

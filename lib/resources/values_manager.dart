@@ -65,4 +65,5 @@ static const double s75 = 75.0;
   static const double s312 = 312.0;
   static const double s408 = 408.0;
   static const double s315 = 315.0;
+  static const double s800 = 800.0;
 }

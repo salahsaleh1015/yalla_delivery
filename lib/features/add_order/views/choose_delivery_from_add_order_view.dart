@@ -19,7 +19,9 @@ class ChooseDeliveryFromAddOrderView extends StatelessWidget {
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const GlobalAppBar(title: "اختر التوصيل"),
+          const GlobalAppBar(
+
+              title: "اختر التوصيل"),
           SizedBox(
             height: AppSize.s50.h,
           ),

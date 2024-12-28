@@ -94,7 +94,7 @@ class DeliveryView extends StatelessWidget {
           color: ColorManager.lightPrimary,
           borderRadius: BorderRadius.circular(AppSize.s50.r),
         ),
-        tabs: [
+        tabs: const [
           Tab(
             text: "الكل",
           ),

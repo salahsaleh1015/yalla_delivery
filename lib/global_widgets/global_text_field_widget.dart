@@ -29,7 +29,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
           onSubmitted: (value) {},
           keyboardType:textInputType,
           decoration: InputDecoration(
-          contentPadding: EdgeInsets.only(bottom: AppPadding.p15.h,right: AppPadding.p15.w,),
+          contentPadding: EdgeInsets.only(right: AppPadding.p15.w,),
               enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide.none,
               ),

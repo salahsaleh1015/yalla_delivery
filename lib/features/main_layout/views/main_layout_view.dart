@@ -1,5 +1,6 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:delivery_app/features/main_layout/cubit/bottom_nav_cubit.dart';
+import 'package:delivery_app/global_widgets/global_bottom_nav_bar_widget.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
@@ -20,12 +21,7 @@ class MainLayoutView extends StatelessWidget {
           var cubit = BottomNavCubit.get(context);
           return Scaffold(
             body: cubit.screens[cubit.currentIndex],
-            bottomNavigationBar: ConvexAppBar(
-              curve: Curves.fastOutSlowIn,
-              color: ColorManager.secondaryTextColor,
-              activeColor: ColorManager.primary,
-              backgroundColor: ColorManager.white,
-              height: AppSize.s50.h,
+            bottomNavigationBar: GlobalBottomNavBarWidget(
               initialActiveIndex: cubit.currentIndex,
                 items: cubit.bottomNavTabs,
               onTap: (index) {

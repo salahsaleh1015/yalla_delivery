@@ -20,6 +20,7 @@ class ChooseDeliveryView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const GlobalAppBar(
+
               title: "اختر التوصيل",
             ),
             SizedBox(

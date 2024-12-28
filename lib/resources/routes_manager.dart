@@ -1,3 +1,4 @@
+import 'package:delivery_app/admin_features/admin_addittion/views/admin_addition_view.dart';
 import 'package:delivery_app/admin_features/admin_main_layout/views/admin_main_layout.dart';
 import 'package:delivery_app/features/account/views/account_view.dart';
 import 'package:delivery_app/features/account/views/ads_partner_view.dart';
@@ -50,4 +51,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   CartOrderSummaryView.id: (context) => const CartOrderSummaryView(),
   CartChooseDelivery.id: (context) => const CartChooseDelivery(),
   AdminMainLayout.id: (context) => const AdminMainLayout(),
+  AdminAdditionView.id: (context) => const AdminAdditionView(),
 };

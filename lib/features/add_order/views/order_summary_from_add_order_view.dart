@@ -24,7 +24,9 @@ static String id = 'OrderSummaryFromAddOrderView';
  body: GlobalPaddingWidget(child:Column(
    crossAxisAlignment:  CrossAxisAlignment.start,
    children: [
-     const GlobalAppBar(title: "ملخص الطلب"),
+     const GlobalAppBar(
+
+         title: "ملخص الطلب"),
      SizedBox(
        height: AppSize.s30.h,
      ),

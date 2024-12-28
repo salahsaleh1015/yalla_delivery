@@ -19,6 +19,7 @@ class AddOrderFromDeliveryView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const GlobalAppBar(
+
             title: "اضافة طلب",
           ),
           SizedBox(
