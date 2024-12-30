@@ -44,7 +44,7 @@ class AdditionTabBar extends StatelessWidget {
           ),
           tabs: const [
             Tab(
-              text: "اضافه شريك اعلان",
+              text: "إضافة موزع خدمة",
             ),
             Tab(
               text: "إضافة مندوب توصيل",

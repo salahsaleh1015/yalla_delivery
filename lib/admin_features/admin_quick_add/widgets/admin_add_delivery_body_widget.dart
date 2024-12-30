@@ -2,22 +2,24 @@
 
 
 
+
 import 'package:delivery_app/global_widgets/global_button_widget.dart';
-import 'package:delivery_app/global_widgets/global_text_field_widget.dart';
 import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AdminAddAdsPartnerBodyWidget extends StatelessWidget {
-  const AdminAddAdsPartnerBodyWidget({super.key});
+import '../../../global_widgets/global_text_field_widget.dart';
+
+class AdminAddDeliveryBodyWidget extends StatelessWidget {
+  const AdminAddDeliveryBodyWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return  Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "أسم المعلن",
+          "أسم مندوب التوصيل",
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         SizedBox(
@@ -25,7 +27,7 @@ class AdminAddAdsPartnerBodyWidget extends StatelessWidget {
         ),
         const GlobalTextFieldWidget(
             textInputType: TextInputType.text,
-            hintText: "ادخل اسم المعلن"),
+            hintText: "ادخل اسم مندوب التوصيل"),
         SizedBox(
           height: AppSize.s20.h,
         ),
@@ -54,6 +56,20 @@ class AdminAddAdsPartnerBodyWidget extends StatelessWidget {
             hintText: "ادخل العنوان"),
         SizedBox(
           height: AppSize.s20.h,
+        ),
+
+        Text(
+          "التقييم",
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+        SizedBox(
+          height: AppSize.s10.h,
+        ),
+        const GlobalTextFieldWidget(
+            textInputType: TextInputType.number,
+            hintText: "ادخل تقييم الموزع"),
+        SizedBox(
+          height: AppSize.s30.h,
         ),
         GlobalButtonWidget(
           text: "إضافة",

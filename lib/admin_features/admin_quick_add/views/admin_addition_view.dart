@@ -1,10 +1,8 @@
-import 'package:delivery_app/admin_features/admin_addittion/widgets/addition_tab_bar.dart';
-import 'package:delivery_app/admin_features/admin_addittion/widgets/admin_add_ads_partner_body_widget.dart';
-import 'package:delivery_app/admin_features/admin_addittion/widgets/admin_add_delivery_body_widget.dart';
-import 'package:delivery_app/global_widgets/global_button_widget.dart';
-import 'package:delivery_app/global_widgets/global_padding_widget.dart';
-import 'package:delivery_app/global_widgets/global_text_field_widget.dart';
 
+import 'package:delivery_app/admin_features/admin_quick_add/widgets/addition_tab_bar.dart';
+import 'package:delivery_app/admin_features/admin_quick_add/widgets/admin_add_delivery_body_widget.dart';
+import 'package:delivery_app/admin_features/admin_quick_add/widgets/admin_add_shop_body_widget.dart';
+import 'package:delivery_app/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,8 +36,9 @@ class AdminAdditionView extends StatelessWidget {
                 height: AppSize.s800,
                 width: MediaQuery.of(context).size.width,
                 child: const TabBarView(children: [
-                  AdminAddAdsPartnerBodyWidget(),
+                  AdminAddShopBodyWidget(),
                   AdminAddDeliveryBodyWidget(),
+
                 ]),
               )
             ],

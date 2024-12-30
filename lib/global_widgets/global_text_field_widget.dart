@@ -23,18 +23,29 @@ class GlobalTextFieldWidget extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppSize.s15.r),
         child: TextField(
-
+cursorColor: ColorManager.primary,
+          cursorHeight: AppSize.s25.h,
           maxLines: null, // Set this
           expands: true, // and this
           onSubmitted: (value) {},
           keyboardType:textInputType,
           decoration: InputDecoration(
+
           contentPadding: EdgeInsets.only(right: AppPadding.p15.w,),
               enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide.none,
               ),
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide.none,
+              focusedBorder:  OutlineInputBorder(
+
+              borderRadius: BorderRadius.all(
+
+                  Radius.circular(AppSize.s15.r),
+
+              ),
+                borderSide: BorderSide(
+                  color: ColorManager.primary,
+                  width: AppSize.s1.w
+                )
               ),
               hintText: hintText,
               hintStyle: Theme.of(context)
@@ -42,7 +53,9 @@ class GlobalTextFieldWidget extends StatelessWidget {
                   .labelSmall!
                   .copyWith(color: ColorManager.hintColor,),
               fillColor: ColorManager.inputFillColor,
-              filled: true),
+              filled: true
+
+          ),
         ),
       ),
     );

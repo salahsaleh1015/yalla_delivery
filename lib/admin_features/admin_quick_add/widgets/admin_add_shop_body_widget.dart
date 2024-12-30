@@ -2,20 +2,18 @@
 
 
 
-
 import 'package:delivery_app/global_widgets/global_button_widget.dart';
+import 'package:delivery_app/global_widgets/global_text_field_widget.dart';
 import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../global_widgets/global_text_field_widget.dart';
-
-class AdminAddDeliveryBodyWidget extends StatelessWidget {
-  const AdminAddDeliveryBodyWidget({super.key});
+class AdminAddShopBodyWidget extends StatelessWidget {
+  const AdminAddShopBodyWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
@@ -27,7 +25,7 @@ class AdminAddDeliveryBodyWidget extends StatelessWidget {
         ),
         const GlobalTextFieldWidget(
             textInputType: TextInputType.text,
-            hintText: "ادخل اسم الموزع"),
+            hintText: "ادخل أسم الموزع"),
         SizedBox(
           height: AppSize.s20.h,
         ),
@@ -65,7 +63,7 @@ class AdminAddDeliveryBodyWidget extends StatelessWidget {
           height: AppSize.s10.h,
         ),
         const GlobalTextFieldWidget(
-            textInputType: TextInputType.number,
+            textInputType: TextInputType.text,
             hintText: "ادخل ساعات العمل"),
         SizedBox(
           height: AppSize.s20.h,
@@ -81,13 +79,14 @@ class AdminAddDeliveryBodyWidget extends StatelessWidget {
             textInputType: TextInputType.number,
             hintText: "ادخل تقييم الموزع"),
         SizedBox(
-          height: AppSize.s20.h,
+          height: AppSize.s30.h,
         ),
         GlobalButtonWidget(
           text: "إضافة",
           onTap: () {},
           width: MediaQuery.of(context).size.width,
-        )
+        ),
+
       ],
     );
   }
