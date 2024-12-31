@@ -23,12 +23,12 @@ class DeleteOrderDialogContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: AppSize.s20.h,),
+        SizedBox(height: AppSize.s10.h,),
         Text("هل أنت متأكد أنك تريد إلغاء الطلب؟",style: Theme.of(context).textTheme.headlineMedium!.copyWith(
           color: ColorManager.hintColor,
 
         ),),
-        SizedBox(height: AppSize.s20.h,),
+        SizedBox(height: AppSize.s10.h,),
       ],
     );
   }

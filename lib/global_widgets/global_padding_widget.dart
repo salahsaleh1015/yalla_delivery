@@ -7,7 +7,7 @@ class GlobalPaddingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return   Padding(padding: EdgeInsets.only(
-      top: AppPadding.p40.h,
+      top: AppPadding.p50.h,
       left: AppPadding.p10.w,
       right: AppPadding.p10.w,
     ),

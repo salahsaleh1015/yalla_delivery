@@ -112,7 +112,7 @@ Future<void> showCustomDialog(BuildContext context, {
   Color? actionButtonColor,
 }) {
   return showDialog<void>(
-    context: context,
+   context: context,
     barrierDismissible: true,
     builder: (BuildContext context) {
       return CustomDialog(

@@ -1,58 +1,21 @@
-
-import 'package:delivery_app/resources/colors_manager.dart';
-
-import 'package:delivery_app/resources/values_manager.dart';
+import 'package:delivery_app/global_widgets/global_tab_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 
 class AdditionTabBar extends StatelessWidget {
   const AdditionTabBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: AppPadding.p4.w),
-      child: Container(
-        height: AppSize.s50.h,
-
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: ColorManager.socialButtonColor,
-            width: AppSize.s2.w,
-          ),
-          color: ColorManager.scaffoldBackgroundColor,
-          borderRadius: BorderRadius.circular(AppSize.s50.r),
+    return const GlobalTabBar(
+      tabs: [
+        Tab(
+          text: "إضافة موزع خدمة",
         ),
-        child: TabBar(
-          labelStyle: Theme
-              .of(context)
-              .textTheme
-              .bodyMedium,
-          unselectedLabelStyle: Theme
-              .of(context)
-              .textTheme
-              .bodyMedium!
-              .copyWith(
-              color: ColorManager.socialButtonColor
-          ),
-          indicatorColor: ColorManager.transparent,
-          indicatorSize: TabBarIndicatorSize.tab,
-          indicator: BoxDecoration(
-            color: ColorManager.lightPrimary,
-            borderRadius: BorderRadius.circular(AppSize.s50.r),
-          ),
-          tabs: const [
-            Tab(
-              text: "إضافة موزع خدمة",
-            ),
-            Tab(
-              text: "إضافة مندوب توصيل",
-            ),
-
-          ],
+        Tab(
+          text: "إضافة مندوب توصيل",
         ),
-      ),
+      ],
     );
   }
 }
+
