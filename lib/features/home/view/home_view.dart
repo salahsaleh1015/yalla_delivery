@@ -3,8 +3,8 @@ import 'package:delivery_app/features/cart/views/cart_view.dart';
 
 import 'package:delivery_app/features/home/view/all_vendors_view.dart';
 import 'package:delivery_app/features/home/view/vendors_view.dart';
-import 'package:delivery_app/features/home/widgets/lists/advertisement_list_widget.dart';
-import 'package:delivery_app/features/home/widgets/lists/vendor_list_widget.dart';
+import 'package:delivery_app/global_widgets/lists/global_advertisement_list_widget.dart';
+import 'package:delivery_app/global_widgets/lists/global_vendor_list_widget.dart';
 import 'package:delivery_app/global_widgets/global_circular_button_widget.dart';
 import 'package:delivery_app/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/global_widgets/global_search_card_item_widget.dart';
@@ -53,7 +53,7 @@ class HomeView extends StatelessWidget {
              SizedBox(
               height: AppSize.s10.h,
             ),
-            const AdvertisementListWidget(),
+            const GlobalAdvertisementListWidget(),
 
             Row(
 
@@ -76,7 +76,7 @@ class HomeView extends StatelessWidget {
             SizedBox(
               height: AppSize.s10.h,
             ),
-            const VendorListWidget(),
+            const GlobalVendorListWidget(),
 
           ],
         ),

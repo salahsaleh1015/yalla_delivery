@@ -15,5 +15,13 @@ class AssetsManager {
   static const String productTest = "$imagePath/product_test.png";
   static const String deliveryAvatar = "$imagePath/delivery_avatar.png";
   static const String emptyCart = "$imagePath/empty_cart_image.png";
+  static const String adminAvatar = "$imagePath/admin_avatar_image.png";
+  static const String vehicleIcon = "$imagePath/vehicle_icon.png";
+  static const String userIcon = "$imagePath/user_icon.png";
+  static const String checkMarkIcon = "$imagePath/check_mark_icon.png";
+
+
+
+
 
 }

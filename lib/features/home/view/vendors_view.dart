@@ -1,7 +1,7 @@
 // import 'package:delivery_app/features/global_widgets/global_app_bar.dart';
 // import 'package:delivery_app/features/global_widgets/global_padding_widget.dart';
 // import 'package:delivery_app/features/home/widgets/items/vendor_item_widget.dart';
-// import 'package:delivery_app/features/home/widgets/lists/vendor_list_widget.dart';
+// import 'package:delivery_app/features/home/widgets/lists/global_vendor_list_widget.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 //

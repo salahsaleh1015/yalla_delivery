@@ -1,6 +1,8 @@
 import 'package:delivery_app/admin_features/admin_account/views/admin_account_view.dart';
 import 'package:delivery_app/admin_features/admin_account/views/admin_add_ads_view.dart';
 import 'package:delivery_app/admin_features/admin_account/views/admin_edit_account_view.dart';
+import 'package:delivery_app/admin_features/admin_delivery_management/views/admin_delivery_management_view.dart';
+import 'package:delivery_app/admin_features/admin_home/views/admin_home_view.dart';
 import 'package:delivery_app/admin_features/admin_main_layout/views/admin_main_layout.dart';
 import 'package:delivery_app/admin_features/admin_quick_add/views/admin_addition_view.dart';
 import 'package:delivery_app/features/account/views/account_view.dart';
@@ -58,4 +60,6 @@ Map<String, Widget Function(BuildContext)> routes = {
   AdminAccountView.id: (context) => const AdminAccountView(),
   AdminEditAccountView.id: (context) => const AdminEditAccountView(),
   AdminAddAdsView.id: (context) => const AdminAddAdsView(),
+  AdminDeliveryManagementView.id: (context) => const AdminDeliveryManagementView(),
+  AdminHomeView.id: (context) => const AdminHomeView(),
 };

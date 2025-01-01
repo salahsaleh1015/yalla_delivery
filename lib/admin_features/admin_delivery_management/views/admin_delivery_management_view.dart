@@ -12,6 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AdminDeliveryManagementView extends StatelessWidget {
   const AdminDeliveryManagementView({super.key});
 
+  static String id = "AdminDeliveryManagementView";
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

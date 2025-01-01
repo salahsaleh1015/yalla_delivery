@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:delivery_app/admin_features/admin_account/views/admin_account_view.dart';
 import 'package:delivery_app/admin_features/admin_delivery_management/views/admin_delivery_management_view.dart';
+import 'package:delivery_app/admin_features/admin_home/views/admin_home_view.dart';
 import 'package:delivery_app/admin_features/admin_order_management/views/admin_order_management_view.dart';
 import 'package:delivery_app/admin_features/admin_quick_add/views/admin_addition_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +35,7 @@ class AdminMainLayoutCubit extends Cubit<AdminMainLayoutState> {
 
 
   List<Widget> adminScreens = [
-    Container(),
+    const AdminHomeView(),
     const AdminDeliveryManagementView(),
     const AdminAdditionView(),
     const AdminOrderManagementView(),

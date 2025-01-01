@@ -1,0 +1,73 @@
+import 'package:delivery_app/admin_features/admin_home/widgets/add_ads_bar.dart';
+import 'package:delivery_app/admin_features/admin_home/widgets/admin_main_bar.dart';
+import 'package:delivery_app/admin_features/admin_home/widgets/admin_statistics_card.dart';
+import 'package:delivery_app/admin_features/admin_home/widgets/admin_statistics_cards_list.dart';
+import 'package:delivery_app/global_widgets/global_admin_add_button_widget.dart';
+import 'package:delivery_app/global_widgets/global_decorated_container.dart';
+import 'package:delivery_app/global_widgets/global_padding_widget.dart';
+import 'package:delivery_app/global_widgets/lists/global_advertisement_list_widget.dart';
+import 'package:delivery_app/global_widgets/lists/global_vendor_list_widget.dart';
+import 'package:delivery_app/resources/assets_manager.dart';
+import 'package:delivery_app/resources/colors_manager.dart';
+import 'package:delivery_app/resources/values_manager.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../features/home/view/all_vendors_view.dart';
+
+class AdminHomeView extends StatelessWidget {
+  const AdminHomeView({super.key});
+  static String id = "AdminHomeView";
+  @override
+  Widget build(BuildContext context) {
+    return GlobalPaddingWidget(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                const  AdminMainBar(),
+          SizedBox(
+            height: AppSize.s15.h,
+          ),
+          Text("الإحصائيات المختصرة",
+              style: Theme.of(context).textTheme.bodyMedium),
+          SizedBox(
+            height: AppSize.s10.h,
+          ),
+          const AdminStatisticsCardsList(),
+          SizedBox(
+            height: AppSize.s30.h,
+          ),
+          const AddAdsBar(),
+          SizedBox(
+            height: AppSize.s15.h,
+          ),
+          const GlobalAdvertisementListWidget(),
+                  Row(
+
+            children: [
+              Text("موزعي الخدمة",style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  color: ColorManager.black
+              ),),
+              const Spacer(),
+              TextButton(onPressed: (){
+                Navigator.pushNamed(context, AllVendorsView.id);
+              }, child: Row(
+                children: [
+                  Text("عرض الكل",style: Theme.of(context).textTheme.bodySmall,),
+                  Icon(Icons.arrow_forward,color: ColorManager.primary,),
+                ],
+              )),
+
+            ],
+          ),
+                  SizedBox(
+                    height: AppSize.s15.h,
+                  ),
+                  const GlobalVendorListWidget(),
+                ],
+              ),
+        ));
+  }
+}

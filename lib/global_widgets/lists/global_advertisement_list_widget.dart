@@ -7,8 +7,8 @@ import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AdvertisementListWidget extends StatelessWidget {
-  const AdvertisementListWidget({super.key});
+class GlobalAdvertisementListWidget extends StatelessWidget {
+  const GlobalAdvertisementListWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

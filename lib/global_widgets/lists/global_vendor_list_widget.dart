@@ -2,10 +2,10 @@ import 'package:delivery_app/features/home/widgets/items/vendor_item_widget.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../resources/values_manager.dart';
+import '../../resources/values_manager.dart';
 
-class VendorListWidget extends StatelessWidget {
-  const VendorListWidget({
+class GlobalVendorListWidget extends StatelessWidget {
+  const GlobalVendorListWidget({
     super.key,
   });
 

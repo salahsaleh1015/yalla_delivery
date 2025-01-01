@@ -4,7 +4,6 @@ import 'package:delivery_app/global_widgets/global_secondary_button.dart';
 import 'package:delivery_app/global_widgets/global_secondary_decorated_container.dart';
 import 'package:delivery_app/resources/assets_manager.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
-import 'package:delivery_app/resources/routes_manager.dart';
 import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

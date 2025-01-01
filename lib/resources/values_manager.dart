@@ -53,6 +53,7 @@ static const double s75 = 75.0;
   static const double s80 = 80.0;
   static const double s90 = 90.0;
   static const double s100 = 100.0;
+  static const double s120 = 120.0;
   static const double s180 = 180.0;
   static const double s135 = 135.0;
   static const double s130 = 130.0;
