@@ -15,39 +15,37 @@ class AdminOrderManagementView extends StatelessWidget {
   static String id = "AdminOrderManagementView";
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GlobalPaddingWidget(
-          child: DefaultTabController(
-        length: AppConstant.orderManagementTabBarLength,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-                child: Text(
-              "إدارة الطلبات",
-              style: Theme.of(context).textTheme.titleMedium,
-            )),
-            SizedBox(
-              height: AppSize.s25.h,
-            ),
-            const OrderManagementTabBar(),
-            SizedBox(
-              height: AppSize.s25.h,
-            ),
-            const GlobalSearchCardItemWidget(hintText: "ابحث برقم الطلب"),
-            SizedBox(
-              height: AppSize.s30.h,
-            ),
-            Text("قائمة الطلبات", style: Theme.of(context).textTheme.bodyMedium),
-            SizedBox(
-              height: AppSize.s15.h,
-            ),
-            const OrderManagementTabBarView(),
+    return GlobalPaddingWidget(
+        child: DefaultTabController(
+          length: AppConstant.adminManagementTabBarLength,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                  child: Text(
+                    "إدارة الطلبات",
+                    style: Theme.of(context).textTheme.titleMedium,
+                  )),
+              SizedBox(
+                height: AppSize.s25.h,
+              ),
+              const OrderManagementTabBar(),
+              SizedBox(
+                height: AppSize.s25.h,
+              ),
+              const GlobalSearchCardItemWidget(hintText: "ابحث برقم الطلب"),
+              SizedBox(
+                height: AppSize.s30.h,
+              ),
+              Text("قائمة الطلبات", style: Theme.of(context).textTheme.bodyMedium),
+              SizedBox(
+                height: AppSize.s15.h,
+              ),
+              const OrderManagementTabBarView(),
 
-          ],
-        ),
-      )),
-    );
+            ],
+          ),
+        ));
   }
 }
 

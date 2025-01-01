@@ -77,7 +77,7 @@ class CustomDialog extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(AppSize.s2.r),
               child: GlobalSecondaryButton(
-                height: AppSize.s30.h,
+                height: AppSize.s40.h,
                 text: "إالغاء",
                 width: MediaQuery.of(context).size.width * 0.32,
                 onTap: () {
@@ -89,7 +89,7 @@ class CustomDialog extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(AppSize.s2.r),
               child: GlobalButtonWidget(
-                height: AppSize.s30.h,
+                height: AppSize.s40.h,
                 color: actionButtonColor ?? ColorManager.primary,
                 onTap: actionButtonCallBack,
                 width: MediaQuery.of(context).size.width * 0.32,

@@ -1,7 +1,8 @@
 
 
-import 'package:delivery_app/features/account/add_ads_button_widget.dart';
+import 'package:delivery_app/global_widgets/global_admin_add_button_widget.dart';
 import 'package:delivery_app/global_widgets/global_circular_button_widget.dart';
+import 'package:delivery_app/global_widgets/global_dialogs/add_ads_dialoge.dart';
 import 'package:delivery_app/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/global_widgets/lists/global_advertisement_grid_view_widget.dart';
 import 'package:delivery_app/resources/values_manager.dart';
@@ -45,7 +46,12 @@ class AdminAddAdsView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("المعلومات الشخصية",style: Theme.of(context).textTheme.bodyMedium,),
-                  const AddAdsButtonWidget(),
+                   GlobalAdminAddButtonWidget(
+                    text: "إضافة شريك الإعلان",
+                    onTap: (){
+                      addAdsDialog(context);
+                    },
+                  ),
 
                 ],
               ),
