@@ -33,7 +33,7 @@ class GlobalSearchCardItemWidget extends StatelessWidget {
                 Radius.circular(AppSize.s15.r),
               ),
               borderSide: BorderSide(
-                  color: ColorManager.secondaryTextColor, width: AppSize.s1.w)),
+                  color: ColorManager.socialButtonColor, width: AppSize.s1.w)),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(AppSize.s15.r),

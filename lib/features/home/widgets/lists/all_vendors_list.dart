@@ -3,7 +3,8 @@
 
 
 
-import 'package:delivery_app/features/home/widgets/items/vendor_item_widget.dart';
+import 'package:delivery_app/features/home/view/shop_details_view.dart';
+import 'package:delivery_app/global_widgets/global_vendor_item_widget.dart';
 import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,7 +20,10 @@ class AllVendorsList extends StatelessWidget {
             padding: EdgeInsets.symmetric(
               vertical: AppPadding.p10.h,
             ),
-            child: VendorItemWidget(
+            child: GlobalVendorItemWidget(
+              onTap: (){
+                Navigator.pushNamed(context, ShopDetailsView.id);
+              },
               width: MediaQuery.of(context).size.width,
             ),
           ),

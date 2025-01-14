@@ -1,5 +1,6 @@
 
 import 'package:delivery_app/features/home/view/shop_details_view.dart';
+import 'package:delivery_app/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/global_widgets/global_secondary_button.dart';
 import 'package:delivery_app/global_widgets/global_secondary_decorated_container.dart';
 import 'package:delivery_app/resources/assets_manager.dart';
@@ -8,10 +9,11 @@ import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class VendorItemWidget extends StatelessWidget {
-  const VendorItemWidget({super.key,  this.width, this.height, });
+class GlobalVendorItemWidget extends StatelessWidget {
+  const GlobalVendorItemWidget({super.key,  this.width, this.height, required this.onTap, });
   final double? height;
   final double? width;
+  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -75,11 +77,9 @@ class VendorItemWidget extends StatelessWidget {
                   SizedBox(
                     height: AppSize.s15.h,
                   ),
-                  GlobalSecondaryButton(
+                  GlobalButtonWidget(
                     width: double.infinity,
-                    onTap: (){
-                      Navigator.pushNamed(context, ShopDetailsView.id);
-                    },
+                    onTap: onTap,
                     text: "اطلب",
                   )
                 ],

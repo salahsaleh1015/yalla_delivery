@@ -2,6 +2,7 @@ import 'package:delivery_app/features/account/views/ads_partner_view.dart';
 import 'package:delivery_app/features/cart/views/cart_view.dart';
 
 import 'package:delivery_app/features/home/view/all_vendors_view.dart';
+import 'package:delivery_app/features/home/view/shop_details_view.dart';
 import 'package:delivery_app/features/home/view/vendors_view.dart';
 import 'package:delivery_app/global_widgets/lists/global_advertisement_list_widget.dart';
 import 'package:delivery_app/global_widgets/lists/global_vendor_list_widget.dart';
@@ -76,7 +77,11 @@ class HomeView extends StatelessWidget {
             SizedBox(
               height: AppSize.s10.h,
             ),
-            const GlobalVendorListWidget(),
+             GlobalVendorListWidget(
+              onTap: (){
+                Navigator.pushNamed(context, ShopDetailsView.id);
+              },
+            ),
 
           ],
         ),

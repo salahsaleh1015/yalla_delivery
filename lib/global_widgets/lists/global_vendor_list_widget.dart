@@ -1,4 +1,4 @@
-import 'package:delivery_app/features/home/widgets/items/vendor_item_widget.dart';
+import 'package:delivery_app/global_widgets/global_vendor_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -6,9 +6,10 @@ import '../../resources/values_manager.dart';
 
 class GlobalVendorListWidget extends StatelessWidget {
   const GlobalVendorListWidget({
-    super.key,
+    super.key, required this.onTap,
   });
 
+  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -20,7 +21,9 @@ class GlobalVendorListWidget extends StatelessWidget {
           width: AppSize.s10.w,
         ),
         itemCount: 10,
-        itemBuilder: (context, index) => const VendorItemWidget(),
+        itemBuilder: (context, index) =>  GlobalVendorItemWidget(
+          onTap: onTap,
+        ),
       ),
     );
   }

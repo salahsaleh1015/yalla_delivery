@@ -45,6 +45,7 @@ dependencies:
   flutter_native_splash: ^2.4.2
   convex_bottom_bar: ^3.2.0
   circular_bottom_navigation: ^2.4.0
+  dropdown_button2: ^2.3.9
 
 dev_dependencies:
   flutter_test:

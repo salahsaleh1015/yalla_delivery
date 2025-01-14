@@ -1,5 +1,5 @@
 
-import 'package:delivery_app/features/home/widgets/items/vendor_item_widget.dart';
+import 'package:delivery_app/global_widgets/global_vendor_item_widget.dart';
 import 'package:delivery_app/features/home/widgets/lists/all_vendors_list.dart';
 import 'package:delivery_app/global_widgets/global_circular_button_widget.dart';
 import 'package:delivery_app/global_widgets/global_padding_widget.dart';

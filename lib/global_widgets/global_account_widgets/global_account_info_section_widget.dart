@@ -23,6 +23,7 @@ class GlobalAccountInfoSectionWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(userName,style: Theme.of(context).textTheme.titleMedium,),
+            SizedBox(height: AppSize.s5.h,),
             Text(joinDate,style: Theme.of(context).textTheme.headlineSmall,),
           ],
         )
