@@ -1,6 +1,7 @@
 
 
 
+import 'package:delivery_app/global_widgets/global_add_image_button.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:delivery_app/resources/font_manager.dart';
 import 'package:flutter/material.dart';
@@ -20,28 +21,11 @@ class AddImageSection extends StatelessWidget {
         color: ColorManager.scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(AppSize.s8.r),
       ),
-      child: Center(
+      child: const Center(
 
-        child: GestureDetector(
-          onTap: (){},
-          child: Container(
-            width: MediaQuery.of(context).size.width/3,
-            height: AppSize.s30.h,
-            decoration: BoxDecoration(
-              color: ColorManager.primary,
-              borderRadius: BorderRadius.circular(AppSize.s8.r),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(Icons.camera_alt,color: ColorManager.white, size: AppSize.s20.sp,),
-                Text("إضافة صورة",style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: ColorManager.white,fontSize: FontSize.s14.sp),),
-
-              ],
-            ),
-          ),
-        ),
+        child: GlobalAddImageButton(),
       ),
     );
   }
 }
+

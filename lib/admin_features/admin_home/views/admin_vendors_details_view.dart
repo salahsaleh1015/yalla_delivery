@@ -1,6 +1,6 @@
 import 'package:delivery_app/admin_features/admin_home/widgets/admin_add_product_for_shop_bar.dart';
 import 'package:delivery_app/admin_features/admin_home/widgets/admin_products_list.dart';
-import 'package:delivery_app/admin_features/admin_home/widgets/admin_shop_image_item.dart';
+import 'package:delivery_app/admin_features/admin_home/widgets/admin_vendor_image_item.dart';
 import 'package:delivery_app/features/home/widgets/items/shop_info_item_widget.dart';
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:delivery_app/resources/values_manager.dart';
@@ -17,7 +17,7 @@ class AdminVendorDetailsView extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const AdminShopImageItem(),
+          const AdminVendorImageItem(),
           SizedBox(
             height: AppSize.s10.h,
           ),
