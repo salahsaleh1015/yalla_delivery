@@ -1,4 +1,5 @@
 import 'package:delivery_app/global_widgets/global_admin_add_button_widget.dart';
+import 'package:delivery_app/global_widgets/global_dialogs/add_ads_dialoge.dart';
 import 'package:flutter/material.dart';
 
 class AddAdsBar extends StatelessWidget {
@@ -15,7 +16,9 @@ class AddAdsBar extends StatelessWidget {
         ),
         GlobalAdminAddButtonWidget(
           text: "إضافة شريك الإعلان",
-          onTap: () {},
+          onTap: () {
+            addAdsDialog(context);
+          },
         ),
       ],
     );
