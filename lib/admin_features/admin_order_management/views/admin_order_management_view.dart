@@ -38,9 +38,7 @@ class AdminOrderManagementView extends StatelessWidget {
                 height: AppSize.s30.h,
               ),
               Text("قائمة الطلبات", style: Theme.of(context).textTheme.bodyMedium),
-              SizedBox(
-                height: AppSize.s15.h,
-              ),
+
               const OrderManagementTabBarView(),
 
             ],

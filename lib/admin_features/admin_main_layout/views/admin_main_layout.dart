@@ -20,7 +20,7 @@ class AdminMainLayout extends StatelessWidget {
             body: cubit.adminScreens[cubit.currentIndex],
             bottomNavigationBar: GlobalBottomNavBarWidget(
               initialActiveIndex: cubit.currentIndex,
-              items: cubit.bottomNavTabs,
+              items: cubit.adminBottomNavTabs,
               onTap: (index) {
                 cubit.changeIndex(index);
               },

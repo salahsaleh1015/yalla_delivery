@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 //كتنساش تغير اسم التطبيق و ال package name
 
 Future<void> main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   runApp(EasyLocalization(
