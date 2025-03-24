@@ -1,8 +1,11 @@
 
+import 'package:delivery_app/delivery_features/delivery_home/views/delivery_home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../delivery_order_management/views/delivery_order_management_view.dart';
 
 part 'delivery_main_layout_state.dart';
 
@@ -11,14 +14,14 @@ class DeliveryMainLayoutCubit extends Cubit<DeliveryMainLayoutStates> {
 
   static DeliveryMainLayoutCubit get(context)=>BlocProvider.of(context);
 
-  int currentIndex=0;
+  int currentIndex =2;
 
   void changeIndex(int index){
     currentIndex= index;
     emit(DeliveryMainLayoutChangeBottomNavState());
   }
 
-  List<TabItem> adminBottomNavTabs = [
+  List<TabItem> deliveryBottomNavTabs = [
      const TabItem(icon: FontAwesomeIcons.house, title: 'الرئيسية'),
     const TabItem(icon: Icons.file_open_rounded, title: 'الطلبات'),
     const TabItem(icon: Icons.add, title: 'اضف'),
@@ -28,9 +31,9 @@ class DeliveryMainLayoutCubit extends Cubit<DeliveryMainLayoutStates> {
 
 
 
-  List<Widget> adminScreens = [
-    Container(),
-    Container(),
+  List<Widget> deliveryScreens = [
+    const DeliveryHomeView(),
+    const DeliveryOrderManagementView(),
     Container(),
     Container(),
     Container(),

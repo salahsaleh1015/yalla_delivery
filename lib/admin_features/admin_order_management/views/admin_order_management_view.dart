@@ -17,7 +17,7 @@ class AdminOrderManagementView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlobalPaddingWidget(
         child: DefaultTabController(
-          length: AppConstant.adminManagementTabBarLength,
+          length: AppConstant.managementTabBarLength,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -29,7 +29,7 @@ class AdminOrderManagementView extends StatelessWidget {
               SizedBox(
                 height: AppSize.s25.h,
               ),
-              const OrderManagementTabBar(),
+              const AdminOrderManagementTabBar(),
               SizedBox(
                 height: AppSize.s25.h,
               ),
@@ -39,7 +39,7 @@ class AdminOrderManagementView extends StatelessWidget {
               ),
               Text("قائمة الطلبات", style: Theme.of(context).textTheme.bodyMedium),
 
-              const OrderManagementTabBarView(),
+              const AdminOrderManagementTabBarView(),
 
             ],
           ),

@@ -6,8 +6,8 @@ import 'package:delivery_app/admin_features/admin_order_management/widgets/order
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:flutter/material.dart';
 
-class OrderManagementTabBarView extends StatelessWidget {
-  const OrderManagementTabBarView({super.key});
+class AdminOrderManagementTabBarView extends StatelessWidget {
+  const AdminOrderManagementTabBarView({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -16,6 +16,8 @@ import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../global_widgets/global_view_all_button.dart';
+
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
   static String id = 'HomeView';
@@ -44,49 +46,51 @@ class HomeView extends StatelessWidget {
             SizedBox(
               height: AppSize.s25.h,
             ),
-            const GlobalSearchCardItemWidget(hintText: 'بحث',),
+            const GlobalSearchCardItemWidget(
+              hintText: 'بحث',
+            ),
             SizedBox(
               height: AppSize.s30.h,
             ),
-            Text("شركاء الإعلانات",style: Theme.of(context).textTheme.titleSmall!.copyWith(
-              color: ColorManager.black
-            ),),
-             SizedBox(
+            Text(
+              "شركاء الإعلانات",
+              style: Theme.of(context)
+                  .textTheme
+                  .titleSmall!
+                  .copyWith(color: ColorManager.black),
+            ),
+            SizedBox(
               height: AppSize.s10.h,
             ),
             const GlobalAdvertisementListWidget(),
-
             Row(
-
               children: [
-                Text("موزعي الخدمة",style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    color: ColorManager.black
-                ),),
-               const Spacer(),
-               TextButton(onPressed: (){
-                 Navigator.pushNamed(context, AllVendorsView.id);
-               }, child: Row(
-                 children: [
-                   Text("عرض الكل",style: Theme.of(context).textTheme.bodySmall,),
-                   Icon(Icons.arrow_forward,color: ColorManager.primary,),
-                 ],
-               )),
-
+                Text(
+                  "موزعي الخدمة",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall!
+                      .copyWith(color: ColorManager.black),
+                ),
+                const Spacer(),
+                GlobalViewAllButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AllVendorsView.id);
+                  },
+                ),
               ],
             ),
             SizedBox(
               height: AppSize.s10.h,
             ),
-             GlobalVendorListWidget(
-              onTap: (){
+            GlobalVendorListWidget(
+              onTap: () {
                 Navigator.pushNamed(context, ShopDetailsView.id);
               },
             ),
-
           ],
         ),
       ),
     );
   }
 }
-

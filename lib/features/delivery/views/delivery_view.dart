@@ -46,7 +46,7 @@ class DeliveryView extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               SizedBox(
-                height: AppSize.s20.h,
+                height: AppSize.s10.h,
               ),
                SizedBox(
                  height: MediaQuery.of(context).size.height*0.6,

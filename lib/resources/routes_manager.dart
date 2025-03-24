@@ -7,6 +7,7 @@ import 'package:delivery_app/admin_features/admin_home/views/admin_home_view.dar
 import 'package:delivery_app/admin_features/admin_home/views/admin_vendors_details_view.dart';
 import 'package:delivery_app/admin_features/admin_main_layout/views/admin_main_layout.dart';
 import 'package:delivery_app/admin_features/admin_quick_add/views/admin_addition_view.dart';
+import 'package:delivery_app/delivery_features/delivery_main_layout/views/delivery_main_layout_view.dart';
 import 'package:delivery_app/features/account/views/account_view.dart';
 import 'package:delivery_app/features/account/views/ads_partner_view.dart';
 import 'package:delivery_app/features/account/views/edit_account_view.dart';
@@ -30,6 +31,8 @@ import 'package:delivery_app/features/main_layout/views/main_layout_view.dart';
 import 'package:delivery_app/features/on_boarding/views/on_boarding_view.dart';
 import 'package:flutter/material.dart';
 
+import '../delivery_features/delivery_order_management/views/delivery_order_management_view.dart';
+import '../delivery_features/delivery_order_management/views/delivery_order_summary_view.dart';
 import '../features/add_order/views/order_summary_from_add_order_view.dart';
 
 
@@ -66,4 +69,7 @@ Map<String, Widget Function(BuildContext)> routes = {
   AdminHomeView.id: (context) => const AdminHomeView(),
   AdminVendorDetailsView.id: (context) => const AdminVendorDetailsView(),
   AdminAddVendorView.id: (context) => const AdminAddVendorView(),
+  DeliveryMainLayoutView.id: (context)=> const DeliveryMainLayoutView(),
+  DeliveryOrderManagementView.id: (context)=> const DeliveryOrderManagementView(),
+  DeliveryOrderSummaryView.id: (context)=> const DeliveryOrderSummaryView(),
 };

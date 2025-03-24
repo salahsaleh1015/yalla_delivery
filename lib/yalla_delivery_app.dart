@@ -7,6 +7,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'delivery_features/delivery_main_layout/views/delivery_main_layout_view.dart';
+import 'features/main_layout/views/main_layout_view.dart';
+import 'features/on_boarding/views/on_boarding_view.dart';
 import 'resources/theme_manager.dart';
 
 class YallaDeliveryApp extends StatelessWidget {
@@ -26,7 +29,7 @@ class YallaDeliveryApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Yalla Delivery app',
         routes: routes,
-        initialRoute: AdminMainLayout.id,
+        initialRoute: DeliveryMainLayoutView.id,
       ),
     );
   }
