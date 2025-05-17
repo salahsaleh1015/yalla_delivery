@@ -10,9 +10,46 @@ import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SignUpView extends StatelessWidget {
+class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
   static String id = 'SignUpView';
+
+  @override
+  State<SignUpView> createState() => _SignUpViewState();
+}
+
+class _SignUpViewState extends State<SignUpView> {
+
+
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _locationController = TextEditingController();
+  bool isButtonEnabled = false;
+
+  void _checkIfFieldsAreFilled() {
+    final isFilled = _nameController.text.isNotEmpty &&
+        _phoneController.text.isNotEmpty && _locationController.text.isNotEmpty;
+
+    setState(() {
+      isButtonEnabled = isFilled;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController.addListener(_checkIfFieldsAreFilled);
+    _phoneController.addListener(_checkIfFieldsAreFilled);
+    _locationController.addListener(_checkIfFieldsAreFilled);
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _phoneController.dispose();
+    _locationController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +88,8 @@ class SignUpView extends StatelessWidget {
                SizedBox(
                 height: AppSize.s10.h,
               ),
-              const GlobalTextFieldWidget(
+               GlobalTextFieldWidget(
+                controller: _nameController,
                 hintText: "الاسم بالكامل",
                 textInputType: TextInputType.text,
               ),
@@ -65,7 +103,8 @@ class SignUpView extends StatelessWidget {
               SizedBox(
                 height: AppSize.s10.h,
               ),
-              const GlobalTextFieldWidget(
+               GlobalTextFieldWidget(
+                controller: _phoneController,
                 hintText: "رقم الهاتف",
                 textInputType: TextInputType.phone,
               ),
@@ -80,6 +119,7 @@ class SignUpView extends StatelessWidget {
                 height: AppSize.s10.h,
               ),
               GlobalTextFieldWidget(
+                controller: _locationController,
                 height: AppSize.s80.h,
                 hintText: "أدخل عنوانك",
                 textInputType: TextInputType.multiline,
@@ -88,11 +128,12 @@ class SignUpView extends StatelessWidget {
                 height: AppSize.s30.h,
               ),
               GlobalButtonWidget(
+                isButtonEnabled: isButtonEnabled,
                 width: double.infinity,
                 text: "متابعة",
-                onTap: () {
+                onTap:isButtonEnabled? () {
                   Navigator.pushNamed(context, VerificationView.id);
-                },
+                }: (){},
               ),
                SizedBox(
                 height: AppSize.s100.h,

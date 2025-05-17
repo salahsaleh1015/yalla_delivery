@@ -62,6 +62,7 @@ class SignInView extends StatelessWidget {
                 height: AppSize.s30.h,
               ),
               GlobalButtonWidget(
+                isButtonEnabled: true,
                 width: double.infinity,
                 text: "متابعة",
                 onTap: () {

@@ -73,6 +73,7 @@ class VerificationView extends StatelessWidget {
                 height: AppSize.s30.h,
               ),
               GlobalButtonWidget(
+                isButtonEnabled: true,
                 width: double.infinity,
                 text: "إرسال الرمز",
                 onTap: () {

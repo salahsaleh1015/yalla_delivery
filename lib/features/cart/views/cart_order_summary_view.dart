@@ -58,6 +58,7 @@ class CartOrderSummaryView extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: EdgeInsets.all(AppPadding.p8.r),
         child: GlobalButtonWidget(
+          isButtonEnabled: true,
           text: "استمر",
           onTap: () {
             confirmOrderDialog(context);

@@ -20,8 +20,8 @@ class OnBoardingBodyTwoWidget extends StatelessWidget {
         ),
         SizedBox(
             height: AppSize.s315.h,
-            width: AppSize.s408.w,
-            child: Image.asset("assets/images/on_boarding_two.png")),
+            width: AppSize.s315.w,
+            child: Image.asset("assets/images/on_boarding_two.png",fit: BoxFit.fill,)),
 
         Text(
           "مستعد للانضمام",
@@ -33,7 +33,7 @@ class OnBoardingBodyTwoWidget extends StatelessWidget {
         Container(
 
           padding: EdgeInsets.symmetric(horizontal: AppPadding.p20.w),
-          height: AppSize.s100,
+          height: AppSize.s70.h,
           child: Text(
             "قم بتسجيل الدخول أو إنشاء حسابك الآن لبدء إدارة تجربتك، متابعة طلباتك، تقديم الطلبات، أو توصيلها بكل سهولة وسلاسة.",
             style: Theme.of(context).textTheme.labelSmall,
@@ -61,6 +61,7 @@ class OnBoardingBodyTwoWidget extends StatelessWidget {
           height: AppSize.s37.h,
         ),
         GlobalButtonWidget(
+          isButtonEnabled: true,
           width: AppSize.s312.w,
           text: "إنشاء حساب",
           onTap: () {

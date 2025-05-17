@@ -144,6 +144,7 @@ class DeliveryHomeView extends StatelessWidget {
                           ),
                         ),
                         GlobalButtonWidget(
+                          isButtonEnabled: true,
                           text: "تعديل",
                           onTap: () {},
                           width: MediaQuery.of(context).size.width * 0.41,

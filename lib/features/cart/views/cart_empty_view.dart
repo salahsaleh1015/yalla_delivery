@@ -30,7 +30,9 @@ class CartEmptyView extends StatelessWidget {
             SizedBox(height: AppSize.s30.h,),
             Padding(
               padding:  EdgeInsets.symmetric(horizontal: AppPadding.p8.w),
-              child: GlobalButtonWidget(text: "إضافة طلب + ", onTap: (){
+              child: GlobalButtonWidget(
+                isButtonEnabled: true,
+                text: "إضافة طلب + ", onTap: (){
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   MainLayoutView.id,

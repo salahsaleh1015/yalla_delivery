@@ -109,7 +109,9 @@ class AdminEditAccountView extends StatelessWidget {
       ),
       bottomNavigationBar: Padding(
         padding:  EdgeInsets.all(AppSize.s10.r),
-        child: GlobalButtonWidget(text: "تحديث", onTap: (){}, width: double.infinity),
+        child: GlobalButtonWidget(
+            isButtonEnabled: true,
+            text: "تحديث", onTap: (){}, width: double.infinity),
       ),
     );
   }

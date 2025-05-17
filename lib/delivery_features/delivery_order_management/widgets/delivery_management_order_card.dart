@@ -146,6 +146,7 @@ class DeliveryManagementOrderCard extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(AppSize.s2.r),
                 child: GlobalButtonWidget(
+                  isButtonEnabled: true,
                   height: AppSize.s40.h,
                   color:  ColorManager.primary,
                   onTap: onActionButtonTap,

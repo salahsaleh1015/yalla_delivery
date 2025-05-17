@@ -34,6 +34,7 @@ class PriceCardItemWidget extends StatelessWidget {
             ),
             const Spacer(),
             GlobalButtonWidget(
+              isButtonEnabled: true,
               text: "استمر",
               onTap: () {
                 Navigator.pushNamed(context, ChooseDeliveryView.id);

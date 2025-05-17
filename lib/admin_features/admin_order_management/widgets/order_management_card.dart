@@ -106,6 +106,7 @@ class OrderManagementCard extends StatelessWidget {
                 height: AppSize.s10.h,
               ),
               GlobalButtonWidget(
+                isButtonEnabled: true,
                 text: "عرض التفاصيل",
                 onTap: () {
                   orderDetailsForAdminDialog(context,

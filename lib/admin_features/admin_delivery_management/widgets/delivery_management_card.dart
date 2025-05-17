@@ -133,6 +133,7 @@ class DeliveryManagementCard extends StatelessWidget {
                   ),
                 ),
                 GlobalButtonWidget(
+                  isButtonEnabled: true,
                   text: "تعديل",
                   onTap: () {
                     editDeliveryDialog(context);

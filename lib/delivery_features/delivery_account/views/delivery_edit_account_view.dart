@@ -109,7 +109,9 @@ class DeliveryEditAccountView extends StatelessWidget {
       ),
       bottomNavigationBar: Padding(
         padding:  EdgeInsets.all(AppSize.s10.r),
-        child: GlobalButtonWidget(text: "تحديث", onTap: (){
+        child: GlobalButtonWidget(
+            isButtonEnabled: true,
+            text: "تحديث", onTap: (){
           Navigator.pop(context);
         }, width: double.infinity),
       ),

@@ -95,6 +95,7 @@ class GlobalGridVendorItem extends StatelessWidget {
                   height: AppSize.s15.h,
                 ),
                 GlobalButtonWidget(
+                  isButtonEnabled: true,
                   text: "عرض التفاصيل",
                   onTap: onTap,
                   width: AppSize.s160.w,

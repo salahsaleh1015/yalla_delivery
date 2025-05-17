@@ -72,6 +72,7 @@ class AdminAddDeliveryBodyWidget extends StatelessWidget {
           height: AppSize.s30.h,
         ),
         GlobalButtonWidget(
+          isButtonEnabled: true,
           text: "إضافة",
           onTap: () {},
           width: MediaQuery.of(context).size.width,

@@ -53,6 +53,7 @@ static String id = 'OrderSummaryFromAddOrderView';
       bottomNavigationBar: Padding(
         padding: EdgeInsets.all(AppPadding.p8.r),
         child: GlobalButtonWidget(
+          isButtonEnabled: true,
           text: "تأكيد الطلب",
           onTap: () {
             confirmOrderDialog(context);

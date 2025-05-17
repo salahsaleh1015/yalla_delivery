@@ -42,6 +42,7 @@ class ProductAmountSection extends StatelessWidget {
           ],
         ),
         GlobalButtonWidget(
+          isButtonEnabled: true,
           text: "أضف",
           onTap: () {},
           borderRadius: AppSize.s10.r,

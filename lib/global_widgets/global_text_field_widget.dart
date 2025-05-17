@@ -10,10 +10,12 @@ class GlobalTextFieldWidget extends StatelessWidget {
     required this.textInputType,
     required this.hintText,
     this.height,
+    this.controller,
   });
   final double? height;
   final TextInputType textInputType;
   final String hintText;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppSize.s15.r),
         child: TextField(
+          controller:controller ,
           cursorColor: ColorManager.primary,
           cursorHeight: AppSize.s25.h,
           maxLines: null, // Set this

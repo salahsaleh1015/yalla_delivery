@@ -46,7 +46,7 @@ class OnBoardingBodyOneWidget extends StatelessWidget {
         ),
         Container(
           padding: EdgeInsets.symmetric(horizontal: AppPadding.p20.w),
-          height: AppSize.s100,
+          height: AppSize.s70.h,
           child: Text(
             "اكتشف أسرع وأسهل طريقة لإدارة طلباتك وتوصيلها بكل يسر وسلاسة",
             style: Theme.of(context).textTheme.labelSmall,
@@ -71,6 +71,7 @@ class OnBoardingBodyOneWidget extends StatelessWidget {
           height: AppSize.s33.h,
         ),
         GlobalButtonWidget(
+          isButtonEnabled: true,
           width: AppSize.s312.w,
           text: "ابدا",
           onTap: () {

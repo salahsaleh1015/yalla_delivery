@@ -78,6 +78,7 @@ class GlobalVendorItemWidget extends StatelessWidget {
                     height: AppSize.s15.h,
                   ),
                   GlobalButtonWidget(
+                    isButtonEnabled: true,
                     width: double.infinity,
                     onTap: onTap,
                     text: "اطلب",

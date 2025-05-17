@@ -63,6 +63,7 @@ class AdminProductItem extends StatelessWidget {
               height: AppSize.s5.h,
             ),
             GlobalButtonWidget(
+              isButtonEnabled: true,
               text: "تعديل",
               onTap: () {
                 editProductDialog(context);

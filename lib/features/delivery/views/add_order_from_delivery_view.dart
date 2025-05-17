@@ -37,6 +37,7 @@ class AddOrderFromDeliveryView extends StatelessWidget {
             height: AppSize.s30.h,
           ),
           GlobalButtonWidget(
+            isButtonEnabled: true,
             text: "استمر",
             onTap: (){
               Navigator.pushNamed(context, OrderSummaryFromDeliveryView.id);
