@@ -37,6 +37,7 @@ import 'package:flutter/material.dart';
 
 import '../delivery_features/delivery_add_order/views/delivery_add_order_view.dart';
 import '../delivery_features/delivery_add_order/views/delivery_order_summary_for_delivery.dart';
+import '../delivery_features/delivery_authentecation/views/delivery_authentication_view.dart';
 import '../delivery_features/delivery_order_management/views/delivery_order_management_view.dart';
 import '../delivery_features/delivery_order_management/views/delivery_order_summary_view.dart';
 import '../features/add_order/views/order_summary_from_add_order_view.dart';
@@ -85,5 +86,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   DeliveryOrderSummaryForDelivery.id: (context)=> const DeliveryOrderSummaryForDelivery(),
   DeliveryChatView.id: (context)=> const DeliveryChatView(),
   AdminAuthenticationView.id: (context)=> const AdminAuthenticationView(),
-
+  DeliveryAuthenticationView.id: (context)=> const DeliveryAuthenticationView(),
 };

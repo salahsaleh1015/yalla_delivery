@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'admin_features/admin_authentication/views/admin_authentication.dart';
+import 'delivery_features/delivery_authentecation/views/delivery_authentication_view.dart';
 import 'resources/theme_manager.dart';
 
 class YallaDeliveryApp extends StatelessWidget {
@@ -27,7 +28,7 @@ class YallaDeliveryApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Yalla Delivery app',
         routes: routes,
-        initialRoute: AdminAuthenticationView.id,
+        initialRoute: DeliveryAuthenticationView.id,
       ),
     );
   }
