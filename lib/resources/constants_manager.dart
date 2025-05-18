@@ -4,5 +4,7 @@ class AppConstant{
   static const int onboardingTransitionDelay = 300;
   static const int maxLinesOfOrderDetails = 10;
   static const int managementTabBarLength = 4;
+  static const int otpAnimationDuration = 300;
+  static const int otpLength = 6;
 
 }

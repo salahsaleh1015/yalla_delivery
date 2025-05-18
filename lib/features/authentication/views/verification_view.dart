@@ -7,9 +7,11 @@ import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:delivery_app/resources/routes_manager.dart';
 import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
+import '../../../resources/constants_manager.dart';
+import '../authentication_widgets/otpTextField.dart';
 import '../authentication_widgets/resend_verification_text.dart';
 
 class VerificationView extends StatelessWidget {
@@ -47,28 +49,8 @@ class VerificationView extends StatelessWidget {
                SizedBox(
                 height: AppSize.s50.h,
               ),
-              OtpTextField(
-                focusedBorderColor: ColorManager.hintColor,
-                enabledBorderColor: ColorManager.primary,
-                numberOfFields: 6,
-                //set to true to show as box or false to show as dash
-                showFieldAsBox: true,
-                //runs when a code is typed in
-                onCodeChanged: (String code) {
-                  //handle validation or checks here
-                },
-                //runs when every textfield is filled
-                onSubmit: (String verificationCode) {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: const Text("Verification Code"),
-                          content: Text('Code entered is $verificationCode'),
-                        );
-                      });
-                }, // end onSubmit
-              ),
+             /// otp text field
+              const OtpTextField(),
                SizedBox(
                 height: AppSize.s30.h,
               ),
@@ -84,7 +66,7 @@ class VerificationView extends StatelessWidget {
                   );
                 },
               ),
-              const ResendVerificationText(),
+               const ResendVerificationText(),
 
             ],
           ),
@@ -93,3 +75,6 @@ class VerificationView extends StatelessWidget {
     );
   }
 }
+
+
+

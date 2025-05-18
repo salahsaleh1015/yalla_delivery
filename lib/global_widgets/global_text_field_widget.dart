@@ -5,17 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GlobalTextFieldWidget extends StatelessWidget {
-  const GlobalTextFieldWidget({
-    super.key,
-    required this.textInputType,
-    required this.hintText,
-    this.height,
-    this.controller,
-  });
+  const GlobalTextFieldWidget(
+      {super.key,
+      required this.textInputType,
+      required this.hintText,
+      this.height,
+      this.controller,
+      this.onSaved,
+      this.validator, this.letterSpacing});
   final double? height;
   final TextInputType textInputType;
   final String hintText;
   final TextEditingController? controller;
+  final Function(String?)? onSaved;
+  final String? Function(String?)? validator;
+  final double? letterSpacing;
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +31,21 @@ class GlobalTextFieldWidget extends StatelessWidget {
       height: height ?? AppSize.s50.h,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppSize.s15.r),
-        child: TextField(
-          controller:controller ,
+        child: TextFormField(
+
+          controller: controller,
           cursorColor: ColorManager.primary,
           cursorHeight: AppSize.s25.h,
           maxLines: null, // Set this
           expands: true, // and this
-          onSubmitted: (value) {},
+          onSaved: onSaved,
+          validator: validator,
+          style:  TextStyle(
+            letterSpacing: letterSpacing,
+          ),
           keyboardType: textInputType,
           decoration: InputDecoration(
+
               contentPadding: EdgeInsets.only(
                 right: AppPadding.p15.w,
               ),
@@ -49,6 +59,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
                   borderSide: BorderSide(
                       color: ColorManager.primary, width: AppSize.s1.w)),
               hintText: hintText,
+
               hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
                     color: ColorManager.hintColor,
                   ),
