@@ -15,4 +15,4 @@ final class PhoneAuthError extends PhoneAuthState {
 
 final class PhoneAuthNumberSubmitted extends PhoneAuthState {}
 
-final class PhoneAuthCodeVerified extends PhoneAuthState {}
+final class PhoneAuthOTPVerified extends PhoneAuthState {}

@@ -6,5 +6,6 @@ class AppConstant{
   static const int managementTabBarLength = 4;
   static const int otpAnimationDuration = 300;
   static const int otpLength = 6;
+  static const int otpTimeout = 30;
 
 }
