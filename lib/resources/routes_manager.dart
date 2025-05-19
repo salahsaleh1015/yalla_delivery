@@ -17,6 +17,7 @@ import 'package:delivery_app/features/account/views/ads_partner_view.dart';
 import 'package:delivery_app/features/account/views/edit_account_view.dart';
 import 'package:delivery_app/features/add_order/views/add_order_view.dart';
 import 'package:delivery_app/features/add_order/views/choose_delivery_from_add_order_view.dart';
+import 'package:delivery_app/features/authentication/view_model/phone_auth_cubit.dart';
 import 'package:delivery_app/features/authentication/views/sign_in_view.dart';
 import 'package:delivery_app/features/authentication/views/sign_up_vew.dart';
 import 'package:delivery_app/features/authentication/views/verification_view.dart';
@@ -34,6 +35,7 @@ import 'package:delivery_app/features/home/view/summary_view.dart';
 import 'package:delivery_app/features/main_layout/views/main_layout_view.dart';
 import 'package:delivery_app/features/on_boarding/views/on_boarding_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../delivery_features/delivery_add_order/views/delivery_add_order_view.dart';
 import '../delivery_features/delivery_add_order/views/delivery_order_summary_for_delivery.dart';
@@ -96,19 +98,29 @@ class Routes {
   static const String deliveryAuthenticationRoute = "/deliveryAuthentication";
 }
 
-
-
 class RouteGenerator {
+  PhoneAuthCubit? phoneAuthCubit;
+
+  RouteGenerator() {
+    phoneAuthCubit = PhoneAuthCubit();
+  }
+
   static Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.onBoardingRoute:
         return MaterialPageRoute(builder: (_) => OnBoardingView());
       case Routes.signUpRoute:
-        return MaterialPageRoute(builder: (_) => const SignUpView());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider<PhoneAuthCubit>.value(
+                value: PhoneAuthCubit(), child: const SignUpView()));
       case Routes.signInRoute:
-        return MaterialPageRoute(builder: (_) => const SignInView());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider<PhoneAuthCubit>.value(
+                value: PhoneAuthCubit(), child: const SignInView()));
       case Routes.verificationRoute:
-        return MaterialPageRoute(builder: (_) => const VerificationView());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider<PhoneAuthCubit>.value(
+                value: PhoneAuthCubit(), child: const VerificationView()));
       case Routes.mainLayoutRoute:
         return MaterialPageRoute(builder: (_) => const MainLayoutView());
       case Routes.homeRoute:
@@ -140,15 +152,19 @@ class RouteGenerator {
       case Routes.cartOrderSummaryRoute:
         return MaterialPageRoute(builder: (_) => const CartOrderSummaryView());
       case Routes.addOrderFromDeliveryRoute:
-        return MaterialPageRoute(builder: (_) => const AddOrderFromDeliveryView());
+        return MaterialPageRoute(
+            builder: (_) => const AddOrderFromDeliveryView());
       case Routes.orderSummaryFromDeliveryRoute:
-        return MaterialPageRoute(builder: (_) => const OrderSummaryFromDeliveryView());
+        return MaterialPageRoute(
+            builder: (_) => const OrderSummaryFromDeliveryView());
       case Routes.chooseDeliveryFromAddOrderRoute:
-        return MaterialPageRoute(builder: (_) => const ChooseDeliveryFromAddOrderView());
+        return MaterialPageRoute(
+            builder: (_) => const ChooseDeliveryFromAddOrderView());
       case Routes.orderSummaryFromAddOrderRoute:
-        return MaterialPageRoute(builder: (_) => const OrderSummaryFromAddOrderView());
+        return MaterialPageRoute(
+            builder: (_) => const OrderSummaryFromAddOrderView());
 
-    // Admin routes
+      // Admin routes
       case Routes.adminMainLayoutRoute:
         return MaterialPageRoute(builder: (_) => const AdminMainLayout());
       case Routes.adminAdditionRoute:
@@ -160,35 +176,44 @@ class RouteGenerator {
       case Routes.adminAddAdsRoute:
         return MaterialPageRoute(builder: (_) => const AdminAddAdsView());
       case Routes.adminDeliveryManagementRoute:
-        return MaterialPageRoute(builder: (_) => const AdminDeliveryManagementView());
+        return MaterialPageRoute(
+            builder: (_) => const AdminDeliveryManagementView());
       case Routes.adminHomeRoute:
         return MaterialPageRoute(builder: (_) => const AdminHomeView());
       case Routes.adminVendorDetailsRoute:
-        return MaterialPageRoute(builder: (_) => const AdminVendorDetailsView());
+        return MaterialPageRoute(
+            builder: (_) => const AdminVendorDetailsView());
       case Routes.adminAddVendorRoute:
         return MaterialPageRoute(builder: (_) => const AdminAddVendorView());
       case Routes.adminAuthenticationRoute:
-        return MaterialPageRoute(builder: (_) => const AdminAuthenticationView());
+        return MaterialPageRoute(
+            builder: (_) => const AdminAuthenticationView());
 
-    // Delivery routes
+      // Delivery routes
       case Routes.deliveryMainLayoutRoute:
-        return MaterialPageRoute(builder: (_) => const DeliveryMainLayoutView());
+        return MaterialPageRoute(
+            builder: (_) => const DeliveryMainLayoutView());
       case Routes.deliveryOrderManagementRoute:
-        return MaterialPageRoute(builder: (_) => const DeliveryOrderManagementView());
+        return MaterialPageRoute(
+            builder: (_) => const DeliveryOrderManagementView());
       case Routes.deliveryOrderSummaryRoute:
-        return MaterialPageRoute(builder: (_) => const DeliveryOrderSummaryView());
+        return MaterialPageRoute(
+            builder: (_) => const DeliveryOrderSummaryView());
       case Routes.deliveryAccountRoute:
         return MaterialPageRoute(builder: (_) => const DeliveryAccountView());
       case Routes.deliveryEditAccountRoute:
-        return MaterialPageRoute(builder: (_) => const DeliveryEditAccountView());
+        return MaterialPageRoute(
+            builder: (_) => const DeliveryEditAccountView());
       case Routes.deliveryAddOrderRoute:
         return MaterialPageRoute(builder: (_) => const DeliveryAddOrderView());
       case Routes.deliveryOrderSummaryForDeliveryRoute:
-        return MaterialPageRoute(builder: (_) => const DeliveryOrderSummaryForDelivery());
+        return MaterialPageRoute(
+            builder: (_) => const DeliveryOrderSummaryForDelivery());
       case Routes.deliveryChatRoute:
         return MaterialPageRoute(builder: (_) => const DeliveryChatView());
       case Routes.deliveryAuthenticationRoute:
-        return MaterialPageRoute(builder: (_) => const DeliveryAuthenticationView());
+        return MaterialPageRoute(
+            builder: (_) => const DeliveryAuthenticationView());
 
       default:
         return _undefinedRoute();
@@ -204,7 +229,6 @@ class RouteGenerator {
     );
   }
 }
-
 
 // Map<String, Widget Function(BuildContext)> routes = {
 //   OnBoardingView.id: (context) => OnBoardingView(),
