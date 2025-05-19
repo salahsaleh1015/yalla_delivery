@@ -15,7 +15,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignInView extends StatelessWidget {
   const SignInView({super.key});
-  static String id = 'SignInView';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +66,7 @@ class SignInView extends StatelessWidget {
                 width: double.infinity,
                 text: "متابعة",
                 onTap: () {
-                  Navigator.pushNamed(context, VerificationView.id);
+                  Navigator.pushNamed(context, Routes.verificationRoute);
                 },
               ),
 

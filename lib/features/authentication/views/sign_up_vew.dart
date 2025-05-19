@@ -12,7 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
-  static String id = 'SignUpView';
+
 
   @override
   State<SignUpView> createState() => _SignUpViewState();
@@ -160,7 +160,7 @@ class _SignUpViewState extends State<SignUpView> {
                   width: double.infinity,
                   text: "متابعة",
                   onTap:isButtonEnabled? () {
-                    Navigator.pushNamed(context, VerificationView.id);
+                    Navigator.pushNamed(context, Routes.verificationRoute);
                   }: (){},
                 ),
                  SizedBox(

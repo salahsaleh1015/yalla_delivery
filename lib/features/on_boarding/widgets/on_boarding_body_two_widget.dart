@@ -15,23 +15,24 @@ class OnBoardingBodyTwoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-         SizedBox(
+        SizedBox(
           height: AppSize.s75.h,
         ),
         SizedBox(
             height: AppSize.s315.h,
             width: AppSize.s315.w,
-            child: Image.asset("assets/images/on_boarding_two.png",fit: BoxFit.fill,)),
-
+            child: Image.asset(
+              "assets/images/on_boarding_two.png",
+              fit: BoxFit.fill,
+            )),
         Text(
           "مستعد للانضمام",
           style: Theme.of(context).textTheme.displayMedium,
         ),
-         SizedBox(
+        SizedBox(
           height: AppSize.s15.h,
         ),
         Container(
-
           padding: EdgeInsets.symmetric(horizontal: AppPadding.p20.w),
           height: AppSize.s70.h,
           child: Text(
@@ -40,7 +41,7 @@ class OnBoardingBodyTwoWidget extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-         SizedBox(
+        SizedBox(
           height: AppSize.s20.h,
         ),
         Row(
@@ -49,7 +50,7 @@ class OnBoardingBodyTwoWidget extends StatelessWidget {
             DotWidget(
               color: ColorManager.lightPrimary,
             ),
-             SizedBox(
+            SizedBox(
               width: AppSize.s15.w,
             ),
             DotWidget(
@@ -57,7 +58,7 @@ class OnBoardingBodyTwoWidget extends StatelessWidget {
             ),
           ],
         ),
-         SizedBox(
+        SizedBox(
           height: AppSize.s37.h,
         ),
         GlobalButtonWidget(
@@ -65,15 +66,15 @@ class OnBoardingBodyTwoWidget extends StatelessWidget {
           width: AppSize.s312.w,
           text: "إنشاء حساب",
           onTap: () {
-            Navigator.pushNamed(context, SignUpView.id);
+            Navigator.pushNamed(context, Routes.signUpRoute);
           },
         ),
-         SizedBox(
+        SizedBox(
           height: AppSize.s20.h,
         ),
         TextButton(
           onPressed: () {
-            Navigator.pushNamed(context, SignInView.id);
+            Navigator.pushNamed(context, Routes.signInRoute);
           },
           child: Text(
             "لدي حساب بالفعل",

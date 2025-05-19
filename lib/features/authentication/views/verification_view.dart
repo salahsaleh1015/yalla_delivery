@@ -16,7 +16,7 @@ import '../authentication_widgets/resend_verification_text.dart';
 
 class VerificationView extends StatelessWidget {
   const VerificationView({super.key});
-  static String id = 'VerificationView';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
