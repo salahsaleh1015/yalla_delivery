@@ -12,8 +12,9 @@ import '../../../resources/constants_manager.dart';
 import '../../../resources/values_manager.dart';
 
 class OtpTextField extends StatelessWidget {
-  const OtpTextField({super.key});
+   OtpTextField({super.key, required this.otpCode});
 
+   String otpCode;
   @override
   Widget build(BuildContext context) {
     return PinCodeTextField(
@@ -38,8 +39,8 @@ class OtpTextField extends StatelessWidget {
       backgroundColor: ColorManager.scaffoldBackgroundColor,
       enableActiveFill: true,
 
-      onCompleted: (v) {
-        print("Completed");
+      onCompleted: (otpCode) {
+        this.otpCode = otpCode;
       },
       onChanged: (value) {
         print(value);

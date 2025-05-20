@@ -1,4 +1,3 @@
-
 import 'package:delivery_app/features/authentication/views/verification_view.dart';
 import 'package:delivery_app/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/global_widgets/global_circular_button_widget.dart';
@@ -8,37 +7,40 @@ import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:delivery_app/resources/routes_manager.dart';
 import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../resources/constants_manager.dart';
+import '../authentication_widgets/auth_dialog.dart';
+import '../view_model/phone_auth_cubit.dart';
+import '../view_model/phone_auth_helper.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
-
 
   @override
   State<SignUpView> createState() => _SignUpViewState();
 }
 
 class _SignUpViewState extends State<SignUpView> {
-
-
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
   bool isButtonEnabled = false;
 
- late String name, phone, location;
+  late String name, phoneNumber, location;
 
   void _checkIfFieldsAreFilled() {
     final isFilled = _nameController.text.isNotEmpty &&
-        _phoneController.text.isNotEmpty && _locationController.text.isNotEmpty;
+        _phoneController.text.isNotEmpty &&
+        _locationController.text.isNotEmpty;
 
     setState(() {
       isButtonEnabled = isFilled;
     });
   }
 
-
- final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   void initState() {
     super.initState();
@@ -54,13 +56,14 @@ class _SignUpViewState extends State<SignUpView> {
     _locationController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
         key: _formKey,
         child: GlobalPaddingWidget(
-          child : SingleChildScrollView(
+          child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             physics: const BouncingScrollPhysics(),
             child: Column(
@@ -73,58 +76,54 @@ class _SignUpViewState extends State<SignUpView> {
                   iconColor: ColorManager.black,
                   icon: Icons.arrow_back,
                 ),
-                 SizedBox(
+                SizedBox(
                   height: AppSize.s20.h,
                 ),
                 Text("أنشئ حسابًا",
                     style: Theme.of(context).textTheme.displayMedium),
-                 SizedBox(
+                SizedBox(
                   height: AppSize.s20.h,
                 ),
                 Text(
                     "انضم إلينا اليوم لفتح الميزات، إدارة الطلبات، والبقاء على اتصال باحتياجاتك من التوصيل!",
                     style: Theme.of(context).textTheme.labelSmall),
-                 SizedBox(
+                SizedBox(
                   height: AppSize.s20.h,
                 ),
                 Text("الاسم بالكامل",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineMedium),
-                 SizedBox(
+                    style: Theme.of(context).textTheme.headlineMedium),
+                SizedBox(
                   height: AppSize.s10.h,
                 ),
-                 GlobalTextFieldWidget(
-                   validator: (val){
-                     if(val!.length < 10){
-                       return "ادخل الاسم بالكامل";
-                     }
-                     return null;
-                   },
-                   onSaved: (value) => name = value!,
+                GlobalTextFieldWidget(
+                  validator: (val) {
+                    if (val!.length < 10) {
+                      return "ادخل الاسم بالكامل";
+                    }
+                    return null;
+                  },
+                  onSaved: (value) => name = value!,
                   controller: _nameController,
                   hintText: "الاسم بالكامل",
                   textInputType: TextInputType.text,
                 ),
-                 SizedBox(
+                SizedBox(
                   height: AppSize.s30.h,
                 ),
                 Text("رقم الهاتف",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineMedium),
+                    style: Theme.of(context).textTheme.headlineMedium),
                 SizedBox(
                   height: AppSize.s10.h,
                 ),
-                 GlobalTextFieldWidget(
-                   letterSpacing: 3.0,
-                   validator: (value){
-                     if(value!.length != 11){
-                       return "ادخل رقم هاتف صحيح";
-                     }
-                     return null;
-                   },
-                   onSaved: (value) => phone = value!,
+                GlobalTextFieldWidget(
+                  letterSpacing: 3.0,
+                  validator: (value) {
+                    if (value!.length != 11) {
+                      return "ادخل رقم هاتف صحيح";
+                    }
+                    return null;
+                  },
+                  onSaved: (value) => phoneNumber = value!,
                   controller: _phoneController,
                   hintText: "رقم الهاتف",
                   textInputType: TextInputType.phone,
@@ -133,15 +132,13 @@ class _SignUpViewState extends State<SignUpView> {
                   height: AppSize.s30.h,
                 ),
                 Text("العنوان بالتفصيل",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineMedium),
+                    style: Theme.of(context).textTheme.headlineMedium),
                 SizedBox(
                   height: AppSize.s10.h,
                 ),
                 GlobalTextFieldWidget(
-                  validator: (val){
-                    if(val!.length < 10){
+                  validator: (val) {
+                    if (val!.length < 10) {
                       return "ادخل عنوانك";
                     }
                     return null;
@@ -159,15 +156,19 @@ class _SignUpViewState extends State<SignUpView> {
                   isButtonEnabled: isButtonEnabled,
                   width: double.infinity,
                   text: "متابعة",
-                  onTap:isButtonEnabled? () {
-                    Navigator.pushNamed(context, Routes.verificationRoute);
-                  }: (){},
+                  onTap: isButtonEnabled
+                      ? () {
+                          showProgressIndicator(context);
+
+                          _registerUser(context);
+                        }
+                      : () {},
                 ),
-                 SizedBox(
+
+               _buildPhoneNumberSubmittedBloc(),
+                SizedBox(
                   height: AppSize.s100.h,
                 ),
-
-
               ],
             ),
           ),
@@ -175,4 +176,45 @@ class _SignUpViewState extends State<SignUpView> {
       ),
     );
   }
+
+  Widget _buildPhoneNumberSubmittedBloc() {
+    return BlocListener<PhoneAuthCubit, PhoneAuthState>(
+        listenWhen: (previous, current) => previous != current,
+        listener: (context, state) {
+          if (state is PhoneAuthLoading) {
+            showProgressIndicator(context);
+          }
+
+          if (state is PhoneAuthNumberSubmitted) {
+            Navigator.pop(context);
+            Navigator.pushNamed(context, Routes.verificationRoute,
+                arguments: phoneNumber);
+          }
+
+          if (state is PhoneAuthError) {
+            Navigator.pop(context);
+            final error = (state).errorMsg;
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                  duration: const Duration(seconds: 3),
+                  backgroundColor: ColorManager.black,
+                  content: Text(error)),
+            );
+          }
+        },
+        child: Container(),
+      );
+  }
+
+  Future<void> _registerUser(BuildContext context) async {
+    if (!_formKey.currentState!.validate()) {
+      Navigator.pop(context);
+      return;
+    } else {
+      Navigator.pop(context);
+      _formKey.currentState!.save();
+      BlocProvider.of<PhoneAuthCubit>(context).submitPhoneNumber(phoneNumber);
+    }
+  }
 }
+

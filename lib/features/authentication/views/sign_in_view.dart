@@ -1,3 +1,5 @@
+import 'package:delivery_app/features/authentication/authentication_widgets/auth_dialog.dart';
+import 'package:delivery_app/features/authentication/view_model/phone_auth_cubit.dart';
 import 'package:delivery_app/features/authentication/views/verification_view.dart';
 import 'package:delivery_app/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/global_widgets/global_circular_button_widget.dart';
@@ -8,6 +10,7 @@ import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:delivery_app/resources/routes_manager.dart';
 import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignInView extends StatefulWidget {
@@ -104,16 +107,60 @@ class _SignInViewState extends State<SignInView> {
                   text: "متابعة",
                   onTap: isButtonEnabled
                       ? () {
-                          Navigator.pushNamed(
-                              context, Routes.verificationRoute);
+
+                    showProgressIndicator(context);
+
+                        _loginUser(context);
                         }
                       : () {},
                 ),
+                _buildPhoneNumberSubmittedBloc()
               ],
             ),
           ),
         ),
       ),
     );
+  }
+  Widget _buildPhoneNumberSubmittedBloc() {
+    return BlocListener<PhoneAuthCubit, PhoneAuthState>(
+      listenWhen: (previous, current) => previous != current,
+      listener: (context, state) {
+        if (state is PhoneAuthLoading) {
+          showProgressIndicator(context);
+        }
+
+        if(state is PhoneAuthNumberSubmitted){
+          Navigator.pop(context);
+          Navigator.pushNamed(context, Routes.verificationRoute , arguments: phoneNumber);
+        }
+
+        if(state is PhoneAuthError){
+          Navigator.pop(context);
+          final error = (state).errorMsg;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+                duration: const Duration(seconds: 3),
+                backgroundColor: ColorManager.black,
+                content: Text(error)),
+          );
+        }
+      },
+      child: Container(),
+    );
+
+
+
+  }
+
+  Future<void> _loginUser(BuildContext context)async{
+    if(!_formKey.currentState!.validate()){
+      Navigator.pop(context);
+      return;
+    }else{
+      Navigator.pop(context);
+      _formKey.currentState!.save();
+      BlocProvider.of<PhoneAuthCubit>(context).submitPhoneNumber(phoneNumber);
+    }
   }
 }

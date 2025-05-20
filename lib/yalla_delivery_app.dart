@@ -1,4 +1,3 @@
-
 import 'package:delivery_app/resources/routes_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'resources/theme_manager.dart';
 
 class YallaDeliveryApp extends StatelessWidget {
-  const YallaDeliveryApp({super.key});
+  YallaDeliveryApp({
+    super.key,
+  });
 
+  final routeGenerator = RouteGenerator();
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -23,7 +25,7 @@ class YallaDeliveryApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Yalla Delivery app',
 
-        onGenerateRoute:RouteGenerator.getRoute,
+        onGenerateRoute: routeGenerator.getRoute,
         initialRoute: Routes.onBoardingRoute,
         // routes: routes,
         // initialRoute: OnBoardingView.id,

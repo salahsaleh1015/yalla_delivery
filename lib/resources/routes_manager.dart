@@ -105,22 +105,27 @@ class RouteGenerator {
     phoneAuthCubit = PhoneAuthCubit();
   }
 
-  static Route<dynamic> getRoute(RouteSettings settings) {
+  Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.onBoardingRoute:
         return MaterialPageRoute(builder: (_) => OnBoardingView());
       case Routes.signUpRoute:
         return MaterialPageRoute(
             builder: (_) => BlocProvider<PhoneAuthCubit>.value(
-                value: PhoneAuthCubit(), child: const SignUpView()));
+                value: phoneAuthCubit!, child: const SignUpView()));
       case Routes.signInRoute:
         return MaterialPageRoute(
             builder: (_) => BlocProvider<PhoneAuthCubit>.value(
-                value: PhoneAuthCubit(), child: const SignInView()));
+                value: phoneAuthCubit!, child: const SignInView()));
       case Routes.verificationRoute:
+        final phoneNumber = settings.arguments as String;
         return MaterialPageRoute(
             builder: (_) => BlocProvider<PhoneAuthCubit>.value(
-                value: PhoneAuthCubit(), child: const VerificationView()));
+                  value: phoneAuthCubit!,
+                  child: VerificationView(
+                    phoneNumber: phoneNumber,
+                  ),
+                ));
       case Routes.mainLayoutRoute:
         return MaterialPageRoute(builder: (_) => const MainLayoutView());
       case Routes.homeRoute:
