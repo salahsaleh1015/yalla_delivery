@@ -1,48 +1,54 @@
-import 'package:delivery_app/admin_features/admin_account/views/admin_account_view.dart';
-import 'package:delivery_app/admin_features/admin_account/views/admin_add_ads_view.dart';
-import 'package:delivery_app/admin_features/admin_account/views/admin_edit_account_view.dart';
-import 'package:delivery_app/admin_features/admin_authentication/views/admin_authentication.dart';
-import 'package:delivery_app/admin_features/admin_delivery_management/views/admin_delivery_management_view.dart';
-import 'package:delivery_app/admin_features/admin_home/views/admin_add_vendor_view.dart';
-import 'package:delivery_app/admin_features/admin_home/views/admin_home_view.dart';
-import 'package:delivery_app/admin_features/admin_home/views/admin_vendors_details_view.dart';
-import 'package:delivery_app/admin_features/admin_main_layout/views/admin_main_layout.dart';
-import 'package:delivery_app/admin_features/admin_quick_add/views/admin_addition_view.dart';
-import 'package:delivery_app/delivery_features/delivery_account/views/delivery_account_view.dart';
-import 'package:delivery_app/delivery_features/delivery_account/views/delivery_edit_account_view.dart';
-import 'package:delivery_app/delivery_features/delivery_chat/views/delivery_chat_view.dart';
-import 'package:delivery_app/delivery_features/delivery_main_layout/views/delivery_main_layout_view.dart';
-import 'package:delivery_app/features/account/views/account_view.dart';
-import 'package:delivery_app/features/account/views/ads_partner_view.dart';
-import 'package:delivery_app/features/account/views/edit_account_view.dart';
-import 'package:delivery_app/features/add_order/views/add_order_view.dart';
-import 'package:delivery_app/features/add_order/views/choose_delivery_from_add_order_view.dart';
-import 'package:delivery_app/features/authentication/view_model/phone_auth_cubit.dart';
-import 'package:delivery_app/features/authentication/views/sign_in_view.dart';
-import 'package:delivery_app/features/authentication/views/sign_up_vew.dart';
-import 'package:delivery_app/features/authentication/views/verification_view.dart';
-import 'package:delivery_app/features/cart/views/cart_choose_delivery.dart';
-import 'package:delivery_app/features/cart/views/cart_order_summary_view.dart';
-import 'package:delivery_app/features/cart/views/cart_view.dart';
-import 'package:delivery_app/features/delivery/views/add_order_from_delivery_view.dart';
-import 'package:delivery_app/features/delivery/views/delivery_view.dart';
-import 'package:delivery_app/features/delivery/views/order_summary_from_delivery_view.dart';
-import 'package:delivery_app/features/home/view/all_vendors_view.dart';
-import 'package:delivery_app/features/home/view/choose_delivery_view.dart';
-import 'package:delivery_app/features/home/view/home_view.dart';
-import 'package:delivery_app/features/home/view/shop_details_view.dart';
-import 'package:delivery_app/features/home/view/summary_view.dart';
-import 'package:delivery_app/features/main_layout/views/main_layout_view.dart';
-import 'package:delivery_app/features/on_boarding/views/on_boarding_view.dart';
+
+import 'package:delivery_app/presentation/admin_features/views/admin_account/views/admin_account_view.dart';
+import 'package:delivery_app/presentation/admin_features/views/admin_account/views/admin_add_ads_view.dart';
+import 'package:delivery_app/presentation/admin_features/views/admin_account/views/admin_edit_account_view.dart';
+import 'package:delivery_app/presentation/admin_features/views/admin_authentication/views/admin_authentication.dart';
+import 'package:delivery_app/presentation/admin_features/views/admin_delivery_management/views/admin_delivery_management_view.dart';
+import 'package:delivery_app/presentation/admin_features/views/admin_home/views/admin_add_vendor_view.dart';
+import 'package:delivery_app/presentation/admin_features/views/admin_home/views/admin_home_view.dart';
+import 'package:delivery_app/presentation/admin_features/views/admin_home/views/admin_vendors_details_view.dart';
+import 'package:delivery_app/presentation/admin_features/views/admin_main_layout/views/admin_main_layout.dart';
+import 'package:delivery_app/presentation/admin_features/views/admin_quick_add/views/admin_addition_view.dart';
+import 'package:delivery_app/presentation/delivery_features/views/delivery_account/views/delivery_account_view.dart';
+import 'package:delivery_app/presentation/delivery_features/views/delivery_account/views/delivery_edit_account_view.dart';
+import 'package:delivery_app/presentation/delivery_features/views/delivery_add_order/views/delivery_add_order_view.dart';
+import 'package:delivery_app/presentation/delivery_features/views/delivery_add_order/views/delivery_order_summary_for_delivery.dart';
+import 'package:delivery_app/presentation/delivery_features/views/delivery_authentecation/views/delivery_authentication_view.dart';
+import 'package:delivery_app/presentation/delivery_features/views/delivery_chat/views/delivery_chat_view.dart';
+import 'package:delivery_app/presentation/delivery_features/views/delivery_main_layout/views/delivery_main_layout_view.dart';
+import 'package:delivery_app/presentation/delivery_features/views/delivery_order_management/views/delivery_order_management_view.dart';
+import 'package:delivery_app/presentation/delivery_features/views/delivery_order_management/views/delivery_order_summary_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../delivery_features/delivery_add_order/views/delivery_add_order_view.dart';
-import '../delivery_features/delivery_add_order/views/delivery_order_summary_for_delivery.dart';
-import '../delivery_features/delivery_authentecation/views/delivery_authentication_view.dart';
-import '../delivery_features/delivery_order_management/views/delivery_order_management_view.dart';
-import '../delivery_features/delivery_order_management/views/delivery_order_summary_view.dart';
-import '../features/add_order/views/order_summary_from_add_order_view.dart';
+
+import '../presentation/features/view_models/phone_auth_cubit/phone_auth_cubit.dart';
+import '../presentation/features/views/account/views/account_view.dart';
+import '../presentation/features/views/account/views/ads_partner_view.dart';
+import '../presentation/features/views/account/views/edit_account_view.dart';
+import '../presentation/features/views/add_order/views/add_order_view.dart';
+import '../presentation/features/views/add_order/views/choose_delivery_from_add_order_view.dart';
+import '../presentation/features/views/add_order/views/order_summary_from_add_order_view.dart';
+import '../presentation/features/views/authentication/views/sign_in_view.dart';
+import '../presentation/features/views/authentication/views/sign_up_vew.dart';
+import '../presentation/features/views/authentication/views/verification_view.dart';
+import '../presentation/features/views/cart/views/cart_choose_delivery.dart';
+import '../presentation/features/views/cart/views/cart_order_summary_view.dart';
+import '../presentation/features/views/cart/views/cart_view.dart';
+import '../presentation/features/views/delivery/views/add_order_from_delivery_view.dart';
+import '../presentation/features/views/delivery/views/delivery_view.dart';
+import '../presentation/features/views/delivery/views/order_summary_from_delivery_view.dart';
+import '../presentation/features/views/home/view/all_vendors_view.dart';
+import '../presentation/features/views/home/view/choose_delivery_view.dart';
+import '../presentation/features/views/home/view/home_view.dart';
+import '../presentation/features/views/home/view/shop_details_view.dart';
+import '../presentation/features/views/home/view/summary_view.dart';
+import '../presentation/features/views/main_layout/views/main_layout_view.dart';
+import '../presentation/features/views/on_boarding/views/on_boarding_view.dart';
+
+
+
+
 
 class Routes {
   static const String onBoardingRoute = "/";
