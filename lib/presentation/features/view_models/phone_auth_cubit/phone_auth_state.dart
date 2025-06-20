@@ -17,4 +17,4 @@ final class PhoneAuthNumberSubmitted extends PhoneAuthState {}
 
 final class PhoneAuthOTPVerified extends PhoneAuthState {}
 
-final class PhoneAuthUserInfoAdded extends PhoneAuthState {}
+

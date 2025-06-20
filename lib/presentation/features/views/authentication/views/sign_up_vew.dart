@@ -1,4 +1,3 @@
-
 import 'package:delivery_app/presentation/features/models/user_model.dart';
 import 'package:delivery_app/presentation/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/presentation/global_widgets/global_circular_button_widget.dart';
@@ -7,12 +6,14 @@ import 'package:delivery_app/presentation/global_widgets/global_text_field_widge
 import 'package:delivery_app/resources/colors_manager.dart';
 import 'package:delivery_app/resources/routes_manager.dart';
 import 'package:delivery_app/resources/values_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../models/verification_args_model.dart';
+import '../../../view_models/user_info_cubit/user_info_cubit.dart';
 import '../authentication_widgets/auth_dialog.dart';
 import '../../../view_models/phone_auth_cubit/phone_auth_cubit.dart';
-
 
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
@@ -157,13 +158,21 @@ class _SignUpViewState extends State<SignUpView> {
                   text: "متابعة",
                   onTap: isButtonEnabled
                       ? () {
-                          showProgressIndicator(context);
-                          getUserInfo(context);
-                          // _registerUser(context);
+                    Navigator.pushNamed(context, Routes.verificationRoute,
+                     arguments:  VerificationArgs(
+                       isSignUpFlow: true,
+                        phoneNumber: '123',
+                        userModel: UserModel(
+                          phoneNumber: _phoneController.text,
+                          userLocation: _locationController.text,
+                          userName: _nameController.text,
+                        ),
+                      ),);
+                         // _registerUser(context);
                         }
                       : () {},
                 ),
-                _buildPhoneNumberSubmittedBloc(),
+               // _buildPhoneNumberSubmittedBloc(),
                 SizedBox(
                   height: AppSize.s100.h,
                 ),
@@ -173,22 +182,6 @@ class _SignUpViewState extends State<SignUpView> {
         ),
       ),
     );
-  }
-
-  void getUserInfo(BuildContext context) {
-        BlocProvider.of<PhoneAuthCubit>(context)
-        .addUserToFirebaseStore(
-            userModel: UserModel(
-                userLocation: _locationController.text,
-                userName: _nameController.text,
-                phoneNumber: _phoneController.text))
-        .then((value) => Navigator.pushNamed(
-              context,
-              Routes.mainLayoutRoute,
-            ))
-        .catchError((error) {
-      print(error.toString());
-    });
   }
 
   Widget _buildPhoneNumberSubmittedBloc() {

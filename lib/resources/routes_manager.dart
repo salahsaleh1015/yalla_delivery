@@ -1,4 +1,3 @@
-
 import 'package:delivery_app/presentation/admin_features/views/admin_account/views/admin_account_view.dart';
 import 'package:delivery_app/presentation/admin_features/views/admin_account/views/admin_add_ads_view.dart';
 import 'package:delivery_app/presentation/admin_features/views/admin_account/views/admin_edit_account_view.dart';
@@ -18,10 +17,12 @@ import 'package:delivery_app/presentation/delivery_features/views/delivery_chat/
 import 'package:delivery_app/presentation/delivery_features/views/delivery_main_layout/views/delivery_main_layout_view.dart';
 import 'package:delivery_app/presentation/delivery_features/views/delivery_order_management/views/delivery_order_management_view.dart';
 import 'package:delivery_app/presentation/delivery_features/views/delivery_order_management/views/delivery_order_summary_view.dart';
+import 'package:delivery_app/presentation/features/view_models/user_info_cubit/user_info_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
+import '../presentation/features/models/user_model.dart';
+import '../presentation/features/models/verification_args_model.dart';
 import '../presentation/features/view_models/phone_auth_cubit/phone_auth_cubit.dart';
 import '../presentation/features/views/account/views/account_view.dart';
 import '../presentation/features/views/account/views/ads_partner_view.dart';
@@ -29,8 +30,10 @@ import '../presentation/features/views/account/views/edit_account_view.dart';
 import '../presentation/features/views/add_order/views/add_order_view.dart';
 import '../presentation/features/views/add_order/views/choose_delivery_from_add_order_view.dart';
 import '../presentation/features/views/add_order/views/order_summary_from_add_order_view.dart';
+import '../presentation/features/views/authentication/views/failure_auth_view.dart';
 import '../presentation/features/views/authentication/views/sign_in_view.dart';
 import '../presentation/features/views/authentication/views/sign_up_vew.dart';
+import '../presentation/features/views/authentication/views/success_auth_view.dart';
 import '../presentation/features/views/authentication/views/verification_view.dart';
 import '../presentation/features/views/cart/views/cart_choose_delivery.dart';
 import '../presentation/features/views/cart/views/cart_order_summary_view.dart';
@@ -46,15 +49,13 @@ import '../presentation/features/views/home/view/summary_view.dart';
 import '../presentation/features/views/main_layout/views/main_layout_view.dart';
 import '../presentation/features/views/on_boarding/views/on_boarding_view.dart';
 
-
-
-
-
 class Routes {
   static const String onBoardingRoute = "/";
   static const String signUpRoute = "/signUp";
   static const String signInRoute = "/signIn";
   static const String verificationRoute = "/verification";
+  static const String successAuthRoute = "/successAuth";
+  static const String failureAuthRoute = "/failureAuth";
   static const String mainLayoutRoute = "/mainLayout";
   static const String homeRoute = "/home";
   static const String shopDetailsRoute = "/shopDetails";
@@ -117,21 +118,36 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => OnBoardingView());
       case Routes.signUpRoute:
         return MaterialPageRoute(
-            builder: (_) => BlocProvider<PhoneAuthCubit>.value(
-                value: phoneAuthCubit!, child: const SignUpView()));
+          builder: (_) => BlocProvider<PhoneAuthCubit>.value(
+            value: phoneAuthCubit!,
+            child: const SignUpView(),
+          ),
+        );
       case Routes.signInRoute:
         return MaterialPageRoute(
             builder: (_) => BlocProvider<PhoneAuthCubit>.value(
                 value: phoneAuthCubit!, child: const SignInView()));
       case Routes.verificationRoute:
-        final phoneNumber = settings.arguments as String;
+        final args = settings.arguments as VerificationArgs;
         return MaterialPageRoute(
             builder: (_) => BlocProvider<PhoneAuthCubit>.value(
                   value: phoneAuthCubit!,
                   child: VerificationView(
-                    phoneNumber: phoneNumber,
+                    isSignUpFlow: args.isSignUpFlow,
+                    phoneNumber: args.phoneNumber,
+                    userModel: args.userModel,
                   ),
                 ));
+      case Routes.successAuthRoute:
+        final args = settings.arguments as VerificationArgs;
+        return MaterialPageRoute(
+            builder: (_) => SuccessAuthView(
+
+                  isSignUpFlow: args.isSignUpFlow,
+                  userModel: args.userModel,
+                ));
+      case Routes.failureAuthRoute:
+        return MaterialPageRoute(builder: (_) => const FailureAuthView());
       case Routes.mainLayoutRoute:
         return MaterialPageRoute(builder: (_) => const MainLayoutView());
       case Routes.homeRoute:

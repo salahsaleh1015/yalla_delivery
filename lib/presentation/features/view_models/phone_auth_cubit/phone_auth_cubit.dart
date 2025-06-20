@@ -1,6 +1,6 @@
 
 import 'package:delivery_app/presentation/features/models/user_model.dart';
-import 'package:delivery_app/services/firebase_services/firebase_user_services.dart';
+import 'package:delivery_app/services/firebase_services/firestore_user_info_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -60,9 +60,7 @@ class PhoneAuthCubit extends Cubit<PhoneAuthState> {
     }
   }
 
-  Future<void> logOut() async {
-    await FirebaseAuth.instance.signOut();
-  }
+
 
   User getLoggedInUser() {
     User firebaseUser = FirebaseAuth.instance.currentUser!;
@@ -70,10 +68,6 @@ class PhoneAuthCubit extends Cubit<PhoneAuthState> {
   }
 
 
- Future<void> addUserToFirebaseStore({required UserModel userModel})async{
-    await FirebaseUserServices().addUserToFireStore(userModel);
 
-    emit(PhoneAuthUserInfoAdded());
-  }
 
 }

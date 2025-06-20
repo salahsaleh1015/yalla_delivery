@@ -1,4 +1,4 @@
-
+import 'package:delivery_app/presentation/features/models/user_model.dart';
 import 'package:delivery_app/presentation/features/views/main_layout/views/main_layout_view.dart';
 import 'package:delivery_app/presentation/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/presentation/global_widgets/global_circular_button_widget.dart';
@@ -9,15 +9,20 @@ import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../models/verification_args_model.dart';
 import '../authentication_widgets/auth_dialog.dart';
 import '../authentication_widgets/otpTextField.dart';
 import '../../../view_models/phone_auth_cubit/phone_auth_cubit.dart';
 
 class VerificationView extends StatelessWidget {
-  VerificationView({super.key, required this.phoneNumber});
+  VerificationView(
+      {super.key, required this.phoneNumber, required this.userModel, required this.isSignUpFlow});
 
   final String phoneNumber;
-   String otp = '';
+  String otp = '';
+
+  final UserModel userModel;
+  final bool isSignUpFlow;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,12 +67,22 @@ class VerificationView extends StatelessWidget {
                 width: double.infinity,
                 text: "إرسال الرمز",
                 onTap: () {
-                  _verifyOTP(context, otp);
+                  Navigator.pushNamed(
+                    context,
+                    Routes.successAuthRoute,
+                    arguments: VerificationArgs(
+                      phoneNumber: phoneNumber,
+                      userModel: userModel,
+                      isSignUpFlow: isSignUpFlow,
+
+                    ),
+                  );
+                  // _verifyOTP(context, otp);
                 },
               ),
               // const ResendVerificationText(),
 
-              _buildPhoneNumberVerificationBloc(),
+              // _buildPhoneNumberVerificationBloc(),
             ],
           ),
         ),

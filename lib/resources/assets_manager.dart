@@ -20,6 +20,8 @@ class AssetsManager {
   static const String userIcon = "$imagePath/user_icon.png";
   static const String checkMarkIcon = "$imagePath/check_mark_icon.png";
   static const String editIcon = "$imagePath/edit_icon.png";
+  static const String checkBox = "$imagePath/Checkbox.png";
+  static const String notFound = "$imagePath/not_founded.png";
 
 
 

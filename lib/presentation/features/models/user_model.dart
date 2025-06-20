@@ -1,7 +1,7 @@
 class UserModel {
   final String userName;
   final String phoneNumber;
-  final String? userId;
+   String? userId;
   final String userLocation;
 
   UserModel(

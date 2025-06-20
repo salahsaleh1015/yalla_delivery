@@ -13,6 +13,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../models/user_model.dart';
+import '../../../models/verification_args_model.dart';
+
 class SignInView extends StatefulWidget {
   const SignInView({super.key});
 
@@ -116,13 +119,27 @@ class _SignInViewState extends State<SignInView> {
                   text: "متابعة",
                   onTap: isButtonEnabled
                       ? () {
-                    showProgressIndicator(context);
 
-                    _loginUser(context);
+
+                    Navigator.pushNamed(
+                      context,
+                      Routes.verificationRoute,
+                      arguments:  VerificationArgs(
+                        isSignUpFlow: false,
+                        phoneNumber: '123',
+
+                        userModel: UserModel(
+                          phoneNumber: _phoneNumberController.text,
+                          userLocation:"existed user",
+                          userName: "existed user",
+                        ),
+                      ),
+                    );
+                  //  _loginUser(context);
                   }
                       : () {},
                 ),
-                _buildPhoneNumberSubmittedBloc()
+              //  _buildPhoneNumberSubmittedBloc()
               ],
             ),
           ),
