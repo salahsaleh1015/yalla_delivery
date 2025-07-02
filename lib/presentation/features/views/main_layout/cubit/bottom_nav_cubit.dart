@@ -35,12 +35,6 @@ class BottomNavCubit extends Cubit<BottomNavStates> {
     const TabItem(icon: Icons.person, title: 'الحساب'),
   ];
 
-  List<Widget> screens = const [
-    HomeView(),
-    DeliveryView(),
-    AddOrderView(),
-    ChatsView(),
-    AccountView(),
-  ];
+
 
 }

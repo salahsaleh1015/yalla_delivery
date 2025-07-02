@@ -1,4 +1,5 @@
 import 'package:delivery_app/presentation/features/view_models/user_info_cubit/user_info_cubit.dart';
+import 'package:delivery_app/presentation/global_widgets/global_loading_indicator.dart';
 import 'package:delivery_app/presentation/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/resources/values_manager.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,9 @@ class SuccessAuthView extends StatelessWidget {
         listener: (context, state) {
           if (state is UserInfoAddedSuccessFulState) {
             Future.delayed(const Duration(seconds: 5), () {
-              Navigator.pushReplacementNamed(context, Routes.mainLayoutRoute);
+              Navigator.pushReplacementNamed(context, Routes.mainLayoutRoute,
+                arguments: userModel
+              );
             });
           }
 
@@ -37,7 +40,7 @@ class SuccessAuthView extends StatelessWidget {
               SnackBar(
                 duration: const Duration(seconds: 5),
                 backgroundColor: ColorManager.primary,
-                content: const Text("هناك خطأ ما حاول في وقت لاحق..."),
+                content:  Text(state.error),
               ),
             );
             Future.delayed(const Duration(seconds: 5), () {
@@ -109,18 +112,7 @@ class SuccessAuthView extends StatelessWidget {
                 SizedBox(
                   height: AppSize.s55.h,
                 ),
-                SizedBox(
-                  height: AppSize.s30.h,
-                  width: AppSize.s50.w,
-                  child: LoadingIndicator(
-                    indicatorType: Indicator.lineScalePulseOutRapid,
-                    colors: [
-                      ColorManager.primary,
-                    ],
-                    backgroundColor: ColorManager.scaffoldBackgroundColor,
-                    pathBackgroundColor: ColorManager.primary,
-                  ),
-                ),
+                const GlobalLoadingIndicator(),
               ],
             ),
           )),
@@ -129,3 +121,5 @@ class SuccessAuthView extends StatelessWidget {
     );
   }
 }
+
+

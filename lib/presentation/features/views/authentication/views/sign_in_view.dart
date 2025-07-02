@@ -117,8 +117,7 @@ class _SignInViewState extends State<SignInView> {
                   isButtonEnabled: isButtonEnabled,
                   width: double.infinity,
                   text: "متابعة",
-                  onTap: isButtonEnabled
-                      ? () {
+                  onTap:() {
 
 
                     Navigator.pushNamed(
@@ -135,9 +134,8 @@ class _SignInViewState extends State<SignInView> {
                         ),
                       ),
                     );
-                  //  _loginUser(context);
-                  }
-                      : () {},
+                    //  _loginUser(context);
+                  },
                 ),
               //  _buildPhoneNumberSubmittedBloc()
               ],

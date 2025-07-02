@@ -25,7 +25,7 @@ class GlobalButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: isButtonEnabled ? onTap : () {},
       child: Container(
         decoration: BoxDecoration(
           color: isButtonEnabled
@@ -39,11 +39,11 @@ class GlobalButtonWidget extends StatelessWidget {
           child: Text(
             text,
             style: isButtonEnabled
-                ? Theme.of(context)
+                ? Theme.of(context).textTheme.titleSmall
+                : Theme.of(context)
                     .textTheme
-                    .titleSmall
-
-                : Theme.of(context).textTheme.titleSmall!.copyWith(color: ColorManager.white),
+                    .titleSmall!
+                    .copyWith(color: ColorManager.white),
           ),
         ),
       ),

@@ -65,7 +65,7 @@ class Routes {
   static const String summaryRoute = "/summary";
   static const String deliveryRoute = "/delivery";
   static const String accountRoute = "/account";
-  static const String editAccountRoute = "/editAccount";
+  static const String editAccountRoute = "/EditAccountView";
   static const String adsPartnerRoute = "/adsPartner";
   static const String addOrderRoute = "/addOrder";
   static const String allVendorsRoute = "/allVendors";
@@ -149,7 +149,10 @@ class RouteGenerator {
       case Routes.failureAuthRoute:
         return MaterialPageRoute(builder: (_) => const FailureAuthView());
       case Routes.mainLayoutRoute:
-        return MaterialPageRoute(builder: (_) => const MainLayoutView());
+        final args = settings.arguments as UserModel;
+        return MaterialPageRoute(builder: (_) =>  MainLayoutView(
+          userModel: args,
+        ));
       case Routes.homeRoute:
         return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.shopDetailsRoute:
@@ -163,7 +166,10 @@ class RouteGenerator {
       case Routes.deliveryRoute:
         return MaterialPageRoute(builder: (_) => const DeliveryView());
       case Routes.accountRoute:
-        return MaterialPageRoute(builder: (_) => const AccountView());
+        final args = settings.arguments as UserModel;
+        return MaterialPageRoute(builder: (_) => AccountView(
+          userModel: args,
+        ));
       case Routes.editAccountRoute:
         return MaterialPageRoute(builder: (_) => const EditAccountView());
       case Routes.adsPartnerRoute:

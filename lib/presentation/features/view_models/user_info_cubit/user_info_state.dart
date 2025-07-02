@@ -5,7 +5,7 @@ abstract class UserInfoStates {}
 
 final class UserInfoInitialState extends UserInfoStates {}
 
-final class UserInfoAddLoadingState extends UserInfoStates {}
+final class UserInfoLoadingState extends UserInfoStates {}
 
 final class UserInfoAddedSuccessFulState extends UserInfoStates {}
 
@@ -23,3 +23,17 @@ final class UserInfoErrorState extends UserInfoStates {
 final class UserInfoNotFoundedState extends UserInfoStates {}
 
 final class UserInfoFoundedState extends UserInfoStates {}
+
+
+final class   UserInfoLoadedState extends UserInfoStates {
+  final UserModel userModel;
+  UserInfoLoadedState({required this.userModel});
+}
+
+
+ final class UserInfoUpdatedState extends UserInfoStates {
+   final UserModel userModel;
+   UserInfoUpdatedState({required this.userModel});
+ }
+
+

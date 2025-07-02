@@ -7,13 +7,17 @@ part 'user_info_state.dart';
 class UserInfoCubit extends Cubit<UserInfoStates> {
   UserInfoCubit() : super(UserInfoInitialState());
 
+  static UserInfoCubit get(context) => BlocProvider.of(context);
+
   final FirebaseUserServices _firebaseUserServices = FirebaseUserServices();
+
+  late UserModel user;
 
   Future<void> addUserToFirebaseStore({
     required UserModel userModel,
     required bool isSignUpFlow,
   }) async {
-    emit(UserInfoAddLoadingState());
+    emit(UserInfoLoadingState());
 
     try {
       final exists = await _firebaseUserServices
@@ -32,15 +36,35 @@ class UserInfoCubit extends Cubit<UserInfoStates> {
       if (isSignUpFlow) {
         await _firebaseUserServices.addUserToFireStore(userModel);
       }
+
       emit(UserInfoAddedSuccessFulState());
     } catch (error) {
       emit(UserInfoErrorState(error: error.toString()));
     }
+  }
 
-    // await  _firebaseUserServices.addUserToFireStore(userModel).then((value) {
-    //   emit(UserInfoAddedSuccessFulState());
-    // }).catchError((error) {
-    //   emit(UserInfoErrorState(error: error.toString()));
-    // });
+  Future<void> getUserByPhoneNumber(String phoneNumber) async {
+    emit(UserInfoLoadingState());
+    try {
+      user = await _firebaseUserServices.getUserByPhoneNumber(phoneNumber);
+      emit(UserInfoLoadedState(userModel: user));
+    } catch (e) {
+      emit(UserInfoErrorState(error: e.toString()));
+    }
+  }
+
+
+  Future<void> updateUserByPhoneNumber({required UserModel updatedUser}) async {
+    emit(UserInfoLoadingState());
+    try {
+      await _firebaseUserServices.updateUserInfo(updatedUser);
+
+      user = updatedUser; // Update local user state
+      emit(UserInfoUpdatedState(
+        userModel: user,
+      ));
+    } catch (e) {
+      emit(UserInfoErrorState(error: e.toString()));
+    }
   }
 }

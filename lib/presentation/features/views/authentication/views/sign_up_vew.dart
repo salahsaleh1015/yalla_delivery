@@ -138,8 +138,8 @@ class _SignUpViewState extends State<SignUpView> {
                 ),
                 GlobalTextFieldWidget(
                   validator: (val) {
-                    if (val!.length < 10) {
-                      return "ادخل عنوانك";
+                    if (val!.length < 30) {
+                      return "ادخل عنوانك بالتفصيل";
                     }
                     return null;
                   },
@@ -156,11 +156,10 @@ class _SignUpViewState extends State<SignUpView> {
                   isButtonEnabled: isButtonEnabled,
                   width: double.infinity,
                   text: "متابعة",
-                  onTap: isButtonEnabled
-                      ? () {
+                  onTap:() {
                     Navigator.pushNamed(context, Routes.verificationRoute,
-                     arguments:  VerificationArgs(
-                       isSignUpFlow: true,
+                      arguments:  VerificationArgs(
+                        isSignUpFlow: true,
                         phoneNumber: '123',
                         userModel: UserModel(
                           phoneNumber: _phoneController.text,
@@ -168,9 +167,8 @@ class _SignUpViewState extends State<SignUpView> {
                           userName: _nameController.text,
                         ),
                       ),);
-                         // _registerUser(context);
-                        }
-                      : () {},
+                    // _registerUser(context);
+                  }
                 ),
                // _buildPhoneNumberSubmittedBloc(),
                 SizedBox(
