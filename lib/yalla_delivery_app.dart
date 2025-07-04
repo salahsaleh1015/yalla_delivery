@@ -1,9 +1,9 @@
-import 'package:delivery_app/resources/routes_manager.dart';
+import 'package:delivery_app/core/resources/routes_manager.dart';
+import 'package:delivery_app/core/resources/theme_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'resources/theme_manager.dart';
 
 class YallaDeliveryApp extends StatelessWidget {
   YallaDeliveryApp({
