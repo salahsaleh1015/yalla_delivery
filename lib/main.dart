@@ -1,9 +1,9 @@
 import 'package:delivery_app/translations/codegen_loader.g.dart';
 import 'package:delivery_app/yalla_delivery_app.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+
 import 'firebase_options.dart';
 
 //late String initialRoute;
