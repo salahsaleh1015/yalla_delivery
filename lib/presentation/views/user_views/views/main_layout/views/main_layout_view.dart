@@ -14,7 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainLayoutView extends StatelessWidget {
    MainLayoutView({super.key, required this.userModel});
-  static String id = 'MainLayoutView';
+  static String id = 'mainLayout';
 
 
   final UserModel userModel;
