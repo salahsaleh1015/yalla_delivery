@@ -30,9 +30,8 @@ class OnBoardingBodyTwoWidget extends StatelessWidget {
         SizedBox(
           height: AppSize.s15.h,
         ),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: AppPadding.p20.w),
-          height: AppSize.s70.h,
+        Padding(
+          padding:  EdgeInsets.all(AppPadding.p8.r),
           child: Text(
             "قم بتسجيل الدخول أو إنشاء حسابك الآن لبدء إدارة تجربتك، متابعة طلباتك، تقديم الطلبات، أو توصيلها بكل سهولة وسلاسة.",
             style: Theme.of(context).textTheme.labelSmall,

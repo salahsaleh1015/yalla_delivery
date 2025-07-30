@@ -1,16 +1,14 @@
 
-import 'package:delivery_app/presentation/views/global_widgets/global_app_bar.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
-import '../../../../global_widgets/global_button_widget.dart';
+
+import '../../../../../models/user_model.dart';
 import '../../../../global_widgets/global_circular_button_widget.dart';
-import '../../../../global_widgets/global_dialogs/confirm_order_dialog.dart';
-import '../../../../global_widgets/global_rrder_details_widget.dart';
-import '../../../../global_widgets/lists/global_delivery_cards_list_widget.dart';
+import '../../../../global_widgets/lists/global_delivery_cards_filtered_list_widget.dart';
 import '../../cart/views/cart_view.dart';
 
 
@@ -18,8 +16,9 @@ import '../../cart/views/cart_view.dart';
 
 
 class DeliveryView extends StatelessWidget {
-  const DeliveryView({super.key});
-  static String id = "DeliveryView";
+  const DeliveryView({super.key, required this.userModel});
+
+  final UserModel userModel;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -59,16 +58,29 @@ class DeliveryView extends StatelessWidget {
                  height: MediaQuery.of(context).size.height*0.6,
                  child: TabBarView(children: [
                    GlobalDeliveryCardsListWidget(
+                     userModel: userModel,
                      height: MediaQuery.of(context).size.height*0.6,
                    ),
-                   GlobalDeliveryCardsListWidget(
+                   GlobalDeliveryCardsFilteredListWidget(
                      height: MediaQuery.of(context).size.height*0.6,
+                     deliveryStatus: 'available',
+                     deliveryStatusCaption: "متاح",
+                     isSelected: true,
+                     userModel: userModel,
                    ),
-                   GlobalDeliveryCardsListWidget(
+                   GlobalDeliveryCardsFilteredListWidget(
                      height: MediaQuery.of(context).size.height*0.6,
+                     deliveryStatus: 'busy',
+                     deliveryStatusCaption: "مشغول",
+                     isSelected: false,
+                     userModel: userModel,
                    ),
-                   GlobalDeliveryCardsListWidget(
+                   GlobalDeliveryCardsFilteredListWidget(
                      height: MediaQuery.of(context).size.height*0.6,
+                     deliveryStatus: 'notAvailable',
+                     deliveryStatusCaption: "غير متاح",
+                     isSelected: false,
+                     userModel: userModel,
                    ),
                  ],),
                ),

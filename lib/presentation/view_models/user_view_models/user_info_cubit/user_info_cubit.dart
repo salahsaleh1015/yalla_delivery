@@ -12,6 +12,7 @@ class UserInfoCubit extends Cubit<UserInfoStates> {
   final FirebaseUserServices _firebaseUserServices = FirebaseUserServices();
 
   late UserModel user;
+  late String userLocation;
 
   Future<void> addUserToFirebaseStore({
     required UserModel userModel,
@@ -53,7 +54,6 @@ class UserInfoCubit extends Cubit<UserInfoStates> {
     }
   }
 
-
   Future<void> updateUserByPhoneNumber({required UserModel updatedUser}) async {
     emit(UserInfoLoadingState());
     try {
@@ -65,6 +65,17 @@ class UserInfoCubit extends Cubit<UserInfoStates> {
       ));
     } catch (e) {
       emit(UserInfoErrorState(error: e.toString()));
+    }
+  }
+
+  Future<void> getUserLocationByPhoneNumber({required String phoneNumber}) async {
+    emit(UserLocationLoadingState());
+    try {
+      userLocation = await _firebaseUserServices.getUserLocationByPhoneNumber(
+          phoneNumber: phoneNumber);
+      emit(UserLocationLoadedSuccessfullyState());
+    } catch (e) {
+      emit(UserLocationErrorState(error: e.toString()));
     }
   }
 }

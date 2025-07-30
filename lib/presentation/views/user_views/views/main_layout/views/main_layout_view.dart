@@ -1,4 +1,3 @@
-
 import 'package:delivery_app/presentation/models/user_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_main_layout_cubit/bottom_nav_cubit.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_bottom_nav_bar_widget.dart';
@@ -10,22 +9,21 @@ import 'package:delivery_app/presentation/views/user_views/views/home/view/home_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
-
 class MainLayoutView extends StatelessWidget {
-   MainLayoutView({super.key, required this.userModel});
+  MainLayoutView({super.key, required this.userModel});
   static String id = 'mainLayout';
-
 
   final UserModel userModel;
 
-   List<Widget> get screens => [
-     const HomeView(),
-     const DeliveryView(),
-     const AddOrderView(),
-     const ChatsView(),
-     AccountView(userModel: userModel),
-   ];
+  List<Widget> get screens => [
+        const HomeView(),
+        DeliveryView(
+          userModel: userModel,
+        ),
+        const AddOrderView(),
+        const ChatsView(),
+        AccountView(userModel: userModel),
+      ];
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -34,10 +32,10 @@ class MainLayoutView extends StatelessWidget {
         builder: (context, state) {
           var cubit = BottomNavCubit.get(context);
           return Scaffold(
-            body:screens[cubit.currentIndex],
+            body: screens[cubit.currentIndex],
             bottomNavigationBar: GlobalBottomNavBarWidget(
               initialActiveIndex: cubit.currentIndex,
-                items: cubit.bottomNavTabs,
+              items: cubit.bottomNavTabs,
               onTap: (index) {
                 cubit.changeIndex(index);
               },

@@ -36,4 +36,9 @@ final class   UserInfoLoadedState extends UserInfoStates {
    UserInfoUpdatedState({required this.userModel});
  }
 
-
+ class UserLocationLoadedSuccessfullyState extends UserInfoStates {}
+class UserLocationLoadingState extends UserInfoStates {}
+class UserLocationErrorState extends UserInfoStates {
+  final String error;
+  UserLocationErrorState({required this.error});
+}

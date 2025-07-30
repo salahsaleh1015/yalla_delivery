@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GlobalCustomOrderTextField extends StatelessWidget {
-  const GlobalCustomOrderTextField({super.key});
+  const GlobalCustomOrderTextField({super.key, required this.orderController, this.onSaved, this.validator});
 
+  final TextEditingController orderController;
+  final Function(String?)? onSaved;
+  final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,6 +25,10 @@ class GlobalCustomOrderTextField extends StatelessWidget {
           height: AppSize.s200.h,
           hintText: "اكتب تفاصيل طلبك هنا...",
           textInputType: TextInputType.multiline,
+          controller: orderController,
+          onSaved: onSaved,
+          validator: validator,
+
         ),
       ),
     );

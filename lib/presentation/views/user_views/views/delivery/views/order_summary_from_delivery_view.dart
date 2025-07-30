@@ -1,4 +1,6 @@
-
+import 'package:delivery_app/presentation/models/delivery_model.dart';
+import 'package:delivery_app/presentation/models/order_info_model.dart';
+import 'package:delivery_app/presentation/models/order_summary_model.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_app_bar.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +15,13 @@ import '../../home/widgets/items/notes_section_item_widget.dart';
 import '../../home/widgets/items/summary_delivery_item_widget.dart';
 
 class OrderSummaryFromDeliveryView extends StatelessWidget {
-  const OrderSummaryFromDeliveryView({super.key});
-  static String id = 'OrderSummaryFromDeliveryView';
+  const OrderSummaryFromDeliveryView({
+    super.key,
+    required this.orderInfoModel,
+  });
+
+  final OrderInfoModel orderInfoModel;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,13 +30,14 @@ class OrderSummaryFromDeliveryView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const GlobalAppBar(
-
-                  title: "ملخص الطلب"),
+              const GlobalAppBar(title: "ملخص الطلب"),
               SizedBox(
                 height: AppSize.s30.h,
               ),
-              const EditLocationCardItemWidget(),
+               EditLocationCardItemWidget(
+                 userPhone: orderInfoModel.userModel.phoneNumber,
+                //location: orderInfoModel.userModel.userLocation,
+              ),
               SizedBox(
                 height: AppSize.s15.h,
               ),
@@ -38,7 +46,9 @@ class OrderSummaryFromDeliveryView extends StatelessWidget {
               SizedBox(
                 height: AppSize.s15.h,
               ),
-              const GlobalOrderDetailsWidget(),
+              GlobalOrderDetailsWidget(
+                orderDetails: orderInfoModel.order,
+              ),
               SizedBox(
                 height: AppSize.s20.h,
               ),
@@ -47,7 +57,10 @@ class OrderSummaryFromDeliveryView extends StatelessWidget {
               SizedBox(
                 height: AppSize.s15.h,
               ),
-              const SummaryDeliveryItemWidget(),
+               SummaryDeliveryItemWidget(
+                 deliveryName: orderInfoModel.deliveryModel.deliveryName,
+                 deliveryRate: orderInfoModel.deliveryModel.deliveryRate,
+               ),
               SizedBox(
                 height: AppSize.s15.h,
               ),
@@ -70,4 +83,3 @@ class OrderSummaryFromDeliveryView extends StatelessWidget {
     );
   }
 }
-

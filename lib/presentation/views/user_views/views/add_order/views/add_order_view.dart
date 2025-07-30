@@ -49,7 +49,18 @@ class AddOrderView extends StatelessWidget {
           SizedBox(
             height: AppSize.s30.h,
           ),
-          const GlobalCustomOrderTextField(),
+           GlobalCustomOrderTextField(
+            orderController: TextEditingController(),
+            onSaved: (value) {
+
+            },
+            validator: (value) {
+              if (value!.length < 10) {
+                return " يرجى ادخال الطلب كامل";
+              }
+              return null;
+            },
+          ),
           SizedBox(
             height: AppSize.s30.h,
           ),

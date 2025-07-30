@@ -1,4 +1,6 @@
-
+import 'package:delivery_app/presentation/models/delivery_model.dart';
+import 'package:delivery_app/presentation/models/order_info_model.dart';
+import 'package:delivery_app/presentation/models/order_summary_model.dart';
 import 'package:delivery_app/presentation/models/user_model.dart';
 import 'package:delivery_app/presentation/models/verification_args_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/phone_auth_cubit/phone_auth_cubit.dart';
@@ -48,6 +50,8 @@ import 'package:delivery_app/presentation/views/user_views/views/on_boarding/vie
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../presentation/models/user_and_delivery_combined_model.dart';
+import '../../presentation/views/global_widgets/lists/global_delivery_cards_filtered_list_widget.dart';
 
 class Routes {
   static const String onBoardingRoute = "/";
@@ -142,7 +146,6 @@ class RouteGenerator {
         final args = settings.arguments as VerificationArgs;
         return MaterialPageRoute(
             builder: (_) => SuccessAuthView(
-
                   isSignUpFlow: args.isSignUpFlow,
                   userModel: args.userModel,
                 ));
@@ -150,9 +153,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const FailureAuthView());
       case Routes.mainLayoutRoute:
         final args = settings.arguments as UserModel;
-        return MaterialPageRoute(builder: (_) =>  MainLayoutView(
-          userModel: args,
-        ));
+        return MaterialPageRoute(
+            builder: (_) => MainLayoutView(
+                  userModel: args,
+                ));
       case Routes.homeRoute:
         return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.shopDetailsRoute:
@@ -164,12 +168,16 @@ class RouteGenerator {
       case Routes.summaryRoute:
         return MaterialPageRoute(builder: (_) => const SummaryView());
       case Routes.deliveryRoute:
-        return MaterialPageRoute(builder: (_) => const DeliveryView());
-      case Routes.accountRoute:
         final args = settings.arguments as UserModel;
-        return MaterialPageRoute(builder: (_) => AccountView(
+        return MaterialPageRoute(builder: (_) =>  DeliveryView(
           userModel: args,
         ));
+      case Routes.accountRoute:
+        final args = settings.arguments as UserModel;
+        return MaterialPageRoute(
+            builder: (_) => AccountView(
+                  userModel: args,
+                ));
       case Routes.editAccountRoute:
         return MaterialPageRoute(builder: (_) => const EditAccountView());
       case Routes.adsPartnerRoute:
@@ -185,11 +193,17 @@ class RouteGenerator {
       case Routes.cartOrderSummaryRoute:
         return MaterialPageRoute(builder: (_) => const CartOrderSummaryView());
       case Routes.addOrderFromDeliveryRoute:
+        final args = settings.arguments as UserAndDeliveryCombinedModel;
         return MaterialPageRoute(
-            builder: (_) => const AddOrderFromDeliveryView());
+            builder: (_) =>  AddOrderFromDeliveryView(
+              userAndDeliveryCombinedModel: args,
+            ));
       case Routes.orderSummaryFromDeliveryRoute:
+        final args = settings.arguments as OrderInfoModel;
         return MaterialPageRoute(
-            builder: (_) => const OrderSummaryFromDeliveryView());
+            builder: (_) => OrderSummaryFromDeliveryView(
+                  orderInfoModel: args,
+                ));
       case Routes.chooseDeliveryFromAddOrderRoute:
         return MaterialPageRoute(
             builder: (_) => const ChooseDeliveryFromAddOrderView());
@@ -262,5 +276,3 @@ class RouteGenerator {
     );
   }
 }
-
-

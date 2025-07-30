@@ -12,14 +12,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class SummaryDeliveryItemWidget extends StatelessWidget {
-  const SummaryDeliveryItemWidget({super.key});
+  const SummaryDeliveryItemWidget({super.key, required this.deliveryName, required this.deliveryRate,});
 
+
+  final String deliveryName;
+  final int deliveryRate;
   @override
   Widget build(BuildContext context) {
     return  Container(
       padding: EdgeInsets.all(AppPadding.p20.r),
       width: double.infinity,
-      height: AppSize.s100.h,
+     // height: AppSize.s100.h,
       decoration: BoxDecoration(
         border: Border.all(
             color: ColorManager.socialButtonColor, width: AppSize.s1.w),
@@ -37,7 +40,7 @@ class SummaryDeliveryItemWidget extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               Text(
-                "محمد سعيد",
+               deliveryName,
                 style: Theme.of(context)
                     .textTheme
                     .headlineSmall!
@@ -59,7 +62,36 @@ class SummaryDeliveryItemWidget extends StatelessWidget {
                 "التقييم",
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
-              const RatingStars()
+              RatingStars(
+                value: deliveryRate.toDouble(),
+                starCount: 5,
+                starSize: AppSize.s20.r,
+                starOffColor: ColorManager.inActiveRateColor,
+                starColor: ColorManager.activeRateColor,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: AppSize.s10.h,
+          ),
+          const GlobalDividerWidget(),
+          SizedBox(
+            height: AppSize.s10.h,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "طريقة الدفع",
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              Text(
+                "نقدًا عند التسليم",
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall!
+                    .copyWith(color: ColorManager.black),
+              ),
             ],
           ),
         ],

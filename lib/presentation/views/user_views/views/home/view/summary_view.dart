@@ -31,7 +31,7 @@ class SummaryView extends StatelessWidget {
               SizedBox(
                 height: AppSize.s30.h,
               ),
-             const EditLocationCardItemWidget(),
+           //  const EditLocationCardItemWidget(),
               SizedBox(
                 height: AppSize.s15.h,
               ),
@@ -49,11 +49,11 @@ class SummaryView extends StatelessWidget {
               SizedBox(
                 height: AppSize.s15.h,
               ),
-              const SummaryDeliveryItemWidget(),
+             // const SummaryDeliveryItemWidget(),
               SizedBox(
                 height: AppSize.s15.h,
               ),
-             const NotesSectionItemWidget()
+            // const NotesSectionItemWidget()
             ],
           ),
         ),

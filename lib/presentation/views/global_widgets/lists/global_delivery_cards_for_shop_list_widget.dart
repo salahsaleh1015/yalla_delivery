@@ -1,6 +1,10 @@
 
-import 'package:delivery_app/presentation/views/global_widgets/global_delivery_card_widget.dart';
+import 'package:delivery_app/presentation/models/delivery_model.dart';
+import 'package:delivery_app/presentation/views/global_widgets/global_delivery_filtered_cards_widget.dart';
+import 'package:delivery_app/presentation/views/user_views/views/delivery/views/add_order_from_delivery_view.dart';
 import 'package:flutter/material.dart';
+
+import '../../../models/delivery_cards_filtered_model.dart';
 
 
 
@@ -35,11 +39,21 @@ class _GlobalDeliveryCardsForShopListWidgetState extends State<GlobalDeliveryCar
       child: ListView.builder(
           itemCount: 10,
           itemBuilder: (context, index) =>
-              GlobalDeliveryCardWidget(
-                arrowOnTap: () => _onCardTap(index),
-                itemId: "item_$index", // Pass unique item IDs
-                isSelected: _selectedIndex == index, // Determine if this item is selected
-                onTap: () => _onCardTap(index), // Handle tap event
+              GlobalDeliveryFilteredCardsWidget(
+                deliveryFilteredCardsModel: DeliveryFilteredCardsModel(
+                  arrowOnTap: (){},
+
+                    onTap: () {
+
+                    },
+
+                    isSelected: true,
+                    deliveryModel: DeliveryModel(
+                        deliveryName: "Delivery Name",
+                        deliveryPhone: "Delivery Phone",
+                        deliveryLocation: "Delivery Location",
+                        deliveryStatus: "Delivery Status",
+                        deliveryRate:5,)),
               )),
     );
   }

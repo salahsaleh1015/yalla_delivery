@@ -1,64 +1,50 @@
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/font_manager.dart';
-import 'package:delivery_app/core/resources/responsive_font_size_manager.dart';
 import 'package:delivery_app/core/resources/style_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
-  //+4 fontSize for responsive
-
+//+4 fontSize for responsive
 
 ThemeData getApplicationTheme(context) {
   return ThemeData(
       scaffoldBackgroundColor: ColorManager.scaffoldBackgroundColor,
       textTheme: TextTheme(
         displaySmall: getMediumTextStyle(
-            fontSize: getResponsiveFontSize(context, fontSize: FontSize.s26),
-            color: ColorManager.secondaryTextColor),
+            fontSize: FontSize.s22.sp, color: ColorManager.secondaryTextColor),
         titleLarge: getBoldTextStyle(
-            color: ColorManager.primary,
-            fontSize: getResponsiveFontSize(context, fontSize: FontSize.s36)),
+            color: ColorManager.primary, fontSize: FontSize.s32.sp),
         bodyLarge: getBoldTextStyle(
-            color: ColorManager.black,
-            fontSize: getResponsiveFontSize(context, fontSize: FontSize.s36)),
+            color: ColorManager.black, fontSize: FontSize.s32.sp),
         labelSmall: getRegularTextStyle(
-            color: ColorManager.secondaryTextColor,
-            fontSize: getResponsiveFontSize(context, fontSize: FontSize.s20)),
+            color: ColorManager.secondaryTextColor, fontSize: FontSize.s16.sp),
         titleSmall: getSemiBoldTextStyle(
-            fontSize: getResponsiveFontSize(context, fontSize: FontSize.s20),
-            color: ColorManager.white),
+            fontSize: FontSize.s16.sp, color: ColorManager.white),
         bodySmall: getSemiBoldTextStyle(
-            color: ColorManager.primary,
-            fontSize: getResponsiveFontSize(context, fontSize: FontSize.s20)),
+            color: ColorManager.primary, fontSize: FontSize.s16.sp),
         displayMedium: getBoldTextStyle(
-            color: ColorManager.black,
-            fontSize: getResponsiveFontSize(context, fontSize: FontSize.s28)),
+            color: ColorManager.black, fontSize: FontSize.s24.sp),
         headlineMedium: getRegularTextStyle(
-            color: ColorManager.black,
-            fontSize: getResponsiveFontSize(context, fontSize: FontSize.s20)),
+            color: ColorManager.black, fontSize: FontSize.s16.sp),
         bodyMedium: getMediumTextStyle(
-            color: ColorManager.black,
-            fontSize: getResponsiveFontSize(context, fontSize: FontSize.s20)),
+            color: ColorManager.black, fontSize: FontSize.s16.sp),
         headlineSmall: getRegularTextStyle(
-            color: ColorManager.secondaryTextColor,
-            fontSize: getResponsiveFontSize(context, fontSize: FontSize.s24)),
+            color: ColorManager.secondaryTextColor, fontSize: FontSize.s20.sp),
         labelMedium: getRegularTextStyle(
-            color: ColorManager.secondaryTextColor,
-            fontSize: getResponsiveFontSize(context, fontSize: FontSize.s16)),
+            color: ColorManager.secondaryTextColor, fontSize: FontSize.s12.sp),
         headlineLarge: getBoldTextStyle(
-            color: ColorManager.primary,
-            fontSize: getResponsiveFontSize(context, fontSize: FontSize.s24)),
+            color: ColorManager.primary, fontSize: FontSize.s20.sp),
         titleMedium: getSemiBoldTextStyle(
-            color: ColorManager.black,
-            fontSize: getResponsiveFontSize(context, fontSize: FontSize.s24)),
+            color: ColorManager.black, fontSize: FontSize.s20.sp),
         labelLarge: getMediumTextStyle(
-            color: ColorManager.primary,
-            fontSize: getResponsiveFontSize(context, fontSize: FontSize.s18)),
+            color: ColorManager.primary, fontSize: FontSize.s14.sp),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
           showUnselectedLabels: true,
-          unselectedLabelStyle: TextStyle(fontSize: getResponsiveFontSize(context, fontSize: FontSize.s14)),
-          selectedLabelStyle: TextStyle(fontSize: getResponsiveFontSize(context, fontSize: FontSize.s14)),
+          unselectedLabelStyle: TextStyle(
+              fontSize: FontSize.s12.sp),
+          selectedLabelStyle: TextStyle(
+              fontSize:FontSize.s12.sp),
           backgroundColor: ColorManager.white,
           selectedItemColor: ColorManager.primary,
           unselectedItemColor: ColorManager.hintColor));

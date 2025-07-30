@@ -45,7 +45,7 @@ class ChooseDeliveryFromAddOrderView extends StatelessWidget {
           isButtonEnabled: true,
           text: "استمر",
           onTap: () {
-            Navigator.pushNamed(context, OrderSummaryFromAddOrderView.id);
+            //Navigator.pushNamed(context, OrderSummaryFromAddOrderView.id);
           },
           width: double.infinity,
         ),

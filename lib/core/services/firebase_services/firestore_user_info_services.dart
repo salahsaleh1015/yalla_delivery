@@ -52,4 +52,24 @@ class FirebaseUserServices {
     // Step 3: Update the document
     await _userCollectionRef.doc(docId).update(userModel.toJson());
   }
+
+
+ Future<String> getUserLocationByPhoneNumber({required String phoneNumber})async{
+    final querySnapshot = await _userCollectionRef
+        .where('phoneNumber', isEqualTo: phoneNumber)
+        .limit(1)
+        .get();
+    final data = querySnapshot.docs.first.data() as Map<String, dynamic>;
+    return data['userLocation'];
+  }
+
+
+  updateUserLocationByPhoneNumber({required String phoneNumber,required String userLocation})async{
+    final querySnapshot = await _userCollectionRef
+        .where('phoneNumber', isEqualTo: phoneNumber)
+        .limit(1)
+        .get();
+    final docId = querySnapshot.docs.first.id;
+    await _userCollectionRef.doc(docId).update({'userLocation':userLocation});
+  }
 }

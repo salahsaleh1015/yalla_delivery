@@ -15,7 +15,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OrderSummaryFromAddOrderView extends StatelessWidget {
   const OrderSummaryFromAddOrderView({super.key});
-static String id = 'OrderSummaryFromAddOrderView';
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -28,7 +28,7 @@ static String id = 'OrderSummaryFromAddOrderView';
      SizedBox(
        height: AppSize.s30.h,
      ),
-     const EditLocationCardItemWidget(),
+     //const EditLocationCardItemWidget(),
      SizedBox(
        height: AppSize.s15.h,
      ),
@@ -37,15 +37,15 @@ static String id = 'OrderSummaryFromAddOrderView';
      SizedBox(
        height: AppSize.s15.h,
      ),
-     const GlobalOrderDetailsWidget(),
+     //const GlobalOrderDetailsWidget(),
      SizedBox(
        height: AppSize.s20.h,
      ),
-     const SummaryDeliveryItemWidget(),
+   // const SummaryDeliveryItemWidget(),
      SizedBox(
        height: AppSize.s15.h,
      ),
-     const NotesSectionItemWidget()
+    // const NotesSectionItemWidget()
    ],
  ) ),
       bottomNavigationBar: Padding(
