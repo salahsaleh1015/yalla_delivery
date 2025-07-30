@@ -19,13 +19,13 @@ class GlobalDeliveryCardsFilteredListWidget extends StatelessWidget {
       {super.key,
       required this.height,
       required this.deliveryStatus,
-      required this.deliveryStatusCaption,
+
       required this.isSelected,
       required this.userModel});
 
   final double height;
   final String deliveryStatus;
-  final String deliveryStatusCaption;
+
   final bool isSelected;
 
   final UserModel userModel;
@@ -55,9 +55,10 @@ class GlobalDeliveryCardsFilteredListWidget extends StatelessWidget {
               }
               return ListView.builder(
                   itemCount: cubit.deliveriesFilteredList.length,
-                  itemBuilder: (context, index) => GlobalDeliveryFilteredCardsWidget(
-                    deliveryFilteredCardsModel: DeliveryFilteredCardsModel(
-                         arrowOnTap:isSelected?(){}:(){} ,
+                  itemBuilder: (context, index) =>
+                      GlobalDeliveryFilteredCardsWidget(
+                        deliveryFilteredCardsModel: DeliveryFilteredCardsModel(
+                            arrowOnTap: isSelected ? () {} : () {},
                             onTap: isSelected
                                 ? () {
                                     Navigator.pushNamed(context,
@@ -90,7 +91,9 @@ class GlobalDeliveryCardsFilteredListWidget extends StatelessWidget {
                               deliveryLocation: cubit
                                   .deliveriesFilteredList[index]
                                   .deliveryLocation,
-                              deliveryStatus: deliveryStatusCaption,
+                              deliveryStatus:cubit
+                                  .deliveriesFilteredList[index]
+                                  .deliveryStatus,
                               deliveryRate: cubit
                                   .deliveriesFilteredList[index].deliveryRate,
                             )),
@@ -106,64 +109,3 @@ class GlobalDeliveryCardsFilteredListWidget extends StatelessWidget {
 }
 
 
-
-
-
-class GlobalDeliveryCardsListWidget extends StatelessWidget {
-  const GlobalDeliveryCardsListWidget(
-      {super.key, required this.userModel, required this.height});
-
-  final UserModel userModel;
-  final double height;
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider<DeliveryInUserCubit>(
-      create: (context) => DeliveryInUserCubit()..getAllDeliveries(),
-      child: SizedBox(
-        width: double.infinity,
-        height: height,
-        child: BlocBuilder<DeliveryInUserCubit, DeliveryInUserStates>(
-          builder: (context, state) {
-            var cubit = DeliveryInUserCubit.get(context);
-
-            if (state is GetAllDeliveriesInUsersLoadingState) {
-              return const Center(
-                child: GlobalLoadingIndicator(),
-              );
-            }else if (state is GetAllDeliveriesInUserErrorState) {
-              return Center(
-                child: Text(state.errorMsg),
-              );
-            }else if (state is GetAllDeliveriesInUserSuccessState) {
-              if (cubit.deliveriesList.isEmpty) {
-                return const GlobalNoDeliveriesWidget();
-              }
-              return ListView.builder(
-                  itemCount: cubit.deliveriesList.length,
-                  itemBuilder:(context,index)=> GlobalDeliveryCardsWidget(
-                deliveryCardModel: DeliveryCardModel(
-
-                  deliveryModel:DeliveryModel(
-                    deliveryName: cubit
-                        .deliveriesList[index].deliveryName,
-                    deliveryPhone: cubit
-                        .deliveriesList[index].deliveryPhone,
-                    deliveryLocation: cubit
-                        .deliveriesList[index]
-                        .deliveryLocation,
-                    deliveryStatus: cubit.deliveriesList[index].deliveryStatus,
-                    deliveryRate: cubit
-                        .deliveriesList[index].deliveryRate,
-                  ),
-                ),
-                  ));
-            }else{
-              return const GlobalSomethingWrongWidget();
-            }
-
-          },
-        ),
-      ),
-    );
-  }
-}

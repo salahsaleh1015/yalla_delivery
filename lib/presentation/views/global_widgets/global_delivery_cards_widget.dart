@@ -1,5 +1,3 @@
-
-
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/presentation/models/delivery_card_model.dart';
 import 'package:flutter/material.dart';
@@ -17,16 +15,18 @@ class GlobalDeliveryCardsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){},
+      onTap: deliveryCardModel.deliveryStatus == 'متاح'
+          ? deliveryCardModel.onTap
+          : () {},
       child: Container(
         margin: EdgeInsets.symmetric(vertical: AppPadding.p4.h),
         width: double.infinity,
         height: AppSize.s80.h,
         decoration: BoxDecoration(
           border: Border.all(
-              color:
-              ColorManager.primary
-              ,
+              color: deliveryCardModel.deliveryStatus == 'متاح'
+                  ? ColorManager.primary
+                  : ColorManager.socialButtonColor,
               width: AppSize.s1.w),
           color: ColorManager.white,
           borderRadius: BorderRadius.circular(AppSize.s12.r),
@@ -54,7 +54,7 @@ class GlobalDeliveryCardsWidget extends StatelessWidget {
                       style: Theme.of(context).textTheme.headlineMedium),
                   RatingStars(
                     value:
-                    deliveryCardModel.deliveryModel.deliveryRate.toDouble(),
+                        deliveryCardModel.deliveryModel.deliveryRate.toDouble(),
                     starCount: 5,
                     starSize: AppSize.s20.r,
                     starOffColor: ColorManager.inActiveRateColor,
@@ -68,12 +68,13 @@ class GlobalDeliveryCardsWidget extends StatelessWidget {
               ),
               const Spacer(),
               IconButton(
-                onPressed:() {},
+                onPressed: deliveryCardModel.deliveryStatus == 'متاح'
+                    ? deliveryCardModel.arrowOnTap
+                    : () {},
                 icon: Icon(
                   Icons.arrow_forward,
-                  color:
-                  ColorManager.primary
-                  ,
+                  color:  deliveryCardModel.deliveryStatus == 'متاح'
+                      ?ColorManager.primary:ColorManager.inActiveRateColor,
                   size: AppSize.s25.r,
                 ),
               )
