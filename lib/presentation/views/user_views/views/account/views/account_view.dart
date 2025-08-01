@@ -42,80 +42,82 @@ class _AccountViewState extends State<AccountView> {
             );
           }else if(state is UserInfoLoadedState){
             return GlobalPaddingWidget(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: Text(
-                      "الحساب",
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .titleMedium,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Text(
+                        "الحساب",
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .titleMedium,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: AppSize.s30.h,
-                  ),
-                   GlobalAccountInfoSectionWidget(
-                    joinDate: "انضم منذ 12 اكتوبر 2024",
-                    userName: state.userModel.userName,
-                  ),
-                  SizedBox(
-                    height: AppSize.s20.h,
-                  ),
-                  Divider(
-                    color: ColorManager.socialButtonColor,
-                    height: AppSize.s1.h,
-                  ),
-                  SizedBox(
-                    height: AppSize.s30.h,
-                  ),
-                  GlobalAccountInfoBarWidget(
-                    onPressed: () {
-                      Navigator.pushNamed(context, Routes.editAccountRoute).then((value){
-                        if (value == 'refresh') {
-                          // Trigger rebuild or reload data
-                          setState(() {});
-                        }
-                      });
-                    },
-                  ),
-                  SizedBox(
-                    height: AppSize.s10.h,
-                  ),
-                   GlobalProfileCardWidget(
-                    fieldName: "الاسم بالكامل",
-                    fieldValue: state.userModel.userName,
-                  ),
-                  SizedBox(
-                    height: AppSize.s20.h,
-                  ),
-                   GlobalProfileCardWidget(
-                    fieldName: "رقم الهاتف",
-                    fieldValue: state.userModel.phoneNumber,
-                  ),
-                  SizedBox(
-                    height: AppSize.s10.h,
-                  ),
-                  GlobalProfileCardWidget(
-                    height: AppSize.s70.h,
-                    fieldName: "العنوان",
-                    fieldValue: state.userModel.userLocation,
-                  ),
-                  GlobalAdsBarWidget(
-                    onPressed: () {
-                      Navigator.pushNamed(context, AdsPartnerView.id);
-                    },
-                  ),
-                  SizedBox(
-                    height: AppSize.s50.h,
-                  ),
-                  const GlobalLogoutButtonWidget(),
-                  SizedBox(
-                    height: AppSize.s10.h,
-                  ),
-                ],
+                    SizedBox(
+                      height: AppSize.s30.h,
+                    ),
+                     GlobalAccountInfoSectionWidget(
+                      joinDate: "انضم منذ 12 اكتوبر 2024",
+                      userName: state.userModel.userName,
+                    ),
+                    SizedBox(
+                      height: AppSize.s20.h,
+                    ),
+                    Divider(
+                      color: ColorManager.socialButtonColor,
+                      height: AppSize.s1.h,
+                    ),
+                    SizedBox(
+                      height: AppSize.s30.h,
+                    ),
+                    GlobalAccountInfoBarWidget(
+                      onPressed: () {
+                        Navigator.pushNamed(context, Routes.editAccountRoute).then((value){
+                          if (value == 'refresh') {
+                            // Trigger rebuild or reload data
+                            setState(() {});
+                          }
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      height: AppSize.s10.h,
+                    ),
+                     GlobalProfileCardWidget(
+                      fieldName: "الاسم بالكامل",
+                      fieldValue: state.userModel.userName,
+                    ),
+                    SizedBox(
+                      height: AppSize.s20.h,
+                    ),
+                     GlobalProfileCardWidget(
+                      fieldName: "رقم الهاتف",
+                      fieldValue: state.userModel.phoneNumber,
+                    ),
+                    SizedBox(
+                      height: AppSize.s10.h,
+                    ),
+                    GlobalProfileCardWidget(
+                      height: AppSize.s70.h,
+                      fieldName: "العنوان",
+                      fieldValue: state.userModel.userLocation,
+                    ),
+                    GlobalAdsBarWidget(
+                      onPressed: () {
+                        Navigator.pushNamed(context, AdsPartnerView.id);
+                      },
+                    ),
+                    SizedBox(
+                      height: AppSize.s50.h,
+                    ),
+                    const GlobalLogoutButtonWidget(),
+                    SizedBox(
+                      height: AppSize.s10.h,
+                    ),
+                  ],
+                ),
               ),
             );
           }else{

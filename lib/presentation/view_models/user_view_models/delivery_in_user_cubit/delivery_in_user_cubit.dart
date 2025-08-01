@@ -1,7 +1,7 @@
 import 'package:delivery_app/presentation/models/delivery_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/services/firebase_services/delivery_firestore_services.dart';
+import '../../../../core/services/firebase_services/firestore_delivery_services.dart';
 
 part 'delivery_in_user_state.dart';
 
@@ -10,8 +10,8 @@ class DeliveryInUserCubit extends Cubit<DeliveryInUserStates> {
 
   static DeliveryInUserCubit get(context) => BlocProvider.of(context);
 
-  final DeliveryFirestoreServices _deliveryFirestoreServices =
-      DeliveryFirestoreServices();
+  final FirestoreDeliveryServices _deliveryFirestoreServices =
+  FirestoreDeliveryServices();
 
   List<DeliveryModel> get deliveriesFilteredList => _deliveriesFilteredList;
   final List<DeliveryModel> _deliveriesFilteredList = [];

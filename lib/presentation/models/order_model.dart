@@ -5,9 +5,10 @@ class OrderModel {
   final String userPhoneNumber;
   final String userLocation;
   final String userOrder;
+  String? userOrderId;
   final String userOrderStatus;
   final String userOrderNotes;
-  final int userOrderNumber;
+
   final DateTime userOrderDate;
   final String deliveryName;
   final String deliveryPhone;
@@ -16,13 +17,14 @@ class OrderModel {
   final int deliveryRate;
 
   OrderModel({
+     this.userOrderId,
     required this.userName,
     required this.userPhoneNumber,
     required this.userLocation,
     required this.userOrder,
     required this.userOrderStatus,
     required this.userOrderNotes,
-    required this.userOrderNumber,
+
     required this.userOrderDate,
     required this.deliveryName,
     required this.deliveryPhone,
@@ -34,13 +36,14 @@ class OrderModel {
   // Create an OrderModel from JSON
   factory OrderModel.fromJson(Map<String, dynamic> json) {
     return OrderModel(
+      userOrderId: json['userOrderId'],
       userName: json['userName'],
       userPhoneNumber: json['userPhoneNumber'],
       userLocation: json['userLocation'],
       userOrder: json['userOrder'],
       userOrderStatus: json['userOrderStatus'],
       userOrderNotes: json['userOrderNotes'],
-      userOrderNumber: json['userOrderNumber'],
+
       userOrderDate: DateTime.parse(json['userOrderDate']),
       deliveryName: json['deliveryName'],
       deliveryPhone: json['deliveryPhone'],
@@ -58,8 +61,9 @@ class OrderModel {
       'userLocation': userLocation,
       'userOrder': userOrder,
       'userOrderStatus': userOrderStatus,
+      'userOrderId': userOrderId,
       'userOrderNotes': userOrderNotes,
-      'userOrderNumber': userOrderNumber,
+
       'userOrderDate': userOrderDate.toIso8601String(),
       'deliveryName': deliveryName,
       'deliveryPhone': deliveryPhone,

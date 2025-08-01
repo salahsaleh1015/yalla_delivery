@@ -74,33 +74,16 @@ class CustomDialog extends StatelessWidget {
         ],
       ),
       actions: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: EdgeInsets.all(AppSize.s2.r),
-              child: GlobalSecondaryButton(
-                height: AppSize.s40.h,
-                text: "إالغاء",
-                width: MediaQuery.of(context).size.width * 0.32,
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-
-            Padding(
-              padding: EdgeInsets.all(AppSize.s2.r),
-              child: GlobalButtonWidget(
-                isButtonEnabled: true,
-                height: AppSize.s40.h,
-                color: actionButtonColor ?? ColorManager.primary,
-                onTap: actionButtonCallBack,
-                width: MediaQuery.of(context).size.width * 0.32,
-                text: actionButtonHint,
-              ),
-            ),
-          ],
+        Padding(
+          padding: EdgeInsets.all(AppSize.s2.r),
+          child: GlobalButtonWidget(
+            isButtonEnabled: true,
+            height: AppSize.s40.h,
+            color: actionButtonColor ?? ColorManager.primary,
+            onTap: actionButtonCallBack,
+            width: MediaQuery.of(context).size.width * 0.8,
+            text: actionButtonHint,
+          ),
         ),
       ],
     );

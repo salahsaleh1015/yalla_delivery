@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class DeliveryFirestoreServices {
+class FirestoreDeliveryServices {
   final CollectionReference _deliveryCollectionRef =
       FirebaseFirestore.instance.collection("Deliveries");
 

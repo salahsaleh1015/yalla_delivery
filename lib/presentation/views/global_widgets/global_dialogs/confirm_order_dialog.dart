@@ -7,16 +7,14 @@ import 'package:delivery_app/presentation/views/user_views/views/main_layout/vie
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/resources/routes_manager.dart';
+
 void confirmOrderDialog(BuildContext context) {
    showCustomDialog(
     context,
     content: const ConfirmOrderDialogContent(),
     actionButtonCallBack: () {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        MainLayoutView.id,
-            (Route<dynamic> route) => false,
-      );
+     Navigator.pop(context);
     },
     actionButtonHint: "الرئيسية",
     dialogTitle: "تم استلام طلبك!",
