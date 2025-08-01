@@ -1,0 +1,71 @@
+import 'dart:convert';
+
+class OrderModel {
+  final String userName;
+  final String userPhoneNumber;
+  final String userLocation;
+  final String userOrder;
+  final String userOrderStatus;
+  final String userOrderNotes;
+  final int userOrderNumber;
+  final DateTime userOrderDate;
+  final String deliveryName;
+  final String deliveryPhone;
+  final String deliveryLocation;
+  final String deliveryStatus;
+  final int deliveryRate;
+
+  OrderModel({
+    required this.userName,
+    required this.userPhoneNumber,
+    required this.userLocation,
+    required this.userOrder,
+    required this.userOrderStatus,
+    required this.userOrderNotes,
+    required this.userOrderNumber,
+    required this.userOrderDate,
+    required this.deliveryName,
+    required this.deliveryPhone,
+    required this.deliveryLocation,
+    required this.deliveryStatus,
+    required this.deliveryRate,
+  });
+
+  // Create an OrderModel from JSON
+  factory OrderModel.fromJson(Map<String, dynamic> json) {
+    return OrderModel(
+      userName: json['userName'],
+      userPhoneNumber: json['userPhoneNumber'],
+      userLocation: json['userLocation'],
+      userOrder: json['userOrder'],
+      userOrderStatus: json['userOrderStatus'],
+      userOrderNotes: json['userOrderNotes'],
+      userOrderNumber: json['userOrderNumber'],
+      userOrderDate: DateTime.parse(json['userOrderDate']),
+      deliveryName: json['deliveryName'],
+      deliveryPhone: json['deliveryPhone'],
+      deliveryLocation: json['deliveryLocation'],
+      deliveryStatus: json['deliveryStatus'],
+      deliveryRate: json['deliveryRate'],
+    );
+  }
+
+  // Convert the OrderModel to JSON
+  Map<String, dynamic> toJson() {
+    return {
+      'userName': userName,
+      'userPhoneNumber': userPhoneNumber,
+      'userLocation': userLocation,
+      'userOrder': userOrder,
+      'userOrderStatus': userOrderStatus,
+      'userOrderNotes': userOrderNotes,
+      'userOrderNumber': userOrderNumber,
+      'userOrderDate': userOrderDate.toIso8601String(),
+      'deliveryName': deliveryName,
+      'deliveryPhone': deliveryPhone,
+      'deliveryLocation': deliveryLocation,
+      'deliveryStatus': deliveryStatus,
+      'deliveryRate': deliveryRate,
+    };
+  }
+}
