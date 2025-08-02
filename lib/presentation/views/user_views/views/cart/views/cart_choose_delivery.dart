@@ -34,7 +34,7 @@ class CartChooseDelivery extends StatelessWidget {
             SizedBox(
               height: AppSize.s10.h,
             ),
-            GlobalDeliveryCardsForShopListWidget(
+            GlobalAvailableDeliveryCardsListWidget(
               height: MediaQuery.of(context).size.height*0.65,
             ),
           ],

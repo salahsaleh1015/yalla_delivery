@@ -13,7 +13,7 @@ import '../../../../global_widgets/global_button_widget.dart';
 import '../../../../global_widgets/global_custom_order_text_field.dart';
 
 import '../../../../global_widgets/lists/global_delivery_cards_filtered_list_widget.dart';
-import 'order_summary_from_delivery_view.dart';
+import '../../summary/order_summary_view.dart';
 
 class AddOrderFromDeliveryView extends StatefulWidget {
   const AddOrderFromDeliveryView({
@@ -89,7 +89,7 @@ class _AddOrderFromDeliveryViewState extends State<AddOrderFromDeliveryView> {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
                   Navigator.pushNamed(
-                      context, Routes.orderSummaryFromDeliveryRoute,
+                      context, Routes.orderSummaryRoute,
                       arguments: OrderInfoModel(
                           userModel:
                               widget.userAndDeliveryCombinedModel.userModel,

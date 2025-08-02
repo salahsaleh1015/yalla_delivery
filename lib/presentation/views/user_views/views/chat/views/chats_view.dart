@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,7 +8,6 @@ import '../../../../global_widgets/global_padding_widget.dart';
 import '../../../../global_widgets/global_search_card_item_widget.dart';
 import '../../cart/views/cart_view.dart';
 import '../widgets/chat_tile_widget.dart';
-
 
 class ChatsView extends StatelessWidget {
   const ChatsView({super.key});

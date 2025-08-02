@@ -28,7 +28,6 @@ import 'package:delivery_app/presentation/views/user_views/views/account/views/a
 import 'package:delivery_app/presentation/views/user_views/views/account/views/edit_account_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/add_order/views/add_order_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/add_order/views/choose_delivery_from_add_order_view.dart';
-import 'package:delivery_app/presentation/views/user_views/views/add_order/views/order_summary_from_add_order_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/authentication/views/failure_auth_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/authentication/views/sign_in_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/authentication/views/sign_up_vew.dart';
@@ -39,7 +38,7 @@ import 'package:delivery_app/presentation/views/user_views/views/cart/views/cart
 import 'package:delivery_app/presentation/views/user_views/views/cart/views/cart_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/delivery/views/add_order_from_delivery_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/delivery/views/delivery_view.dart';
-import 'package:delivery_app/presentation/views/user_views/views/delivery/views/order_summary_from_delivery_view.dart';
+import 'package:delivery_app/presentation/views/user_views/views/summary/order_summary_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/home/view/all_vendors_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/home/view/choose_delivery_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/home/view/home_view.dart';
@@ -51,6 +50,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../presentation/models/user_and_delivery_combined_model.dart';
+import '../../presentation/models/user_and_order_combined_model.dart';
 import '../../presentation/views/global_widgets/lists/global_delivery_cards_filtered_list_widget.dart';
 
 class Routes {
@@ -66,6 +66,7 @@ class Routes {
   static const String chooseDeliveryRoute = "/chooseDelivery";
   static const String vendorsRoute =
       "/vendors"; // This was commented out in map but added here for completeness
+
   static const String summaryRoute = "/summary";
   static const String deliveryRoute = "/delivery";
   static const String accountRoute = "/account";
@@ -77,8 +78,8 @@ class Routes {
   static const String cartChooseDeliveryRoute = "/cartChooseDelivery";
   static const String cartOrderSummaryRoute = "/cartOrderSummary";
   static const String addOrderFromDeliveryRoute = "/addOrderFromDelivery";
-  static const String orderSummaryFromDeliveryRoute =
-      "/orderSummaryFromDelivery";
+  static const String orderSummaryRoute =
+      "/orderSummary";
   static const String chooseDeliveryFromAddOrderRoute =
       "/chooseDeliveryFromAddOrder";
   static const String orderSummaryFromAddOrderRoute =
@@ -183,7 +184,10 @@ class RouteGenerator {
       case Routes.adsPartnerRoute:
         return MaterialPageRoute(builder: (_) => const AdsPartnerView());
       case Routes.addOrderRoute:
-        return MaterialPageRoute(builder: (_) => const AddOrderView());
+        final args = settings.arguments as UserModel;
+        return MaterialPageRoute(builder: (_) =>  AddOrderView(
+          userModel: args,
+        ));
       case Routes.allVendorsRoute:
         return MaterialPageRoute(builder: (_) => const AllVendorsView());
       case Routes.cartRoute:
@@ -198,18 +202,18 @@ class RouteGenerator {
             builder: (_) =>  AddOrderFromDeliveryView(
               userAndDeliveryCombinedModel: args,
             ));
-      case Routes.orderSummaryFromDeliveryRoute:
+      case Routes.orderSummaryRoute:
         final args = settings.arguments as OrderInfoModel;
         return MaterialPageRoute(
-            builder: (_) => OrderSummaryFromDeliveryView(
+            builder: (_) => OrderSummaryView(
                   orderInfoModel: args,
                 ));
       case Routes.chooseDeliveryFromAddOrderRoute:
+        final args = settings.arguments as UserAndOrderCombinedModel;
         return MaterialPageRoute(
-            builder: (_) => const ChooseDeliveryFromAddOrderView());
-      case Routes.orderSummaryFromAddOrderRoute:
-        return MaterialPageRoute(
-            builder: (_) => const OrderSummaryFromAddOrderView());
+            builder: (_) =>  ChooseDeliveryFromAddOrderView(
+              userAndOrderCombined: args,
+            ));
 
       // Admin routes
       case Routes.adminMainLayoutRoute:

@@ -20,7 +20,9 @@ class MainLayoutView extends StatelessWidget {
         DeliveryView(
           userModel: userModel,
         ),
-        const AddOrderView(),
+         AddOrderView(
+           userModel: userModel,
+         ),
         const ChatsView(),
         AccountView(userModel: userModel),
       ];

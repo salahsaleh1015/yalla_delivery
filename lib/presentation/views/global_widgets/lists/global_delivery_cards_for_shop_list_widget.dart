@@ -1,61 +1,101 @@
-
+import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/presentation/models/delivery_model.dart';
+import 'package:delivery_app/presentation/view_models/user_view_models/delivery_in_user_cubit/delivery_in_user_cubit.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_delivery_filtered_cards_widget.dart';
 import 'package:delivery_app/presentation/views/user_views/views/delivery/views/add_order_from_delivery_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../models/delivery_cards_filtered_model.dart';
+import '../../../models/order_info_model.dart';
+import '../../../models/user_model.dart';
 
-
-
-class GlobalDeliveryCardsForShopListWidget extends StatefulWidget {
-  const GlobalDeliveryCardsForShopListWidget({super.key, required this.height});
+class GlobalAvailableDeliveryCardsListWidget extends StatefulWidget {
+  const GlobalAvailableDeliveryCardsListWidget({
+    super.key,
+    required this.height,
+    this.onSelectedDelivery,
+  });
   final double height;
+  final ValueChanged<DeliveryModel>? onSelectedDelivery;
   @override
-  State<GlobalDeliveryCardsForShopListWidget> createState() => _GlobalDeliveryCardsForShopListWidgetState();
+  State<GlobalAvailableDeliveryCardsListWidget> createState() =>
+      _GlobalAvailableDeliveryCardsListWidgetState();
 }
 
-class _GlobalDeliveryCardsForShopListWidgetState extends State<GlobalDeliveryCardsForShopListWidget> {
+class _GlobalAvailableDeliveryCardsListWidgetState
+    extends State<GlobalAvailableDeliveryCardsListWidget> {
   int _selectedIndex = 0;
   // Track the selected index
   void _onCardTap(int index) {
     setState(() {
       _selectedIndex = index; // Update the selected index
     });
+
     // Call your function with the clicked item's ID
     _handleItemClick("item_$index");
   }
 
   void _handleItemClick(String id) {
-    // Handle the click event, e.g., navigate or show a dialog
     print("Item clicked: $id");
   }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: widget.height,
-      child: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) =>
-              GlobalDeliveryFilteredCardsWidget(
-                deliveryFilteredCardsModel: DeliveryFilteredCardsModel(
-                  arrowOnTap: (){},
+    return BlocProvider<DeliveryInUserCubit>(
+      create: (context) => DeliveryInUserCubit()
+        ..getAllDeliveriesByStatus(deliveryStatus: 'متاح'),
+      child: BlocBuilder<DeliveryInUserCubit, DeliveryInUserStates>(
+        builder: (context, state) {
+          var cubit = DeliveryInUserCubit.get(context);
 
-                    onTap: () {
+          return SizedBox(
+            width: double.infinity,
+            height: widget.height,
+            child: ListView.builder(
+                itemCount: cubit.deliveriesFilteredList.length,
+                itemBuilder: (context, index) =>
+                    GlobalDeliveryFilteredCardsWidget(
+                      deliveryFilteredCardsModel: DeliveryFilteredCardsModel(
+                          arrowOnTap: () {
+                            ///todo index == _selectedIndex navigate to chat details view
+                          },
+                          onTap: () {
+                            _onCardTap(index);
 
-                    },
+                            final selectedDelivery = DeliveryModel(
+                              deliveryName: cubit
+                                  .deliveriesFilteredList[index].deliveryName,
+                              deliveryPhone: cubit
+                                  .deliveriesFilteredList[index].deliveryPhone,
+                              deliveryLocation: cubit
+                                  .deliveriesFilteredList[index]
+                                  .deliveryLocation,
+                              deliveryStatus: cubit
+                                  .deliveriesFilteredList[index].deliveryStatus,
+                              deliveryRate: cubit
+                                  .deliveriesFilteredList[index].deliveryRate,
+                            );
 
-                    isSelected: true,
-                    deliveryModel: DeliveryModel(
-                        deliveryName: "Delivery Name",
-                        deliveryPhone: "Delivery Phone",
-                        deliveryLocation: "Delivery Location",
-                        deliveryStatus: "Delivery Status",
-                        deliveryRate:5,)),
-              )),
+                            widget.onSelectedDelivery?.call(selectedDelivery);
+                          },
+                          isSelected: index == _selectedIndex,
+                          deliveryModel: DeliveryModel(
+                            deliveryName: cubit
+                                .deliveriesFilteredList[index].deliveryName,
+                            deliveryPhone: cubit
+                                .deliveriesFilteredList[index].deliveryPhone,
+                            deliveryLocation: cubit
+                                .deliveriesFilteredList[index].deliveryLocation,
+                            deliveryStatus: cubit
+                                .deliveriesFilteredList[index].deliveryStatus,
+                            deliveryRate: cubit
+                                .deliveriesFilteredList[index].deliveryRate,
+                          )),
+                    )),
+          );
+        },
+      ),
     );
   }
 }
-

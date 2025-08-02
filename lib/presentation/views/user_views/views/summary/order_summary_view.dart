@@ -7,19 +7,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../../core/resources/colors_manager.dart';
-import '../../../../../../core/resources/values_manager.dart';
-import '../../../../global_widgets/global_button_widget.dart';
-import '../../../../global_widgets/global_dialogs/confirm_order_dialog.dart';
-import '../../../../global_widgets/global_loading_indicator.dart';
-import '../../../../global_widgets/global_rrder_details_widget.dart';
-import '../../../../global_widgets/global_something_wrong_widget.dart';
-import '../../home/widgets/items/edit_location_card_item_widget.dart';
-import '../../home/widgets/items/notes_section_item_widget.dart';
-import '../../home/widgets/items/summary_delivery_item_widget.dart';
+import '../../../../../core/resources/colors_manager.dart';
+import '../../../../../core/resources/values_manager.dart';
+import '../../../global_widgets/global_button_widget.dart';
+import '../../../global_widgets/global_dialogs/confirm_order_dialog.dart';
+import '../../../global_widgets/global_loading_indicator.dart';
+import '../../../global_widgets/global_rrder_details_widget.dart';
+import '../../../global_widgets/global_something_wrong_widget.dart';
+import '../home/widgets/items/edit_location_card_item_widget.dart';
+import '../home/widgets/items/notes_section_item_widget.dart';
+import '../home/widgets/items/summary_delivery_item_widget.dart';
 
-class OrderSummaryFromDeliveryView extends StatelessWidget {
-  OrderSummaryFromDeliveryView({
+class OrderSummaryView extends StatelessWidget {
+  OrderSummaryView({
     super.key,
     required this.orderInfoModel,
   });
