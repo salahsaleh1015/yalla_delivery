@@ -1,5 +1,3 @@
-
-
 import 'package:delivery_app/core/resources/assets_manager.dart';
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
@@ -7,14 +5,19 @@ import 'package:delivery_app/presentation/views/global_widgets/global_secondary_
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 class GlobalAdvertisementItemWidget extends StatelessWidget {
-  const GlobalAdvertisementItemWidget({super.key, this.height, this.width});
-final double? height , width;
+  const GlobalAdvertisementItemWidget(
+      {super.key,
+      this.height,
+      this.width,
+      required this.image,
+      required this.title});
+  final double? height, width;
 
+  final String image, title;
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ClipRRect(
@@ -22,22 +25,25 @@ final double? height , width;
             topLeft: Radius.circular(AppSize.s12.r),
             topRight: Radius.circular(AppSize.s12.r),
           ),
-          child: Image.asset(
+          child: Image.network(
               fit: BoxFit.fill,
-              width:width?? AppSize.s150.w,
-              height:height?? AppSize.s90.h,
-              AssetsManager.shopTest),
+              width: width ?? AppSize.s150.w,
+              height: height ?? AppSize.s90.h,
+              image),
         ),
         GlobalSecondaryDecoratedContainer(
-          width:width?? AppSize.s150.w,
+          width: width ?? AppSize.s150.w,
           height: AppSize.s40.h,
           child: Center(
-            child: Text("هارت اتاك",style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                color: ColorManager.primary
-            ),),
+            child: Text(
+              title,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(color: ColorManager.primary),
+            ),
           ),
         )
-
       ],
     );
   }

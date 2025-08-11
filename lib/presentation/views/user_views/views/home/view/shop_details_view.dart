@@ -1,3 +1,4 @@
+import '../../../../../../core/resources/assets_manager.dart';
 import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
 import '../../../../global_widgets/global_app_bar.dart';
@@ -24,7 +25,7 @@ class ShopDetailsView extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-        const  ShopImageItem(),
+        const  ShopImageItem(image: AssetsManager.shopTest,),
           SizedBox(
             height: AppSize.s10.h,
           ),

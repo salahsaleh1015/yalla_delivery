@@ -1,3 +1,4 @@
+import 'package:delivery_app/core/resources/assets_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_advertisement_item_widget.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,8 @@ class GlobalAdvertisementGridViewWidget extends StatelessWidget {
           crossAxisSpacing: AppSize.s10.w,
           mainAxisSpacing: AppSize.s10.h
       ), itemBuilder: (context, index) =>  GlobalAdvertisementItemWidget(
+      image: AssetsManager.shopTest,
+      title: "هارت اتاك",
       width: MediaQuery.of(context).size.width*0.5,
       height: AppSize.s100.h,
     ),),);

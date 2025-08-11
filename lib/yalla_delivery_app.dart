@@ -26,9 +26,8 @@ class YallaDeliveryApp extends StatelessWidget {
         title: 'Yalla Delivery app',
 
         onGenerateRoute: routeGenerator.getRoute,
-        initialRoute: Routes.onBoardingRoute,
-        // routes: routes,
-        // initialRoute: OnBoardingView.id,
+        //initialRoute: Routes.onBoardingRoute,
+        initialRoute: Routes.mainLayoutRoute,
       ),
     );
   }

@@ -52,7 +52,10 @@ static  String id = 'DeliveryChatView';
                     child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemBuilder: (context, index) => const ChatTileWidget(),
+                      itemBuilder: (context, index) => const ChatTileWidget(
+                        deliveryName: '',
+                        deliveryPhoneNumber: "",
+                      ),
                       itemCount: 10,
                     )),
                 SizedBox(

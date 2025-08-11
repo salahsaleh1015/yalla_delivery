@@ -15,15 +15,8 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // FirebaseAuth.instance.authStateChanges().listen((User? user) {
-  //   if (user == null) {
-  //     initialRoute = '/';
-  //   } else {
-  //     initialRoute = '/mainLayoutRoute';
-  //   }
-  // });
-
-  runApp(EasyLocalization(
+  runApp(
+    EasyLocalization(
       assetLoader: const CodegenLoader(),
       supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/translations',
@@ -33,5 +26,7 @@ Future<void> main() async {
       fallbackLocale: const Locale(
         'ar',
       ),
-      child: YallaDeliveryApp(),),);
+      child: YallaDeliveryApp(),
+    ),
+  );
 }

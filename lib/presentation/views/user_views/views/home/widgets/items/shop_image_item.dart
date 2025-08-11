@@ -12,17 +12,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class ShopImageItem extends StatelessWidget {
-  const ShopImageItem({super.key});
+  const ShopImageItem({super.key, required this.image});
 
+  final String image;
   @override
   Widget build(BuildContext context) {
     return Container(
       height: AppSize.s150.h,
       width: double.infinity,
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fill,
-            image: AssetImage(AssetsManager.shopTest),
+            image: NetworkImage(image),
           )),
       child: Padding(
         padding: EdgeInsets.symmetric(

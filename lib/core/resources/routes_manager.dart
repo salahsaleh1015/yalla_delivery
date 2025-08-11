@@ -49,9 +49,13 @@ import 'package:delivery_app/presentation/views/user_views/views/on_boarding/vie
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../presentation/models/banner_model.dart';
 import '../../presentation/models/user_and_delivery_combined_model.dart';
 import '../../presentation/models/user_and_order_combined_model.dart';
 import '../../presentation/views/global_widgets/lists/global_delivery_cards_filtered_list_widget.dart';
+import '../../presentation/views/user_views/views/chat/views/chat_messages_view.dart';
+import '../../presentation/views/user_views/views/chat/views/chats_view.dart';
+import '../../presentation/views/user_views/views/home/view/banner_details_view.dart';
 
 class Routes {
   static const String onBoardingRoute = "/";
@@ -67,19 +71,21 @@ class Routes {
   static const String vendorsRoute =
       "/vendors"; // This was commented out in map but added here for completeness
 
+  static const String userChatRoute = "/userChat";
+  static const String userChatMessageRoute = "/userChatMessage";
   static const String summaryRoute = "/summary";
   static const String deliveryRoute = "/delivery";
   static const String accountRoute = "/account";
   static const String editAccountRoute = "/EditAccountView";
   static const String adsPartnerRoute = "/adsPartner";
+  static const String bannerDetailsRoute = "/bannerDetails";
   static const String addOrderRoute = "/addOrder";
   static const String allVendorsRoute = "/allVendors";
   static const String cartRoute = "/cart";
   static const String cartChooseDeliveryRoute = "/cartChooseDelivery";
   static const String cartOrderSummaryRoute = "/cartOrderSummary";
   static const String addOrderFromDeliveryRoute = "/addOrderFromDelivery";
-  static const String orderSummaryRoute =
-      "/orderSummary";
+  static const String orderSummaryRoute = "/orderSummary";
   static const String chooseDeliveryFromAddOrderRoute =
       "/chooseDeliveryFromAddOrder";
   static const String orderSummaryFromAddOrderRoute =
@@ -153,10 +159,14 @@ class RouteGenerator {
       case Routes.failureAuthRoute:
         return MaterialPageRoute(builder: (_) => const FailureAuthView());
       case Routes.mainLayoutRoute:
-        final args = settings.arguments as UserModel;
+        //final args = settings.arguments as UserModel;
         return MaterialPageRoute(
             builder: (_) => MainLayoutView(
-                  userModel: args,
+                  userModel:  UserModel(
+                    phoneNumber:'01127504745',
+                    userLocation:"existed user",
+                    userName: "existed user",
+                  ),
                 ));
       case Routes.homeRoute:
         return MaterialPageRoute(builder: (_) => const HomeView());
@@ -164,15 +174,19 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ShopDetailsView());
       case Routes.chooseDeliveryRoute:
         return MaterialPageRoute(builder: (_) => const ChooseDeliveryView());
-      // case Routes.vendorsRoute:
-      //   return MaterialPageRoute(builder: (_) => const VendorsView());
+      case Routes.bannerDetailsRoute:
+        final args = settings.arguments as BannerModel;
+         return MaterialPageRoute(builder: (_) =>  BannerDetailsView(
+           bannerModel: args,
+         ));
       case Routes.summaryRoute:
         return MaterialPageRoute(builder: (_) => const SummaryView());
       case Routes.deliveryRoute:
         final args = settings.arguments as UserModel;
-        return MaterialPageRoute(builder: (_) =>  DeliveryView(
-          userModel: args,
-        ));
+        return MaterialPageRoute(
+            builder: (_) => DeliveryView(
+                  userModel: args,
+                ));
       case Routes.accountRoute:
         final args = settings.arguments as UserModel;
         return MaterialPageRoute(
@@ -185,9 +199,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const AdsPartnerView());
       case Routes.addOrderRoute:
         final args = settings.arguments as UserModel;
-        return MaterialPageRoute(builder: (_) =>  AddOrderView(
-          userModel: args,
-        ));
+        return MaterialPageRoute(
+            builder: (_) => AddOrderView(
+                  userModel: args,
+                ));
       case Routes.allVendorsRoute:
         return MaterialPageRoute(builder: (_) => const AllVendorsView());
       case Routes.cartRoute:
@@ -199,9 +214,9 @@ class RouteGenerator {
       case Routes.addOrderFromDeliveryRoute:
         final args = settings.arguments as UserAndDeliveryCombinedModel;
         return MaterialPageRoute(
-            builder: (_) =>  AddOrderFromDeliveryView(
-              userAndDeliveryCombinedModel: args,
-            ));
+            builder: (_) => AddOrderFromDeliveryView(
+                  userAndDeliveryCombinedModel: args,
+                ));
       case Routes.orderSummaryRoute:
         final args = settings.arguments as OrderInfoModel;
         return MaterialPageRoute(
@@ -211,9 +226,18 @@ class RouteGenerator {
       case Routes.chooseDeliveryFromAddOrderRoute:
         final args = settings.arguments as UserAndOrderCombinedModel;
         return MaterialPageRoute(
-            builder: (_) =>  ChooseDeliveryFromAddOrderView(
-              userAndOrderCombined: args,
-            ));
+            builder: (_) => ChooseDeliveryFromAddOrderView(
+                  userAndOrderCombined: args,
+                ));
+
+      case Routes.userChatRoute:
+        return MaterialPageRoute(builder: (_) => const ChatsView());
+      case Routes.userChatMessageRoute:
+        final args = settings.arguments as ChatModel;
+        return MaterialPageRoute(builder: (_) =>  ChatMessagesView(
+
+          chatModel: args,
+        ));
 
       // Admin routes
       case Routes.adminMainLayoutRoute:
