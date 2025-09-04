@@ -1,6 +1,3 @@
-
-
-
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
@@ -15,8 +12,6 @@ import 'package:delivery_app/presentation/views/user_views/views/authentication/
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-
 
 class SignInView extends StatefulWidget {
   const SignInView({super.key});
@@ -76,27 +71,18 @@ class _SignInViewState extends State<SignInView> {
                   height: AppSize.s20.h,
                 ),
                 Text("مرحباً بعودتك!",
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .displayMedium),
+                    style: Theme.of(context).textTheme.displayMedium),
                 SizedBox(
                   height: AppSize.s20.h,
                 ),
                 Text(
                     "قم بتسجيل الدخول إلى حسابك للوصول إلى طلباتك وإدارة تفضيلاتك.",
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .labelSmall),
+                    style: Theme.of(context).textTheme.labelSmall),
                 SizedBox(
                   height: AppSize.s50.h,
                 ),
                 Text("رقم الهاتف",
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .headlineMedium),
+                    style: Theme.of(context).textTheme.headlineMedium),
                 SizedBox(
                   height: AppSize.s10.h,
                 ),
@@ -119,27 +105,11 @@ class _SignInViewState extends State<SignInView> {
                   isButtonEnabled: isButtonEnabled,
                   width: double.infinity,
                   text: "متابعة",
-                  onTap:() {
-
-
-                    Navigator.pushNamed(
-                      context,
-                      Routes.verificationRoute,
-                      arguments:  VerificationArgs(
-                        isSignUpFlow: false,
-                        phoneNumber: '123',
-
-                        userModel: UserModel(
-                          phoneNumber: _phoneNumberController.text,
-                          userLocation:"existed user",
-                          userName: "existed user",
-                        ),
-                      ),
-                    );
-                    //  _loginUser(context);
+                  onTap: () {
+                     _loginUser(context);
                   },
                 ),
-              //  _buildPhoneNumberSubmittedBloc()
+                  _buildPhoneNumberSubmittedBloc()
               ],
             ),
           ),
@@ -149,7 +119,7 @@ class _SignInViewState extends State<SignInView> {
   }
 
   Widget _buildPhoneNumberSubmittedBloc() {
-    return BlocListener<PhoneAuthCubit, PhoneAuthState>(
+    return BlocListener<PhoneAuthCubit, PhoneAuthStates>(
       listenWhen: (previous, current) => previous != current,
       listener: (context, state) {
         if (state is PhoneAuthLoading) {
@@ -158,12 +128,16 @@ class _SignInViewState extends State<SignInView> {
 
         if (state is PhoneAuthNumberSubmitted) {
           Navigator.pop(context);
-          Navigator.pushNamed(
-              context, Routes.verificationRoute, arguments: phoneNumber);
+          Navigator.pushNamed(context, Routes.verificationRoute,
+              arguments: VerificationArgs(
+                  isSignUpFlow: false, userModel: UserModel(
+                phoneNumber: _phoneNumberController.text,
+                userLocation: "existed user",
+                userName: "existed user",
+              ),));
         }
 
         if (state is PhoneAuthError) {
-          Navigator.pop(context);
           final error = (state).errorMsg;
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -187,6 +161,4 @@ class _SignInViewState extends State<SignInView> {
       BlocProvider.of<PhoneAuthCubit>(context).submitPhoneNumber(phoneNumber);
     }
   }
-
-
 }

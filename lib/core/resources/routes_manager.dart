@@ -145,7 +145,7 @@ class RouteGenerator {
                   value: phoneAuthCubit!,
                   child: VerificationView(
                     isSignUpFlow: args.isSignUpFlow,
-                    phoneNumber: args.phoneNumber,
+
                     userModel: args.userModel,
                   ),
                 ));

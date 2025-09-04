@@ -7,10 +7,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GlobalVendorListWidget extends StatelessWidget {
   const GlobalVendorListWidget({
-    super.key, required this.onTap,
+    super.key,
   });
 
-  final VoidCallback onTap;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -23,7 +23,7 @@ class GlobalVendorListWidget extends StatelessWidget {
         ),
         itemCount: 10,
         itemBuilder: (context, index) =>  GlobalVendorItemWidget(
-          onTap: onTap,
+          onTap: (){},
         ),
       ),
     );

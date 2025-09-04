@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'phone_auth_state.dart';
 
-class PhoneAuthCubit extends Cubit<PhoneAuthState> {
+class PhoneAuthCubit extends Cubit<PhoneAuthStates> {
   late String verificationId;
   PhoneAuthCubit() : super(PhoneAuthInitial());
 
@@ -19,7 +19,11 @@ class PhoneAuthCubit extends Cubit<PhoneAuthState> {
       verificationFailed: verificationFailed,
       codeSent: codeSent,
       codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
-    );
+    ).then((value) {
+
+      emit(PhoneAuthNumberSubmitted());
+      print('تمام');
+    });
   }
 
   void verificationCompleted(PhoneAuthCredential credential) async {
@@ -43,8 +47,9 @@ class PhoneAuthCubit extends Cubit<PhoneAuthState> {
   }
 
   Future<void> submitOTP(String otpCode) async {
+    print("verificationId: $verificationId, otp: $otpCode");
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: this.verificationId, smsCode: otpCode);
+        verificationId: verificationId, smsCode: otpCode);
 
     await signIn(credential);
   }

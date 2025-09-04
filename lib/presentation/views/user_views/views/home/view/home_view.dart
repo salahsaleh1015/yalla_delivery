@@ -13,8 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'all_vendors_view.dart';
 
-
-
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
   static String id = 'HomeView';
@@ -80,11 +78,7 @@ class HomeView extends StatelessWidget {
             SizedBox(
               height: AppSize.s10.h,
             ),
-            GlobalVendorListWidget(
-              onTap: () {
-                Navigator.pushNamed(context, Routes.shopDetailsRoute);
-              },
-            ),
+            const GlobalVendorListWidget(),
           ],
         ),
       ),

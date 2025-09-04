@@ -13,9 +13,12 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 
 class OtpTextField extends StatelessWidget {
-   OtpTextField({super.key, required this.otpCode});
 
-   String otpCode;
+
+  final Function(String) onOtpCompleted;
+   OtpTextField({super.key, required this.onOtpCompleted});
+
+
   @override
   Widget build(BuildContext context) {
     return PinCodeTextField(
@@ -41,7 +44,7 @@ class OtpTextField extends StatelessWidget {
       enableActiveFill: true,
 
       onCompleted: (otpCode) {
-        this.otpCode = otpCode;
+        onOtpCompleted(otpCode);
       },
       onChanged: (value) {
         print(value);

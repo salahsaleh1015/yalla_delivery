@@ -1,4 +1,3 @@
-
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/presentation/views/admin_views/views/admin_home/views/admin_add_vendor_view.dart';
@@ -11,7 +10,6 @@ import 'package:delivery_app/presentation/views/global_widgets/lists/global_adve
 import 'package:delivery_app/presentation/views/global_widgets/lists/global_vendor_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 
 class AdminHomeView extends StatelessWidget {
   const AdminHomeView({super.key});
@@ -54,7 +52,7 @@ class AdminHomeView extends StatelessWidget {
               const Spacer(),
               TextButton(
                   onPressed: () {
-                  Navigator.pushNamed(context, AdminAddVendorView.id);
+                    Navigator.pushNamed(context, AdminAddVendorView.id);
                   },
                   child: Row(
                     children: [
@@ -73,15 +71,9 @@ class AdminHomeView extends StatelessWidget {
           SizedBox(
             height: AppSize.s15.h,
           ),
-          GlobalVendorListWidget(
-            onTap: () {
-              Navigator.pushNamed(context, AdminVendorDetailsView.id);
-            },
-          ),
+          const GlobalVendorListWidget(),
         ],
       ),
     ));
   }
 }
-
-

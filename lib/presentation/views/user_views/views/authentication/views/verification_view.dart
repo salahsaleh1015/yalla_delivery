@@ -1,4 +1,3 @@
-
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
@@ -15,15 +14,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../authentication_widgets/auth_dialog.dart';
 import '../authentication_widgets/otpTextField.dart';
 
-class VerificationView extends StatelessWidget {
+class VerificationView extends StatefulWidget {
   VerificationView(
-      {super.key, required this.phoneNumber, required this.userModel, required this.isSignUpFlow});
-
-  final String phoneNumber;
-  String otp = '';
+      {super.key, required this.userModel, required this.isSignUpFlow});
 
   final UserModel userModel;
   final bool isSignUpFlow;
+
+  @override
+  State<VerificationView> createState() => _VerificationViewState();
+}
+
+class _VerificationViewState extends State<VerificationView> {
+  String otp = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +62,11 @@ class VerificationView extends StatelessWidget {
 
               /// otp text field
               OtpTextField(
-                otpCode: otp,
+                onOtpCompleted: (code) {
+                  setState(() {
+                    otp = code;
+                  });
+                },
               ),
               SizedBox(
                 height: AppSize.s30.h,
@@ -68,22 +76,12 @@ class VerificationView extends StatelessWidget {
                 width: double.infinity,
                 text: "إرسال الرمز",
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    Routes.successAuthRoute,
-                    arguments: VerificationArgs(
-                      phoneNumber: phoneNumber,
-                      userModel: userModel,
-                      isSignUpFlow: isSignUpFlow,
-
-                    ),
-                  );
-                  // _verifyOTP(context, otp);
+                  _verifyOTP(context, otp);
                 },
               ),
               // const ResendVerificationText(),
 
-              // _buildPhoneNumberVerificationBloc(),
+              _buildPhoneNumberVerificationBloc(),
             ],
           ),
         ),
@@ -93,14 +91,10 @@ class VerificationView extends StatelessWidget {
 
   void _verifyOTP(BuildContext context, String otp) async {
     BlocProvider.of<PhoneAuthCubit>(context).submitOTP(otp);
-    Navigator.pushReplacementNamed(
-      context,
-      MainLayoutView.id,
-    );
   }
 
   Widget _buildPhoneNumberVerificationBloc() {
-    return BlocListener<PhoneAuthCubit, PhoneAuthState>(
+    return BlocListener<PhoneAuthCubit, PhoneAuthStates>(
       listenWhen: (previous, current) => previous != current,
       listener: (context, state) {
         if (state is PhoneAuthLoading) {
@@ -111,7 +105,9 @@ class VerificationView extends StatelessWidget {
           Navigator.pop(context);
           Navigator.pushNamed(
             context,
-            Routes.mainLayoutRoute,
+            Routes.successAuthRoute,
+            arguments: VerificationArgs(
+                isSignUpFlow: widget.isSignUpFlow, userModel: widget.userModel),
           );
         }
 

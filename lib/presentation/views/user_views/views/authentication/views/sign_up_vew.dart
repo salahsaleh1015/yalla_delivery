@@ -159,20 +159,10 @@ class _SignUpViewState extends State<SignUpView> {
                   width: double.infinity,
                   text: "متابعة",
                   onTap:() {
-                    Navigator.pushNamed(context, Routes.verificationRoute,
-                      arguments:  VerificationArgs(
-                        isSignUpFlow: true,
-                        phoneNumber: '123',
-                        userModel: UserModel(
-                          phoneNumber: _phoneController.text,
-                          userLocation: _locationController.text,
-                          userName: _nameController.text,
-                        ),
-                      ),);
-                    // _registerUser(context);
+                     _registerUser(context);
                   }
                 ),
-               // _buildPhoneNumberSubmittedBloc(),
+              _buildPhoneNumberSubmittedBloc(),
                 SizedBox(
                   height: AppSize.s100.h,
                 ),
@@ -185,7 +175,7 @@ class _SignUpViewState extends State<SignUpView> {
   }
 
   Widget _buildPhoneNumberSubmittedBloc() {
-    return BlocListener<PhoneAuthCubit, PhoneAuthState>(
+    return BlocListener<PhoneAuthCubit, PhoneAuthStates>(
       listenWhen: (previous, current) => previous != current,
       listener: (context, state) {
         if (state is PhoneAuthLoading) {
@@ -195,7 +185,15 @@ class _SignUpViewState extends State<SignUpView> {
         if (state is PhoneAuthNumberSubmitted) {
           Navigator.pop(context);
           Navigator.pushNamed(context, Routes.verificationRoute,
-              arguments: phoneNumber);
+            arguments:  VerificationArgs(
+              isSignUpFlow: true,
+
+              userModel: UserModel(
+                phoneNumber: _phoneController.text,
+                userLocation: _locationController.text,
+                userName: _nameController.text,
+              ),
+            ),);
         }
 
         if (state is PhoneAuthError) {
