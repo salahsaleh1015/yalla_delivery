@@ -1,4 +1,3 @@
-import 'package:delivery_app/core/resources/assets_manager.dart';
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_secondary_decorated_container.dart';

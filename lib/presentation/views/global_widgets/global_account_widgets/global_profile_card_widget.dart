@@ -2,7 +2,6 @@
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_decorated_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GlobalProfileCardWidget extends StatelessWidget {
   const GlobalProfileCardWidget({super.key, required this.fieldName, required this.fieldValue, this.height});

@@ -1,5 +1,4 @@
 
-import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_dialogs/add_image_section.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_dialogs/global_dialog.dart';

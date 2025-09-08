@@ -8,7 +8,6 @@ import 'package:delivery_app/presentation/views/global_widgets/global_secondary_
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'delivery_order_management_tab_bar.dart';
 
 
 class DeliveryManagementOrderCard extends StatelessWidget {

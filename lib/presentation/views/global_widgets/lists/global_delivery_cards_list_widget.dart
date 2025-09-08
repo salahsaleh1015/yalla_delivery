@@ -2,6 +2,7 @@
 
 
 import 'package:delivery_app/core/resources/routes_manager.dart';
+import 'package:delivery_app/presentation/models/cached_user_model.dart';
 import 'package:delivery_app/presentation/models/delivery_card_model.dart';
 import 'package:delivery_app/presentation/models/delivery_model.dart';
 import 'package:delivery_app/presentation/models/user_and_delivery_combined_model.dart';
@@ -17,9 +18,9 @@ import '../../../view_models/user_view_models/delivery_in_user_cubit/delivery_in
 
 class GlobalDeliveryCardsListWidget extends StatelessWidget {
   const GlobalDeliveryCardsListWidget(
-      {super.key, required this.userModel, required this.height});
+      {super.key,  required this.height});
 
-  final UserModel userModel;
+
   final double height;
   @override
   Widget build(BuildContext context) {
@@ -51,21 +52,18 @@ class GlobalDeliveryCardsListWidget extends StatelessWidget {
                       onTap: () {
                         Navigator.pushNamed(
                             context, Routes.addOrderFromDeliveryRoute,
-                            arguments: UserAndDeliveryCombinedModel(
-                              userModel: userModel,
-                              deliveryModel: DeliveryModel(
-                                deliveryName: cubit
-                                    .deliveriesList[index].deliveryName,
-                                deliveryPhone: cubit
-                                    .deliveriesList[index].deliveryPhone,
-                                deliveryLocation: cubit
-                                    .deliveriesList[index].deliveryLocation,
-                                deliveryStatus: cubit
-                                    .deliveriesList[index].deliveryStatus,
-                                deliveryRate: cubit
-                                    .deliveriesList[index].deliveryRate,
-                              ),
-                            ));
+                            arguments: DeliveryModel(
+                              deliveryName: cubit
+                                  .deliveriesList[index].deliveryName,
+                              deliveryPhone: cubit
+                                  .deliveriesList[index].deliveryPhone,
+                              deliveryLocation: cubit
+                                  .deliveriesList[index].deliveryLocation,
+                              deliveryStatus: cubit
+                                  .deliveriesList[index].deliveryStatus,
+                              deliveryRate: cubit
+                                  .deliveriesList[index].deliveryRate,
+                            ),);
                       },
                       arrowOnTap: () {},
                       deliveryStatus:

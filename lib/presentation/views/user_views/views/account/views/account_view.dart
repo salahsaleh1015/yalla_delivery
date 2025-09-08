@@ -1,8 +1,10 @@
-
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
+import 'package:delivery_app/domain/usecases/cache_user_usecase.dart';
+import 'package:delivery_app/presentation/models/cached_user_model.dart';
 import 'package:delivery_app/presentation/models/user_model.dart';
+import 'package:delivery_app/presentation/view_models/user_view_models/user_caching_cubit/user_caching_cubit.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_info_cubit/user_info_cubit.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_account_widgets/global_account_info_bar_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_account_widgets/global_account_info_section_widget.dart';
@@ -16,12 +18,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../../injection.dart';
+
 class AccountView extends StatefulWidget {
-  const AccountView({super.key, required this.userModel});
-
-  static String id = "AccountView";
-
-  final UserModel userModel;
+  const AccountView({
+    super.key,
+  });
 
   @override
   State<AccountView> createState() => _AccountViewState();
@@ -30,17 +32,17 @@ class AccountView extends StatefulWidget {
 class _AccountViewState extends State<AccountView> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => UserInfoCubit()..getUserByPhoneNumber(widget.userModel.phoneNumber),
-      child: BlocBuilder<UserInfoCubit, UserInfoStates>(
-
+    return BlocProvider<UserCachingCubit>(
+      create: (context) => UserCachingCubit(
+          sl.get<CacheUserUseCase>(), sl.get<GetCachedUserUseCase>())..loadCachedUser(),
+      child: BlocBuilder<UserCachingCubit, UserCachingStates>(
         builder: (context, state) {
-
-          if(state is UserInfoLoadingState){
+          var cubit = UserCachingCubit.get(context);
+          if (state is UserCachingLoadingState) {
             return const Center(
               child: GlobalLoadingIndicator(),
             );
-          }else if(state is UserInfoLoadedState){
+          } else if (state is UserCachingLoadedState) {
             return GlobalPaddingWidget(
               child: SingleChildScrollView(
                 child: Column(
@@ -49,18 +51,15 @@ class _AccountViewState extends State<AccountView> {
                     Center(
                       child: Text(
                         "الحساب",
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .titleMedium,
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ),
                     SizedBox(
                       height: AppSize.s30.h,
                     ),
-                     GlobalAccountInfoSectionWidget(
+                    GlobalAccountInfoSectionWidget(
                       joinDate: "انضم منذ 12 اكتوبر 2024",
-                      userName: state.userModel.userName,
+                      userName: cubit.cachedUserModel.userName,
                     ),
                     SizedBox(
                       height: AppSize.s20.h,
@@ -74,7 +73,8 @@ class _AccountViewState extends State<AccountView> {
                     ),
                     GlobalAccountInfoBarWidget(
                       onPressed: () {
-                        Navigator.pushNamed(context, Routes.editAccountRoute).then((value){
+                        Navigator.pushNamed(context, Routes.editAccountRoute)
+                            .then((value) {
                           if (value == 'refresh') {
                             // Trigger rebuild or reload data
                             setState(() {});
@@ -85,16 +85,16 @@ class _AccountViewState extends State<AccountView> {
                     SizedBox(
                       height: AppSize.s10.h,
                     ),
-                     GlobalProfileCardWidget(
+                    GlobalProfileCardWidget(
                       fieldName: "الاسم بالكامل",
-                      fieldValue: state.userModel.userName,
+                      fieldValue: cubit.cachedUserModel.userName,
                     ),
                     SizedBox(
                       height: AppSize.s20.h,
                     ),
-                     GlobalProfileCardWidget(
+                    GlobalProfileCardWidget(
                       fieldName: "رقم الهاتف",
-                      fieldValue: state.userModel.phoneNumber,
+                      fieldValue: cubit.cachedUserModel.phoneNumber,
                     ),
                     SizedBox(
                       height: AppSize.s10.h,
@@ -102,7 +102,7 @@ class _AccountViewState extends State<AccountView> {
                     GlobalProfileCardWidget(
                       height: AppSize.s70.h,
                       fieldName: "العنوان",
-                      fieldValue: state.userModel.userLocation,
+                      fieldValue: cubit.cachedUserModel.userLocation,
                     ),
                     GlobalAdsBarWidget(
                       onPressed: () {
@@ -120,12 +120,14 @@ class _AccountViewState extends State<AccountView> {
                 ),
               ),
             );
-          }else{
+          } else {
             return  Center(
-              child: Text("حدث خطاء اعد المحاولة في وقت لاحق....! ", style: Theme.of(context).textTheme.titleLarge,),
+              child: Text(
+                "هناك خطأ ما حاول مره اخرى لاحقا",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
             );
           }
-
         },
       ),
     );

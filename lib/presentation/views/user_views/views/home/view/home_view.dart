@@ -1,4 +1,3 @@
-import 'package:delivery_app/core/resources/routes_manager.dart';
 import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
 import '../../../../global_widgets/global_circular_button_widget.dart';

@@ -8,12 +8,10 @@ import 'package:delivery_app/presentation/views/global_widgets/global_decorated_
 import 'package:delivery_app/presentation/views/global_widgets/global_light_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_view_all_button.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
-import '../../../../../models/dropdown_delivery_status_model.dart';
 import '../widgets/delivery_status_drop_down_button.dart';
 
 class DeliveryHomeView extends StatelessWidget {

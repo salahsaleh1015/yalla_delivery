@@ -2,7 +2,6 @@
 
 
 import 'package:delivery_app/core/resources/colors_manager.dart';
-import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
 void showProgressIndicator(BuildContext context) {

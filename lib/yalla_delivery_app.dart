@@ -7,10 +7,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class YallaDeliveryApp extends StatelessWidget {
   YallaDeliveryApp({
-    super.key,
+    super.key, required this.startRoute,
   });
 
   final routeGenerator = RouteGenerator();
+
+  final String startRoute;
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -26,7 +28,7 @@ class YallaDeliveryApp extends StatelessWidget {
         title: 'Yalla Delivery app',
 
         onGenerateRoute: routeGenerator.getRoute,
-        initialRoute: Routes.onBoardingRoute,
+        initialRoute: startRoute,
 
       ),
     );

@@ -1,25 +1,15 @@
-
-
 import 'package:delivery_app/core/resources/assets_manager.dart';
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/presentation/models/user_model.dart';
 import 'package:delivery_app/presentation/models/verification_args_model.dart';
-import 'package:delivery_app/presentation/view_models/user_view_models/phone_auth_cubit/phone_auth_cubit.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_info_cubit/user_info_cubit.dart';
-import 'package:delivery_app/presentation/views/global_widgets/global_button_widget.dart';
-import 'package:delivery_app/presentation/views/global_widgets/global_circular_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
-import 'package:delivery_app/presentation/views/user_views/views/main_layout/views/main_layout_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../authentication_widgets/auth_dialog.dart';
-import '../authentication_widgets/otpTextField.dart';
-
-
 
 class SuccessAuthView extends StatelessWidget {
   const SuccessAuthView(
@@ -38,9 +28,9 @@ class SuccessAuthView extends StatelessWidget {
         listener: (context, state) {
           if (state is UserInfoAddedSuccessFulState) {
             Future.delayed(const Duration(seconds: 5), () {
-              Navigator.pushReplacementNamed(context, Routes.mainLayoutRoute,
-                arguments: userModel
-              );
+              Navigator.pushNamed(context, Routes.completeAuthRoute,
+                  arguments: VerificationArgs(
+                      isSignUpFlow: isSignUpFlow, userModel: userModel));
             });
           }
 
@@ -49,7 +39,7 @@ class SuccessAuthView extends StatelessWidget {
               SnackBar(
                 duration: const Duration(seconds: 5),
                 backgroundColor: ColorManager.primary,
-                content:  Text(state.error),
+                content: Text(state.error),
               ),
             );
             Future.delayed(const Duration(seconds: 5), () {
@@ -65,13 +55,14 @@ class SuccessAuthView extends StatelessWidget {
                 SnackBar(
                   duration: const Duration(seconds: 5),
                   backgroundColor: ColorManager.primary,
-                  content: const Text("الرقم الذي ادخلته  ليس له بيانات عليك انت تسجل كمستخدم جديد"),
+                  content: const Text(
+                      "الرقم الذي ادخلته  ليس له بيانات عليك انت تسجل كمستخدم جديد"),
                 ),
               );
             });
           }
 
-          if(state is UserInfoFoundedState){
+          if (state is UserInfoFoundedState) {
             Future.delayed(const Duration(seconds: 3), () {
               Navigator.pop(context);
 
@@ -79,11 +70,10 @@ class SuccessAuthView extends StatelessWidget {
                 SnackBar(
                   duration: const Duration(seconds: 5),
                   backgroundColor: ColorManager.primary,
-                  content: const Text("الرقم الذي ادخلته موجود بالفعل سجل الدخول بطريقه صحيحه"),
+                  content: const Text(
+                      "الرقم الذي ادخلته موجود بالفعل سجل الدخول بطريقه صحيحه"),
                 ),
               );
-
-
             });
           }
         },
@@ -130,5 +120,3 @@ class SuccessAuthView extends StatelessWidget {
     );
   }
 }
-
-

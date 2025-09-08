@@ -9,7 +9,6 @@ import 'package:delivery_app/presentation/views/global_widgets/global_button_wid
 import 'package:delivery_app/presentation/views/global_widgets/global_circular_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_text_field_widget.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -1,6 +1,5 @@
 import 'package:delivery_app/presentation/models/banner_model.dart';
 import 'package:delivery_app/presentation/views/user_views/views/home/widgets/items/shop_image_item.dart';
-import 'package:delivery_app/presentation/views/user_views/views/home/widgets/items/shop_info_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

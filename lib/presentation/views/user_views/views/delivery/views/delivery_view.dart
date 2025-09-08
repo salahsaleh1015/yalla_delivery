@@ -6,15 +6,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
 
+import '../../../../../models/cached_user_model.dart';
 import '../../../../../models/user_model.dart';
 import '../../../../global_widgets/global_circular_button_widget.dart';
 import '../../../../global_widgets/lists/global_delivery_cards_filtered_list_widget.dart';
 import '../../cart/views/cart_view.dart';
 
 class DeliveryView extends StatelessWidget {
-  const DeliveryView({super.key, required this.userModel});
+  const DeliveryView({super.key,});
 
-  final UserModel userModel;
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -61,26 +62,26 @@ class DeliveryView extends StatelessWidget {
                 child: TabBarView(
                   children: [
                     GlobalDeliveryCardsListWidget(
-                      userModel: userModel,
+
                       height: MediaQuery.of(context).size.height * 0.6,
                     ),
                     GlobalDeliveryCardsFilteredListWidget(
                       height: MediaQuery.of(context).size.height * 0.6,
                       deliveryStatus: 'متاح',
                       isSelected: true,
-                      userModel: userModel,
+
                     ),
                     GlobalDeliveryCardsFilteredListWidget(
                       height: MediaQuery.of(context).size.height * 0.6,
                       deliveryStatus: 'مشغول',
                       isSelected: false,
-                      userModel: userModel,
+
                     ),
                     GlobalDeliveryCardsFilteredListWidget(
                       height: MediaQuery.of(context).size.height * 0.6,
                       deliveryStatus: 'غير متاح',
                       isSelected: false,
-                      userModel: userModel,
+
                     ),
                   ],
                 ),

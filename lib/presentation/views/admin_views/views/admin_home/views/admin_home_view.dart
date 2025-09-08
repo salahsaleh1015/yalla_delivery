@@ -1,7 +1,6 @@
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/presentation/views/admin_views/views/admin_home/views/admin_add_vendor_view.dart';
-import 'package:delivery_app/presentation/views/admin_views/views/admin_home/views/admin_vendors_details_view.dart';
 import 'package:delivery_app/presentation/views/admin_views/views/admin_home/widgets/add_ads_bar.dart';
 import 'package:delivery_app/presentation/views/admin_views/views/admin_home/widgets/admin_main_bar.dart';
 import 'package:delivery_app/presentation/views/admin_views/views/admin_home/widgets/admin_statistics_cards_list.dart';

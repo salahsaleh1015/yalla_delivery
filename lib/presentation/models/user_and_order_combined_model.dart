@@ -1,11 +1,12 @@
 
 
 
+import 'package:delivery_app/presentation/models/cached_user_model.dart';
 import 'package:delivery_app/presentation/models/user_model.dart';
 
 class UserAndOrderCombinedModel {
 
-  final UserModel userModel;
+  final CachedUserModel userModel;
   final String order ;
 
   UserAndOrderCombinedModel({required this.userModel, required this.order});

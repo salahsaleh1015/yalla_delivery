@@ -1,6 +1,5 @@
 import 'package:delivery_app/presentation/models/delivery_model.dart';
 import 'package:delivery_app/presentation/models/order_info_model.dart';
-import 'package:delivery_app/presentation/models/order_summary_model.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_app_bar.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
 import 'package:flutter/material.dart';
@@ -12,15 +11,12 @@ import '../../../../../models/user_and_delivery_combined_model.dart';
 import '../../../../global_widgets/global_button_widget.dart';
 import '../../../../global_widgets/global_custom_order_text_field.dart';
 
-import '../../../../global_widgets/lists/global_delivery_cards_filtered_list_widget.dart';
-import '../../summary/order_summary_view.dart';
-
 class AddOrderFromDeliveryView extends StatefulWidget {
   const AddOrderFromDeliveryView({
     super.key,
-    required this.userAndDeliveryCombinedModel,
+    required this.deliveryModel,
   });
-  final UserAndDeliveryCombinedModel userAndDeliveryCombinedModel;
+  final DeliveryModel deliveryModel;
   @override
   State<AddOrderFromDeliveryView> createState() =>
       _AddOrderFromDeliveryViewState();
@@ -88,14 +84,9 @@ class _AddOrderFromDeliveryViewState extends State<AddOrderFromDeliveryView> {
               onTap: () {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
-                  Navigator.pushNamed(
-                      context, Routes.orderSummaryRoute,
+                  Navigator.pushNamed(context, Routes.orderSummaryRoute,
                       arguments: OrderInfoModel(
-                          userModel:
-                              widget.userAndDeliveryCombinedModel.userModel,
-                          deliveryModel:
-                              widget.userAndDeliveryCombinedModel.deliveryModel,
-                          order: order));
+                          deliveryModel: widget.deliveryModel, order: order));
                 }
               },
               width: double.infinity,

@@ -3,7 +3,6 @@ import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_button_widget.dart';
 
-import 'package:delivery_app/presentation/views/global_widgets/global_secondary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

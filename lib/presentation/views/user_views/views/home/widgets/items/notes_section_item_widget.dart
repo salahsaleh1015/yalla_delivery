@@ -1,8 +1,5 @@
 import 'package:delivery_app/core/resources/colors_manager.dart';
-import 'package:delivery_app/core/resources/font_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
-import 'package:delivery_app/presentation/views/global_widgets/global_decorated_container.dart';
-import 'package:delivery_app/presentation/views/global_widgets/global_divider_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

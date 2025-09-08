@@ -2,7 +2,6 @@ import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/presentation/models/banner_model.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_advertisement_item_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
-import 'package:delivery_app/presentation/views/global_widgets/global_vendor_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -13,9 +13,9 @@ import '../../../../../models/user_and_order_combined_model.dart';
 
 class ChooseDeliveryFromAddOrderView extends StatelessWidget {
   ChooseDeliveryFromAddOrderView(
-      {super.key, required this.userAndOrderCombined});
+      {super.key, required this.order});
 
-  final UserAndOrderCombinedModel userAndOrderCombined;
+  final String order;
   late DeliveryModel selectedDelivery;
   @override
   Widget build(BuildContext context) {
@@ -52,8 +52,8 @@ class ChooseDeliveryFromAddOrderView extends StatelessWidget {
             Navigator.pushNamed(context, Routes.orderSummaryRoute,
                 arguments: OrderInfoModel(
                     deliveryModel: selectedDelivery,
-                    order: userAndOrderCombined.order,
-                    userModel: userAndOrderCombined.userModel));
+                    order: order,
+                   ));
           },
           width: double.infinity,
         ),

@@ -51,6 +51,7 @@ class PhoneAuthCubit extends Cubit<PhoneAuthStates> {
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: verificationId, smsCode: otpCode);
 
+
     await signIn(credential);
   }
 

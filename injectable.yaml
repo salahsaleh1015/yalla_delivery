@@ -1,0 +1,4 @@
+# injectable.yaml
+generate_for:
+  include:
+    - lib/**.dart

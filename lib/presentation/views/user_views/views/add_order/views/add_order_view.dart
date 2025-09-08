@@ -4,18 +4,17 @@ import 'package:delivery_app/presentation/views/global_widgets/global_button_wid
 import 'package:delivery_app/presentation/views/global_widgets/global_circular_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_custom_order_text_field.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
-import 'package:delivery_app/presentation/views/user_views/views/add_order/views/choose_delivery_from_add_order_view.dart';
-import 'package:delivery_app/presentation/views/user_views/views/cart/views/cart_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/resources/routes_manager.dart';
+import '../../../../../models/cached_user_model.dart';
 import '../../../../../models/user_and_order_combined_model.dart';
 
 class AddOrderView extends StatefulWidget {
-  const AddOrderView({super.key, required this.userModel});
+  const AddOrderView({super.key,});
 
-  final UserModel userModel;
+
 
   @override
   State<AddOrderView> createState() => _AddOrderViewState();
@@ -100,8 +99,7 @@ class _AddOrderViewState extends State<AddOrderView> {
                   _formKey.currentState!.save();
                   Navigator.pushNamed(
                       context, Routes.chooseDeliveryFromAddOrderRoute,
-                      arguments: UserAndOrderCombinedModel(
-                          userModel: widget.userModel, order: order));
+                      arguments: order);
                 }
               },
               width: double.infinity,

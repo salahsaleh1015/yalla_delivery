@@ -1,12 +1,9 @@
 import 'package:delivery_app/presentation/views/global_widgets/global_decorated_container.dart';
 import 'package:delivery_app/presentation/views/user_views/views/cart/widgets/cart_order_list_view.dart';
 
-import '../../../../../../core/resources/assets_manager.dart';
 import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
 import '../../../../global_widgets/global_dialogs/delete_all_orders_dialog.dart';
-import '../../../../global_widgets/global_dialogs/delete_order_dialog.dart';
-import '../../../../global_widgets/global_light_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

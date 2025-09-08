@@ -33,11 +33,11 @@ class CartEmptyView extends StatelessWidget {
               child: GlobalButtonWidget(
                 isButtonEnabled: true,
                 text: "إضافة طلب + ", onTap: (){
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  MainLayoutView.id,
-                      (Route<dynamic> route) => false,
-                );
+                // Navigator.pushNamedAndRemoveUntil(
+                //   context,
+                //   MainLayoutView.id,
+                //       (Route<dynamic> route) => false,
+                // );
               }, width: double.infinity,),
             ),
           ],

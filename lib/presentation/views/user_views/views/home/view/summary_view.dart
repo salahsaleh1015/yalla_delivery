@@ -8,9 +8,6 @@ import '../../../../global_widgets/global_app_bar.dart';
 import '../../../../global_widgets/global_button_widget.dart';
 import '../../../../global_widgets/global_dialogs/confirm_order_dialog.dart';
 import '../../../../global_widgets/global_padding_widget.dart';
-import '../widgets/items/edit_location_card_item_widget.dart';
-import '../widgets/items/notes_section_item_widget.dart';
-import '../widgets/items/summary_delivery_item_widget.dart';
 import '../widgets/items/summary_details_item_widget.dart';
 
 class SummaryView extends StatelessWidget {

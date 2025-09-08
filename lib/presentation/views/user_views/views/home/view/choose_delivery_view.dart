@@ -3,13 +3,8 @@ import 'package:delivery_app/presentation/views/user_views/views/home/view/summa
 import '../../../../../../core/resources/values_manager.dart';
 import '../../../../global_widgets/global_app_bar.dart';
 import '../../../../global_widgets/global_button_widget.dart';
-import '../../../../global_widgets/global_dialogs/confirm_order_dialog.dart';
 import '../../../../global_widgets/global_padding_widget.dart';
 import '../../../../global_widgets/lists/global_delivery_cards_for_shop_list_widget.dart';
-import '../widgets/items/edit_location_card_item_widget.dart';
-import '../widgets/items/notes_section_item_widget.dart';
-import '../widgets/items/summary_delivery_item_widget.dart';
-import '../widgets/items/summary_details_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

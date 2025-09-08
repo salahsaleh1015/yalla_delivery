@@ -1,6 +1,5 @@
-import 'package:delivery_app/presentation/models/delivery_model.dart';
+import 'package:delivery_app/presentation/models/cached_user_model.dart';
 import 'package:delivery_app/presentation/models/order_info_model.dart';
-import 'package:delivery_app/presentation/models/order_summary_model.dart';
 import 'package:delivery_app/presentation/models/user_model.dart';
 import 'package:delivery_app/presentation/models/verification_args_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/phone_auth_cubit/phone_auth_cubit.dart';
@@ -28,6 +27,7 @@ import 'package:delivery_app/presentation/views/user_views/views/account/views/a
 import 'package:delivery_app/presentation/views/user_views/views/account/views/edit_account_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/add_order/views/add_order_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/add_order/views/choose_delivery_from_add_order_view.dart';
+import 'package:delivery_app/presentation/views/user_views/views/authentication/views/complete_authentication_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/authentication/views/failure_auth_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/authentication/views/sign_in_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/authentication/views/sign_up_vew.dart';
@@ -50,9 +50,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../presentation/models/banner_model.dart';
+import '../../presentation/models/delivery_model.dart';
 import '../../presentation/models/user_and_delivery_combined_model.dart';
 import '../../presentation/models/user_and_order_combined_model.dart';
-import '../../presentation/views/global_widgets/lists/global_delivery_cards_filtered_list_widget.dart';
 import '../../presentation/views/user_views/views/chat/views/chat_messages_view.dart';
 import '../../presentation/views/user_views/views/chat/views/chats_view.dart';
 import '../../presentation/views/user_views/views/home/view/banner_details_view.dart';
@@ -64,6 +64,7 @@ class Routes {
   static const String verificationRoute = "/verification";
   static const String successAuthRoute = "/successAuth";
   static const String failureAuthRoute = "/failureAuth";
+  static const String completeAuthRoute = "/completeAuth";
   static const String mainLayoutRoute = "/mainLayout";
   static const String homeRoute = "/home";
   static const String shopDetailsRoute = "/shopDetails";
@@ -145,29 +146,28 @@ class RouteGenerator {
                   value: phoneAuthCubit!,
                   child: VerificationView(
                     isSignUpFlow: args.isSignUpFlow,
-
                     userModel: args.userModel,
                   ),
                 ));
       case Routes.successAuthRoute:
         final args = settings.arguments as VerificationArgs;
         return MaterialPageRoute(
-            builder: (_) => SuccessAuthView(
-                  isSignUpFlow: args.isSignUpFlow,
-                  userModel: args.userModel,
-                ));
+          builder: (_) => SuccessAuthView(
+            isSignUpFlow: args.isSignUpFlow,
+            userModel: args.userModel,
+          ),
+        );
       case Routes.failureAuthRoute:
         return MaterialPageRoute(builder: (_) => const FailureAuthView());
-      case Routes.mainLayoutRoute:
-        //final args = settings.arguments as UserModel;
+      case Routes.completeAuthRoute:
+        final args = settings.arguments as VerificationArgs;
         return MaterialPageRoute(
-            builder: (_) => MainLayoutView(
-                  userModel:  UserModel(
-                    phoneNumber:'01127504745',
-                    userLocation:"existed user",
-                    userName: "existed user",
-                  ),
+            builder: (_) => CompleteAuthenticationView(
+                  userModel: args.userModel,
+                  isSignUpFlow: args.isSignUpFlow,
                 ));
+      case Routes.mainLayoutRoute:
+        return MaterialPageRoute(builder: (_) => MainLayoutView());
       case Routes.homeRoute:
         return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.shopDetailsRoute:
@@ -176,33 +176,26 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ChooseDeliveryView());
       case Routes.bannerDetailsRoute:
         final args = settings.arguments as BannerModel;
-         return MaterialPageRoute(builder: (_) =>  BannerDetailsView(
-           bannerModel: args,
-         ));
+        return MaterialPageRoute(
+            builder: (_) => BannerDetailsView(
+                  bannerModel: args,
+                ));
       case Routes.summaryRoute:
         return MaterialPageRoute(builder: (_) => const SummaryView());
       case Routes.deliveryRoute:
-        final args = settings.arguments as UserModel;
+
         return MaterialPageRoute(
-            builder: (_) => DeliveryView(
-                  userModel: args,
+            builder: (_) => const DeliveryView(
+
                 ));
       case Routes.accountRoute:
-        final args = settings.arguments as UserModel;
-        return MaterialPageRoute(
-            builder: (_) => AccountView(
-                  userModel: args,
-                ));
+        return MaterialPageRoute(builder: (_) => const AccountView());
       case Routes.editAccountRoute:
         return MaterialPageRoute(builder: (_) => const EditAccountView());
       case Routes.adsPartnerRoute:
         return MaterialPageRoute(builder: (_) => const AdsPartnerView());
       case Routes.addOrderRoute:
-        final args = settings.arguments as UserModel;
-        return MaterialPageRoute(
-            builder: (_) => AddOrderView(
-                  userModel: args,
-                ));
+        return MaterialPageRoute(builder: (_) => const AddOrderView());
       case Routes.allVendorsRoute:
         return MaterialPageRoute(builder: (_) => const AllVendorsView());
       case Routes.cartRoute:
@@ -212,32 +205,31 @@ class RouteGenerator {
       case Routes.cartOrderSummaryRoute:
         return MaterialPageRoute(builder: (_) => const CartOrderSummaryView());
       case Routes.addOrderFromDeliveryRoute:
-        final args = settings.arguments as UserAndDeliveryCombinedModel;
+        final args = settings.arguments as DeliveryModel;
         return MaterialPageRoute(
             builder: (_) => AddOrderFromDeliveryView(
-                  userAndDeliveryCombinedModel: args,
+                  deliveryModel: args,
                 ));
       case Routes.orderSummaryRoute:
         final args = settings.arguments as OrderInfoModel;
-        return MaterialPageRoute(
-            builder: (_) => OrderSummaryView(
-                  orderInfoModel: args,
-                ));
+        return MaterialPageRoute(builder: (_) => OrderSummaryView(
+          orderInfoModel: args,
+        ));
       case Routes.chooseDeliveryFromAddOrderRoute:
-        final args = settings.arguments as UserAndOrderCombinedModel;
+        final args = settings.arguments as String;
         return MaterialPageRoute(
             builder: (_) => ChooseDeliveryFromAddOrderView(
-                  userAndOrderCombined: args,
+                  order: args,
                 ));
 
       case Routes.userChatRoute:
         return MaterialPageRoute(builder: (_) => const ChatsView());
       case Routes.userChatMessageRoute:
         final args = settings.arguments as ChatModel;
-        return MaterialPageRoute(builder: (_) =>  ChatMessagesView(
-
-          chatModel: args,
-        ));
+        return MaterialPageRoute(
+            builder: (_) => ChatMessagesView(
+                  chatModel: args,
+                ));
 
       // Admin routes
       case Routes.adminMainLayoutRoute:

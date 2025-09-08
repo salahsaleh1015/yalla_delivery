@@ -7,7 +7,6 @@ import 'package:delivery_app/presentation/view_models/user_view_models/phone_aut
 import 'package:delivery_app/presentation/views/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_circular_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
-import 'package:delivery_app/presentation/views/user_views/views/main_layout/views/main_layout_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
