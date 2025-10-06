@@ -1,0 +1,1 @@
+C:\Users\SALAH SALEH\AndroidStudioProjects\delivery_app\build\app\intermediates\cxx\RelWithDebInfo\4g65h2a4\obj\arm64-v8a
