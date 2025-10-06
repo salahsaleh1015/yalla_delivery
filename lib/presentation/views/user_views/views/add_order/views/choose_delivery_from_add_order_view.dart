@@ -9,7 +9,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../models/delivery_model.dart';
 import '../../../../../models/order_info_model.dart';
-import '../../../../../models/user_and_order_combined_model.dart';
 
 class ChooseDeliveryFromAddOrderView extends StatelessWidget {
   ChooseDeliveryFromAddOrderView(

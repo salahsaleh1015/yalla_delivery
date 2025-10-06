@@ -6,11 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
 
-import '../../../../../models/cached_user_model.dart';
-import '../../../../../models/user_model.dart';
 import '../../../../global_widgets/global_circular_button_widget.dart';
 import '../../../../global_widgets/lists/global_delivery_cards_filtered_list_widget.dart';
-import '../../cart/views/cart_view.dart';
 
 class DeliveryView extends StatelessWidget {
   const DeliveryView({super.key,});
@@ -37,7 +34,7 @@ class DeliveryView extends StatelessWidget {
                   ),
                   GlobalCircularButtonWidget(
                     onTap: () {
-                      Navigator.pushNamed(context, CartView.id);
+                      //Navigator.pushNamed(context, CartView.id);
                     },
                     icon: Icons.shopping_cart_outlined,
                   ),

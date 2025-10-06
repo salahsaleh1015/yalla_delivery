@@ -1,7 +1,5 @@
 import 'package:delivery_app/core/resources/routes_manager.dart';
-import 'package:delivery_app/presentation/models/cached_user_model.dart';
 import 'package:delivery_app/presentation/models/delivery_model.dart';
-import 'package:delivery_app/presentation/models/user_model.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_no_deliveries_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_something_wrong_widget.dart';
@@ -9,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../models/delivery_cards_filtered_model.dart';
-import '../../../models/user_and_delivery_combined_model.dart';
 import '../../../view_models/user_view_models/delivery_in_user_cubit/delivery_in_user_cubit.dart';
 import '../global_delivery_filtered_cards_widget.dart';
 

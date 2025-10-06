@@ -30,7 +30,7 @@ class OrderSummaryView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => UserCachingCubit(
-          sl.get<CacheUserUseCase>(), sl.get<GetCachedUserUseCase>())
+          sl.get<CacheUserUseCase>(), sl.get<GetCachedUserUseCase>(),sl<UpdateCachedUserUseCase>())
         ..loadCachedUser(),
       child: BlocBuilder<UserCachingCubit, UserCachingStates>(
         builder: (context, state) {

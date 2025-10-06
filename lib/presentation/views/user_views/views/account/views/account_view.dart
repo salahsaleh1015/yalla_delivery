@@ -2,18 +2,13 @@ import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/domain/usecases/cache_user_usecase.dart';
-import 'package:delivery_app/presentation/models/cached_user_model.dart';
-import 'package:delivery_app/presentation/models/user_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_caching_cubit/user_caching_cubit.dart';
-import 'package:delivery_app/presentation/view_models/user_view_models/user_info_cubit/user_info_cubit.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_account_widgets/global_account_info_bar_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_account_widgets/global_account_info_section_widget.dart';
-import 'package:delivery_app/presentation/views/global_widgets/global_account_widgets/global_ads_bar_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_account_widgets/global_profile_card_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_logout_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
-import 'package:delivery_app/presentation/views/user_views/views/account/views/ads_partner_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,8 +28,9 @@ class _AccountViewState extends State<AccountView> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<UserCachingCubit>(
-      create: (context) => UserCachingCubit(
-          sl.get<CacheUserUseCase>(), sl.get<GetCachedUserUseCase>())..loadCachedUser(),
+      create: (context) => UserCachingCubit(sl.get<CacheUserUseCase>(),
+          sl.get<GetCachedUserUseCase>(), sl<UpdateCachedUserUseCase>())
+        ..loadCachedUser(),
       child: BlocBuilder<UserCachingCubit, UserCachingStates>(
         builder: (context, state) {
           var cubit = UserCachingCubit.get(context);
@@ -43,6 +39,7 @@ class _AccountViewState extends State<AccountView> {
               child: GlobalLoadingIndicator(),
             );
           } else if (state is UserCachingLoadedState) {
+            var cachedUserModel = state.cachedUserModel;
             return GlobalPaddingWidget(
               child: SingleChildScrollView(
                 child: Column(
@@ -73,13 +70,7 @@ class _AccountViewState extends State<AccountView> {
                     ),
                     GlobalAccountInfoBarWidget(
                       onPressed: () {
-                        Navigator.pushNamed(context, Routes.editAccountRoute)
-                            .then((value) {
-                          if (value == 'refresh') {
-                            // Trigger rebuild or reload data
-                            setState(() {});
-                          }
-                        });
+                        Navigator.pushNamed(context, Routes.editAccountRoute);
                       },
                     ),
                     SizedBox(
@@ -87,14 +78,14 @@ class _AccountViewState extends State<AccountView> {
                     ),
                     GlobalProfileCardWidget(
                       fieldName: "الاسم بالكامل",
-                      fieldValue: cubit.cachedUserModel.userName,
+                      fieldValue: cachedUserModel.userName,
                     ),
                     SizedBox(
                       height: AppSize.s20.h,
                     ),
                     GlobalProfileCardWidget(
                       fieldName: "رقم الهاتف",
-                      fieldValue: cubit.cachedUserModel.phoneNumber,
+                      fieldValue:cachedUserModel.phoneNumber,
                     ),
                     SizedBox(
                       height: AppSize.s10.h,
@@ -102,13 +93,13 @@ class _AccountViewState extends State<AccountView> {
                     GlobalProfileCardWidget(
                       height: AppSize.s70.h,
                       fieldName: "العنوان",
-                      fieldValue: cubit.cachedUserModel.userLocation,
+                      fieldValue: cachedUserModel.userLocation,
                     ),
-                    GlobalAdsBarWidget(
-                      onPressed: () {
-                        Navigator.pushNamed(context, AdsPartnerView.id);
-                      },
-                    ),
+                    // GlobalAdsBarWidget(
+                    //   onPressed: () {
+                    //     Navigator.pushNamed(context, AdsPartnerView.id);
+                    //   },
+                    // ),
                     SizedBox(
                       height: AppSize.s50.h,
                     ),
@@ -121,7 +112,7 @@ class _AccountViewState extends State<AccountView> {
               ),
             );
           } else {
-            return  Center(
+            return Center(
               child: Text(
                 "هناك خطأ ما حاول مره اخرى لاحقا",
                 style: Theme.of(context).textTheme.titleMedium,

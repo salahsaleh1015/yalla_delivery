@@ -2,7 +2,6 @@
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_circular_button_widget.dart';
-import 'package:delivery_app/presentation/views/user_views/views/cart/views/cart_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -19,7 +18,7 @@ class ShopImageItem extends StatelessWidget {
       decoration:  BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fill,
-            image: NetworkImage(image),
+            image: AssetImage(image),
           )),
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -40,7 +39,7 @@ class ShopImageItem extends StatelessWidget {
             ),
             GlobalCircularButtonWidget(
               onTap: () {
-                Navigator.pushNamed(context, CartView.id);
+               // Navigator.pushNamed(context, CartView.id);
               },
               icon: Icons.shopping_cart_sharp,
               iconColor: ColorManager.white,

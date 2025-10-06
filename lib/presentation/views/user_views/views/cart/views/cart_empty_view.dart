@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/resources/assets_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
 import '../../../../global_widgets/global_button_widget.dart';
-import '../../main_layout/views/main_layout_view.dart';
 
 
 class CartEmptyView extends StatelessWidget {

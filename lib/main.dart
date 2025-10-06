@@ -7,7 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:injectable/injectable.dart';
+
 
 import 'core/resources/routes_manager.dart';
 import 'core/services/shared_preferences_services/shared_preferences_services.dart';
@@ -54,7 +54,8 @@ Future<void> main() async {
         'ar',
       ),
       child: YallaDeliveryApp(
-        startRoute: startRoute,
+        //startRoute: startRoute,
+        startRoute: Routes.deliveryAuthenticationRoute,
       ),
     ),
   );

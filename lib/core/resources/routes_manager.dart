@@ -1,6 +1,4 @@
-import 'package:delivery_app/presentation/models/cached_user_model.dart';
 import 'package:delivery_app/presentation/models/order_info_model.dart';
-import 'package:delivery_app/presentation/models/user_model.dart';
 import 'package:delivery_app/presentation/models/verification_args_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/phone_auth_cubit/phone_auth_cubit.dart';
 import 'package:delivery_app/presentation/views/admin_views/views/admin_account/views/admin_account_view.dart';
@@ -51,8 +49,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../presentation/models/banner_model.dart';
 import '../../presentation/models/delivery_model.dart';
-import '../../presentation/models/user_and_delivery_combined_model.dart';
-import '../../presentation/models/user_and_order_combined_model.dart';
 import '../../presentation/views/user_views/views/chat/views/chat_messages_view.dart';
 import '../../presentation/views/user_views/views/chat/views/chats_view.dart';
 import '../../presentation/views/user_views/views/home/view/banner_details_view.dart';
@@ -115,6 +111,7 @@ class Routes {
       "/deliveryOrderSummaryForDelivery";
   static const String deliveryChatRoute = "/deliveryChat";
   static const String deliveryAuthenticationRoute = "/deliveryAuthentication";
+
 }
 
 class RouteGenerator {
@@ -167,7 +164,7 @@ class RouteGenerator {
                   isSignUpFlow: args.isSignUpFlow,
                 ));
       case Routes.mainLayoutRoute:
-        return MaterialPageRoute(builder: (_) => MainLayoutView());
+        return MaterialPageRoute(builder: (_) => const MainLayoutView());
       case Routes.homeRoute:
         return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.shopDetailsRoute:
@@ -280,7 +277,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const DeliveryChatView());
       case Routes.deliveryAuthenticationRoute:
         return MaterialPageRoute(
-            builder: (_) => const DeliveryAuthenticationView());
+            builder: (_) =>  DeliveryAuthenticationView());
+
 
       default:
         return _undefinedRoute();

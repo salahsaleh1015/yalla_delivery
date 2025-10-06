@@ -7,7 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/resources/routes_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
-import '../../../../../models/user_and_delivery_combined_model.dart';
 import '../../../../global_widgets/global_button_widget.dart';
 import '../../../../global_widgets/global_custom_order_text_field.dart';
 

@@ -5,7 +5,6 @@ import 'package:delivery_app/core/services/shared_preferences_services/shared_pr
 import 'package:delivery_app/presentation/view_models/user_view_models/user_caching_cubit/user_caching_cubit.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,7 +17,7 @@ import '../../../../../models/cached_user_model.dart';
 import '../../../../../models/user_model.dart';
 
 class CompleteAuthenticationView extends StatelessWidget {
-  CompleteAuthenticationView(
+  const CompleteAuthenticationView(
       {super.key, required this.userModel, required this.isSignUpFlow});
   final UserModel userModel;
   final bool isSignUpFlow;
@@ -27,7 +26,7 @@ class CompleteAuthenticationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<UserCachingCubit>(
       create: (context) => UserCachingCubit(
-          sl.get<CacheUserUseCase>(), sl.get<GetCachedUserUseCase>()),
+          sl.get<CacheUserUseCase>(), sl.get<GetCachedUserUseCase>(),sl<UpdateCachedUserUseCase>()),
       child: Scaffold(
         backgroundColor: ColorManager.white,
         body: Center(

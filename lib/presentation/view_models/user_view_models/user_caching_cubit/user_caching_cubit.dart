@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -10,8 +9,10 @@ part 'user_caching_state.dart';
 class UserCachingCubit extends Cubit<UserCachingStates> {
   final CacheUserUseCase _cacheUserUseCase;
   final GetCachedUserUseCase _getCachedUserUseCase;
+  final UpdateCachedUserUseCase _updateCachedUserUseCase;
 
-  UserCachingCubit(this._cacheUserUseCase, this._getCachedUserUseCase)
+  UserCachingCubit(this._cacheUserUseCase, this._getCachedUserUseCase,
+      this._updateCachedUserUseCase)
       : super(UserCachingInitial());
 
   late CachedUserModel cachedUserModel;
@@ -33,9 +34,20 @@ class UserCachingCubit extends Cubit<UserCachingStates> {
     final cachedUser = _getCachedUserUseCase(); // من غير باراميتر
     if (cachedUser != null) {
       cachedUserModel = cachedUser; // خزّنه في المتغير الداخلي
-      emit(UserCachingLoadedState(cachedUserModel: cachedUser));
+      emit(UserCachingLoadedState(
+        cachedUserModel: cachedUser,
+      ));
     } else {
       emit(UserCachingErrorState(errorMessage: 'User not found'));
     }
+  }
+
+  Future<void> updateUser({required CachedUserModel cachedUserModel}) async {
+    emit(UserCachingLoadingState());
+
+    await _updateCachedUserUseCase(cachedUserModel);
+    this.cachedUserModel = cachedUserModel;
+
+    emit(UserCachingLoadedState(cachedUserModel: cachedUserModel));
   }
 }

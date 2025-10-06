@@ -24,3 +24,14 @@ class GetCachedUserUseCase {
     return _cachedUserRepository.getCachedUser();
   }
 }
+
+@lazySingleton
+class UpdateCachedUserUseCase {
+  final ICachedUserRepository _cachedUserRepository;
+
+  UpdateCachedUserUseCase(this._cachedUserRepository);
+
+  Future<void> call(CachedUserModel userModel) {
+    return _cachedUserRepository.updateCachedUser(userModel);
+  }
+}

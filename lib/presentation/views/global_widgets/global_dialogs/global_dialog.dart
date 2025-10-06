@@ -18,13 +18,13 @@ class CustomDialog extends StatelessWidget {
   final Color? actionButtonColor;
 
   const CustomDialog({
-    Key? key,
+    super.key,
     required this.content,
     required this.dialogTitle,
     required this.actionButtonHint,
     required this.actionButtonCallBack,
     this.actionButtonColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -4,6 +4,8 @@ import 'package:delivery_app/presentation/views/global_widgets/global_vendor_ite
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/resources/routes_manager.dart';
+
 
 class GlobalVendorListWidget extends StatelessWidget {
   const GlobalVendorListWidget({
@@ -23,7 +25,9 @@ class GlobalVendorListWidget extends StatelessWidget {
         ),
         itemCount: 10,
         itemBuilder: (context, index) =>  GlobalVendorItemWidget(
-          onTap: (){},
+          onTap: (){
+            Navigator.pushNamed(context, Routes.shopDetailsRoute);
+          },
         ),
       ),
     );

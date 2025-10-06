@@ -16,7 +16,7 @@ class OtpTextField extends StatelessWidget {
 
 
   final Function(String) onOtpCompleted;
-   OtpTextField({super.key, required this.onOtpCompleted});
+   const OtpTextField({super.key, required this.onOtpCompleted});
 
 
   @override

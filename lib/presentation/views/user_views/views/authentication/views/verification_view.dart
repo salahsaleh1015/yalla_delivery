@@ -14,7 +14,7 @@ import '../authentication_widgets/auth_dialog.dart';
 import '../authentication_widgets/otpTextField.dart';
 
 class VerificationView extends StatefulWidget {
-  VerificationView(
+  const VerificationView(
       {super.key, required this.userModel, required this.isSignUpFlow});
 
   final UserModel userModel;

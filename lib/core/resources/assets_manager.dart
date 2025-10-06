@@ -24,6 +24,7 @@ class AssetsManager {
   static const String notFound = "$imagePath/not_founded.png";
   static const String completeAuthImage1 = "$imagePath/complete_auth_image1.png";
   static const String completeAuthImage2 = "$imagePath/complete_auth_image2.png";
+  static const String emptyChat = "$imagePath/empty_chat.png";
 
 
 

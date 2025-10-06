@@ -1,5 +1,3 @@
-import 'package:delivery_app/presentation/models/cached_user_model.dart';
-import 'package:delivery_app/presentation/models/user_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_main_layout_cubit/bottom_nav_cubit.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_bottom_nav_bar_widget.dart';
 import 'package:delivery_app/presentation/views/user_views/views/account/views/account_view.dart';
@@ -11,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainLayoutView extends StatelessWidget {
-  MainLayoutView({
+  const MainLayoutView({
     super.key,
   });
 

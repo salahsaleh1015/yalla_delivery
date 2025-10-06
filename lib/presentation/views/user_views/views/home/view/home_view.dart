@@ -4,13 +4,10 @@ import '../../../../global_widgets/global_circular_button_widget.dart';
 import '../../../../global_widgets/global_padding_widget.dart';
 import '../../../../global_widgets/global_search_card_item_widget.dart';
 import '../../../../global_widgets/global_user_card_widget.dart';
-import '../../../../global_widgets/global_view_all_button.dart';
 import '../../../../global_widgets/lists/global_advertisement_list_widget.dart';
 import '../../../../global_widgets/lists/global_vendor_list_widget.dart';
-import '../../cart/views/cart_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'all_vendors_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -30,7 +27,7 @@ class HomeView extends StatelessWidget {
                 ),
                 GlobalCircularButtonWidget(
                   onTap: () {
-                    Navigator.pushNamed(context, CartView.id);
+                   // Navigator.pushNamed(context, CartView.id);
                   },
                   icon: Icons.shopping_cart_outlined,
                   iconColor: ColorManager.black,
@@ -67,15 +64,15 @@ class HomeView extends StatelessWidget {
                       .copyWith(color: ColorManager.black),
                 ),
                 const Spacer(),
-                GlobalViewAllButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, AllVendorsView.id);
-                  },
-                ),
+                // GlobalViewAllButton(
+                //   onPressed: () {
+                //     Navigator.pushNamed(context, AllVendorsView.id);
+                //   },
+                // ),
               ],
             ),
             SizedBox(
-              height: AppSize.s10.h,
+              height: AppSize.s20.h,
             ),
             const GlobalVendorListWidget(),
           ],

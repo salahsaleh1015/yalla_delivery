@@ -8,11 +8,9 @@ final class UserCachingInitial extends UserCachingStates {}
 final class UserCachingLoadingState extends UserCachingStates {}
 
 final class UserCachingLoadedState extends UserCachingStates {
-final CachedUserModel cachedUserModel;
+  final CachedUserModel cachedUserModel;
 
   UserCachingLoadedState({required this.cachedUserModel});
-
-
 }
 
 final class UserCachingErrorState extends UserCachingStates {

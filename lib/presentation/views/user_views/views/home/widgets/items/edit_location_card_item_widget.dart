@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../global_widgets/global_dialogs/location_dialog.dart';
 
 class EditLocationCardItemWidget extends StatelessWidget {
   const EditLocationCardItemWidget({
@@ -33,30 +32,31 @@ class EditLocationCardItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
                           "موقع التوصيل:",
                           style: Theme.of(context).textTheme.headlineSmall,
                         ),
                         const Spacer(),
-                        TextButton(
-                          onPressed: () {
-                            locationDialog(context);
-                          },
-                          child: Row(
-                            children: [
-                              Text(
-                                "تغيير",
-                                style: Theme.of(context).textTheme.labelLarge,
-                              ),
-                              Icon(
-                                Icons.arrow_forward,
-                                color: ColorManager.primary,
-                              )
-                            ],
-                          ),
-                        ),
+
+                        // TextButton(
+                        //   onPressed: () {
+                        //     locationDialog(context);
+                        //   },
+                        //   child: Row(
+                        //     children: [
+                        //       Text(
+                        //         "تغيير",
+                        //         style: Theme.of(context).textTheme.labelLarge,
+                        //       ),
+                        //       Icon(
+                        //         Icons.arrow_forward,
+                        //         color: ColorManager.primary,
+                        //       )
+                        //     ],
+                        //   ),
+                        // ),
                       ],
                     ),
                     SizedBox(

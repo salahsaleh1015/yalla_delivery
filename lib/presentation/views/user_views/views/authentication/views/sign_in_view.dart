@@ -138,12 +138,12 @@ class _SignInViewState extends State<SignInView> {
         }
 
         if (state is PhoneAuthError) {
-          final error = (state).errorMsg;
+
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
                 duration: const Duration(seconds: 3),
                 backgroundColor: ColorManager.black,
-                content: Text(error)),
+                content: const Text('هناك خطا ما تاكد من اتصالك بالانترنت')),
           );
         }
       },

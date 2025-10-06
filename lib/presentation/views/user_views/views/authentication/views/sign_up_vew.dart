@@ -1,4 +1,3 @@
-
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
@@ -14,7 +13,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../authentication_widgets/auth_dialog.dart';
-
 
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
@@ -154,14 +152,13 @@ class _SignUpViewState extends State<SignUpView> {
                   height: AppSize.s30.h,
                 ),
                 GlobalButtonWidget(
-                  isButtonEnabled: isButtonEnabled,
-                  width: double.infinity,
-                  text: "متابعة",
-                  onTap:() {
-                     _registerUser(context);
-                  }
-                ),
-              _buildPhoneNumberSubmittedBloc(),
+                    isButtonEnabled: isButtonEnabled,
+                    width: double.infinity,
+                    text: "متابعة",
+                    onTap: () {
+                      _registerUser(context);
+                    }),
+                _buildPhoneNumberSubmittedBloc(),
                 SizedBox(
                   height: AppSize.s100.h,
                 ),
@@ -183,26 +180,28 @@ class _SignUpViewState extends State<SignUpView> {
 
         if (state is PhoneAuthNumberSubmitted) {
           Navigator.pop(context);
-          Navigator.pushNamed(context, Routes.verificationRoute,
-            arguments:  VerificationArgs(
+          Navigator.pushNamed(
+            context,
+            Routes.verificationRoute,
+            arguments: VerificationArgs(
               isSignUpFlow: true,
-
               userModel: UserModel(
                 phoneNumber: _phoneController.text,
                 userLocation: _locationController.text,
                 userName: _nameController.text,
               ),
-            ),);
+            ),
+          );
         }
 
         if (state is PhoneAuthError) {
           Navigator.pop(context);
-          final error = (state).errorMsg;
+
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
                 duration: const Duration(seconds: 3),
                 backgroundColor: ColorManager.black,
-                content: Text(error)),
+                content: const Text('هناك خطا ما تاكد من اتصالك بالانترنت')),
           );
         }
       },
