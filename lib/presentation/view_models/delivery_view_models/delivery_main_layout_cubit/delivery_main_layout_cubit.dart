@@ -34,13 +34,6 @@ class DeliveryMainLayoutCubit extends Cubit<DeliveryMainLayoutStates> {
 
 
 
-  List<Widget> deliveryScreens = const [
-     DeliveryHomeView(),
-     DeliveryOrderManagementView(),
-     DeliveryAddOrderView(),
-     DeliveryChatView(),
-     DeliveryAccountView(),
-  ];
 
 
 }

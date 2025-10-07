@@ -48,46 +48,44 @@ class GlobalDeliveryCardsFilteredListWidget extends StatelessWidget {
               }
               return ListView.builder(
                   itemCount: cubit.deliveriesFilteredList.length,
-                  itemBuilder: (context, index) =>
-                      GlobalDeliveryFilteredCardsWidget(
-                        deliveryFilteredCardsModel: DeliveryFilteredCardsModel(
-                            arrowOnTap: isSelected ? () {} : () {},
-                            onTap: isSelected
-                                ? () {
-                                    Navigator.pushNamed(context,
-                                        Routes.addOrderFromDeliveryRoute,
-                                        arguments: DeliveryModel(
-                                          deliveryName: cubit
-                                              .deliveriesFilteredList[index]
-                                              .deliveryName,
-                                          deliveryPhone: cubit
-                                              .deliveriesFilteredList[index]
-                                              .deliveryPhone,
-                                          deliveryLocation: cubit
-                                              .deliveriesFilteredList[index]
-                                              .deliveryLocation,
-                                          deliveryStatus: deliveryStatus,
-                                          deliveryRate: cubit
-                                              .deliveriesFilteredList[index]
-                                              .deliveryRate,
-                                        ));
-                                  }
-                                : () {},
-                            isSelected: isSelected,
-                            deliveryModel: DeliveryModel(
-                              deliveryName: cubit
-                                  .deliveriesFilteredList[index].deliveryName,
-                              deliveryPhone: cubit
-                                  .deliveriesFilteredList[index].deliveryPhone,
-                              deliveryLocation: cubit
-                                  .deliveriesFilteredList[index]
-                                  .deliveryLocation,
-                              deliveryStatus: cubit
-                                  .deliveriesFilteredList[index].deliveryStatus,
-                              deliveryRate: cubit
-                                  .deliveriesFilteredList[index].deliveryRate,
-                            )),
-                      ));
+                  itemBuilder: (context, index) {
+                    var delivery =  DeliveryModel(
+                      deliveryMail: cubit
+                          .deliveriesFilteredList[index].deliveryMail,
+
+                      deliveryPassword: cubit
+                          .deliveriesFilteredList[index].deliveryPassword,
+                      deliveryName: cubit
+                          .deliveriesFilteredList[index]
+                          .deliveryName,
+                      deliveryPhone: cubit
+                          .deliveriesFilteredList[index]
+                          .deliveryPhone,
+                      deliveryLocation: cubit
+                          .deliveriesFilteredList[index]
+                          .deliveryLocation,
+                      deliveryStatus: deliveryStatus,
+                      deliveryRate: cubit
+                          .deliveriesFilteredList[index]
+                          .deliveryRate,
+                    );
+
+                    return  GlobalDeliveryFilteredCardsWidget(
+
+                      deliveryFilteredCardsModel: DeliveryFilteredCardsModel(
+                          arrowOnTap: isSelected ? () {} : () {},
+                          onTap: isSelected
+                              ? () {
+                            Navigator.pushNamed(context,
+                                Routes.addOrderFromDeliveryRoute,
+                                arguments: delivery);
+                          }
+                              : () {},
+                          isSelected: isSelected,
+                          deliveryModel: delivery),
+                    );
+                  }
+                     );
             } else {
               return const GlobalSomethingWrongWidget();
             }

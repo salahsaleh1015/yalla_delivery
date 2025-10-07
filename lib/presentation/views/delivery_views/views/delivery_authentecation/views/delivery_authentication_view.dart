@@ -149,6 +149,7 @@ class _DeliveryAuthenticationViewState
                         Navigator.pushReplacementNamed(
                           context,
                           Routes.deliveryMainLayoutRoute,
+                          arguments: emailController.text,
                         );
                       }
                     },

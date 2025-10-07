@@ -50,45 +50,38 @@ class _GlobalAvailableDeliveryCardsListWidgetState
             height: widget.height,
             child: ListView.builder(
                 itemCount: cubit.deliveriesFilteredList.length,
-                itemBuilder: (context, index) =>
-                    GlobalDeliveryFilteredCardsWidget(
-                      deliveryFilteredCardsModel: DeliveryFilteredCardsModel(
-                          arrowOnTap: () {
-                            ///todo index == _selectedIndex navigate to chat details view
-                          },
-                          onTap: () {
-                            _onCardTap(index);
+                itemBuilder: (context, index) {
+                  var delivery = DeliveryModel(
+                    deliveryMail: cubit
+                        .deliveriesFilteredList[index].deliveryMail,
 
-                            final selectedDelivery = DeliveryModel(
-                              deliveryName: cubit
-                                  .deliveriesFilteredList[index].deliveryName,
-                              deliveryPhone: cubit
-                                  .deliveriesFilteredList[index].deliveryPhone,
-                              deliveryLocation: cubit
-                                  .deliveriesFilteredList[index]
-                                  .deliveryLocation,
-                              deliveryStatus: cubit
-                                  .deliveriesFilteredList[index].deliveryStatus,
-                              deliveryRate: cubit
-                                  .deliveriesFilteredList[index].deliveryRate,
-                            );
-
-                            widget.onSelectedDelivery?.call(selectedDelivery);
-                          },
-                          isSelected: index == _selectedIndex,
-                          deliveryModel: DeliveryModel(
-                            deliveryName: cubit
-                                .deliveriesFilteredList[index].deliveryName,
-                            deliveryPhone: cubit
-                                .deliveriesFilteredList[index].deliveryPhone,
-                            deliveryLocation: cubit
-                                .deliveriesFilteredList[index].deliveryLocation,
-                            deliveryStatus: cubit
-                                .deliveriesFilteredList[index].deliveryStatus,
-                            deliveryRate: cubit
-                                .deliveriesFilteredList[index].deliveryRate,
-                          )),
-                    )),
+                    deliveryPassword: cubit
+                        .deliveriesFilteredList[index].deliveryPassword,
+                    deliveryName: cubit
+                        .deliveriesFilteredList[index].deliveryName,
+                    deliveryPhone: cubit
+                        .deliveriesFilteredList[index].deliveryPhone,
+                    deliveryLocation: cubit
+                        .deliveriesFilteredList[index].deliveryLocation,
+                    deliveryStatus: cubit
+                        .deliveriesFilteredList[index].deliveryStatus,
+                    deliveryRate: cubit
+                        .deliveriesFilteredList[index].deliveryRate,
+                  );
+                  return  GlobalDeliveryFilteredCardsWidget(
+                    deliveryFilteredCardsModel: DeliveryFilteredCardsModel(
+                        arrowOnTap: () {
+                          ///todo index == _selectedIndex navigate to chat details view
+                        },
+                        onTap: () {
+                          _onCardTap(index);
+                          widget.onSelectedDelivery?.call(delivery);
+                        },
+                        isSelected: index == _selectedIndex,
+                        deliveryModel: delivery),
+                  );
+                }
+                   ),
           );
         },
       ),

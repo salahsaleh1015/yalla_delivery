@@ -1,6 +1,3 @@
-
-
-
 import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/presentation/models/delivery_card_model.dart';
 import 'package:delivery_app/presentation/models/delivery_model.dart';
@@ -14,9 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../view_models/user_view_models/delivery_in_user_cubit/delivery_in_user_cubit.dart';
 
 class GlobalDeliveryCardsListWidget extends StatelessWidget {
-  const GlobalDeliveryCardsListWidget(
-      {super.key,  required this.height});
-
+  const GlobalDeliveryCardsListWidget({super.key, required this.height});
 
   final double height;
   @override
@@ -44,41 +39,33 @@ class GlobalDeliveryCardsListWidget extends StatelessWidget {
               }
               return ListView.builder(
                   itemCount: cubit.deliveriesList.length,
-                  itemBuilder: (context, index) => GlobalDeliveryCardsWidget(
-                    deliveryCardModel: DeliveryCardModel(
-                      onTap: () {
-                        Navigator.pushNamed(
-                            context, Routes.addOrderFromDeliveryRoute,
-                            arguments: DeliveryModel(
-                              deliveryName: cubit
-                                  .deliveriesList[index].deliveryName,
-                              deliveryPhone: cubit
-                                  .deliveriesList[index].deliveryPhone,
-                              deliveryLocation: cubit
-                                  .deliveriesList[index].deliveryLocation,
-                              deliveryStatus: cubit
-                                  .deliveriesList[index].deliveryStatus,
-                              deliveryRate: cubit
-                                  .deliveriesList[index].deliveryRate,
-                            ),);
-                      },
-                      arrowOnTap: () {},
+                  itemBuilder: (context, index) {
+                    var delivery = DeliveryModel(
+                      deliveryMail: cubit.deliveriesList[index].deliveryMail,
+                      deliveryPassword:
+                          cubit.deliveriesList[index].deliveryPassword,
+                      deliveryName: cubit.deliveriesList[index].deliveryName,
+                      deliveryPhone: cubit.deliveriesList[index].deliveryPhone,
+                      deliveryLocation:
+                          cubit.deliveriesList[index].deliveryLocation,
                       deliveryStatus:
-                      cubit.deliveriesList[index].deliveryStatus,
-                      deliveryModel: DeliveryModel(
-                        deliveryName:
-                        cubit.deliveriesList[index].deliveryName,
-                        deliveryPhone:
-                        cubit.deliveriesList[index].deliveryPhone,
-                        deliveryLocation:
-                        cubit.deliveriesList[index].deliveryLocation,
+                          cubit.deliveriesList[index].deliveryStatus,
+                      deliveryRate: cubit.deliveriesList[index].deliveryRate,
+                    );
+                    return GlobalDeliveryCardsWidget(
+                      deliveryCardModel: DeliveryCardModel(
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, Routes.addOrderFromDeliveryRoute,
+                              arguments: delivery);
+                        },
+                        arrowOnTap: () {},
                         deliveryStatus:
-                        cubit.deliveriesList[index].deliveryStatus,
-                        deliveryRate:
-                        cubit.deliveriesList[index].deliveryRate,
+                            cubit.deliveriesList[index].deliveryStatus,
+                        deliveryModel: delivery,
                       ),
-                    ),
-                  ));
+                    );
+                  });
             } else {
               return const GlobalSomethingWrongWidget();
             }

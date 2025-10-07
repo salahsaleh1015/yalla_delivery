@@ -14,9 +14,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class DeliveryAccountView extends StatelessWidget {
-  const DeliveryAccountView({super.key});
+  const DeliveryAccountView({super.key, required this.deliveryGmail});
 
-  static String id = "DeliveryAccountView";
+final String deliveryGmail;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
