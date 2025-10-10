@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class DeliveryModel {
   DeliveryModel(
       {required this.deliveryMail,
@@ -18,16 +20,19 @@ class DeliveryModel {
   final String deliveryMail;
   final String deliveryPassword;
 
-  factory DeliveryModel.fromJson(Map<String, dynamic> json) => DeliveryModel(
-        deliveryMail: json['deliveryMail'],
-        deliveryPassword: json['deliveryPassword'],
-        deliveryId: json['deliveryId'],
-        deliveryName: json['deliveryName'],
-        deliveryPhone: json['deliveryPhone'],
-        deliveryLocation: json['deliveryLocation'],
-        deliveryStatus: json['deliveryStatus'],
-        deliveryRate: json['deliveryRate'],
-      );
+  factory DeliveryModel.fromJson(DocumentSnapshot  json){
+    final data = json.data() as Map<String, dynamic>;
+    return DeliveryModel(
+      deliveryMail: data['deliveryMail'],
+      deliveryPassword: data['deliveryPassword'],
+      deliveryId: data['deliveryId'],
+      deliveryName: data['deliveryName'],
+      deliveryPhone: data['deliveryPhone'],
+      deliveryLocation: data['deliveryLocation'],
+      deliveryStatus: data['deliveryStatus'],
+      deliveryRate: data['deliveryRate'],
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         'deliveryId': deliveryId,

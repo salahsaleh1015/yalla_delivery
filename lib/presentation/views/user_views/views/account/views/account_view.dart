@@ -103,7 +103,9 @@ class _AccountViewState extends State<AccountView> {
                     SizedBox(
                       height: AppSize.s50.h,
                     ),
-                    const GlobalLogoutButtonWidget(),
+                     GlobalLogoutButtonWidget(
+                      actionButtonCall: (){},
+                    ),
                     SizedBox(
                       height: AppSize.s10.h,
                     ),

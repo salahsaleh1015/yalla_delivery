@@ -72,7 +72,12 @@ class AdminAccountView extends StatelessWidget {
           SizedBox(
             height: AppSize.s50.h,
           ),
-          const GlobalLogoutButtonWidget(),
+           GlobalLogoutButtonWidget(
+             actionButtonCall: () {
+               // Navigator.pushReplacementNamed(
+               //     context, Routes.deliveryAuthenticationRoute);
+             },
+           ),
         ],
       ),
     );

@@ -272,8 +272,11 @@ class RouteGenerator {
           deliveryGmail: deliveryGmail,
         ));
       case Routes.deliveryEditAccountRoute:
+        var deliveryGmail = settings.arguments as String;
         return MaterialPageRoute(
-            builder: (_) => const DeliveryEditAccountView());
+            builder: (_) =>  DeliveryEditAccountView(
+              deliveryGmail: deliveryGmail,
+            ));
       case Routes.deliveryAddOrderRoute:
         return MaterialPageRoute(builder: (_) => const DeliveryAddOrderView());
       case Routes.deliveryOrderSummaryForDeliveryRoute:

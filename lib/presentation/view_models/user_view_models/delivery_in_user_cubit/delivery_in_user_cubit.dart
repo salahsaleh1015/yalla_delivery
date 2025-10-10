@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delivery_app/presentation/models/delivery_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,7 +28,7 @@ class DeliveryInUserCubit extends Cubit<DeliveryInUserStates> {
         .then((value) {
       for (int i = 0; i < value.length; i++) {
         _deliveriesFilteredList.add(
-            DeliveryModel.fromJson(value[i].data() as Map<String, dynamic>));
+            DeliveryModel.fromJson(value[i].data() as DocumentSnapshot));
       }
     }).then((val) {
       emit(GetAllDeliveriesInUserByStatusSuccessState());
@@ -43,7 +44,7 @@ class DeliveryInUserCubit extends Cubit<DeliveryInUserStates> {
   await  _deliveryFirestoreServices.getAllDeliveries().then((value) {
       for (int i = 0; i < value.length; i++) {
         _deliveriesList.add(
-            DeliveryModel.fromJson(value[i].data() as Map<String, dynamic>));
+            DeliveryModel.fromJson(value[i].data() as DocumentSnapshot));
       }
       print("sssssssssssssssssssssssssssssssssssss");
       print(_deliveriesList.length);

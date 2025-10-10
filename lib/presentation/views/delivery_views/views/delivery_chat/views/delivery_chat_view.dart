@@ -22,7 +22,7 @@ class DeliveryChatView extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(AppSize.s70.r),
             child: Image.asset(
-              //color: ColorManager.transparent,
+//color: ColorManager.transparent,
               AssetsManager.emptyChat,
               height: AppSize.s250.h,
               width: AppSize.s250.w,
@@ -38,7 +38,13 @@ class DeliveryChatView extends StatelessWidget {
   }
 }
 
-//return Scaffold(
+
+
+
+
+
+
+// return Scaffold(
 // body: GlobalPaddingWidget(
 // child: SingleChildScrollView(
 // child: Column(
@@ -86,4 +92,4 @@ class DeliveryChatView extends StatelessWidget {
 // ],
 // ),
 // )),
-// );
+//);

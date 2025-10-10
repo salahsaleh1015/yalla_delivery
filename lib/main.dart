@@ -54,8 +54,8 @@ Future<void> main() async {
         'ar',
       ),
       child: YallaDeliveryApp(
-      // startRoute: startRoute,
-        startRoute: Routes.deliveryAuthenticationRoute,
+      //startRoute: startRoute,
+      startRoute: Routes.deliveryAuthenticationRoute,
       ),
     ),
   );
