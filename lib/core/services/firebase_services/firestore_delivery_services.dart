@@ -67,4 +67,17 @@ class FirestoreDeliveryServices {
       rethrow;
     }
   }
+
+ Future<void> editDeliveryStatusByEmail({required String email, required String deliveryStatus}) async {
+    await _deliveryCollectionRef
+        .where('deliveryMail', isEqualTo: email)
+        .limit(1)
+        .get()
+        .then((querySnapshot) {
+      if (querySnapshot.docs.isNotEmpty) {
+        final docId = querySnapshot.docs.first.id;
+        _deliveryCollectionRef.doc(docId).update({'deliveryStatus': deliveryStatus});
+      }
+    });
+  }
 }

@@ -17,6 +17,7 @@ import 'package:delivery_app/presentation/views/delivery_views/views/delivery_ad
 import 'package:delivery_app/presentation/views/delivery_views/views/delivery_add_order/views/delivery_order_summary_for_delivery.dart';
 import 'package:delivery_app/presentation/views/delivery_views/views/delivery_authentecation/views/delivery_authentication_view.dart';
 import 'package:delivery_app/presentation/views/delivery_views/views/delivery_chat/views/delivery_chat_view.dart';
+import 'package:delivery_app/presentation/views/delivery_views/views/delivery_home/views/delivery_home_view.dart';
 import 'package:delivery_app/presentation/views/delivery_views/views/delivery_main_layout/views/delivery_main_layout_view.dart';
 import 'package:delivery_app/presentation/views/delivery_views/views/delivery_order_management/views/delivery_order_management_view.dart';
 import 'package:delivery_app/presentation/views/delivery_views/views/delivery_order_management/views/delivery_order_summary_view.dart';
@@ -102,6 +103,7 @@ class Routes {
 
   // Delivery routes
   static const String deliveryMainLayoutRoute = "/deliveryMainLayout";
+  static const String deliveryHomeRoute = "/deliveryHome";
   static const String deliveryOrderManagementRoute = "/deliveryOrderManagement";
   static const String deliveryOrderSummaryRoute = "/deliveryOrderSummary";
   static const String deliveryAccountRoute = "/deliveryAccount";
@@ -287,6 +289,9 @@ class RouteGenerator {
       case Routes.deliveryAuthenticationRoute:
         return MaterialPageRoute(
             builder: (_) =>  DeliveryAuthenticationView());
+      case Routes.deliveryHomeRoute:
+        var deliveryGmail = settings.arguments as String;
+        return MaterialPageRoute(builder: (_) =>  DeliveryHomeView(deliveryGmail: deliveryGmail));
 
 
       default:

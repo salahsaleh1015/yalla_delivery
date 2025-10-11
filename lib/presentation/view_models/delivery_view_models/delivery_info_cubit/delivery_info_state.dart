@@ -29,3 +29,12 @@ final class DeliveryUpdateInfoErrorState extends DeliveryInfoStates {
 
   DeliveryUpdateInfoErrorState({required this.errorMessage});
 }
+
+
+class DeliveryUpdateStatusLoadingState extends DeliveryInfoStates {}
+class DeliveryUpdateStatusSuccessState extends DeliveryInfoStates {}
+class DeliveryUpdateStatusErrorState extends DeliveryInfoStates {
+  final String errorMessage;
+
+  DeliveryUpdateStatusErrorState({required this.errorMessage});
+}

@@ -58,6 +58,20 @@ class DeliveryInfoCubit extends Cubit<DeliveryInfoStates> {
       }
     }
   }
+
+  Future<void> editDeliveryStatusByEmail(
+      {required String email, required String status}) async {
+    emit(DeliveryUpdateStatusLoadingState());
+
+    try {
+      await _firestoreDeliveryServices.editDeliveryStatusByEmail(
+          email: email, deliveryStatus: status);
+      emit(DeliveryUpdateStatusSuccessState());
+    } catch (e) {
+      emit(DeliveryUpdateStatusErrorState(errorMessage: e.toString()));
+    }
+  }
+
   Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
   }
