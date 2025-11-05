@@ -8,12 +8,13 @@ class OrderModel {
   final String userOrderStatus;
   final String userOrderNotes;
 
-  final DateTime userOrderDate;
+  final String userOrderDate;
   final String deliveryName;
   final String deliveryPhone;
   final String deliveryLocation;
   final String deliveryStatus;
   final int deliveryRate;
+  final String deliveryMail;
 
   OrderModel({
      this.userOrderId,
@@ -30,6 +31,7 @@ class OrderModel {
     required this.deliveryLocation,
     required this.deliveryStatus,
     required this.deliveryRate,
+    required this.deliveryMail,
   });
 
   // Create an OrderModel from JSON
@@ -43,12 +45,13 @@ class OrderModel {
       userOrderStatus: json['userOrderStatus'],
       userOrderNotes: json['userOrderNotes'],
 
-      userOrderDate: DateTime.parse(json['userOrderDate']),
+      userOrderDate: json['userOrderDate'],
       deliveryName: json['deliveryName'],
       deliveryPhone: json['deliveryPhone'],
       deliveryLocation: json['deliveryLocation'],
       deliveryStatus: json['deliveryStatus'],
       deliveryRate: json['deliveryRate'],
+      deliveryMail: json['deliveryMail'],
     );
   }
 
@@ -63,12 +66,13 @@ class OrderModel {
       'userOrderId': userOrderId,
       'userOrderNotes': userOrderNotes,
 
-      'userOrderDate': userOrderDate.toIso8601String(),
+      'userOrderDate': userOrderDate,
       'deliveryName': deliveryName,
       'deliveryPhone': deliveryPhone,
       'deliveryLocation': deliveryLocation,
       'deliveryStatus': deliveryStatus,
       'deliveryRate': deliveryRate,
+      'deliveryMail': deliveryMail
     };
   }
 }

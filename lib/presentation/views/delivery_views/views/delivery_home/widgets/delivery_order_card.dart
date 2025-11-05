@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
+import '../../../../../models/order_model.dart';
 import '../../../../admin_views/views/admin_delivery_management/widgets/delivery_status_badge.dart';
 import '../../../../global_widgets/global_decorated_container.dart';
 import '../../../../global_widgets/global_light_button_widget.dart';
 class DeliveryOrderCard extends StatelessWidget {
-  const DeliveryOrderCard({super.key});
+  const DeliveryOrderCard({super.key,required this.orderModel});
 
+  final OrderModel orderModel;
   @override
   Widget build(BuildContext context) {
     return  GlobalDecoratedContainer(
@@ -19,15 +21,25 @@ class DeliveryOrderCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                buildOrderInfoStatement(
-                  context: context,
-                  title: "رقم الطلب: ",
-                  value: "50#",
+                Text(
+                  "رقم الطلب: ",
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineMedium!
+                      .copyWith(color: ColorManager.darkGrayColor),
                 ),
-                const Spacer(),
+                Text(
+                  " 50#  ",
+                  style: Theme.of(context).textTheme.headlineMedium,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+
+                const Expanded(child: SizedBox()),
+
                 DeliveryStatusBadge(
                     statusColor: ColorManager.lightGrayColor,
-                    deliveryStatus: "معلقة",
+                    deliveryStatus: orderModel.userOrderStatus,
                     deliveryStatusColor: ColorManager.darkGrayColor),
               ],
             ),
@@ -36,7 +48,7 @@ class DeliveryOrderCard extends StatelessWidget {
             ),
             buildOrderInfoStatement(
               title: "المستخدم: ",
-              value: "محمد علي",
+              value: orderModel.userName,
               context: context,
             ),
             SizedBox(
@@ -44,7 +56,7 @@ class DeliveryOrderCard extends StatelessWidget {
             ),
             buildOrderInfoStatement(
               title: "العنوان: ",
-              value: "مدينة 6 أكتوبر, محافظة الجيزة",
+              value: orderModel.userLocation,
               context: context,
             ),
             SizedBox(
@@ -52,7 +64,7 @@ class DeliveryOrderCard extends StatelessWidget {
             ),
             buildOrderInfoStatement(
               title: "الوقت: ",
-              value: "03:00 م",
+              value: orderModel.userOrderDate,
               context: context,
             ),
             SizedBox(
@@ -89,20 +101,27 @@ class DeliveryOrderCard extends StatelessWidget {
       {required BuildContext context,
         required String title,
         required String value}) =>
-      Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: Theme.of(context)
-                .textTheme
-                .headlineMedium!
-                .copyWith(color: ColorManager.darkGrayColor),
-          ),
-          Text(
-            value,
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
-        ],
+      SizedBox(
+        width: MediaQuery.sizeOf(context).width * 0.9,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineMedium!
+                  .copyWith(color: ColorManager.darkGrayColor),
+            ),
+            Expanded(
+              child: Text(
+                value,
+                style: Theme.of(context).textTheme.headlineMedium,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        ),
       );
 }

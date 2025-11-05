@@ -13,4 +13,16 @@ class FirestoreOrdersServices {
     order.userOrderId = orderId;
     return await _ordersCollectionRef.doc(orderId).set(order.toJson());
   }
+
+  Future<List<QueryDocumentSnapshot>> getDeliveryPendingOrdersByGmail({
+    required String deliveryMail,
+  }) async {
+    QuerySnapshot querySnapshot = await _ordersCollectionRef
+        .where("deliveryMail", isEqualTo: deliveryMail)
+        .where("userOrderStatus", isEqualTo: "المعلقة")
+        .get();
+
+    // Return the list of documents
+    return querySnapshot.docs;
+  }
 }

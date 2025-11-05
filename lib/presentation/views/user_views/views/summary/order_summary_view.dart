@@ -29,8 +29,8 @@ class OrderSummaryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => UserCachingCubit(
-          sl.get<CacheUserUseCase>(), sl.get<GetCachedUserUseCase>(),sl<UpdateCachedUserUseCase>())
+      create: (context) => UserCachingCubit(sl.get<CacheUserUseCase>(),
+          sl.get<GetCachedUserUseCase>(), sl<UpdateCachedUserUseCase>())
         ..loadCachedUser(),
       child: BlocBuilder<UserCachingCubit, UserCachingStates>(
         builder: (context, state) {
@@ -38,12 +38,12 @@ class OrderSummaryView extends StatelessWidget {
           if (state is UserCachingLoadingState) {
             return const GlobalLoadingIndicator();
           } else if (state is UserCachingErrorState) {
-            return  Center(
+            return Center(
                 child: Text(
               "هناك مشكلة حاول في وقت لاحق",
               style: Theme.of(context).textTheme.headlineMedium,
             ));
-          }else{
+          } else {
             return Scaffold(
               body: GlobalPaddingWidget(
                 child: SingleChildScrollView(
@@ -125,27 +125,32 @@ class OrderSummaryView extends StatelessWidget {
                           onTap: () {
                             cubit
                                 .addOrder(
-                                order: OrderModel(
-                                  userName: cacheCubit.cachedUserModel.userName,
-                                  userPhoneNumber:
+                                    order: OrderModel(
+                              deliveryMail:
+                                  orderInfoModel.deliveryModel.deliveryMail,
+                              userName: cacheCubit.cachedUserModel.userName,
+                              userPhoneNumber:
                                   cacheCubit.cachedUserModel.phoneNumber,
-                                  userLocation:
+                              userLocation:
                                   cacheCubit.cachedUserModel.userLocation,
-                                  userOrder: orderInfoModel.order,
-                                  userOrderStatus: 'قيد التنفيذ',
-                                  userOrderNotes: userNote ?? '',
-                                  userOrderDate: DateTime.now(),
-                                  deliveryName:
+                              userOrder: orderInfoModel.order,
+                              userOrderStatus: 'المعلقة',
+                                      userOrderNotes: userNote ?? '',
+
+                            ///todo: add delivery date correctly
+                              userOrderDate: '03:00',
+
+                              deliveryName:
                                   orderInfoModel.deliveryModel.deliveryName,
-                                  deliveryPhone:
+                              deliveryPhone:
                                   orderInfoModel.deliveryModel.deliveryPhone,
-                                  deliveryLocation:
+                              deliveryLocation:
                                   orderInfoModel.deliveryModel.deliveryLocation,
-                                  deliveryStatus:
+                              deliveryStatus:
                                   orderInfoModel.deliveryModel.deliveryStatus,
-                                  deliveryRate:
+                              deliveryRate:
                                   orderInfoModel.deliveryModel.deliveryRate,
-                                ))
+                            ))
                                 .then((_) {
                               confirmationDialog(context);
                             });
@@ -159,8 +164,6 @@ class OrderSummaryView extends StatelessWidget {
               ),
             );
           }
-
-
         },
       ),
     );

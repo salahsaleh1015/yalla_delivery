@@ -140,7 +140,7 @@ class _DeliveryAuthenticationViewState
                           SnackBar(
                             duration: const Duration(seconds: 3),
                             backgroundColor: ColorManager.black,
-                            content: const Text('هناك خطا ما تاكد من اتصالك بالانترنت'),
+                            content: const Text('حدث خطا في الاتصال'),
                           ),
                         );
                       }
