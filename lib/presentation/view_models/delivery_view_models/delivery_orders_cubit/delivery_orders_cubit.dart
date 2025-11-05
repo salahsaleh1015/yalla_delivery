@@ -15,17 +15,40 @@ class DeliveryOrdersCubit extends Cubit<DeliveryOrdersStates> {
   List<OrderModel> get ordersList => _ordersList;
   final List<OrderModel> _ordersList = [];
 
- void getDeliveryPendingOrdersByGmail({required String gMail}) {
+  void getDeliveryPendingOrdersByGmail({required String gMail}) {
     emit(DeliveryGetPendingOrdersLoadingState());
+
     firestoreOrdersServices
         .getDeliveryPendingOrdersByGmail(deliveryMail: gMail)
         .then((value) {
-          for(var order in value) {
-            _ordersList.add(OrderModel.fromJson(order.data() as Map<String, dynamic>));
-          }
+      _ordersList.clear();
+      for (var order in value) {
+        _ordersList
+            .add(OrderModel.fromJson(order.data() as Map<String, dynamic>));
+      }
       emit(DeliveryGetPendingOrdersSuccessState());
     }).catchError((error) {
       emit(DeliveryGetPendingOrdersErrorState(error: error.toString()));
     });
+  }
+
+  void editDeliveryOrderStatus({
+    required String orderId,
+    required String newStatus,
+    required String deliveryMail,
+  }) async {
+    emit(DeliveryEditOrderStatusLoadingState());
+    try {
+      await firestoreOrdersServices.editDeliveryOrderStatus(
+        orderId: orderId,
+        newStatus: newStatus,
+      );
+
+      getDeliveryPendingOrdersByGmail(gMail: deliveryMail);
+
+      emit(DeliveryEditOrderStatusSuccessState());
+    } catch (error) {
+      emit(DeliveryEditOrderStatusErrorState(error: error.toString()));
+    }
   }
 }

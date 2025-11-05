@@ -25,4 +25,12 @@ class FirestoreOrdersServices {
     // Return the list of documents
     return querySnapshot.docs;
   }
+
+  Future<void> editDeliveryOrderStatus(
+      {required String orderId, required String newStatus}) async {
+    await _ordersCollectionRef
+        .doc(orderId)
+        .update({"userOrderStatus": newStatus});
+    print("Order $orderId status updated to $newStatus");
+  }
 }

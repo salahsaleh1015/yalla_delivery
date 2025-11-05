@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
 import '../../../../../view_models/delivery_view_models/delivery_orders_cubit/delivery_orders_cubit.dart';
 
@@ -18,28 +19,41 @@ class DeliveryOrderCardListView extends StatelessWidget {
     return BlocProvider<DeliveryOrdersCubit>(
       create: (context) => DeliveryOrdersCubit()
         ..getDeliveryPendingOrdersByGmail(gMail: deliveryMail),
-      child: BlocBuilder<DeliveryOrdersCubit, DeliveryOrdersStates>(
+      child: BlocConsumer<DeliveryOrdersCubit, DeliveryOrdersStates>(
+        listener: (context, state) {
+          if (state is DeliveryEditOrderStatusSuccessState) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                duration: const Duration(seconds: 3),
+                backgroundColor: ColorManager.black,
+                content: const Text('تم التعديل بنجاح'),
+              ),
+            );
+          }
+        },
         builder: (context, state) {
           var cubit = DeliveryOrdersCubit.get(context);
-          if (state is DeliveryGetPendingOrdersLoadingState) {
+          var orders = cubit.ordersList;
+          if (state is DeliveryGetPendingOrdersLoadingState ||
+              state is DeliveryEditOrderStatusLoadingState) {
             return const SliverToBoxAdapter(
               child: Center(
                 child: GlobalLoadingIndicator(),
               ),
             );
           } else if (state is DeliveryGetPendingOrdersErrorState) {
-            return  const SliverToBoxAdapter(
+            return const SliverToBoxAdapter(
                 child: Text("حدث خطأ ما حاول في وقت لاحق"));
-
           } else {
             return cubit.ordersList.isEmpty
                 ? const SliverToBoxAdapter(child: NoData())
                 : SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                        (context, index) => DeliveryOrderCard(
-                              orderModel: cubit.ordersList[index],
-                            ),
-                        childCount: cubit.ordersList.length),
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                      final order = orders[index];
+                      return DeliveryOrderCard(
+                        orderModel: order,
+                      );
+                    }, childCount: orders.length),
                   );
           }
         },

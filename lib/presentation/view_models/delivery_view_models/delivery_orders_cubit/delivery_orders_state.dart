@@ -13,3 +13,12 @@ final class DeliveryGetPendingOrdersErrorState extends DeliveryOrdersStates {
   final String error;
   DeliveryGetPendingOrdersErrorState({required this.error});
 }
+
+
+final class DeliveryEditOrderStatusLoadingState extends DeliveryOrdersStates {}
+final class DeliveryEditOrderStatusSuccessState extends DeliveryOrdersStates {}
+
+final class DeliveryEditOrderStatusErrorState extends DeliveryOrdersStates {
+  final String error;
+  DeliveryEditOrderStatusErrorState({required this.error});
+}
