@@ -15,6 +15,37 @@ final class DeliveryGetPendingOrdersErrorState extends DeliveryOrdersStates {
 }
 
 
+final class DeliveryGetAcceptedOrdersLoadingState extends DeliveryOrdersStates {}
+final class DeliveryGetAcceptedOrdersSuccessState extends DeliveryOrdersStates {
+}
+
+final class DeliveryGetAcceptedOrdersErrorState extends DeliveryOrdersStates {
+  final String error;
+  DeliveryGetAcceptedOrdersErrorState({required this.error});
+}
+
+
+final class DeliveryGetCanceledOrdersLoadingState extends DeliveryOrdersStates {}
+final class DeliveryGetCanceledOrdersSuccessState extends DeliveryOrdersStates {
+}
+
+final class DeliveryGetCanceledOrdersErrorState extends DeliveryOrdersStates {
+  final String error;
+  DeliveryGetCanceledOrdersErrorState({required this.error});
+}
+
+
+
+final class DeliveryGetCompletedOrdersLoadingState extends DeliveryOrdersStates {}
+final class DeliveryGetCompletedOrdersSuccessState extends DeliveryOrdersStates {
+}
+
+final class DeliveryGetCompletedOrdersErrorState extends DeliveryOrdersStates {
+  final String error;
+  DeliveryGetCompletedOrdersErrorState({required this.error});
+}
+
+
 final class DeliveryEditOrderStatusLoadingState extends DeliveryOrdersStates {}
 final class DeliveryEditOrderStatusSuccessState extends DeliveryOrdersStates {}
 

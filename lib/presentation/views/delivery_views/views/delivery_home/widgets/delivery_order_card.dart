@@ -18,7 +18,6 @@ class DeliveryOrderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DeliveryOrdersCubit, DeliveryOrdersStates>(
-
       builder: (context, state) {
         var cubit = DeliveryOrdersCubit.get(context);
         return GlobalDecoratedContainer(
@@ -44,9 +43,14 @@ class DeliveryOrderCard extends StatelessWidget {
                     ),
                     const Expanded(child: SizedBox()),
                     DeliveryStatusBadge(
-                        statusColor: ColorManager.lightGrayColor,
-                        deliveryStatus: orderModel.userOrderStatus,
-                        deliveryStatusColor: ColorManager.darkGrayColor),
+                      statusColor: getStatusBadgeColor(orderModel.userOrderStatus),
+                      deliveryStatus: orderModel.userOrderStatus,
+                      deliveryStatusColor: getStatusTextColor(orderModel.userOrderStatus),
+                    ),
+                    // DeliveryStatusBadge(
+                    //     statusColor:ColorManager.lightGrayColor,
+                    //     deliveryStatus: orderModel.userOrderStatus,
+                    //     deliveryStatusColor: ColorManager.darkGrayColor),
                   ],
                 ),
                 SizedBox(
@@ -83,8 +87,7 @@ class DeliveryOrderCard extends StatelessWidget {
                       text: "رفض",
                       onTap: () {
                         print("button clicked for ${orderModel.userOrderId}");
-                        cubit
-                            .editDeliveryOrderStatus(
+                        cubit.editDeliveryOrderStatus(
                           deliveryMail: orderModel.deliveryMail,
                           orderId: orderModel.userOrderId!,
                           newStatus: "الملغية",
@@ -98,8 +101,7 @@ class DeliveryOrderCard extends StatelessWidget {
                       text: "قبول",
                       onTap: () {
                         print("button clicked for ${orderModel.userOrderId}");
-                        cubit
-                            .editDeliveryOrderStatus(
+                        cubit.editDeliveryOrderStatus(
                           deliveryMail: orderModel.deliveryMail,
                           orderId: orderModel.userOrderId!,
                           newStatus: "المقبولة",
@@ -143,4 +145,36 @@ class DeliveryOrderCard extends StatelessWidget {
           ],
         ),
       );
+
+
+  Color getStatusBadgeColor(String status) {
+    switch (status) {
+      case "المعلقة":
+        return ColorManager.lightGrayColor;
+      case "المقبولة":
+        return ColorManager.lightSecondary;
+      case "الملغية":
+        return ColorManager.lightPrimary;
+      case "المكتملة":
+        return ColorManager.lightGreenColor;
+      default:
+        return ColorManager.primary;
+    }
+  }
+
+  Color getStatusTextColor(String status) {
+    switch (status) {
+      case "المعلقة":
+        return ColorManager.darkGrayColor;
+      case "المقبولة":
+        return  ColorManager.primary;
+      case "الملغية":
+        return ColorManager.error;
+      case "المكتملة":
+        return ColorManager.greenColor;
+      default:
+        return ColorManager.white;
+    }
+  }
+
 }

@@ -9,10 +9,11 @@ import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
 import '../../../../../view_models/delivery_view_models/delivery_orders_cubit/delivery_orders_cubit.dart';
 
-class DeliveryOrderCardListView extends StatelessWidget {
-  const DeliveryOrderCardListView({super.key, required this.deliveryMail});
+class DeliveryPendingOrdersCardListView extends StatelessWidget {
+  const DeliveryPendingOrdersCardListView({super.key, required this.deliveryMail,});
 
   final String deliveryMail;
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class DeliveryOrderCardListView extends StatelessWidget {
         },
         builder: (context, state) {
           var cubit = DeliveryOrdersCubit.get(context);
-          var orders = cubit.ordersList;
+          var orders = cubit.pendingOrdersList;
           if (state is DeliveryGetPendingOrdersLoadingState ||
               state is DeliveryEditOrderStatusLoadingState) {
             return const SliverToBoxAdapter(
@@ -45,7 +46,7 @@ class DeliveryOrderCardListView extends StatelessWidget {
             return const SliverToBoxAdapter(
                 child: Text("حدث خطأ ما حاول في وقت لاحق"));
           } else {
-            return cubit.ordersList.isEmpty
+            return cubit.pendingOrdersList.isEmpty
                 ? const SliverToBoxAdapter(child: NoData())
                 : SliverList(
                     delegate: SliverChildBuilderDelegate((context, index) {

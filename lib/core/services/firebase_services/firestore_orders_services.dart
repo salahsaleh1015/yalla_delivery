@@ -16,6 +16,7 @@ class FirestoreOrdersServices {
 
   Future<List<QueryDocumentSnapshot>> getDeliveryPendingOrdersByGmail({
     required String deliveryMail,
+
   }) async {
     QuerySnapshot querySnapshot = await _ordersCollectionRef
         .where("deliveryMail", isEqualTo: deliveryMail)
@@ -25,6 +26,48 @@ class FirestoreOrdersServices {
     // Return the list of documents
     return querySnapshot.docs;
   }
+
+  Future<List<QueryDocumentSnapshot>> getDeliveryAcceptedOrdersByGmail({
+    required String deliveryMail,
+
+  }) async {
+    QuerySnapshot querySnapshot = await _ordersCollectionRef
+        .where("deliveryMail", isEqualTo: deliveryMail)
+        .where("userOrderStatus", isEqualTo: "المقبولة")
+        .get();
+
+    // Return the list of documents
+    return querySnapshot.docs;
+  }
+
+
+
+  Future<List<QueryDocumentSnapshot>> getDeliveryCanceledOrdersByGmail({
+    required String deliveryMail,
+
+  }) async {
+    QuerySnapshot querySnapshot = await _ordersCollectionRef
+        .where("deliveryMail", isEqualTo: deliveryMail)
+        .where("userOrderStatus", isEqualTo: "الملغية")
+        .get();
+
+    // Return the list of documents
+    return querySnapshot.docs;
+  }
+
+  Future<List<QueryDocumentSnapshot>> getDeliveryCompletedOrdersByGmail({
+    required String deliveryMail,
+
+  }) async {
+    QuerySnapshot querySnapshot = await _ordersCollectionRef
+        .where("deliveryMail", isEqualTo: deliveryMail)
+        .where("userOrderStatus", isEqualTo: "المكتملة")
+        .get();
+
+    // Return the list of documents
+    return querySnapshot.docs;
+  }
+
 
   Future<void> editDeliveryOrderStatus(
       {required String orderId, required String newStatus}) async {

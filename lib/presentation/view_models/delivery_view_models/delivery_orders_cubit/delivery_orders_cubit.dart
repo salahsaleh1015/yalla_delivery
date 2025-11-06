@@ -12,18 +12,33 @@ class DeliveryOrdersCubit extends Cubit<DeliveryOrdersStates> {
 
   FirestoreOrdersServices firestoreOrdersServices = FirestoreOrdersServices();
 
-  List<OrderModel> get ordersList => _ordersList;
-  final List<OrderModel> _ordersList = [];
 
-  void getDeliveryPendingOrdersByGmail({required String gMail}) {
+
+  ///todo: add cubit for each list in future
+  ///
+
+  List<OrderModel> get pendingOrdersList => _pendingOrdersList;
+  final List<OrderModel> _pendingOrdersList = [];
+
+  List<OrderModel> get acceptedOrdersList => _acceptedOrdersList;
+  final List<OrderModel> _acceptedOrdersList = [];
+
+
+  List<OrderModel> get canceledOrdersList => _canceledOrdersList;
+  final List<OrderModel> _canceledOrdersList = [];
+
+  List<OrderModel> get completedOrdersList => _completedOrdersList;
+  final List<OrderModel> _completedOrdersList = [];
+
+  void getDeliveryPendingOrdersByGmail({required String gMail,}) {
     emit(DeliveryGetPendingOrdersLoadingState());
 
     firestoreOrdersServices
-        .getDeliveryPendingOrdersByGmail(deliveryMail: gMail)
+        .getDeliveryPendingOrdersByGmail(deliveryMail: gMail,)
         .then((value) {
-      _ordersList.clear();
+      _pendingOrdersList.clear();
       for (var order in value) {
-        _ordersList
+        _pendingOrdersList
             .add(OrderModel.fromJson(order.data() as Map<String, dynamic>));
       }
       emit(DeliveryGetPendingOrdersSuccessState());
@@ -31,6 +46,66 @@ class DeliveryOrdersCubit extends Cubit<DeliveryOrdersStates> {
       emit(DeliveryGetPendingOrdersErrorState(error: error.toString()));
     });
   }
+
+
+  void getDeliveryAcceptedOrdersByGmail({required String gMail,}) {
+    emit(DeliveryGetAcceptedOrdersLoadingState());
+
+    firestoreOrdersServices
+        .getDeliveryAcceptedOrdersByGmail(deliveryMail: gMail,)
+        .then((value) {
+      _acceptedOrdersList.clear();
+      for (var order in value) {
+        _acceptedOrdersList
+            .add(OrderModel.fromJson(order.data() as Map<String, dynamic>));
+      }
+      emit(DeliveryGetAcceptedOrdersSuccessState());
+    }).catchError((error) {
+      emit(DeliveryGetAcceptedOrdersErrorState(error: error.toString()));
+    });
+  }
+
+
+
+
+  void getDeliveryCanceledOrdersByGmail({required String gMail,}) {
+    emit(DeliveryGetCanceledOrdersLoadingState());
+
+    firestoreOrdersServices
+        .getDeliveryCanceledOrdersByGmail(deliveryMail: gMail,)
+        .then((value) {
+      _canceledOrdersList.clear();
+      for (var order in value) {
+        _canceledOrdersList
+            .add(OrderModel.fromJson(order.data() as Map<String, dynamic>));
+      }
+      emit(DeliveryGetCanceledOrdersSuccessState());
+    }).catchError((error) {
+      emit(DeliveryGetCanceledOrdersErrorState(error: error.toString()));
+    });
+  }
+
+
+
+
+
+  void getDeliveryCompletedOrdersByGmail({required String gMail,}) {
+    emit(DeliveryGetCompletedOrdersLoadingState());
+
+    firestoreOrdersServices
+        .getDeliveryCompletedOrdersByGmail(deliveryMail: gMail,)
+        .then((value) {
+      _completedOrdersList.clear();
+      for (var order in value) {
+        _completedOrdersList
+            .add(OrderModel.fromJson(order.data() as Map<String, dynamic>));
+      }
+      emit(DeliveryGetCompletedOrdersSuccessState());
+    }).catchError((error) {
+      emit(DeliveryGetCompletedOrdersErrorState(error: error.toString()));
+    });
+  }
+
 
   void editDeliveryOrderStatus({
     required String orderId,
@@ -44,7 +119,9 @@ class DeliveryOrdersCubit extends Cubit<DeliveryOrdersStates> {
         newStatus: newStatus,
       );
 
-      getDeliveryPendingOrdersByGmail(gMail: deliveryMail);
+      getDeliveryPendingOrdersByGmail(
+        gMail: deliveryMail,
+      );
 
       emit(DeliveryEditOrderStatusSuccessState());
     } catch (error) {

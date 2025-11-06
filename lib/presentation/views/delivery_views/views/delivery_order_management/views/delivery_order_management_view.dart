@@ -1,4 +1,3 @@
-
 import 'package:delivery_app/core/resources/constants_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/presentation/views/delivery_views/views/delivery_order_management/widgets/delivery_management_orders_tab_bar_view.dart';
@@ -9,9 +8,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/delivery_order_management_tab_bar.dart';
 
 class DeliveryOrderManagementView extends StatelessWidget {
-  const DeliveryOrderManagementView({super.key});
+  const DeliveryOrderManagementView({super.key, required this.deliveryMail});
 
-  static String id = "DeliveryOrderManagementView";
+  final String deliveryMail;
   @override
   Widget build(BuildContext context) {
     return GlobalPaddingWidget(
@@ -37,12 +36,12 @@ class DeliveryOrderManagementView extends StatelessWidget {
             SizedBox(
               height: AppSize.s25.h,
             ),
-            const DeliveryManagementOrdersTabBarView() ,
+            DeliveryManagementOrdersTabBarView(
+              deliveryMail: deliveryMail,
+            ),
           ],
         ),
       ),
     );
   }
 }
-
-
