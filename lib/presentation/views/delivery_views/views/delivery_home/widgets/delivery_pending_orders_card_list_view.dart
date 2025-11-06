@@ -1,5 +1,7 @@
 import 'package:delivery_app/presentation/views/delivery_views/views/delivery_home/widgets/delivery_order_card.dart';
+import 'package:delivery_app/presentation/views/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
+import 'package:delivery_app/presentation/views/global_widgets/global_secondary_button.dart';
 import 'package:delivery_app/presentation/views/global_widgets/no_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,6 +54,38 @@ class DeliveryPendingOrdersCardListView extends StatelessWidget {
                     delegate: SliverChildBuilderDelegate((context, index) {
                       final order = orders[index];
                       return DeliveryOrderCard(
+                        cardActionButtons:
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            GlobalSecondaryButton(
+                              text: "رفض",
+                              onTap: () {
+                                cubit.editDeliveryOrderStatus(
+                                  deliveryMail: order.deliveryMail,
+                                  orderId: order.userOrderId!,
+                                  newStatus: "الملغية",
+                                );
+                              },
+                              width: MediaQuery.of(context).size.width * 0.41,
+                              height: AppSize.s33.h,
+                            ),
+                            GlobalButtonWidget(
+                              isButtonEnabled: true,
+                              text: "قبول",
+                              onTap: () {
+
+                                cubit.editDeliveryOrderStatus(
+                                  deliveryMail: order.deliveryMail,
+                                  orderId: order.userOrderId!,
+                                  newStatus: "المقبولة",
+                                );
+                              },
+                              width: MediaQuery.of(context).size.width * 0.41,
+                              height: AppSize.s33.h,
+                            ),
+                          ],
+                        ),
                         orderModel: order,
                       );
                     }, childCount: orders.length),

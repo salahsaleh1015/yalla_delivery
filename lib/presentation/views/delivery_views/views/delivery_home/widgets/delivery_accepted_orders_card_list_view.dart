@@ -1,7 +1,7 @@
-
-
-
+import 'package:delivery_app/presentation/views/delivery_views/views/delivery_home/widgets/delivery_completed_orders_card_list_view.dart';
+import 'package:delivery_app/presentation/views/delivery_views/views/delivery_home/widgets/delivery_delete_order_button2.dart';
 import 'package:delivery_app/presentation/views/delivery_views/views/delivery_home/widgets/delivery_order_card.dart';
+import 'package:delivery_app/presentation/views/delivery_views/views/delivery_home/widgets/delivery_order_summary_button.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
 import 'package:delivery_app/presentation/views/global_widgets/no_data.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +11,12 @@ import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../view_models/delivery_view_models/delivery_orders_cubit/delivery_orders_cubit.dart';
 
 class DeliveryAcceptedOrdersCardListView extends StatelessWidget {
-  const DeliveryAcceptedOrdersCardListView({super.key, required this.deliveryMail,});
+  const DeliveryAcceptedOrdersCardListView({
+    super.key,
+    required this.deliveryMail,
+  });
 
   final String deliveryMail;
-
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +24,7 @@ class DeliveryAcceptedOrdersCardListView extends StatelessWidget {
       create: (context) => DeliveryOrdersCubit()
         ..getDeliveryAcceptedOrdersByGmail(gMail: deliveryMail),
       child: BlocConsumer<DeliveryOrdersCubit, DeliveryOrdersStates>(
-        listener: (context, state) {
-        },
+        listener: (context, state) {},
         builder: (context, state) {
           var cubit = DeliveryOrdersCubit.get(context);
           var orders = cubit.acceptedOrdersList;
@@ -40,13 +41,25 @@ class DeliveryAcceptedOrdersCardListView extends StatelessWidget {
             return cubit.acceptedOrdersList.isEmpty
                 ? const SliverToBoxAdapter(child: NoData())
                 : SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                final order = orders[index];
-                return DeliveryOrderCard(
-                  orderModel: order,
-                );
-              }, childCount: orders.length),
-            );
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                      final order = orders[index];
+                      return DeliveryOrderCard(
+                        cardActionButtons: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            DeliveryDeleteOrderButton2(
+                              onTap: () {},
+                            ),
+                            DeliveryOrderSummaryButton(
+                              onTap: () {
+                              },
+                            )
+                          ],
+                        ),
+                        orderModel: order,
+                      );
+                    }, childCount: orders.length),
+                  );
           }
         },
       ),

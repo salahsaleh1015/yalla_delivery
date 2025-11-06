@@ -12,14 +12,15 @@ import '../../../../global_widgets/global_light_button_widget.dart';
 import '../../../../global_widgets/global_secondary_button.dart';
 
 class DeliveryOrderCard extends StatelessWidget {
-  const DeliveryOrderCard({super.key, required this.orderModel});
+  const DeliveryOrderCard({super.key, required this.orderModel, required this.cardActionButtons});
 
   final OrderModel orderModel;
+  final Widget cardActionButtons;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DeliveryOrdersCubit, DeliveryOrdersStates>(
       builder: (context, state) {
-        var cubit = DeliveryOrdersCubit.get(context);
+       // var cubit = DeliveryOrdersCubit.get(context);
         return GlobalDecoratedContainer(
             padding: EdgeInsets.symmetric(
                 horizontal: AppSize.s15.w, vertical: AppSize.s25.h),
@@ -43,9 +44,11 @@ class DeliveryOrderCard extends StatelessWidget {
                     ),
                     const Expanded(child: SizedBox()),
                     DeliveryStatusBadge(
-                      statusColor: getStatusBadgeColor(orderModel.userOrderStatus),
+                      statusColor:
+                          getStatusBadgeColor(orderModel.userOrderStatus),
                       deliveryStatus: orderModel.userOrderStatus,
-                      deliveryStatusColor: getStatusTextColor(orderModel.userOrderStatus),
+                      deliveryStatusColor:
+                          getStatusTextColor(orderModel.userOrderStatus),
                     ),
                     // DeliveryStatusBadge(
                     //     statusColor:ColorManager.lightGrayColor,
@@ -80,38 +83,9 @@ class DeliveryOrderCard extends StatelessWidget {
                 SizedBox(
                   height: AppSize.s25.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    GlobalSecondaryButton(
-                      text: "رفض",
-                      onTap: () {
-                        print("button clicked for ${orderModel.userOrderId}");
-                        cubit.editDeliveryOrderStatus(
-                          deliveryMail: orderModel.deliveryMail,
-                          orderId: orderModel.userOrderId!,
-                          newStatus: "الملغية",
-                        );
-                      },
-                      width: MediaQuery.of(context).size.width * 0.41,
-                      height: AppSize.s33.h,
-                    ),
-                    GlobalButtonWidget(
-                      isButtonEnabled: true,
-                      text: "قبول",
-                      onTap: () {
-                        print("button clicked for ${orderModel.userOrderId}");
-                        cubit.editDeliveryOrderStatus(
-                          deliveryMail: orderModel.deliveryMail,
-                          orderId: orderModel.userOrderId!,
-                          newStatus: "المقبولة",
-                        );
-                      },
-                      width: MediaQuery.of(context).size.width * 0.41,
-                      height: AppSize.s33.h,
-                    ),
-                  ],
-                ),
+
+                cardActionButtons,
+
               ],
             ));
       },
@@ -146,7 +120,6 @@ class DeliveryOrderCard extends StatelessWidget {
         ),
       );
 
-
   Color getStatusBadgeColor(String status) {
     switch (status) {
       case "المعلقة":
@@ -167,7 +140,7 @@ class DeliveryOrderCard extends StatelessWidget {
       case "المعلقة":
         return ColorManager.darkGrayColor;
       case "المقبولة":
-        return  ColorManager.primary;
+        return ColorManager.primary;
       case "الملغية":
         return ColorManager.error;
       case "المكتملة":
@@ -176,5 +149,4 @@ class DeliveryOrderCard extends StatelessWidget {
         return ColorManager.white;
     }
   }
-
 }
