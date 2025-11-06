@@ -53,3 +53,12 @@ final class DeliveryEditOrderStatusErrorState extends DeliveryOrdersStates {
   final String error;
   DeliveryEditOrderStatusErrorState({required this.error});
 }
+
+
+final class DeliveryDeleteOrderLoadingState extends DeliveryOrdersStates {}
+final class DeliveryDeleteOrderSuccessState extends DeliveryOrdersStates {}
+
+final class DeliveryDeleteOrderErrorState extends DeliveryOrdersStates {
+  final String error;
+  DeliveryDeleteOrderErrorState({required this.error});
+}

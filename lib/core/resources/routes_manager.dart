@@ -1,4 +1,5 @@
 import 'package:delivery_app/presentation/models/order_info_model.dart';
+import 'package:delivery_app/presentation/models/order_model.dart';
 import 'package:delivery_app/presentation/models/verification_args_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/phone_auth_cubit/phone_auth_cubit.dart';
 import 'package:delivery_app/presentation/views/admin_views/views/admin_account/views/admin_account_view.dart';
@@ -269,8 +270,11 @@ class RouteGenerator {
               deliveryMail: deliveryGmail,
             ));
       case Routes.deliveryOrderSummaryRoute:
+        var order = settings.arguments as OrderModel;
         return MaterialPageRoute(
-            builder: (_) => const DeliveryOrderSummaryView());
+            builder: (_) =>  DeliveryOrderSummaryView(
+              order: order,
+            ));
       case Routes.deliveryAccountRoute:
         var deliveryGmail = settings.arguments as String;
         return MaterialPageRoute(builder: (_) =>  DeliveryAccountView(

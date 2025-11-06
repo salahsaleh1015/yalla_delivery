@@ -76,4 +76,8 @@ class FirestoreOrdersServices {
         .update({"userOrderStatus": newStatus});
     print("Order $orderId status updated to $newStatus");
   }
+
+  Future<void> deleteOrder({required String orderId}) async {
+    await _ordersCollectionRef.doc(orderId).delete();
+  }
 }

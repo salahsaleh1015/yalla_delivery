@@ -17,7 +17,7 @@ class DeliveryOrderSummaryButton extends StatelessWidget {
       isButtonEnabled: true,
       text: "ملخص الطلب",
       onTap: onTap,
-      width: MediaQuery.of(context).size.width * 0.41,
+      width: MediaQuery.of(context).size.width * 0.85,
       height: AppSize.s33.h,
     );
   }

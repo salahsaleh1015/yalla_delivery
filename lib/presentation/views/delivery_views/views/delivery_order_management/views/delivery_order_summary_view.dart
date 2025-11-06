@@ -1,4 +1,5 @@
 
+import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/presentation/models/delivery_status_model.dart';
 import 'package:delivery_app/presentation/views/delivery_views/views/delivery_order_management/widgets/delivery_delete_order_button.dart';
@@ -9,17 +10,19 @@ import 'package:delivery_app/presentation/views/global_widgets/global_padding_wi
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../../core/utils/funcions.dart';
+import '../../../../../models/order_model.dart';
+
 
 class DeliveryOrderSummaryView extends StatelessWidget {
   const DeliveryOrderSummaryView({
-    super.key,
+    super.key, required this.order,
   });
-  static String id = "DeliveryOrderSummaryView";
+
+  final OrderModel order;
 
   @override
   Widget build(BuildContext context) {
-    final args =
-        ModalRoute.of(context)!.settings.arguments as DeliveryStatusModel;
     return Scaffold(
       body: GlobalPaddingWidget(
           child: SingleChildScrollView(
@@ -49,9 +52,9 @@ class DeliveryOrderSummaryView extends StatelessWidget {
               height: AppSize.s25.h,
             ),
             DeliveryOrderStatusCard(
-              statusColor: args.statusColor,
-              deliveryStatusColor: args.deliveryStatusColor,
-              deliveryStatus: args.deliveryStatus,
+              statusColor:  getStatusBadgeColor(order.userOrderStatus),
+              deliveryStatusColor:  getStatusTextColor(order.userOrderStatus),
+              deliveryStatus: order.userOrderStatus,
             ),
             SizedBox(
               height: AppSize.s25.h,
@@ -63,14 +66,19 @@ class DeliveryOrderSummaryView extends StatelessWidget {
             SizedBox(
               height: AppSize.s15.h,
             ),
-            const DeliveryOrderSummaryCard(),
+             DeliveryOrderSummaryCard(
+              order: order,
+            ),
             SizedBox(
               height: AppSize.s10.h,
             ),
             SizedBox(
               height: AppSize.s50.h,
             ),
-            const DeliveryDeleteOrderButton(),
+             DeliveryDeleteOrderButton(
+               deliveryMail: order.deliveryMail,
+              orderId: order.userOrderId!,
+            ),
             SizedBox(
               height: AppSize.s50.h,
             ),

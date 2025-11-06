@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
+import '../../../../../../core/utils/snack_bar_helper.dart';
 import '../../../../../view_models/delivery_view_models/delivery_orders_cubit/delivery_orders_cubit.dart';
 
 class DeliveryPendingOrdersCardListView extends StatelessWidget {
@@ -25,13 +26,12 @@ class DeliveryPendingOrdersCardListView extends StatelessWidget {
       child: BlocConsumer<DeliveryOrdersCubit, DeliveryOrdersStates>(
         listener: (context, state) {
           if (state is DeliveryEditOrderStatusSuccessState) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                duration: const Duration(seconds: 3),
-                backgroundColor: ColorManager.black,
-                content: const Text('تم التعديل بنجاح'),
-              ),
+            SnackBarHelper.showSnackBar(
+              context: context,
+              message: 'تم التعديل بنجاح',
+              backgroundColor: ColorManager.black,
             );
+
           }
         },
         builder: (context, state) {

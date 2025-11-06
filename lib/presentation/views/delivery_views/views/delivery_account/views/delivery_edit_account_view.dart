@@ -10,6 +10,7 @@ import 'package:delivery_app/presentation/views/global_widgets/global_text_field
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../../core/utils/snack_bar_helper.dart';
 import '../../../../global_widgets/global_user_card_widget.dart';
 
 class DeliveryEditAccountView extends StatefulWidget {
@@ -56,13 +57,12 @@ class _DeliveryEditAccountViewState extends State<DeliveryEditAccountView> {
       child: BlocConsumer<DeliveryInfoCubit, DeliveryInfoStates>(
         listener: (context, state) {
           if (state is DeliveryUpdateInfoSavedState) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                duration: const Duration(seconds: 3),
-                backgroundColor: ColorManager.black,
-                content: const Text('تم التعديل بنجاح'),
-              ),
+            SnackBarHelper.showSnackBar(
+              context: context,
+              message: 'تم التعديل بنجاح',
+              backgroundColor: ColorManager.black,
             );
+
             Navigator.pushReplacementNamed(context, Routes.deliveryMainLayoutRoute, arguments: widget.deliveryGmail);
           }
 
