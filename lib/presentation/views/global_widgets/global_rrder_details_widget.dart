@@ -1,5 +1,4 @@
 
-import 'package:delivery_app/core/resources/constants_manager.dart';
 
 import 'package:delivery_app/presentation/views/global_widgets/global_decorated_container.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,5 @@
 
-import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
-import 'package:delivery_app/presentation/models/delivery_status_model.dart';
 import 'package:delivery_app/presentation/views/delivery_views/views/delivery_order_management/widgets/delivery_delete_order_button.dart';
 import 'package:delivery_app/presentation/views/delivery_views/views/delivery_order_management/widgets/delivery_order_status_card.dart';
 import 'package:delivery_app/presentation/views/delivery_views/views/delivery_order_management/widgets/delivery_order_summary_card.dart';
@@ -10,7 +8,7 @@ import 'package:delivery_app/presentation/views/global_widgets/global_padding_wi
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../../core/utils/funcions.dart';
+import '../../../../../../core/utils/functions/status_switch.dart';
 import '../../../../../models/order_model.dart';
 
 

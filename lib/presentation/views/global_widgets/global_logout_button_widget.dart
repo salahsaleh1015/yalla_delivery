@@ -1,8 +1,6 @@
 import 'package:delivery_app/core/resources/colors_manager.dart';
-import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_dialogs/global_dialog.dart';
-import 'package:delivery_app/presentation/views/global_widgets/global_dialogs/logout_dialog.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_light_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

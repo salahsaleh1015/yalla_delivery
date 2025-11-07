@@ -1,10 +1,4 @@
 import 'package:delivery_app/core/resources/values_manager.dart';
-import 'package:delivery_app/presentation/views/global_widgets/global_circular_button_widget.dart';
-import 'package:delivery_app/presentation/views/global_widgets/global_decorated_container.dart';
-import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
-import 'package:delivery_app/presentation/views/global_widgets/global_search_card_item_widget.dart';
-import 'package:delivery_app/presentation/views/user_views/views/cart/views/cart_view.dart';
-import 'package:delivery_app/presentation/views/user_views/views/chat/widgets/chat_tile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

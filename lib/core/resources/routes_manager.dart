@@ -49,6 +49,7 @@ import 'package:delivery_app/presentation/views/user_views/views/on_boarding/vie
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../domain/delivery_domain/delivery_entities/delivery_account_entity.dart';
 import '../../presentation/models/banner_model.dart';
 import '../../presentation/models/delivery_model.dart';
 import '../../presentation/views/user_views/views/chat/views/chat_messages_view.dart';
@@ -281,13 +282,13 @@ class RouteGenerator {
           deliveryGmail: deliveryGmail,
         ));
       case Routes.deliveryEditAccountRoute:
-        var deliveryGmail = settings.arguments as String;
+        var deliveryAccount = settings.arguments as DeliveryAccountEntity;
         return MaterialPageRoute(
             builder: (_) =>  DeliveryEditAccountView(
-              deliveryGmail: deliveryGmail,
+              deliveryAccount: deliveryAccount,
             ));
       case Routes.deliveryAddOrderRoute:
-        return MaterialPageRoute(builder: (_) => const DeliveryAddOrderView());
+        return MaterialPageRoute(builder: (_) =>  const DeliveryAddOrderView());
       case Routes.deliveryOrderSummaryForDeliveryRoute:
         return MaterialPageRoute(
             builder: (_) => const DeliveryOrderSummaryForDelivery());
@@ -295,7 +296,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const DeliveryChatView());
       case Routes.deliveryAuthenticationRoute:
         return MaterialPageRoute(
-            builder: (_) =>  DeliveryAuthenticationView());
+            builder: (_) =>  const DeliveryAuthenticationView());
       case Routes.deliveryHomeRoute:
         var deliveryGmail = settings.arguments as String;
         return MaterialPageRoute(builder: (_) =>  DeliveryHomeView(deliveryGmail: deliveryGmail));

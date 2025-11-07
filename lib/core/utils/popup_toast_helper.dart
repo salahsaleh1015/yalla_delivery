@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
 
 void showCustomToast(
     BuildContext context,
@@ -13,7 +12,6 @@ void showCustomToast(
       double topPaddingFactor = 0.15,
     }) {
   final overlay = Overlay.of(context);
-  if (overlay == null) return;
 
   // نعمل الـ Overlay Entry
   final overlayEntry = OverlayEntry(
@@ -46,12 +44,11 @@ class _AnimatedToast extends StatefulWidget {
   final Duration duration;
 
   const _AnimatedToast({
-    Key? key,
     required this.message,
     required this.backgroundColor,
     required this.textColor,
     required this.duration,
-  }) : super(key: key);
+  });
 
   @override
   State<_AnimatedToast> createState() => _AnimatedToastState();

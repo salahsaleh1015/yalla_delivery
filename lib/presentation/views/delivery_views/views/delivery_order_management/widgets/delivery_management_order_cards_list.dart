@@ -1,11 +1,5 @@
 
-import 'package:delivery_app/core/resources/values_manager.dart';
-import 'package:delivery_app/presentation/models/delivery_status_model.dart';
-import 'package:delivery_app/presentation/views/delivery_views/views/delivery_order_management/views/delivery_order_summary_view.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'delivery_management_order_card.dart';
 
 
 //

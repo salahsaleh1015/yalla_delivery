@@ -1,6 +1,5 @@
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/presentation/view_models/delivery_view_models/delivery_authentication_cubit/delivery_authentication_cubit.dart';
-import 'package:delivery_app/presentation/views/delivery_views/views/delivery_main_layout/views/delivery_main_layout_view.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_text_field_widget.dart';

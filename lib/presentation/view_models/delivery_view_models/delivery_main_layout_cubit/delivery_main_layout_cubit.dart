@@ -1,9 +1,4 @@
 
-import 'package:delivery_app/presentation/views/delivery_views/views/delivery_account/views/delivery_account_view.dart';
-import 'package:delivery_app/presentation/views/delivery_views/views/delivery_add_order/views/delivery_add_order_view.dart';
-import 'package:delivery_app/presentation/views/delivery_views/views/delivery_chat/views/delivery_chat_view.dart';
-import 'package:delivery_app/presentation/views/delivery_views/views/delivery_home/views/delivery_home_view.dart';
-import 'package:delivery_app/presentation/views/delivery_views/views/delivery_order_management/views/delivery_order_management_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';

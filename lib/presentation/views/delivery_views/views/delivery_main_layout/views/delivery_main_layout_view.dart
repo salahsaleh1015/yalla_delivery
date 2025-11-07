@@ -21,7 +21,7 @@ class DeliveryMainLayoutView extends StatelessWidget {
      DeliveryOrderManagementView(
       deliveryMail: deliveryGmail,
     ),
-    const DeliveryAddOrderView(),
+     const DeliveryAddOrderView(),
     const DeliveryChatView(),
     DeliveryAccountView(
       deliveryGmail: deliveryGmail,

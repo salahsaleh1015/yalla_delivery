@@ -2,7 +2,6 @@ import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/presentation/view_models/delivery_view_models/delivery_orders_cubit/delivery_orders_cubit.dart';
-import 'package:delivery_app/presentation/views/global_widgets/global_dialogs/delete_order_from_delivery_dialog.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,7 +34,9 @@ class DeliveryDeleteOrderButton extends StatelessWidget {
 
             showCustomToast(context, 'تم التعديل بنجاح',
               backgroundColor: ColorManager.primary,
-            );(context, 'تم الحذف بنجاح');
+            );
+
+            // (context, 'تم الحذف بنجاح');
           }
         },
         builder: (context, state) {

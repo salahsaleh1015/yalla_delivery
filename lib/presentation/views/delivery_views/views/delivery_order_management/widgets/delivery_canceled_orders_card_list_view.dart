@@ -2,8 +2,6 @@
 
 
 import 'package:delivery_app/core/resources/routes_manager.dart';
-import 'package:delivery_app/presentation/views/delivery_views/views/delivery_home/widgets/delivery_completed_orders_card_list_view.dart';
-import 'package:delivery_app/presentation/views/delivery_views/views/delivery_home/widgets/delivery_delete_order_button2.dart';
 import 'package:delivery_app/presentation/views/delivery_views/views/delivery_home/widgets/delivery_order_card.dart';
 import 'package:delivery_app/presentation/views/delivery_views/views/delivery_order_management/widgets/delivery_order_summary_button.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
@@ -11,9 +9,7 @@ import 'package:delivery_app/presentation/views/global_widgets/no_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../view_models/delivery_view_models/delivery_orders_cubit/delivery_orders_cubit.dart';
-import '../../delivery_order_management/widgets/delivery_delete_order_button.dart';
 
 class DeliveryCanceledOrdersCardListView extends StatelessWidget {
   const DeliveryCanceledOrdersCardListView({super.key, required this.deliveryMail,});
