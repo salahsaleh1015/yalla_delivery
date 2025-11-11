@@ -1,7 +1,6 @@
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
-import 'package:delivery_app/presentation/view_models/delivery_view_models/delivery_edit_info_cubit/delivery_edit_info_cubit.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_circular_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
@@ -13,14 +12,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/utils/functions/service_locator_setup.dart';
 import '../../../../../../core/utils/popup_toast_helper.dart';
 import '../../../../../../domain/delivery_domain/delivery_entities/delivery_account_entity.dart';
-import '../../../../../../domain/delivery_domain/delivery_repos/delivery_account_repo.dart';
-import '../../../../../../domain/delivery_domain/delivery_usecases/delivery_account_usecases/delivery_edit_account_data_usecase.dart';
+import '../../../../../../domain/delivery_domain/delivery_repos/delivery_info_repo.dart';
+import '../../../../../../domain/delivery_domain/delivery_usecases/delivery_edit_info_data_usecase.dart';
+import '../../../../../../domain/delivery_domain/delivery_usecases/delivery_fetch_account_data_usecase.dart';
+import '../../../../../../domain/delivery_domain/delivery_usecases/delivery_fetch_status_usecase.dart';
+import '../../../../../view_models/delivery_view_models/delivery_info_cubit/delivery_info_cubit.dart';
 import '../../../../global_widgets/global_user_card_widget.dart';
 
 class DeliveryEditAccountView extends StatefulWidget {
   const DeliveryEditAccountView({super.key, required this.deliveryAccount});
 
-  final DeliveryAccountEntity deliveryAccount;
+  final DeliveryInfoEntity deliveryAccount;
 
   @override
   State<DeliveryEditAccountView> createState() =>
@@ -167,9 +169,19 @@ class _DeliveryEditAccountViewState extends State<DeliveryEditAccountView> {
         ),
       ),
       bottomNavigationBar: BlocProvider(
-        create: (context) => DeliveryEditInfoCubit(
-            DeliveryEditAccountDataUseCase(getIt.get<DeliveryAccountRepo>())),
-        child: BlocConsumer<DeliveryEditInfoCubit, DeliveryEditInfoStates>(
+        create: (context) => DeliveryInfoCubit(
+          DeliveryFetchInfoDataUseCase(
+            getIt.get<DeliveryInfoRepo>(),
+          ),
+          DeliveryEditInfoDataUseCase(
+            getIt.get<DeliveryInfoRepo>(),
+          ),
+          DeliveryFetchStatusUseCase(
+            getIt.get<DeliveryInfoRepo>(),
+          ),
+          getIt.get<DeliveryInfoRepo>(),
+        ),
+        child: BlocConsumer<DeliveryInfoCubit, DeliveryInfoStates>(
           listener: (context, state) {
             if (state is DeliveryEditInfoSavedState) {
               Navigator.pushReplacementNamed(
@@ -185,7 +197,7 @@ class _DeliveryEditAccountViewState extends State<DeliveryEditAccountView> {
             }
           },
           builder: (context, state) {
-            var cubit = DeliveryEditInfoCubit.get(context);
+            var cubit = DeliveryInfoCubit.get(context);
             if (state is DeliveryEditInfoLoadingState) {
               return const Center(
                 child: GlobalLoadingIndicator(),
@@ -210,7 +222,9 @@ class _DeliveryEditAccountViewState extends State<DeliveryEditAccountView> {
                                 email: widget.deliveryAccount.deliveryMail,
                                 name: nameController.text,
                                 location: locationController.text,
-                                phoneNumber: phoneController.text);
+                                phoneNumber: phoneController.text,
+                                deliveryStatus:
+                                    widget.deliveryAccount.deliveryStatus);
                           }
                         }
                       : () {},

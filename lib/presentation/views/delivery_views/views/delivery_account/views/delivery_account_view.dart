@@ -2,6 +2,7 @@ import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/domain/delivery_domain/delivery_entities/delivery_account_entity.dart';
+import 'package:delivery_app/domain/delivery_domain/delivery_usecases/delivery_fetch_status_usecase.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_account_widgets/global_account_info_bar_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_account_widgets/global_account_info_section_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_account_widgets/global_profile_card_widget.dart';
@@ -10,12 +11,15 @@ import 'package:delivery_app/presentation/views/global_widgets/global_padding_wi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
 
+import '../../../../../../core/utils/constants.dart';
 import '../../../../../../core/utils/functions/service_locator_setup.dart';
-import '../../../../../../domain/delivery_domain/delivery_repos/delivery_account_repo.dart';
-import '../../../../../../domain/delivery_domain/delivery_usecases/delivery_account_usecases/delivery_fetch_account_data_usecase.dart';
-import '../../../../../view_models/delivery_view_models/delivery_get_info_cubit/delivery_get_info_cubit.dart';
+import '../../../../../../domain/delivery_domain/delivery_repos/delivery_info_repo.dart';
+import '../../../../../../domain/delivery_domain/delivery_usecases/delivery_edit_info_data_usecase.dart';
+import '../../../../../../domain/delivery_domain/delivery_usecases/delivery_fetch_account_data_usecase.dart';
 
+import '../../../../../view_models/delivery_view_models/delivery_info_cubit/delivery_info_cubit.dart';
 import '../../../../global_widgets/global_loading_indicator.dart';
 
 class DeliveryAccountView extends StatelessWidget {
@@ -25,13 +29,23 @@ class DeliveryAccountView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<DeliveryGetInfoCubit>(
-      create: (context) => DeliveryGetInfoCubit(
-          DeliveryFetchAccountDataUseCase(getIt.get<DeliveryAccountRepo>()))
+    return BlocProvider<DeliveryInfoCubit>(
+      create: (context) => DeliveryInfoCubit(
+          DeliveryFetchInfoDataUseCase(
+            getIt.get<DeliveryInfoRepo>(),
+          ),
+          DeliveryEditInfoDataUseCase(
+            getIt.get<DeliveryInfoRepo>(),
+          ),
+          DeliveryFetchStatusUseCase(
+            getIt.get<DeliveryInfoRepo>(),
+          ),
+        getIt.get<DeliveryInfoRepo>(),
+      )
         ..getDeliveryInfo(deliveryMail: deliveryGmail),
-      child: BlocBuilder<DeliveryGetInfoCubit, DeliveryGetInfoStates>(
+      child: BlocBuilder<DeliveryInfoCubit, DeliveryInfoStates>(
         builder: (context, state) {
-          var cubit = DeliveryGetInfoCubit.get(context);
+          var cubit = DeliveryInfoCubit.get(context);
           if (state is DeliveryGetInfoLoadingState) {
             return const Center(
               child: GlobalLoadingIndicator(),
@@ -77,7 +91,8 @@ class DeliveryAccountView extends StatelessWidget {
                         Navigator.pushNamed(
                           context,
                           Routes.deliveryEditAccountRoute,
-                          arguments: DeliveryAccountEntity(
+                          arguments: DeliveryInfoEntity(
+                            deliveryStatus: delivery.deliveryStatus,
                             deliveryMail: delivery.deliveryMail,
                             deliveryLocation: delivery.deliveryLocation,
                             deliveryName: delivery.deliveryName,
@@ -109,8 +124,10 @@ class DeliveryAccountView extends StatelessWidget {
                       height: AppSize.s50.h,
                     ),
                     GlobalLogoutButtonWidget(
-                      actionButtonCall: () {
+                      actionButtonCall: () async {
                         cubit.signOut();
+                        final box = Hive.box<DeliveryInfoEntity>(kDeliveryInfoBox);
+                        await box.clear();
                         Navigator.pushReplacementNamed(
                             context, Routes.deliveryAuthenticationRoute);
                       },

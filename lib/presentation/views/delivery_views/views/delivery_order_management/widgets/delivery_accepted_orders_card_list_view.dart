@@ -4,9 +4,13 @@ import 'package:delivery_app/presentation/views/global_widgets/global_loading_in
 import 'package:delivery_app/presentation/views/global_widgets/no_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/resources/routes_manager.dart';
+import '../../../../../../core/resources/values_manager.dart';
 import '../../../../../view_models/delivery_view_models/delivery_orders_cubit/delivery_orders_cubit.dart';
+import '../../../../global_widgets/global_button_widget.dart';
+import '../../../../global_widgets/global_secondary_button.dart';
 
 class DeliveryAcceptedOrdersCardListView extends StatelessWidget {
   const DeliveryAcceptedOrdersCardListView({
@@ -42,15 +46,30 @@ class DeliveryAcceptedOrdersCardListView extends StatelessWidget {
                     delegate: SliverChildBuilderDelegate((context, index) {
                       final order = orders[index];
                       return DeliveryOrderCard(
+                        orderIndex: index,
                         cardActionButtons: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
 
                             DeliveryOrderSummaryButton(
+                              width: MediaQuery.of(context).size.width * 0.4,
                               onTap: () {
                                 Navigator.pushNamed(context, Routes.deliveryOrderSummaryRoute,arguments: order);
                               },
-                            )
+                            ),
+                            GlobalSecondaryButton(
+                              text: "اكتملت",
+                              onTap: () {
+                                cubit.editDeliveryOrderStatus(
+                                  deliveryMail: order.deliveryMail,
+                                  orderId: order.userOrderId!,
+                                  newStatus: "المكتملة",
+                                );
+                              },
+                              width: MediaQuery.of(context).size.width * 0.41,
+                              height: AppSize.s33.h,
+                            ),
+
                           ],
                         ),
                         orderModel: order,

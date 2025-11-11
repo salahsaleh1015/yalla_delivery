@@ -16,12 +16,12 @@ class AllVendorsList extends StatelessWidget {
             padding: EdgeInsets.symmetric(
               vertical: AppPadding.p10.h,
             ),
-            child: GlobalVendorItemWidget(
-              onTap: (){
-                Navigator.pushNamed(context, ShopDetailsView.id);
-              },
-              width: MediaQuery.of(context).size.width,
-            ),
+            // child: GlobalVendorItemWidget(
+            //   onTap: (){
+            //     Navigator.pushNamed(context, ShopDetailsView.id);
+            //   },
+            //   width: MediaQuery.of(context).size.width,
+            // ),
           ),
           itemCount: 10,
         ));

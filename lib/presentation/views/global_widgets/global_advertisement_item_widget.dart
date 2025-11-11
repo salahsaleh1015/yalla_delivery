@@ -4,6 +4,8 @@ import 'package:delivery_app/presentation/views/global_widgets/global_secondary_
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../core/resources/assets_manager.dart';
+
 class GlobalAdvertisementItemWidget extends StatelessWidget {
   const GlobalAdvertisementItemWidget(
       {super.key,
@@ -24,11 +26,11 @@ class GlobalAdvertisementItemWidget extends StatelessWidget {
             topLeft: Radius.circular(AppSize.s12.r),
             topRight: Radius.circular(AppSize.s12.r),
           ),
-          child: Image.network(
+          child: Image.asset(
               fit: BoxFit.fill,
               width: width ?? AppSize.s150.w,
               height: height ?? AppSize.s90.h,
-              image),
+             image ),
         ),
         GlobalSecondaryDecoratedContainer(
           width: width ?? AppSize.s150.w,

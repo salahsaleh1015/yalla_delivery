@@ -12,7 +12,7 @@ class DeliveryInUserCubit extends Cubit<DeliveryInUserStates> {
   static DeliveryInUserCubit get(context) => BlocProvider.of(context);
 
   final FirestoreDeliveryServices _deliveryFirestoreServices =
-  FirestoreDeliveryServices();
+      FirestoreDeliveryServices();
 
   List<DeliveryModel> get deliveriesFilteredList => _deliveriesFilteredList;
   final List<DeliveryModel> _deliveriesFilteredList = [];
@@ -27,8 +27,8 @@ class DeliveryInUserCubit extends Cubit<DeliveryInUserStates> {
         .getAllDeliveriesByStatus(deliveryStatus: deliveryStatus)
         .then((value) {
       for (int i = 0; i < value.length; i++) {
-        _deliveriesFilteredList.add(
-            DeliveryModel.fromJson(value[i].data() as DocumentSnapshot));
+        _deliveriesFilteredList
+            .add(DeliveryModel.fromJson(value[i].data()  as Map<String, dynamic>));
       }
     }).then((val) {
       emit(GetAllDeliveriesInUserByStatusSuccessState());
@@ -41,17 +41,17 @@ class DeliveryInUserCubit extends Cubit<DeliveryInUserStates> {
   getAllDeliveries() async {
     emit(GetAllDeliveriesInUsersLoadingState());
 
-  await  _deliveryFirestoreServices.getAllDeliveries().then((value) {
+    await _deliveryFirestoreServices.getAllDeliveries().then((value) {
       for (int i = 0; i < value.length; i++) {
         _deliveriesList.add(
-            DeliveryModel.fromJson(value[i].data() as DocumentSnapshot));
+            DeliveryModel.fromJson(value[i].data() as Map<String, dynamic>));
       }
       print("sssssssssssssssssssssssssssssssssssss");
       print(_deliveriesList.length);
-
     }).then((val) {
       emit(GetAllDeliveriesInUserSuccessState());
     }).catchError((error) {
+      print(error.toString());
       emit(GetAllDeliveriesInUserErrorState(errorMsg: error.toString()));
     });
   }

@@ -8,16 +8,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/resources/values_manager.dart';
 
 class DeliveryOrderSummaryButton extends StatelessWidget {
-  const DeliveryOrderSummaryButton({super.key, required this.onTap});
+   const DeliveryOrderSummaryButton({super.key, required this.onTap, this.width});
 
   final VoidCallback onTap;
+  final double? width;
   @override
   Widget build(BuildContext context) {
     return GlobalButtonWidget(
       isButtonEnabled: true,
       text: "ملخص الطلب",
       onTap: onTap,
-      width: MediaQuery.of(context).size.width * 0.85,
+      width: width?? MediaQuery.of(context).size.width * 0.85,
       height: AppSize.s33.h,
     );
   }

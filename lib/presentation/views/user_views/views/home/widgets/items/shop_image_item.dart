@@ -37,14 +37,18 @@ class ShopImageItem extends StatelessWidget {
               iconColor: ColorManager.white,
               circleColor: ColorManager.circleButtonColor,
             ),
-            GlobalCircularButtonWidget(
-              onTap: () {
-               // Navigator.pushNamed(context, CartView.id);
-              },
-              icon: Icons.shopping_cart_sharp,
-              iconColor: ColorManager.white,
-              circleColor: ColorManager.circleButtonColor,
+
+            SizedBox(
+              width: AppSize.s10.w,
             )
+            // GlobalCircularButtonWidget(
+            //   onTap: () {
+            //    // Navigator.pushNamed(context, CartView.id);
+            //   },
+            //   icon: Icons.shopping_cart_sharp,
+            //   iconColor: ColorManager.white,
+            //   circleColor: ColorManager.circleButtonColor,
+            // )
           ],
         ),
       ),

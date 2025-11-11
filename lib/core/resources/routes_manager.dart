@@ -52,6 +52,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/delivery_domain/delivery_entities/delivery_account_entity.dart';
 import '../../presentation/models/banner_model.dart';
 import '../../presentation/models/delivery_model.dart';
+import '../../presentation/models/shop_model.dart';
 import '../../presentation/views/user_views/views/chat/views/chat_messages_view.dart';
 import '../../presentation/views/user_views/views/chat/views/chats_view.dart';
 import '../../presentation/views/user_views/views/home/view/banner_details_view.dart';
@@ -172,7 +173,10 @@ class RouteGenerator {
       case Routes.homeRoute:
         return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.shopDetailsRoute:
-        return MaterialPageRoute(builder: (_) => const ShopDetailsView());
+        final args = settings.arguments as ShopModel;
+        return MaterialPageRoute(builder: (_) =>  ShopDetailsView(
+          shop: args,
+        ));
       case Routes.chooseDeliveryRoute:
         return MaterialPageRoute(builder: (_) => const ChooseDeliveryView());
       case Routes.bannerDetailsRoute:
@@ -246,13 +250,13 @@ class RouteGenerator {
       case Routes.adminDeliveryManagementRoute:
         return MaterialPageRoute(
             builder: (_) => const AdminDeliveryManagementView());
-      case Routes.adminHomeRoute:
-        return MaterialPageRoute(builder: (_) => const AdminHomeView());
-      case Routes.adminVendorDetailsRoute:
-        return MaterialPageRoute(
-            builder: (_) => const AdminVendorDetailsView());
-      case Routes.adminAddVendorRoute:
-        return MaterialPageRoute(builder: (_) => const AdminAddVendorView());
+      // case Routes.adminHomeRoute:
+      //   return MaterialPageRoute(builder: (_) => const AdminHomeView());
+      // case Routes.adminVendorDetailsRoute:
+      //   return MaterialPageRoute(
+      //       builder: (_) => const AdminVendorDetailsView());
+      // case Routes.adminAddVendorRoute:
+      //   return MaterialPageRoute(builder: (_) => const AdminAddVendorView());
       case Routes.adminAuthenticationRoute:
         return MaterialPageRoute(
             builder: (_) => const AdminAuthenticationView());
@@ -282,7 +286,7 @@ class RouteGenerator {
           deliveryGmail: deliveryGmail,
         ));
       case Routes.deliveryEditAccountRoute:
-        var deliveryAccount = settings.arguments as DeliveryAccountEntity;
+        var deliveryAccount = settings.arguments as DeliveryInfoEntity;
         return MaterialPageRoute(
             builder: (_) =>  DeliveryEditAccountView(
               deliveryAccount: deliveryAccount,

@@ -1,6 +1,6 @@
 import '../../../domain/delivery_domain/delivery_entities/delivery_account_entity.dart';
 
-class DeliveryAccountModel extends DeliveryAccountEntity {
+class DeliveryInfoModel extends DeliveryInfoEntity {
   String? id;
   String? name;
   String? phone;
@@ -10,7 +10,7 @@ class DeliveryAccountModel extends DeliveryAccountEntity {
   String? mail;
   String? password;
 
-  DeliveryAccountModel({
+  DeliveryInfoModel({
     this.id,
     this.name,
     this.phone,
@@ -24,11 +24,12 @@ class DeliveryAccountModel extends DeliveryAccountEntity {
     deliveryLocation: location ?? "العنوان مفقود او غير صحيح",
     deliveryName: name ?? "الاسم مفقود او غير صحيح",
     deliveryPhone: phone ?? "رقم الهاتف مفقود او غير صحيح",
+    deliveryStatus: status ?? "الحالة مفقودة او غير صحيح",
   );
 
   /// 🔹 Factory constructor to create an instance from Firestore/JSON
-  factory DeliveryAccountModel.fromJson(Map<String, dynamic> json) {
-    return DeliveryAccountModel(
+  factory DeliveryInfoModel.fromJson(Map<String, dynamic> json) {
+    return DeliveryInfoModel(
       id: json['deliveryId'],
       name: json['deliveryName'],
       phone: json['deliveryPhone'],

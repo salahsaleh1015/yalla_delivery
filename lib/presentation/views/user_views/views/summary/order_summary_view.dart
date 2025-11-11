@@ -18,6 +18,7 @@ import '../../../global_widgets/global_rrder_details_widget.dart';
 import '../home/widgets/items/edit_location_card_item_widget.dart';
 import '../home/widgets/items/notes_section_item_widget.dart';
 import '../home/widgets/items/summary_delivery_item_widget.dart';
+import'package:intl/intl.dart';
 
 class OrderSummaryView extends StatelessWidget {
   OrderSummaryView({
@@ -123,6 +124,10 @@ class OrderSummaryView extends StatelessWidget {
                           isButtonEnabled: true,
                           text: "تأكيد الطلب",
                           onTap: () {
+                            final now = DateTime.now();
+                            final formattedTime = DateFormat('hh:mm a', 'ar').format(now)
+                                .replaceAll('AM', 'ص')
+                                .replaceAll('PM', 'م');
                             cubit
                                 .addOrder(
                                     order: OrderModel(
@@ -137,8 +142,8 @@ class OrderSummaryView extends StatelessWidget {
                               userOrderStatus: 'المعلقة',
                                       userOrderNotes: userNote ?? '',
 
-                            ///todo: add delivery date correctly
-                              userOrderDate: '03:00',
+
+                              userOrderDate: formattedTime,
 
                               deliveryName:
                                   orderInfoModel.deliveryModel.deliveryName,

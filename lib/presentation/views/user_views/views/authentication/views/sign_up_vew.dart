@@ -179,7 +179,6 @@ class _SignUpViewState extends State<SignUpView> {
         }
 
         if (state is PhoneAuthNumberSubmitted) {
-          Navigator.pop(context);
           Navigator.pushNamed(
             context,
             Routes.verificationRoute,
@@ -195,7 +194,7 @@ class _SignUpViewState extends State<SignUpView> {
         }
 
         if (state is PhoneAuthError) {
-          Navigator.pop(context);
+
 
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

@@ -22,24 +22,28 @@ class HomeView extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const GlobalUserCardWidget(
-                  radius: AppSize.s50, // screen util added inside the widget
+                 GlobalUserCardWidget(
+                  radius: AppSize.s50.r, // screen util added inside the widget
                 ),
-                GlobalCircularButtonWidget(
-                  onTap: () {
-                   // Navigator.pushNamed(context, CartView.id);
-                  },
-                  icon: Icons.shopping_cart_outlined,
-                  iconColor: ColorManager.black,
-                ),
+
+                SizedBox(
+                  width: AppSize.s10.w,
+                )
+                // GlobalCircularButtonWidget(
+                //   onTap: () {
+                //    // Navigator.pushNamed(context, CartView.id);
+                //   },
+                //   icon: Icons.shopping_cart_outlined,
+                //   iconColor: ColorManager.black,
+                // ),
               ],
             ),
             SizedBox(
               height: AppSize.s25.h,
             ),
-            const GlobalSearchCardItemWidget(
-              hintText: 'بحث',
-            ),
+            // const GlobalSearchCardItemWidget(
+            //   hintText: 'بحث',
+            // ),
             SizedBox(
               height: AppSize.s30.h,
             ),
@@ -57,7 +61,7 @@ class HomeView extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "موزعي الخدمة",
+                  "اقتراحات للشراء ",
                   style: Theme.of(context)
                       .textTheme
                       .titleSmall!

@@ -16,16 +16,17 @@ class AppInitializer {
     );
   }
 
+
   static Future<void> initHive() async {
     await Hive.initFlutter();
 
     // Register adapters
     Hive.registerAdapter(CachedUserModelAdapter());
-    Hive.registerAdapter(DeliveryAccountEntityAdapter());
+    Hive.registerAdapter(DeliveryInfoEntityAdapter());
 
     // Open boxes
     await Hive.openBox<CachedUserModel>('cachedUserBox');
-    await Hive.openBox<DeliveryAccountEntity>(kDeliveryAccountBox);
+    await Hive.openBox<DeliveryInfoEntity>(kDeliveryInfoBox);
   }
 
   static Future<void> initCache() async {

@@ -55,11 +55,14 @@ class _AddOrderViewState extends State<AddOrderView> {
                   "اضافة طلب",
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                GlobalCircularButtonWidget(
-                  onTap: () {
-                    // Navigator.pushNamed(context, CartView.id);
-                  },
-                  icon: Icons.shopping_cart_outlined,
+                // GlobalCircularButtonWidget(
+                //   onTap: () {
+                //     // Navigator.pushNamed(context, CartView.id);
+                //   },
+                //   icon: Icons.shopping_cart_outlined,
+                // ),
+                SizedBox(
+                  height: AppSize.s30.h,
                 ),
               ],
             ),

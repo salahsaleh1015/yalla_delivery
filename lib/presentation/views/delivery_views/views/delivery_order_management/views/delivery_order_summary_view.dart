@@ -73,7 +73,7 @@ class DeliveryOrderSummaryView extends StatelessWidget {
             SizedBox(
               height: AppSize.s50.h,
             ),
-             DeliveryDeleteOrderButton(
+            order.userOrderStatus == "المكتملة" ? const SizedBox() : DeliveryDeleteOrderButton(
                deliveryMail: order.deliveryMail,
               orderId: order.userOrderId!,
             ),

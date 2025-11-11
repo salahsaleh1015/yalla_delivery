@@ -42,14 +42,7 @@ class GlobalAdvertisementListWidget extends StatelessWidget {
                 itemBuilder: (context, index) => GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, Routes.bannerDetailsRoute,
-                        arguments: BannerModel(
-                            bannerImage: cubit.bannersList[index].bannerImage,
-                            bannerShopName:
-                                cubit.bannersList[index].bannerShopName,
-                            bannerShopAddress:
-                                cubit.bannersList[index].bannerShopAddress,
-                            bannerShopPhoneNumber: cubit
-                                .bannersList[index].bannerShopPhoneNumber));
+                        arguments: cubit.bannersList[index]);
                   },
                   child: GlobalAdvertisementItemWidget(
                     title: cubit.bannersList[index].bannerShopName,

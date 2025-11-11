@@ -68,7 +68,8 @@ class FirestoreDeliveryServices {
     }
   }
 
- Future<void> editDeliveryStatusByEmail({required String email, required String deliveryStatus}) async {
+  Future<void> editDeliveryStatusByEmail(
+      {required String email, required String deliveryStatus}) async {
     await _deliveryCollectionRef
         .where('deliveryMail', isEqualTo: email)
         .limit(1)
@@ -76,8 +77,19 @@ class FirestoreDeliveryServices {
         .then((querySnapshot) {
       if (querySnapshot.docs.isNotEmpty) {
         final docId = querySnapshot.docs.first.id;
-        _deliveryCollectionRef.doc(docId).update({'deliveryStatus': deliveryStatus});
+        _deliveryCollectionRef
+            .doc(docId)
+            .update({'deliveryStatus': deliveryStatus});
       }
     });
+  }
+
+  Future<String> getDeliveryStatusByEmail({required String email}) async {
+    final querySnapshot = await _deliveryCollectionRef
+        .where('deliveryMail', isEqualTo: email)
+        .limit(1)
+        .get();
+    final data = querySnapshot.docs.first.data() as Map<String, dynamic>;
+    return data['deliveryStatus'] as String;
   }
 }

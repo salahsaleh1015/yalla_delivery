@@ -10,10 +10,11 @@ import '../../../../admin_views/views/admin_delivery_management/widgets/delivery
 import '../../../../global_widgets/global_decorated_container.dart';
 
 class DeliveryOrderCard extends StatelessWidget {
-  const DeliveryOrderCard({super.key, required this.orderModel, required this.cardActionButtons});
+  const DeliveryOrderCard({super.key, required this.orderModel, required this.cardActionButtons, required this.orderIndex});
 
   final OrderModel orderModel;
   final Widget cardActionButtons;
+  final int orderIndex;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DeliveryOrdersCubit, DeliveryOrdersStates>(
@@ -35,7 +36,7 @@ class DeliveryOrderCard extends StatelessWidget {
                           .copyWith(color: ColorManager.darkGrayColor),
                     ),
                     Text(
-                      " 50#  ",
+                      " ${orderIndex+1}#  ",
                       style: Theme.of(context).textTheme.headlineMedium,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

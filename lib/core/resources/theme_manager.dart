@@ -19,7 +19,7 @@ ThemeData getApplicationTheme(context) {
         labelSmall: getRegularTextStyle(
             color: ColorManager.secondaryTextColor, fontSize: FontSize.s16.sp),
         titleSmall: getSemiBoldTextStyle(
-            fontSize: FontSize.s16.sp, color: ColorManager.white),
+            fontSize: FontSize.s20.sp, color: ColorManager.white),
         bodySmall: getSemiBoldTextStyle(
             color: ColorManager.primary, fontSize: FontSize.s16.sp),
         displayMedium: getBoldTextStyle(

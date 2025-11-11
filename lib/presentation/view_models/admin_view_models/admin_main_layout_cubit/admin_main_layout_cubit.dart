@@ -34,7 +34,7 @@ class AdminMainLayoutCubit extends Cubit<AdminMainLayoutState> {
 
 
   List<Widget> adminScreens = const[
-    AdminHomeView(),
+    //AdminHomeView(),
     AdminDeliveryManagementView(),
     AdminAdditionView(),
     AdminOrderManagementView(),

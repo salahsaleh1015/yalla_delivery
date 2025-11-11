@@ -1,4 +1,4 @@
 
 
 
-const kDeliveryAccountBox = 'delivery_account_box';
+const kDeliveryInfoBox = 'delivery_info_box';

@@ -42,10 +42,12 @@ class DeliveryCompletedOrdersCardListView extends StatelessWidget {
                     delegate: SliverChildBuilderDelegate((context, index) {
                       final order = orders[index];
                       return DeliveryOrderCard(
+                        orderIndex: index,
                         cardActionButtons: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             DeliveryOrderSummaryButton(
+
                               onTap: () {
                                 Navigator.pushNamed(context, Routes.deliveryOrderSummaryRoute,arguments: order);
                               },

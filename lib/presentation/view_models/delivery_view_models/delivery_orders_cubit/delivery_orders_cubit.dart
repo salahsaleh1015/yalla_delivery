@@ -127,6 +127,10 @@ class DeliveryOrdersCubit extends Cubit<DeliveryOrdersStates> {
         gMail: deliveryMail,
       );
 
+      getDeliveryAcceptedOrdersByGmail(
+        gMail: deliveryMail,
+      );
+
       emit(DeliveryEditOrderStatusSuccessState());
     } catch (error) {
       emit(DeliveryEditOrderStatusErrorState(error: error.toString()));

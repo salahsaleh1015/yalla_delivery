@@ -1,6 +1,7 @@
 import 'package:delivery_app/presentation/models/delivery_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/delivery_in_user_cubit/delivery_in_user_cubit.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_delivery_filtered_cards_widget.dart';
+import 'package:delivery_app/presentation/views/global_widgets/global_no_deliveries_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -44,45 +45,48 @@ class _GlobalAvailableDeliveryCardsListWidgetState
       child: BlocBuilder<DeliveryInUserCubit, DeliveryInUserStates>(
         builder: (context, state) {
           var cubit = DeliveryInUserCubit.get(context);
+          if( cubit.deliveriesList.isEmpty){
+            return SizedBox(
+              width: double.infinity,
+              height: widget.height,
+              child: ListView.builder(
+                  itemCount: cubit.deliveriesFilteredList.length,
+                  itemBuilder: (context, index) {
+                    var delivery = DeliveryModel(
+                      deliveryMail:
+                      cubit.deliveriesFilteredList[index].deliveryMail,
+                      deliveryPassword: cubit
+                          .deliveriesFilteredList[index].deliveryPassword,
+                      deliveryName:
+                      cubit.deliveriesFilteredList[index].deliveryName,
+                      deliveryPhone:
+                      cubit.deliveriesFilteredList[index].deliveryPhone,
+                      deliveryLocation: cubit
+                          .deliveriesFilteredList[index].deliveryLocation,
+                      deliveryStatus: cubit
+                          .deliveriesFilteredList[index].deliveryStatus,
+                      deliveryRate:
+                      cubit.deliveriesFilteredList[index].deliveryRate,
+                    );
+                    return GlobalDeliveryFilteredCardsWidget(
+                      deliveryFilteredCardsModel:
+                      DeliveryFilteredCardsModel(
+                          arrowOnTap: () {
+                            ///todo index == _selectedIndex navigate to chat details view
+                          },
+                          onTap: () {
+                            _onCardTap(index);
+                            widget.onSelectedDelivery?.call(delivery);
+                          },
+                          isSelected: index == _selectedIndex,
+                          deliveryModel: delivery),
+                    );
+                  }),
+            );
+          }else{
+            return const GlobalNoDeliveriesWidget();
+          }
 
-          return SizedBox(
-            width: double.infinity,
-            height: widget.height,
-            child: ListView.builder(
-                itemCount: cubit.deliveriesFilteredList.length,
-                itemBuilder: (context, index) {
-                  var delivery = DeliveryModel(
-                    deliveryMail: cubit
-                        .deliveriesFilteredList[index].deliveryMail,
-
-                    deliveryPassword: cubit
-                        .deliveriesFilteredList[index].deliveryPassword,
-                    deliveryName: cubit
-                        .deliveriesFilteredList[index].deliveryName,
-                    deliveryPhone: cubit
-                        .deliveriesFilteredList[index].deliveryPhone,
-                    deliveryLocation: cubit
-                        .deliveriesFilteredList[index].deliveryLocation,
-                    deliveryStatus: cubit
-                        .deliveriesFilteredList[index].deliveryStatus,
-                    deliveryRate: cubit
-                        .deliveriesFilteredList[index].deliveryRate,
-                  );
-                  return  GlobalDeliveryFilteredCardsWidget(
-                    deliveryFilteredCardsModel: DeliveryFilteredCardsModel(
-                        arrowOnTap: () {
-                          ///todo index == _selectedIndex navigate to chat details view
-                        },
-                        onTap: () {
-                          _onCardTap(index);
-                          widget.onSelectedDelivery?.call(delivery);
-                        },
-                        isSelected: index == _selectedIndex,
-                        deliveryModel: delivery),
-                  );
-                }
-                   ),
-          );
         },
       ),
     );

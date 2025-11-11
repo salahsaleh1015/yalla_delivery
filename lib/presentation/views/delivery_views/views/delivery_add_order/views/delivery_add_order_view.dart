@@ -128,7 +128,7 @@ class _DeliveryAddOrderViewState extends State<DeliveryAddOrderView> {
               height: AppSize.s25.h,
             ),
             GlobalButtonWidget(
-              isButtonEnabled: true,
+              isButtonEnabled: false,
               text: "إضافة",
               onTap: () {
 

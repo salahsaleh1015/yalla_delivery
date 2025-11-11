@@ -20,8 +20,7 @@ class DeliveryModel {
   final String deliveryMail;
   final String deliveryPassword;
 
-  factory DeliveryModel.fromJson(DocumentSnapshot  json){
-    final data = json.data() as Map<String, dynamic>;
+  factory DeliveryModel.fromJson(Map<String, dynamic> data){
     return DeliveryModel(
       deliveryMail: data['deliveryMail'],
       deliveryPassword: data['deliveryPassword'],

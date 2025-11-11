@@ -1,4 +1,3 @@
-
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_search_card_item_widget.dart';
@@ -7,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductsSectionItemWidget extends StatelessWidget {
-  const ProductsSectionItemWidget({super.key});
+  const ProductsSectionItemWidget({super.key, required this.shopId});
 
+  final String shopId;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,10 +16,10 @@ class ProductsSectionItemWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const GlobalSearchCardItemWidget(hintText: 'البحث في القائمة',),
-SizedBox(
-  height: AppSize.s10.h,
-),
+          //const GlobalSearchCardItemWidget(hintText: 'البحث في القائمة',),
+          SizedBox(
+            height: AppSize.s10.h,
+          ),
           Text(
             "المنتجات المقدمة",
             style: Theme.of(context)
@@ -31,7 +31,9 @@ SizedBox(
             height: AppSize.s10.h,
           ),
 
-          const ProductCardsListWidget(),
+           ProductCardsListWidget(
+             shopId: shopId,
+           ),
         ],
       ),
     );

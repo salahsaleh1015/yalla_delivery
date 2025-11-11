@@ -7,9 +7,12 @@ import 'package:delivery_app/presentation/views/user_views/views/home/widgets/it
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ProductCardItemWidget extends StatelessWidget {
-  const ProductCardItemWidget({super.key});
+import '../../../../../../models/product_model.dart';
 
+class ProductCardItemWidget extends StatelessWidget {
+  const ProductCardItemWidget({super.key, required this.product});
+
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,16 +22,16 @@ class ProductCardItemWidget extends StatelessWidget {
         child: Row(
           children: [
             Image.asset(
-              AssetsManager.productTest,
+              product.productImage,
               fit: BoxFit.fill,
-              width: AppSize.s80.w,
+              width: AppSize.s100.w,
               height: AppSize.s70.h,
             ),
             SizedBox(
               width: AppSize.s10.w,
             ),
-            const ProductInfoSection(),
-            const ProductAmountSection(),
+             ProductInfoSection(product: product,),
+          //  const ProductAmountSection(),
 
           ],
         ),

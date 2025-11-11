@@ -12,18 +12,7 @@ class GlobalLogoutButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GlobalLightButtonWidget(
-      onTap: () {
-        // logoutDialog(context);
-        showDialog(
-            context: context,
-            barrierDismissible: true,
-            builder: (BuildContext context) => CustomDialog(
-                dialogTitle: "تسجيل الخروج",
-                actionButtonColor: ColorManager.error,
-                actionButtonHint: "تسجيل الخروج",
-                actionButtonCallBack: actionButtonCall,
-                content: const LogoutDialogContent()));
-      },
+      onTap: actionButtonCall,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
