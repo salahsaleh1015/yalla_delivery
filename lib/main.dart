@@ -44,8 +44,8 @@ Future<void> main() async {
       startLocale: const Locale('ar'),
       fallbackLocale: const Locale('ar'),
       child: YallaDeliveryApp(
-         startRoute: Routes.deliveryAuthenticationRoute,
-       //startRoute: startRoute,
+
+       startRoute: startRoute,
       ),
     ),
   );

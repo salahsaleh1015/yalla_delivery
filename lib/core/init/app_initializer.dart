@@ -1,4 +1,4 @@
-import 'package:delivery_app/domain/delivery_domain/delivery_entities/delivery_account_entity.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:delivery_app/core/utils/constants.dart';
@@ -22,11 +22,11 @@ class AppInitializer {
 
     // Register adapters
     Hive.registerAdapter(CachedUserModelAdapter());
-    Hive.registerAdapter(DeliveryInfoEntityAdapter());
+
 
     // Open boxes
     await Hive.openBox<CachedUserModel>('cachedUserBox');
-    await Hive.openBox<DeliveryInfoEntity>(kDeliveryInfoBox);
+
   }
 
   static Future<void> initCache() async {

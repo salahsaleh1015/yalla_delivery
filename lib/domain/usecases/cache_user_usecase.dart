@@ -1,6 +1,7 @@
+import 'package:delivery_app/data/cached_user_repository.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../data/delivery_data/cached_user_repository.dart';
+
 import '../../presentation/models/cached_user_model.dart';
 
 @lazySingleton

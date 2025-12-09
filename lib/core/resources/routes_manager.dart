@@ -2,26 +2,6 @@ import 'package:delivery_app/presentation/models/order_info_model.dart';
 import 'package:delivery_app/presentation/models/order_model.dart';
 import 'package:delivery_app/presentation/models/verification_args_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/phone_auth_cubit/phone_auth_cubit.dart';
-import 'package:delivery_app/presentation/views/admin_views/views/admin_account/views/admin_account_view.dart';
-import 'package:delivery_app/presentation/views/admin_views/views/admin_account/views/admin_add_ads_view.dart';
-import 'package:delivery_app/presentation/views/admin_views/views/admin_account/views/admin_edit_account_view.dart';
-import 'package:delivery_app/presentation/views/admin_views/views/admin_authentication/views/admin_authentication.dart';
-import 'package:delivery_app/presentation/views/admin_views/views/admin_delivery_management/views/admin_delivery_management_view.dart';
-import 'package:delivery_app/presentation/views/admin_views/views/admin_home/views/admin_add_vendor_view.dart';
-import 'package:delivery_app/presentation/views/admin_views/views/admin_home/views/admin_home_view.dart';
-import 'package:delivery_app/presentation/views/admin_views/views/admin_home/views/admin_vendors_details_view.dart';
-import 'package:delivery_app/presentation/views/admin_views/views/admin_main_layout/views/admin_main_layout.dart';
-import 'package:delivery_app/presentation/views/admin_views/views/admin_quick_add/views/admin_addition_view.dart';
-import 'package:delivery_app/presentation/views/delivery_views/views/delivery_account/views/delivery_account_view.dart';
-import 'package:delivery_app/presentation/views/delivery_views/views/delivery_account/views/delivery_edit_account_view.dart';
-import 'package:delivery_app/presentation/views/delivery_views/views/delivery_add_order/views/delivery_add_order_view.dart';
-import 'package:delivery_app/presentation/views/delivery_views/views/delivery_add_order/views/delivery_order_summary_for_delivery.dart';
-import 'package:delivery_app/presentation/views/delivery_views/views/delivery_authentecation/views/delivery_authentication_view.dart';
-import 'package:delivery_app/presentation/views/delivery_views/views/delivery_chat/views/delivery_chat_view.dart';
-import 'package:delivery_app/presentation/views/delivery_views/views/delivery_home/views/delivery_home_view.dart';
-import 'package:delivery_app/presentation/views/delivery_views/views/delivery_main_layout/views/delivery_main_layout_view.dart';
-import 'package:delivery_app/presentation/views/delivery_views/views/delivery_order_management/views/delivery_order_management_view.dart';
-import 'package:delivery_app/presentation/views/delivery_views/views/delivery_order_management/views/delivery_order_summary_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/account/views/account_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/account/views/ads_partner_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/account/views/edit_account_view.dart';
@@ -48,8 +28,6 @@ import 'package:delivery_app/presentation/views/user_views/views/main_layout/vie
 import 'package:delivery_app/presentation/views/user_views/views/on_boarding/views/on_boarding_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../domain/delivery_domain/delivery_entities/delivery_account_entity.dart';
 import '../../presentation/models/banner_model.dart';
 import '../../presentation/models/delivery_model.dart';
 import '../../presentation/models/shop_model.dart';
@@ -91,31 +69,6 @@ class Routes {
       "/chooseDeliveryFromAddOrder";
   static const String orderSummaryFromAddOrderRoute =
       "/orderSummaryFromAddOrder";
-
-  // Admin routes
-  static const String adminMainLayoutRoute = "/adminMainLayout";
-  static const String adminAdditionRoute = "/adminAddition";
-  static const String adminAccountRoute = "/adminAccount";
-  static const String adminEditAccountRoute = "/adminEditAccount";
-  static const String adminAddAdsRoute = "/adminAddAds";
-  static const String adminDeliveryManagementRoute = "/adminDeliveryManagement";
-  static const String adminHomeRoute = "/adminHome";
-  static const String adminVendorDetailsRoute = "/adminVendorDetails";
-  static const String adminAddVendorRoute = "/adminAddVendor";
-  static const String adminAuthenticationRoute = "/adminAuthentication";
-
-  // Delivery routes
-  static const String deliveryMainLayoutRoute = "/deliveryMainLayout";
-  static const String deliveryHomeRoute = "/deliveryHome";
-  static const String deliveryOrderManagementRoute = "/deliveryOrderManagement";
-  static const String deliveryOrderSummaryRoute = "/deliveryOrderSummary";
-  static const String deliveryAccountRoute = "/deliveryAccount";
-  static const String deliveryEditAccountRoute = "/deliveryEditAccount";
-  static const String deliveryAddOrderRoute = "/deliveryAddOrder";
-  static const String deliveryOrderSummaryForDeliveryRoute =
-      "/deliveryOrderSummaryForDelivery";
-  static const String deliveryChatRoute = "/deliveryChat";
-  static const String deliveryAuthenticationRoute = "/deliveryAuthentication";
 
 }
 
@@ -174,9 +127,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.shopDetailsRoute:
         final args = settings.arguments as ShopModel;
-        return MaterialPageRoute(builder: (_) =>  ShopDetailsView(
-          shop: args,
-        ));
+        return MaterialPageRoute(
+            builder: (_) => ShopDetailsView(
+                  shop: args,
+                ));
       case Routes.chooseDeliveryRoute:
         return MaterialPageRoute(builder: (_) => const ChooseDeliveryView());
       case Routes.bannerDetailsRoute:
@@ -188,11 +142,7 @@ class RouteGenerator {
       case Routes.summaryRoute:
         return MaterialPageRoute(builder: (_) => const SummaryView());
       case Routes.deliveryRoute:
-
-        return MaterialPageRoute(
-            builder: (_) => const DeliveryView(
-
-                ));
+        return MaterialPageRoute(builder: (_) => const DeliveryView());
       case Routes.accountRoute:
         return MaterialPageRoute(builder: (_) => const AccountView());
       case Routes.editAccountRoute:
@@ -217,9 +167,10 @@ class RouteGenerator {
                 ));
       case Routes.orderSummaryRoute:
         final args = settings.arguments as OrderInfoModel;
-        return MaterialPageRoute(builder: (_) => OrderSummaryView(
-          orderInfoModel: args,
-        ));
+        return MaterialPageRoute(
+            builder: (_) => OrderSummaryView(
+                  orderInfoModel: args,
+                ));
       case Routes.chooseDeliveryFromAddOrderRoute:
         final args = settings.arguments as String;
         return MaterialPageRoute(
@@ -235,76 +186,6 @@ class RouteGenerator {
             builder: (_) => ChatMessagesView(
                   chatModel: args,
                 ));
-
-      // Admin routes
-      case Routes.adminMainLayoutRoute:
-        return MaterialPageRoute(builder: (_) => const AdminMainLayout());
-      case Routes.adminAdditionRoute:
-        return MaterialPageRoute(builder: (_) => const AdminAdditionView());
-      case Routes.adminAccountRoute:
-        return MaterialPageRoute(builder: (_) => const AdminAccountView());
-      case Routes.adminEditAccountRoute:
-        return MaterialPageRoute(builder: (_) => const AdminEditAccountView());
-      case Routes.adminAddAdsRoute:
-        return MaterialPageRoute(builder: (_) => const AdminAddAdsView());
-      case Routes.adminDeliveryManagementRoute:
-        return MaterialPageRoute(
-            builder: (_) => const AdminDeliveryManagementView());
-      // case Routes.adminHomeRoute:
-      //   return MaterialPageRoute(builder: (_) => const AdminHomeView());
-      // case Routes.adminVendorDetailsRoute:
-      //   return MaterialPageRoute(
-      //       builder: (_) => const AdminVendorDetailsView());
-      // case Routes.adminAddVendorRoute:
-      //   return MaterialPageRoute(builder: (_) => const AdminAddVendorView());
-      case Routes.adminAuthenticationRoute:
-        return MaterialPageRoute(
-            builder: (_) => const AdminAuthenticationView());
-
-      // Delivery routes
-      case Routes.deliveryMainLayoutRoute:
-        var deliveryGmail = settings.arguments as String;
-        return MaterialPageRoute(
-            builder: (_) =>  DeliveryMainLayoutView(
-              deliveryGmail: deliveryGmail,
-            ));
-      case Routes.deliveryOrderManagementRoute:
-        var deliveryGmail = settings.arguments as String;
-        return MaterialPageRoute(
-            builder: (_) =>  DeliveryOrderManagementView(
-              deliveryMail: deliveryGmail,
-            ));
-      case Routes.deliveryOrderSummaryRoute:
-        var order = settings.arguments as OrderModel;
-        return MaterialPageRoute(
-            builder: (_) =>  DeliveryOrderSummaryView(
-              order: order,
-            ));
-      case Routes.deliveryAccountRoute:
-        var deliveryGmail = settings.arguments as String;
-        return MaterialPageRoute(builder: (_) =>  DeliveryAccountView(
-          deliveryGmail: deliveryGmail,
-        ));
-      case Routes.deliveryEditAccountRoute:
-        var deliveryAccount = settings.arguments as DeliveryInfoEntity;
-        return MaterialPageRoute(
-            builder: (_) =>  DeliveryEditAccountView(
-              deliveryAccount: deliveryAccount,
-            ));
-      case Routes.deliveryAddOrderRoute:
-        return MaterialPageRoute(builder: (_) =>  const DeliveryAddOrderView());
-      case Routes.deliveryOrderSummaryForDeliveryRoute:
-        return MaterialPageRoute(
-            builder: (_) => const DeliveryOrderSummaryForDelivery());
-      case Routes.deliveryChatRoute:
-        return MaterialPageRoute(builder: (_) => const DeliveryChatView());
-      case Routes.deliveryAuthenticationRoute:
-        return MaterialPageRoute(
-            builder: (_) =>  const DeliveryAuthenticationView());
-      case Routes.deliveryHomeRoute:
-        var deliveryGmail = settings.arguments as String;
-        return MaterialPageRoute(builder: (_) =>  DeliveryHomeView(deliveryGmail: deliveryGmail));
-
 
       default:
         return _undefinedRoute();

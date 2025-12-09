@@ -1,12 +1,11 @@
-import 'package:hive/hive.dart';
+import 'package:delivery_app/presentation/models/cached_user_model.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../presentation/models/cached_user_model.dart';
 
 abstract class ICachedUserRepository {
   Future<void> cacheUser(CachedUserModel userModel);
   CachedUserModel? getCachedUser();
- Future<void> updateCachedUser(CachedUserModel userModel);
+  Future<void> updateCachedUser(CachedUserModel userModel);
 }
 
 @LazySingleton(as: ICachedUserRepository)
