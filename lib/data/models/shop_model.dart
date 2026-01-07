@@ -1,30 +1,39 @@
-class ShopModel {
-  final String shopName;
-  final String? shopId;
-  final String shopAddress;
-  final String shopPhoneNumber;
-  final String shopImage;
-  final num shopRate;
+import 'package:delivery_app/domain/entities/home_entities/home_shop_entity.dart';
+
+class ShopModel extends HomeShopEntity {
+  String? name;
+  String? Id;
+  String? address;
+  String? phoneNumber;
+  String? image;
+  num? rate;
 
   ShopModel(
-      {required this.shopName,
-       this.shopId,
-      required this.shopAddress,
-      required this.shopPhoneNumber,
-      required this.shopImage,
-      required this.shopRate});
-
+      {this.name,
+      this.phoneNumber,
+      this.address,
+      this.image,
+      this.rate,
+      this.Id})
+      : super(
+            shopAddress: address ?? '',
+            shopImage: image ??
+                "https://firebasestorage.googleapis.com/v0/b/yalla-delivery-app-f5ce2.firebasestorage.app/o/bannerFourImage.jpeg?alt=media&token=1adf43c1-0958-46ed-b80a-988202f1c543",
+            shopName: name ?? 'لا توجد بيانات',
+            shopPhoneNumber: phoneNumber ?? 'لا توجد بيانات',
+            shopRate: rate ?? 0,
+            shopId: Id ?? '');
 
   factory ShopModel.fromJson(Map<String, dynamic> json) => ShopModel(
-    shopName: json['shopName'],
-    shopId: json['shopId'],
-    shopAddress: json['shopAddress'],
-    shopPhoneNumber: json['shopPhoneNumber'],
-    shopImage: json['shopImage'],
-    shopRate: json['shopRate'],
-  );
+        phoneNumber: json['shopPhoneNumber'],
+        address: json['shopAddress'],
+        name: json['shopName'],
+        image: json['shopImage'],
+        rate: json['shopRate'],
+        Id: json['shopId'],
+      );
 
-  Map<String, dynamic> toJson(){
+  Map<String, dynamic> toJson() {
     return {
       'shopName': shopName,
       'shopId': shopId,
@@ -34,5 +43,4 @@ class ShopModel {
       'shopRate': shopRate,
     };
   }
-
 }

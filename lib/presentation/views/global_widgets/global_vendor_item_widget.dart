@@ -2,6 +2,7 @@ import 'package:delivery_app/core/resources/assets_manager.dart';
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/data/models/shop_model.dart';
+import 'package:delivery_app/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,7 +14,7 @@ class GlobalVendorItemWidget extends StatelessWidget {
   final double? height;
   final double? width;
   final VoidCallback onTap;
-  final ShopModel shop;
+  final HomeShopEntity shop;
   @override
   Widget build(BuildContext context) {
     return Column(

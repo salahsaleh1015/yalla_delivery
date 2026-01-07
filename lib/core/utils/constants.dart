@@ -3,6 +3,8 @@
 
 const kDeliveryInfoBox = 'delivery_info_box';
 const kBannersBox = 'banners_box';
+ const kShopsBox = 'shops_box';
+
 // const kDeliveryPendingOrdersBox = 'delivery_pending_orders_box';
 // const kDeliveryCompletedOrdersBox = 'delivery_completed_orders_box';
 // const kDeliveryCanceledOrdersBox = 'delivery_canceled_orders_box';

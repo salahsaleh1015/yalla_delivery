@@ -31,9 +31,9 @@ class ProductsSectionItemWidget extends StatelessWidget {
             height: AppSize.s10.h,
           ),
 
-           ProductCardsListWidget(
-             shopId: shopId,
-           ),
+           // ProductCardsListWidget(
+           //   shopId: shopId,
+           // ),
         ],
       ),
     );

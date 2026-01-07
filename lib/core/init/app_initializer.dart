@@ -2,6 +2,7 @@
 import 'package:delivery_app/core/utils/functions/hive_functions.dart';
 import 'package:delivery_app/data/models/cached_user_model.dart';
 import 'package:delivery_app/domain/entities/home_entities/home_banner_entity.dart';
+import 'package:delivery_app/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:delivery_app/core/utils/constants.dart';
@@ -26,13 +27,16 @@ class AppInitializer {
     // Register adapters
     Hive.registerAdapter(CachedUserModelAdapter());
     Hive.registerAdapter(HomeBannerEntityAdapter());
+    Hive.registerAdapter(HomeShopEntityAdapter());
 
 
     // Open boxes
     await Hive.openBox<CachedUserModel>('cachedUserBox');
     await Hive.openBox<HomeBannerEntity>(kBannersBox);
-
+    await Hive.openBox<HomeShopEntity>(kShopsBox);
+    // Clear boxes
     await clearHiveBox<HomeBannerEntity>(boxName: kBannersBox);
+    await clearHiveBox<HomeShopEntity>(boxName: kShopsBox);
 
   }
 
