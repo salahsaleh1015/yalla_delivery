@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delivery_app/core/resources/colors_manager.dart';
+import 'package:delivery_app/data/models/message_model.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_circular_button_widget.dart';
 import 'package:delivery_app/presentation/views/user_views/views/chat/widgets/chat_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/resources/values_manager.dart';
-import '../../../../../models/message_model.dart';
 
 class ChatMessagesView extends StatelessWidget {
   ChatMessagesView({

@@ -1,52 +1,53 @@
 import 'package:delivery_app/core/resources/values_manager.dart';
-import 'package:delivery_app/presentation/models/banner_model.dart';
+import 'package:delivery_app/core/utils/functions/service_locator_setup.dart';
+import 'package:delivery_app/data/repos/home_repo/home_repo_impl.dart';
+import 'package:delivery_app/domain/usecases/home_usecases/home_get_banners_usecase.dart';
+import 'package:delivery_app/presentation/view_models/user_view_models/home_cubits/get_banners_cubit/get_banners_cubit.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_advertisement_item_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
+import 'package:delivery_app/presentation/views/global_widgets/no_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/resources/routes_manager.dart';
-import '../../../view_models/user_view_models/home_cubits/banners_cubit/banners_cubit.dart';
+import '../../../view_models/user_view_models/home_cubits/get_banners_cubit/get_banners_state.dart';
 
 class GlobalAdvertisementListWidget extends StatelessWidget {
   const GlobalAdvertisementListWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<BannersCubit>(
-      create: (context) => BannersCubit()..getAllBanners(),
+    return BlocProvider<GetBannersCubit>(
+      create: (context) =>
+          GetBannersCubit(HomeGetBannersUseCase(getIt.get<HomeRepoImpl>()))
+            ..fetchBanners(),
       child: SizedBox(
         width: double.infinity,
         height: AppSize.s150.h,
-        child: BlocBuilder<BannersCubit, BannersStates>(
+        child: BlocBuilder<GetBannersCubit, GetBannersStates>(
           builder: (context, state) {
-            var cubit = BannersCubit.get(context);
-            if (state is BannersErrorState) {
-              return Center(child: Text(state.errorMessage));
-            } else if (state is BannersLoadingState) {
+            if (state is GetBannersErrorState) {
+              return Center(child: Text("حدث خطأ ما حاول مره اخرى"));
+            } else if (state is GetBannersLoadingState) {
               return const Center(child: GlobalLoadingIndicator());
-            } else if (state is BannersLoadedState) {
-              if (cubit.bannersList.isEmpty) {
-                return Center(
-                    child: Text(
-                  "لا يوجد اعلانات",
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ));
+            } else if (state is GetBannersLoadedState) {
+              if (state.bannersList.isEmpty) {
+                return Center(child: NoData());
               }
               return ListView.separated(
                 separatorBuilder: (context, index) =>
                     SizedBox(width: AppSize.s10.w),
                 scrollDirection: Axis.horizontal,
-                itemCount: cubit.bannersList.length,
+                itemCount: state.bannersList.length,
                 itemBuilder: (context, index) => GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, Routes.bannerDetailsRoute,
-                        arguments: cubit.bannersList[index]);
+                        arguments: state.bannersList[index]);
                   },
                   child: GlobalAdvertisementItemWidget(
-                    title: cubit.bannersList[index].bannerShopName,
-                    image: cubit.bannersList[index].bannerImage,
+                    title: state.bannersList[index].bannerShopName,
+                    image: state.bannersList[index].bannerImage,
                   ),
                 ),
               );

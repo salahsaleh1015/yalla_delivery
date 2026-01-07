@@ -1,6 +1,7 @@
 import 'package:delivery_app/core/resources/assets_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
-import 'package:delivery_app/presentation/models/shop_model.dart';
+import 'package:delivery_app/data/models/shop_model.dart';
+
 import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_vendor_item_widget.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,8 @@
+import 'package:delivery_app/data/models/order_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/services/firebase_services/firestore_orders_services.dart';
-import '../../../models/order_model.dart';
+
 
 part 'user_orders_state.dart';
 

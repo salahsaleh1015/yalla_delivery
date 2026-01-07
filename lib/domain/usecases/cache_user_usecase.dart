@@ -1,8 +1,9 @@
 import 'package:delivery_app/data/cached_user_repository.dart';
+import 'package:delivery_app/data/models/cached_user_model.dart';
 import 'package:injectable/injectable.dart';
 
 
-import '../../presentation/models/cached_user_model.dart';
+
 
 @lazySingleton
 class CacheUserUseCase {

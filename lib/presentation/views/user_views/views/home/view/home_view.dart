@@ -11,7 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
-  static String id = 'HomeView';
+
   @override
   Widget build(BuildContext context) {
     return GlobalPaddingWidget(
@@ -22,20 +22,19 @@ class HomeView extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                 GlobalUserCardWidget(
+                GlobalUserCardWidget(
                   radius: AppSize.s50.r, // screen util added inside the widget
                 ),
-
                 SizedBox(
                   width: AppSize.s10.w,
-                )
-                // GlobalCircularButtonWidget(
-                //   onTap: () {
-                //    // Navigator.pushNamed(context, CartView.id);
-                //   },
-                //   icon: Icons.shopping_cart_outlined,
-                //   iconColor: ColorManager.black,
-                // ),
+                ),
+                GlobalCircularButtonWidget(
+                  onTap: () {
+                    // Navigator.pushNamed(context, CartView.id);
+                  },
+                  icon: Icons.shopping_cart_outlined,
+                  iconColor: ColorManager.black,
+                ),
               ],
             ),
             SizedBox(

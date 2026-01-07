@@ -1,7 +1,7 @@
 
 
+import 'package:delivery_app/data/models/delivery_model.dart';
 import 'package:flutter/material.dart';
-import 'package:delivery_app/presentation/models/delivery_model.dart';
 
 class DeliveryCardModel{
 

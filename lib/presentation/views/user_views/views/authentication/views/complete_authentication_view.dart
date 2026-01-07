@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/core/services/shared_preferences_services/shared_preferences_services.dart';
+import 'package:delivery_app/data/models/cached_user_model.dart';
+import 'package:delivery_app/data/models/user_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_caching_cubit/user_caching_cubit.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
@@ -13,8 +15,7 @@ import '../../../../../../core/resources/assets_manager.dart';
 import '../../../../../../core/resources/routes_manager.dart';
 import '../../../../../../domain/usecases/cache_user_usecase.dart';
 import '../../../../../../injection.dart';
-import '../../../../../models/cached_user_model.dart';
-import '../../../../../models/user_model.dart';
+
 
 class CompleteAuthenticationView extends StatelessWidget {
   const CompleteAuthenticationView(

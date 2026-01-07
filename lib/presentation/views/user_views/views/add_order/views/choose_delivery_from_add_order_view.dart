@@ -1,5 +1,6 @@
 import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
+import 'package:delivery_app/data/models/order_info_model.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_app_bar.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
@@ -7,8 +8,9 @@ import 'package:delivery_app/presentation/views/global_widgets/lists/global_deli
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../models/delivery_model.dart';
-import '../../../../../models/order_info_model.dart';
+import '../../../../../../data/models/delivery_model.dart';
+
+
 
 class ChooseDeliveryFromAddOrderView extends StatelessWidget {
   ChooseDeliveryFromAddOrderView(
@@ -36,7 +38,7 @@ class ChooseDeliveryFromAddOrderView extends StatelessWidget {
           ),
           GlobalAvailableDeliveryCardsListWidget(
             onSelectedDelivery: (delivery) {
-              selectedDelivery = delivery;
+              selectedDelivery = delivery as DeliveryModel;
             },
             height: MediaQuery.of(context).size.height * 0.65,
           ),

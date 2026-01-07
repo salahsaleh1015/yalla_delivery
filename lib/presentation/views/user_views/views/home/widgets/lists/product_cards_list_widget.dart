@@ -1,5 +1,4 @@
 import 'package:delivery_app/core/resources/assets_manager.dart';
-import 'package:delivery_app/presentation/models/product_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/home_cubits/shops_cubit/shops_cubit.dart';
 import 'package:delivery_app/presentation/views/user_views/views/home/widgets/items/product_card_item_widget.dart';
 import 'package:flutter/material.dart';

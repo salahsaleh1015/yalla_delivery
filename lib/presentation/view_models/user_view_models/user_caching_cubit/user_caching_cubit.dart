@@ -1,8 +1,9 @@
+import 'package:delivery_app/data/models/cached_user_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../domain/usecases/cache_user_usecase.dart';
-import '../../../models/cached_user_model.dart';
+
 
 part 'user_caching_state.dart';
 

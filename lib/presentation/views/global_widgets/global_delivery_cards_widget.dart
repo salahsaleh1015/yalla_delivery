@@ -1,5 +1,6 @@
 import 'package:delivery_app/core/resources/values_manager.dart';
-import 'package:delivery_app/presentation/models/delivery_card_model.dart';
+import 'package:delivery_app/data/models/delivery_card_model.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

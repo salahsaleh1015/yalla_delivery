@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:delivery_app/presentation/models/delivery_model.dart';
+import 'package:delivery_app/data/models/delivery_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/services/firebase_services/firestore_delivery_services.dart';

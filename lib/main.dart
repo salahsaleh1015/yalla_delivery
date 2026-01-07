@@ -1,6 +1,6 @@
 import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/utils/functions/service_locator_setup.dart';
-import 'package:delivery_app/presentation/models/cached_user_model.dart';
+import 'package:delivery_app/data/models/cached_user_model.dart';
 import 'package:delivery_app/translations/codegen_loader.g.dart';
 import 'package:delivery_app/yalla_delivery_app.dart';
 import 'package:easy_localization/easy_localization.dart';

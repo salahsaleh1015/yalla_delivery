@@ -1,4 +1,5 @@
-import 'package:delivery_app/presentation/models/banner_model.dart';
+import 'package:delivery_app/core/resources/assets_manager.dart';
+import 'package:delivery_app/data/models/banner_model.dart';
 import 'package:delivery_app/presentation/views/user_views/views/home/widgets/items/shop_image_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -97,7 +98,11 @@ class BannerDetailsView extends StatelessWidget {
             color: ColorManager.socialButtonColor,
           ),
           SizedBox(
-            height: AppSize.s10.h,
+            height: AppSize.s50.h,
+          ),
+          Center(
+            child: Image.asset(AssetsManager.splashLogo, height:MediaQuery.of(context).size.height*0.3,
+              width: MediaQuery.of(context).size.width*0.8,),
           ),
         ],
       ),

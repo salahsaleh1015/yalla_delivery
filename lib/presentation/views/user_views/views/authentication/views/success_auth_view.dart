@@ -2,8 +2,9 @@ import 'package:delivery_app/core/resources/assets_manager.dart';
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
-import 'package:delivery_app/presentation/models/user_model.dart';
-import 'package:delivery_app/presentation/models/verification_args_model.dart';
+import 'package:delivery_app/data/models/user_model.dart';
+import 'package:delivery_app/data/models/verification_args_model.dart';
+
 import 'package:delivery_app/presentation/view_models/user_view_models/user_info_cubit/user_info_cubit.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';

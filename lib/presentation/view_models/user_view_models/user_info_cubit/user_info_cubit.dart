@@ -1,5 +1,6 @@
 import 'package:delivery_app/core/services/firebase_services/firestore_user_info_services.dart';
-import 'package:delivery_app/presentation/models/user_model.dart';
+import 'package:delivery_app/data/models/user_model.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'user_info_state.dart';

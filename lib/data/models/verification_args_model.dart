@@ -4,7 +4,8 @@
 
 
 
-import 'package:delivery_app/presentation/models/user_model.dart';
+
+import 'package:delivery_app/data/models/user_model.dart';
 
 class VerificationArgs {
   //final String phoneNumber;

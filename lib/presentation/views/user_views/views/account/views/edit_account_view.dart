@@ -1,7 +1,7 @@
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
+import 'package:delivery_app/data/models/cached_user_model.dart';
 import 'package:delivery_app/domain/usecases/cache_user_usecase.dart';
-import 'package:delivery_app/presentation/models/cached_user_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_caching_cubit/user_caching_cubit.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_circular_button_widget.dart';

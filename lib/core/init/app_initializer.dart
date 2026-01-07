@@ -1,10 +1,13 @@
 
+import 'package:delivery_app/core/utils/functions/hive_functions.dart';
+import 'package:delivery_app/data/models/cached_user_model.dart';
+import 'package:delivery_app/domain/entities/home_entities/home_banner_entity.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:delivery_app/core/utils/constants.dart';
 
 import '../../firebase_options.dart';
-import '../../presentation/models/cached_user_model.dart';
+
 import '../resources/routes_manager.dart';
 import '../services/shared_preferences_services/shared_preferences_services.dart';
 
@@ -22,10 +25,14 @@ class AppInitializer {
 
     // Register adapters
     Hive.registerAdapter(CachedUserModelAdapter());
+    Hive.registerAdapter(HomeBannerEntityAdapter());
 
 
     // Open boxes
     await Hive.openBox<CachedUserModel>('cachedUserBox');
+    await Hive.openBox<HomeBannerEntity>(kBannersBox);
+
+    await clearHiveBox<HomeBannerEntity>(boxName: kBannersBox);
 
   }
 

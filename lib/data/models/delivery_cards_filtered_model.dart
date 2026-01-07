@@ -1,6 +1,7 @@
 
-import 'package:delivery_app/presentation/models/delivery_model.dart';
 import 'package:flutter/material.dart';
+
+import 'delivery_model.dart';
 
 
 class DeliveryFilteredCardsModel{

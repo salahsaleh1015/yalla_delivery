@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:delivery_app/presentation/models/order_model.dart';
+import 'package:delivery_app/data/models/order_model.dart';
+
 
 class FirestoreOrdersServices {
   final CollectionReference _ordersCollectionRef =

@@ -1,6 +1,7 @@
 import 'package:delivery_app/core/resources/routes_manager.dart';
-import 'package:delivery_app/presentation/models/delivery_card_model.dart';
-import 'package:delivery_app/presentation/models/delivery_model.dart';
+import 'package:delivery_app/data/models/delivery_card_model.dart';
+import 'package:delivery_app/data/models/delivery_model.dart';
+
 import 'package:delivery_app/presentation/views/global_widgets/global_delivery_cards_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_no_deliveries_widget.dart';

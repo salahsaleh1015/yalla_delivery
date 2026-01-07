@@ -18,7 +18,7 @@ class ShopImageItem extends StatelessWidget {
       decoration:  BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fill,
-            image: AssetImage(image),
+            image: NetworkImage(image),
           )),
       child: Padding(
         padding: EdgeInsets.symmetric(

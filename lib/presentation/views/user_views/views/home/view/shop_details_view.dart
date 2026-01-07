@@ -1,7 +1,9 @@
+import 'package:delivery_app/data/models/shop_model.dart';
+
 import '../../../../../../core/resources/assets_manager.dart';
 import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
-import '../../../../../models/shop_model.dart';
+
 import '../widgets/items/price_card_item_wdget.dart';
 import '../widgets/items/product_section_item_widget.dart';
 import '../widgets/items/shop_image_item.dart';

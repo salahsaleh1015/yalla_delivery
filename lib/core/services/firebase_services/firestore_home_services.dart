@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:delivery_app/presentation/models/banner_model.dart';
+import 'package:delivery_app/data/models/banner_model.dart';
+import 'package:delivery_app/data/models/shop_model.dart';
 
-import '../../../presentation/models/shop_model.dart';
 
 class FirestoreHomeServices {
   final CollectionReference _bannersCollectionRef =

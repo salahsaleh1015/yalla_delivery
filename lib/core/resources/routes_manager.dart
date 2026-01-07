@@ -1,6 +1,9 @@
-import 'package:delivery_app/presentation/models/order_info_model.dart';
-import 'package:delivery_app/presentation/models/order_model.dart';
-import 'package:delivery_app/presentation/models/verification_args_model.dart';
+
+import 'package:delivery_app/data/models/banner_model.dart';
+import 'package:delivery_app/data/models/delivery_model.dart';
+import 'package:delivery_app/data/models/order_info_model.dart';
+import 'package:delivery_app/data/models/shop_model.dart';
+import 'package:delivery_app/data/models/verification_args_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/phone_auth_cubit/phone_auth_cubit.dart';
 import 'package:delivery_app/presentation/views/user_views/views/account/views/account_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/account/views/ads_partner_view.dart';
@@ -28,9 +31,7 @@ import 'package:delivery_app/presentation/views/user_views/views/main_layout/vie
 import 'package:delivery_app/presentation/views/user_views/views/on_boarding/views/on_boarding_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../presentation/models/banner_model.dart';
-import '../../presentation/models/delivery_model.dart';
-import '../../presentation/models/shop_model.dart';
+
 import '../../presentation/views/user_views/views/chat/views/chat_messages_view.dart';
 import '../../presentation/views/user_views/views/chat/views/chats_view.dart';
 import '../../presentation/views/user_views/views/home/view/banner_details_view.dart';

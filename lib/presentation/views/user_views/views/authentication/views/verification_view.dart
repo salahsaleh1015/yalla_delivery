@@ -1,8 +1,8 @@
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
-import 'package:delivery_app/presentation/models/user_model.dart';
-import 'package:delivery_app/presentation/models/verification_args_model.dart';
+import 'package:delivery_app/data/models/user_model.dart';
+import 'package:delivery_app/data/models/verification_args_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/phone_auth_cubit/phone_auth_cubit.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_circular_button_widget.dart';

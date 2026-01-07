@@ -1,5 +1,6 @@
-import 'package:delivery_app/presentation/models/order_info_model.dart';
-import 'package:delivery_app/presentation/models/order_model.dart';
+
+import 'package:delivery_app/data/models/order_info_model.dart';
+import 'package:delivery_app/data/models/order_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_caching_cubit/user_caching_cubit.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_orders_cubit/user_orders_cubit.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_app_bar.dart';

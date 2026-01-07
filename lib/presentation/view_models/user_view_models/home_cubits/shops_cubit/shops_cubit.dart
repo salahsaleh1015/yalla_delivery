@@ -1,8 +1,10 @@
-import 'package:delivery_app/presentation/models/shop_model.dart';
+
+import 'package:delivery_app/data/models/product_model.dart';
+import 'package:delivery_app/data/models/shop_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/services/firebase_services/firestore_home_services.dart';
-import '../../../../models/product_model.dart';
+
 
 part 'shops_state.dart';
 

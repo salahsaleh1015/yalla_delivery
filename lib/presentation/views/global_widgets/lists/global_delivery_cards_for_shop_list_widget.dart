@@ -1,11 +1,12 @@
-import 'package:delivery_app/presentation/models/delivery_model.dart';
+import 'package:delivery_app/data/models/delivery_cards_filtered_model.dart';
+import 'package:delivery_app/data/models/delivery_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/delivery_in_user_cubit/delivery_in_user_cubit.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_delivery_filtered_cards_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_no_deliveries_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../models/delivery_cards_filtered_model.dart';
+
 
 class GlobalAvailableDeliveryCardsListWidget extends StatefulWidget {
   const GlobalAvailableDeliveryCardsListWidget({

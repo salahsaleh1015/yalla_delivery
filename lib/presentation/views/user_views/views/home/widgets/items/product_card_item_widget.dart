@@ -1,13 +1,13 @@
 
 import 'package:delivery_app/core/resources/assets_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
+import 'package:delivery_app/data/models/product_model.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_decorated_container.dart';
 import 'package:delivery_app/presentation/views/user_views/views/home/widgets/items/product_amount_section.dart';
 import 'package:delivery_app/presentation/views/user_views/views/home/widgets/items/product_info_section.dart' show ProductInfoSection;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../../models/product_model.dart';
 
 class ProductCardItemWidget extends StatelessWidget {
   const ProductCardItemWidget({super.key, required this.product});

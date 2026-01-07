@@ -1,7 +1,7 @@
 import 'package:delivery_app/core/resources/assets_manager.dart';
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
-import 'package:delivery_app/presentation/models/shop_model.dart';
+import 'package:delivery_app/data/models/shop_model.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,7 +24,7 @@ class GlobalVendorItemWidget extends StatelessWidget {
             topLeft: Radius.circular(AppSize.s12.r),
             topRight: Radius.circular(AppSize.s12.r),
           ),
-          child: Image.asset(
+          child: Image.network(
               fit: BoxFit.fill,
               width:width?? AppSize.s250.w,
               height:height?? AppSize.s160.h,
