@@ -100,6 +100,7 @@ class _AddOrderViewState extends State<AddOrderView> {
                   Navigator.pushNamed(
                       context, Routes.chooseDeliveryFromAddOrderRoute,
                       arguments: order);
+                  _orderController.clear();
                 }
               },
               width: double.infinity,

@@ -197,7 +197,7 @@ class OrderSummaryView extends StatelessWidget {
                 height: AppSize.s20.h,
               ),
               Text(
-                "تم إرسال الطلب بنجاح",
+                "تم ابلاغ المندوب بنجاح",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: AppSize.s20.sp,
