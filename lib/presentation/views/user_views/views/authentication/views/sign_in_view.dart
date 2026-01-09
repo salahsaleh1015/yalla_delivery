@@ -89,8 +89,11 @@ class _SignInViewState extends State<SignInView> {
                 ),
                 GlobalTextFieldWidget(
                   validator: (value) {
-                    if (value!.length != 11) {
-                      return "ادخل رقم هاتف صحيح";
+                    if (value != null && value.isNotEmpty) {
+                      final regex = RegExp(r'^01[0-2,5]{1}[0-9]{8}$');
+                      if (!regex.hasMatch(value.trim())) {
+                        return "أدخل رقم هاتف مصري صحيح مثل 01012345678";
+                      }
                     }
                     return null;
                   },
