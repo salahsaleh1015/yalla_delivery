@@ -21,12 +21,3 @@ final class GetShopsErrorState extends GetShopsStates {
 
 
 
-// final class GetShopProductsLoadingState extends GetShopsStates {}
-//
-// final class GetShopProductsLoadedState extends GetShopsStates {}
-//
-// final class GetShopProductsErrorState extends GetShopsStates {
-//   final String errorMessage;
-//
-//   GetShopProductsErrorState({required this.errorMessage});
-// }

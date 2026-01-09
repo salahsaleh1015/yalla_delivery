@@ -1,12 +1,17 @@
+import 'package:delivery_app/core/utils/functions/service_locator_setup.dart';
 import 'package:delivery_app/data/models/delivery_cards_filtered_model.dart';
 import 'package:delivery_app/data/models/delivery_model.dart';
+import 'package:delivery_app/data/repos/delivery_management_repo/delivery_management_repo_impl.dart';
+import 'package:delivery_app/domain/entities/delivery_management_entities/delivery_entity.dart';
+import 'package:delivery_app/domain/usecases/delivery_management_usecases/get_available_deliveries_usecase.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/delivery_in_user_cubit/delivery_in_user_cubit.dart';
+import 'package:delivery_app/presentation/view_models/user_view_models/delivery_management_cubits/get_available_delivery_cubit/get_available_delivery_cubit.dart';
+import 'package:delivery_app/presentation/view_models/user_view_models/delivery_management_cubits/get_available_delivery_cubit/get_available_delivery_state.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_delivery_filtered_cards_widget.dart';
+import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_no_deliveries_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-
 
 class GlobalAvailableDeliveryCardsListWidget extends StatefulWidget {
   const GlobalAvailableDeliveryCardsListWidget({
@@ -15,7 +20,7 @@ class GlobalAvailableDeliveryCardsListWidget extends StatefulWidget {
     this.onSelectedDelivery,
   });
   final double height;
-  final ValueChanged<DeliveryModel>? onSelectedDelivery;
+  final ValueChanged<DeliveryEntity>? onSelectedDelivery;
   @override
   State<GlobalAvailableDeliveryCardsListWidget> createState() =>
       _GlobalAvailableDeliveryCardsListWidgetState();
@@ -40,54 +45,50 @@ class _GlobalAvailableDeliveryCardsListWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<DeliveryInUserCubit>(
-      create: (context) => DeliveryInUserCubit()
-        ..getAllDeliveriesByStatus(deliveryStatus: 'متاح'),
-      child: BlocBuilder<DeliveryInUserCubit, DeliveryInUserStates>(
+    return BlocProvider<GetAvailableDeliveryCubit>(
+      create: (context) => GetAvailableDeliveryCubit(
+          GetAvailableDeliveriesUseCase(
+              getIt.get<DeliveryManagementRepoImpl>()))
+        ..getAvailableDeliveries(),
+      child: BlocBuilder<GetAvailableDeliveryCubit, GetAvailableDeliveryStates>(
         builder: (context, state) {
-          var cubit = DeliveryInUserCubit.get(context);
-          if( cubit.deliveriesList.isEmpty){
-            return SizedBox(
-              width: double.infinity,
-              height: widget.height,
-              child: ListView.builder(
-                  itemCount: cubit.deliveriesFilteredList.length,
-                  itemBuilder: (context, index) {
-                    var delivery = DeliveryModel(
-                      deliveryMail:
-                      cubit.deliveriesFilteredList[index].deliveryMail,
-                      deliveryPassword: cubit
-                          .deliveriesFilteredList[index].deliveryPassword,
-                      deliveryName:
-                      cubit.deliveriesFilteredList[index].deliveryName,
-                      deliveryPhone:
-                      cubit.deliveriesFilteredList[index].deliveryPhone,
-                      deliveryLocation: cubit
-                          .deliveriesFilteredList[index].deliveryLocation,
-                      deliveryStatus: cubit
-                          .deliveriesFilteredList[index].deliveryStatus,
-                      deliveryRate:
-                      cubit.deliveriesFilteredList[index].deliveryRate,
-                    );
-                    return GlobalDeliveryFilteredCardsWidget(
-                      deliveryFilteredCardsModel:
-                      DeliveryFilteredCardsModel(
-                          arrowOnTap: () {
-                            ///todo index == _selectedIndex navigate to chat details view
-                          },
-                          onTap: () {
-                            _onCardTap(index);
-                            widget.onSelectedDelivery?.call(delivery);
-                          },
-                          isSelected: index == _selectedIndex,
-                          deliveryModel: delivery),
-                    );
-                  }),
+          if (state is GetAvailableDeliveryLoadingState) {
+            return const Center(
+              child: GlobalLoadingIndicator(),
             );
-          }else{
+          } else if (state is GetAvailableDeliveryErrorState) {
+            return Center(
+              child: Text("حدث خطأ ما حاول مره اخرى"),
+            );
+          } else if (state is GetAvailableDeliveryLoadedState) {
+            if (state.deliveries.isNotEmpty) {
+              return SizedBox(
+                width: double.infinity,
+                height: widget.height,
+                child: ListView.builder(
+                    itemCount: state.deliveries.length,
+                    itemBuilder: (context, index) {
+                      return GlobalDeliveryFilteredCardsWidget(
+                        deliveryFilteredCardsModel: DeliveryFilteredCardsModel(
+                            arrowOnTap: () {
+                              ///todo index == _selectedIndex navigate to chat details view
+                            },
+                            onTap: () {
+                              _onCardTap(index);
+                              widget.onSelectedDelivery
+                                  ?.call(state.deliveries[index]);
+                            },
+                            isSelected: index == _selectedIndex,
+                            deliveryModel: state.deliveries[index]),
+                      );
+                    }),
+              );
+            } else {
+              return const GlobalNoDeliveriesWidget();
+            }
+          } else {
             return const GlobalNoDeliveriesWidget();
           }
-
         },
       ),
     );

@@ -1,9 +1,13 @@
 
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
+import 'package:delivery_app/core/utils/functions/hive_functions.dart';
+import 'package:delivery_app/domain/entities/home_entities/home_shop_product_entity.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_circular_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../../../core/utils/constants.dart';
 
 
 class ShopImageItem extends StatelessWidget {
@@ -30,7 +34,8 @@ class ShopImageItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             GlobalCircularButtonWidget(
-              onTap: () {
+              onTap: () async {
+                await clearHiveBox<HomeShopProductEntity>(boxName: kProductsBox);
                 Navigator.pop(context);
               },
               icon: Icons.arrow_back,

@@ -38,7 +38,7 @@ class ShopDetailsView extends StatelessWidget {
             height: AppSize.s10.h,
           ),
           ProductsSectionItemWidget(
-            shopId: shop.shopId!,
+            shopId: shop.shopId,
           ),
         ],
       ),

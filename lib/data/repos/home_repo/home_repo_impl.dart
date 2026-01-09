@@ -5,6 +5,7 @@ import 'package:delivery_app/data/data_sources/home_data_sources/home_local_data
 import 'package:delivery_app/data/data_sources/home_data_sources/home_remote_data_source/home_remote_data_source.dart';
 import 'package:delivery_app/domain/entities/home_entities/home_banner_entity.dart';
 import 'package:delivery_app/domain/entities/home_entities/home_shop_entity.dart';
+import 'package:delivery_app/domain/entities/home_entities/home_shop_product_entity.dart';
 import 'package:delivery_app/domain/repos/home_repos/home_repo.dart';
 import 'package:flutter/rendering.dart';
 
@@ -47,6 +48,25 @@ class HomeRepoImpl implements HomeRepo {
       shops = await homeRemoteDataSource.getHomeShops();
       debugPrint(" the shops from the internet");
       return Right(shops);
+    } catch (e) {
+      if (e is FirebaseException) {
+        return Left(FirebaseFailure.fromFirebaseException(e));
+      }
+      return Left(FirebaseFailure.fromException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<HomeShopProductEntity>>> getHomeShopProducts({required String shopId}) async{
+    try {
+      List<HomeShopProductEntity> products;
+      products = homeLocalDataSource.getShopProducts();
+      if (products.isNotEmpty) {
+        return Right(products);
+      }
+      products = await homeRemoteDataSource.getHomeShopProducts(shopId: shopId);
+      debugPrint(" the products from the internet");
+      return Right(products);
     } catch (e) {
       if (e is FirebaseException) {
         return Left(FirebaseFailure.fromFirebaseException(e));

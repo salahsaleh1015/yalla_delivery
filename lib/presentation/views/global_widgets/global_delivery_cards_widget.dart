@@ -51,18 +51,18 @@ class GlobalDeliveryCardsWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(deliveryCardModel.deliveryModel.deliveryName,
+                  Text(deliveryCardModel.deliveryModel.deliveryName!,
                       style: Theme.of(context).textTheme.headlineMedium),
                   RatingStars(
                     value:
-                        deliveryCardModel.deliveryModel.deliveryRate.toDouble(),
+                        deliveryCardModel.deliveryModel.deliveryRate!.toDouble(),
                     starCount: 5,
                     starSize: AppSize.s20.r,
                     starOffColor: ColorManager.inActiveRateColor,
                     starColor: ColorManager.activeRateColor,
                   ),
                   Text(
-                    deliveryCardModel.deliveryModel.deliveryStatus,
+                    deliveryCardModel.deliveryModel.deliveryStatus!,
                     style: Theme.of(context).textTheme.labelSmall,
                   ),
                 ],

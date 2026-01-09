@@ -1,5 +1,5 @@
 
-import 'package:delivery_app/data/cached_user_repository.dart';
+import 'package:delivery_app/data/repos/cached_user_repository.dart';
 import 'package:delivery_app/data/models/cached_user_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_caching_cubit/user_caching_cubit.dart';
 import 'package:hive/hive.dart';

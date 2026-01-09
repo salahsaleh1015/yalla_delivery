@@ -1,46 +1,51 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:delivery_app/domain/entities/delivery_management_entities/delivery_entity.dart';
 
-class DeliveryModel {
+class DeliveryModel extends DeliveryEntity {
+  String? id;
+  String? name;
+  String? phone;
+  String? location;
+  String? status;
+  int? rate;
+  String? mail;
+  String? password;
+
   DeliveryModel(
-      {required this.deliveryMail,
-      required this.deliveryPassword,
-      this.deliveryId,
-      required this.deliveryName,
-      required this.deliveryPhone,
-      required this.deliveryLocation,
-      required this.deliveryStatus,
-      required this.deliveryRate});
+      {this.mail,
+      this.password,
+      this.id,
+      this.name,
+      this.phone,
+      this.location,
+      this.status,
+      this.rate})
+      : super(
+            deliveryName: name?? 'لا توجد بيانات',
+            deliveryStatus: status?? 'لا توجد بيانات',
+            deliveryRate: rate?? 0);
 
-  final String? deliveryId;
-  final String deliveryName;
-  final String deliveryPhone;
-  final String deliveryLocation;
-  final String deliveryStatus;
-  final int deliveryRate;
-  final String deliveryMail;
-  final String deliveryPassword;
-
-  factory DeliveryModel.fromJson(Map<String, dynamic> data){
+  factory DeliveryModel.fromJson(Map<String, dynamic> data) {
     return DeliveryModel(
-      deliveryMail: data['deliveryMail'],
-      deliveryPassword: data['deliveryPassword'],
-      deliveryId: data['deliveryId'],
-      deliveryName: data['deliveryName'],
-      deliveryPhone: data['deliveryPhone'],
-      deliveryLocation: data['deliveryLocation'],
-      deliveryStatus: data['deliveryStatus'],
-      deliveryRate: data['deliveryRate'],
+      mail: data['deliveryMail'],
+      password: data['deliveryPassword'],
+      id: data['deliveryId'],
+      name: data['deliveryName'],
+      phone: data['deliveryPhone'],
+      location: data['deliveryLocation'],
+      status: data['deliveryStatus'],
+      rate: data['deliveryRate'],
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'deliveryId': deliveryId,
-        'deliveryName': deliveryName,
-        'deliveryPhone': deliveryPhone,
-        'deliveryLocation': deliveryLocation,
-        'deliveryStatus': deliveryStatus,
-        'deliveryRate': deliveryRate,
-        'deliveryMail': deliveryMail,
-        'deliveryPassword': deliveryPassword
+        'deliveryId': id,
+        'deliveryName': name,
+        'deliveryPhone': phone,
+        'deliveryLocation': location,
+        'deliveryStatus': status,
+        'deliveryRate': rate,
+        'deliveryMail': mail,
+        'deliveryPassword': password
       };
 }

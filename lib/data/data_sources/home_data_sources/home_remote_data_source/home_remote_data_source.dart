@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delivery_app/core/utils/functions/hive_functions.dart';
 import 'package:delivery_app/data/models/banner_model.dart';
+import 'package:delivery_app/data/models/product_model.dart';
 import 'package:delivery_app/data/models/shop_model.dart';
 import 'package:delivery_app/domain/entities/home_entities/home_shop_entity.dart';
+import 'package:delivery_app/domain/entities/home_entities/home_shop_product_entity.dart';
 
 import '../../../../core/services/firebase_services/firestore_home_services.dart';
 import '../../../../core/utils/constants.dart';
@@ -11,12 +13,13 @@ import '../../../../domain/entities/home_entities/home_banner_entity.dart';
 abstract class HomeRemoteDataSource {
   Future<List<HomeBannerEntity>> getHomeBanners();
   Future<List<HomeShopEntity>> getHomeShops();
+  Future<List<HomeShopProductEntity>> getHomeShopProducts(
+      {required String shopId});
 }
 
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   FirestoreHomeServices firestoreHomeServices;
   HomeRemoteDataSourceImpl(this.firestoreHomeServices);
-
 
   @override
   Future<List<HomeBannerEntity>> getHomeBanners() async {
@@ -37,13 +40,12 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   }
 
   @override
-  Future<List<HomeShopEntity>> getHomeShops() async{
+  Future<List<HomeShopEntity>> getHomeShops() async {
     var data = await firestoreHomeServices.getAllShops();
     List<HomeShopEntity> shops = getShopsList(data);
     saveShopsData(shops: shops, boxName: kShopsBox);
     return shops;
   }
-
 
   List<HomeShopEntity> getShopsList(List<QueryDocumentSnapshot> docs) {
     List<HomeShopEntity> shops = [];
@@ -53,5 +55,25 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     }
 
     return shops;
+  }
+
+  @override
+  Future<List<HomeShopProductEntity>> getHomeShopProducts(
+      {required String shopId}) async {
+    var data = await firestoreHomeServices.getProductsByShopId(shopId: shopId);
+    List<HomeShopProductEntity> products = getProductsList(data);
+    saveProductsData(products: products, boxName: kProductsBox);
+    return products;
+  }
+
+  List<HomeShopProductEntity> getProductsList(
+      List<QueryDocumentSnapshot> docs) {
+    List<HomeShopProductEntity> products = [];
+
+    for (var doc in docs) {
+      products.add(ProductModel.fromJson(doc.data() as Map<String, dynamic>));
+    }
+
+    return products;
   }
 }

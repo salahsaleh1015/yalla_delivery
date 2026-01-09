@@ -1,5 +1,7 @@
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
-import 'package:delivery_app/presentation/views/global_widgets/lists/global_delivery_cards_list_widget.dart';
+import 'package:delivery_app/presentation/views/global_widgets/lists/global_all_delivery_cards_list_widget.dart';
+import 'package:delivery_app/presentation/views/global_widgets/lists/global_busy_delivery_cards_list_widget.dart';
+import 'package:delivery_app/presentation/views/global_widgets/lists/global_un_available_delivery_cards_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,11 +9,12 @@ import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
 
 import '../../../../global_widgets/global_circular_button_widget.dart';
-import '../../../../global_widgets/lists/global_delivery_cards_filtered_list_widget.dart';
+import '../../../../global_widgets/lists/global_available_delivery_cards_list_widget.dart';
 
 class DeliveryView extends StatelessWidget {
-  const DeliveryView({super.key,});
-
+  const DeliveryView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -58,27 +61,20 @@ class DeliveryView extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.6,
                 child: TabBarView(
                   children: [
-                    GlobalDeliveryCardsListWidget(
-
+                    GlobalAllDeliveryCardsListWidget(
                       height: MediaQuery.of(context).size.height * 0.6,
                     ),
-                    GlobalDeliveryCardsFilteredListWidget(
+                    GlobalAvailableDeliveryCardsListWidget(
                       height: MediaQuery.of(context).size.height * 0.6,
-                      deliveryStatus: 'متاح',
                       isSelected: true,
-
                     ),
-                    GlobalDeliveryCardsFilteredListWidget(
+                    GlobalBusyDeliveryCardsListWidget(
                       height: MediaQuery.of(context).size.height * 0.6,
-                      deliveryStatus: 'مشغول',
                       isSelected: false,
-
                     ),
-                    GlobalDeliveryCardsFilteredListWidget(
+                    GlobalUnAvailableDeliveryCardsListWidget(
                       height: MediaQuery.of(context).size.height * 0.6,
-                      deliveryStatus: 'غير متاح',
                       isSelected: false,
-
                     ),
                   ],
                 ),

@@ -2,6 +2,7 @@
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/data/models/product_model.dart';
+import 'package:delivery_app/domain/entities/home_entities/home_shop_product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -12,7 +13,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductInfoSection extends StatelessWidget {
   const ProductInfoSection({super.key, required this.product});
-  final ProductModel product;
+  final HomeShopProductEntity product;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

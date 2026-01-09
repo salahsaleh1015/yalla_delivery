@@ -133,7 +133,7 @@ class OrderSummaryView extends StatelessWidget {
                                 .addOrder(
                                     order: OrderModel(
                               deliveryMail:
-                                  orderInfoModel.deliveryModel.deliveryMail,
+                                  orderInfoModel.deliveryModel.mail!,
                               userName: cacheCubit.cachedUserModel.userName,
                               userPhoneNumber:
                                   cacheCubit.cachedUserModel.phoneNumber,
@@ -149,9 +149,9 @@ class OrderSummaryView extends StatelessWidget {
                               deliveryName:
                                   orderInfoModel.deliveryModel.deliveryName,
                               deliveryPhone:
-                                  orderInfoModel.deliveryModel.deliveryPhone,
+                                  orderInfoModel.deliveryModel.phone!,
                               deliveryLocation:
-                                  orderInfoModel.deliveryModel.deliveryLocation,
+                                  orderInfoModel.deliveryModel.location!,
                               deliveryStatus:
                                   orderInfoModel.deliveryModel.deliveryStatus,
                               deliveryRate:
