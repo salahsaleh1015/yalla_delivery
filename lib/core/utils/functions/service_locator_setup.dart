@@ -23,7 +23,7 @@ void serviceLocatorSetup() {
 
   getIt.registerSingleton<FirestoreHomeServices>(FirestoreHomeServices());
 
-  getIt.registerSingleton<FirestoreDeliveryServices>(FirestoreDeliveryServices());
+
 
   // repo impl
   getIt.registerSingleton<HomeRepoImpl>(

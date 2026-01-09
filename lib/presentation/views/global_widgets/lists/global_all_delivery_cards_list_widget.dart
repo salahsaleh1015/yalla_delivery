@@ -41,7 +41,7 @@ class GlobalAllDeliveryCardsListWidget extends StatelessWidget {
               );
             } else if (state is GetAllDeliveriesErrorState) {
               return Center(
-                child: Text("حدث خطأ ما حاول مره اخرى"),
+                child: Text(state.errorMessage),
               );
             } else if (state is GetAllDeliveriesLoadedState) {
               if (state.deliveries.isEmpty) {

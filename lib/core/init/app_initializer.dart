@@ -1,6 +1,7 @@
 
 import 'package:delivery_app/core/utils/functions/hive_functions.dart';
 import 'package:delivery_app/data/models/cached_user_model.dart';
+import 'package:delivery_app/domain/entities/delivery_management_entities/delivery_entity.dart';
 import 'package:delivery_app/domain/entities/home_entities/home_banner_entity.dart';
 import 'package:delivery_app/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:delivery_app/domain/entities/home_entities/home_shop_product_entity.dart';
@@ -30,6 +31,7 @@ class AppInitializer {
     Hive.registerAdapter(HomeBannerEntityAdapter());
     Hive.registerAdapter(HomeShopEntityAdapter());
     Hive.registerAdapter(HomeShopProductEntityAdapter());
+    Hive.registerAdapter(DeliveryEntityAdapter());
 
 
     // Open boxes
@@ -37,11 +39,19 @@ class AppInitializer {
     await Hive.openBox<HomeBannerEntity>(kBannersBox);
     await Hive.openBox<HomeShopEntity>(kShopsBox);
     await Hive.openBox<HomeShopProductEntity>(kProductsBox);
+    await Hive.openBox<DeliveryEntity>(kAllDeliveriesBox);
+    await Hive.openBox<DeliveryEntity>(kAvailableDeliveryBox);
+    await Hive.openBox<DeliveryEntity>(kUnAvailableDeliveryBox);
+    await Hive.openBox<DeliveryEntity>(kBusyDeliveryBox);
 
     // Clear boxes
     await clearHiveBox<HomeBannerEntity>(boxName: kBannersBox);
     await clearHiveBox<HomeShopEntity>(boxName: kShopsBox);
     await clearHiveBox<HomeShopProductEntity>(boxName: kProductsBox);
+    await clearHiveBox<DeliveryEntity>(boxName: kAllDeliveriesBox);
+    await clearHiveBox<DeliveryEntity>(boxName: kAvailableDeliveryBox);
+    await clearHiveBox<DeliveryEntity>(boxName: kUnAvailableDeliveryBox);
+    await clearHiveBox<DeliveryEntity>(boxName: kBusyDeliveryBox);
 
   }
 

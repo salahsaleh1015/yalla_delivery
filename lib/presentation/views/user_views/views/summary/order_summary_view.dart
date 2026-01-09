@@ -1,4 +1,3 @@
-
 import 'package:delivery_app/data/models/order_info_model.dart';
 import 'package:delivery_app/data/models/order_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_caching_cubit/user_caching_cubit.dart';
@@ -19,7 +18,7 @@ import '../../../global_widgets/global_rrder_details_widget.dart';
 import '../home/widgets/items/edit_location_card_item_widget.dart';
 import '../home/widgets/items/notes_section_item_widget.dart';
 import '../home/widgets/items/summary_delivery_item_widget.dart';
-import'package:intl/intl.dart';
+import 'package:intl/intl.dart';
 
 class OrderSummaryView extends StatelessWidget {
   OrderSummaryView({
@@ -126,14 +125,14 @@ class OrderSummaryView extends StatelessWidget {
                           text: "تأكيد الطلب",
                           onTap: () {
                             final now = DateTime.now();
-                            final formattedTime = DateFormat('hh:mm a', 'ar').format(now)
+                            final formattedTime = DateFormat('hh:mm a', 'ar')
+                                .format(now)
                                 .replaceAll('AM', 'ص')
                                 .replaceAll('PM', 'م');
                             cubit
                                 .addOrder(
                                     order: OrderModel(
-                              deliveryMail:
-                                  orderInfoModel.deliveryModel.mail!,
+                              deliveryMail: orderInfoModel.deliveryModel.mail!,
                               userName: cacheCubit.cachedUserModel.userName,
                               userPhoneNumber:
                                   cacheCubit.cachedUserModel.phoneNumber,
@@ -141,11 +140,8 @@ class OrderSummaryView extends StatelessWidget {
                                   cacheCubit.cachedUserModel.userLocation,
                               userOrder: orderInfoModel.order,
                               userOrderStatus: 'المعلقة',
-                                      userOrderNotes: userNote ?? '',
-
-
+                              userOrderNotes: userNote ?? '',
                               userOrderDate: formattedTime,
-
                               deliveryName:
                                   orderInfoModel.deliveryModel.deliveryName,
                               deliveryPhone:
