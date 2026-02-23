@@ -83,9 +83,10 @@ class CompleteAuthenticationView extends StatelessWidget {
                           cubit.cachedUserModel = cachedUserModel;
                           await CacheHelper.setData(
                               key: 'authorized', value: true);
-                          Navigator.pushReplacementNamed(
+                          Navigator.pushNamedAndRemoveUntil(
                             context,
                             Routes.mainLayoutRoute,
+                                (route) => false,
                           );
                         } else {
                           print("////////////////////////////////////////");

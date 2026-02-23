@@ -12,12 +12,21 @@ import '../../../../../../data/models/delivery_model.dart';
 
 
 
-class ChooseDeliveryFromAddOrderView extends StatelessWidget {
+class ChooseDeliveryFromAddOrderView extends StatefulWidget {
   ChooseDeliveryFromAddOrderView(
       {super.key, required this.order});
 
   final String order;
+
+  @override
+  State<ChooseDeliveryFromAddOrderView> createState() => _ChooseDeliveryFromAddOrderViewState();
+}
+
+class _ChooseDeliveryFromAddOrderViewState extends State<ChooseDeliveryFromAddOrderView> {
   late DeliveryModel selectedDelivery;
+
+  bool isEnabled = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,6 +48,10 @@ class ChooseDeliveryFromAddOrderView extends StatelessWidget {
           GlobalAvailableDeliveryCardsListWidget(
             onSelectedDelivery: (delivery) {
               selectedDelivery = delivery as DeliveryModel;
+              setState(() {
+                isEnabled = true;
+              });
+
             },
             height: MediaQuery.of(context).size.height * 0.65,
           ),
@@ -47,13 +60,13 @@ class ChooseDeliveryFromAddOrderView extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: EdgeInsets.all(AppPadding.p8.r),
         child: GlobalButtonWidget(
-          isButtonEnabled: true,
+          isButtonEnabled: isEnabled,
           text: "استمر",
           onTap: () {
             Navigator.pushNamed(context, Routes.orderSummaryRoute,
                 arguments: OrderInfoModel(
                     deliveryModel: selectedDelivery,
-                    order: order,
+                    order: widget.order,
                    ));
           },
           width: double.infinity,

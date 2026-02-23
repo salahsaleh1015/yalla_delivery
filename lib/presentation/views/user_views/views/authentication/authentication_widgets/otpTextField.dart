@@ -21,36 +21,39 @@ class OtpTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PinCodeTextField(
-      appContext: context,
-      length: AppConstant.otpLength,
-      obscureText: false,
-      animationType: AnimationType.scale,
-      pinTheme: PinTheme(
-        shape: PinCodeFieldShape.box,
-        borderRadius: BorderRadius.circular(AppSize.s8.r),
-        activeColor: ColorManager.primary,
-        inactiveColor: ColorManager.primary,
-        selectedColor: ColorManager.primary,
-        fieldHeight: AppSize.s50.h,
-        fieldWidth: AppSize.s40.w,
-        activeFillColor: Colors.white,
-        activeBorderWidth: AppSize.s1.w,
-        inactiveFillColor: ColorManager.white,
-        selectedFillColor: ColorManager.white,
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: PinCodeTextField(
+        appContext: context,
+        length: AppConstant.otpLength,
+        obscureText: false,
+        animationType: AnimationType.scale,
+        pinTheme: PinTheme(
+          shape: PinCodeFieldShape.box,
+          borderRadius: BorderRadius.circular(AppSize.s8.r),
+          activeColor: ColorManager.primary,
+          inactiveColor: ColorManager.primary,
+          selectedColor: ColorManager.primary,
+          fieldHeight: AppSize.s50.h,
+          fieldWidth: AppSize.s40.w,
+          activeFillColor: Colors.white,
+          activeBorderWidth: AppSize.s1.w,
+          inactiveFillColor: ColorManager.white,
+          selectedFillColor: ColorManager.white,
+        ),
+        animationDuration:  const Duration(milliseconds: AppConstant.otpAnimationDuration),
+        backgroundColor: ColorManager.scaffoldBackgroundColor,
+        enableActiveFill: true,
+
+        onCompleted: (otpCode) {
+          onOtpCompleted(otpCode);
+        },
+        onChanged: (value) {
+          print(value);
+
+        },
+
       ),
-      animationDuration:  const Duration(milliseconds: AppConstant.otpAnimationDuration),
-      backgroundColor: ColorManager.scaffoldBackgroundColor,
-      enableActiveFill: true,
-
-      onCompleted: (otpCode) {
-        onOtpCompleted(otpCode);
-      },
-      onChanged: (value) {
-        print(value);
-
-      },
-
     );
   }
 }

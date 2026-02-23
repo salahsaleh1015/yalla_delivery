@@ -3,6 +3,7 @@ import 'package:delivery_app/data/models/banner_model.dart';
 import 'package:delivery_app/data/models/delivery_model.dart';
 import 'package:delivery_app/data/models/order_info_model.dart';
 import 'package:delivery_app/data/models/shop_model.dart';
+import 'package:delivery_app/data/models/user_model.dart';
 import 'package:delivery_app/data/models/verification_args_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/phone_auth_cubit/phone_auth_cubit.dart';
 import 'package:delivery_app/presentation/views/user_views/views/account/views/account_view.dart';
@@ -39,6 +40,8 @@ import '../../presentation/views/user_views/views/home/view/banner_details_view.
 class Routes {
   static const String onBoardingRoute = "/";
   static const String signUpRoute = "/signUp";
+  static const String firstSignUpRoute = "/firstSignUp";
+  static const String secondSignUpRoute = "/secondSignUp";
   static const String signInRoute = "/signIn";
   static const String verificationRoute = "/verification";
   static const String successAuthRoute = "/successAuth";
@@ -74,37 +77,48 @@ class Routes {
 }
 
 class RouteGenerator {
-  PhoneAuthCubit? phoneAuthCubit;
-
-  RouteGenerator() {
-    phoneAuthCubit = PhoneAuthCubit();
-  }
+  // PhoneAuthCubit? phoneAuthCubit;
+  //
+  // RouteGenerator() {
+  //   phoneAuthCubit = PhoneAuthCubit();
+  // }
 
   Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.onBoardingRoute:
         return MaterialPageRoute(builder: (_) => OnBoardingView());
-      case Routes.signUpRoute:
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider<PhoneAuthCubit>.value(
-            value: phoneAuthCubit!,
-            child: const SignUpView(),
-          ),
-        );
-      case Routes.signInRoute:
-        return MaterialPageRoute(
-            builder: (_) => BlocProvider<PhoneAuthCubit>.value(
-                value: phoneAuthCubit!, child: const SignInView()));
-      case Routes.verificationRoute:
-        final args = settings.arguments as VerificationArgs;
-        return MaterialPageRoute(
-            builder: (_) => BlocProvider<PhoneAuthCubit>.value(
-                  value: phoneAuthCubit!,
-                  child: VerificationView(
-                    isSignUpFlow: args.isSignUpFlow,
-                    userModel: args.userModel,
-                  ),
-                ));
+
+      case Routes.firstSignUpRoute:
+        return MaterialPageRoute(builder: (_)=>FirstSignUpView());
+
+
+      case Routes.secondSignUpRoute:
+        final args = settings.arguments as UserModel;
+        return MaterialPageRoute(builder: (_)=>SecondSignUpView(
+          userModel: args,
+        ));
+
+      // case Routes.signUpRoute:
+      //   return MaterialPageRoute(
+      //     builder: (_) => BlocProvider<PhoneAuthCubit>.value(
+      //       value: phoneAuthCubit!,
+      //       child: const SignUpView(),
+      //     ),
+      //   );
+      // case Routes.signInRoute:
+      //   return MaterialPageRoute(
+      //       builder: (_) => BlocProvider<PhoneAuthCubit>.value(
+      //           value: phoneAuthCubit!, child: const SignInView()));
+      // case Routes.verificationRoute:
+      //   final args = settings.arguments as VerificationArgs;
+      //   return MaterialPageRoute(
+      //       builder: (_) => BlocProvider<PhoneAuthCubit>.value(
+      //             value: phoneAuthCubit!,
+      //             child: VerificationView(
+      //               isSignUpFlow: args.isSignUpFlow,
+      //               userModel: args.userModel,
+      //             ),
+      //           ));
       case Routes.successAuthRoute:
         final args = settings.arguments as VerificationArgs;
         return MaterialPageRoute(

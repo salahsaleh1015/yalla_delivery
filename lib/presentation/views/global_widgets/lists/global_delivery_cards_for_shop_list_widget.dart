@@ -1,3 +1,4 @@
+import 'package:delivery_app/core/utils/constants.dart';
 import 'package:delivery_app/core/utils/functions/service_locator_setup.dart';
 import 'package:delivery_app/data/models/delivery_cards_filtered_model.dart';
 import 'package:delivery_app/data/models/delivery_model.dart';
@@ -12,6 +13,8 @@ import 'package:delivery_app/presentation/views/global_widgets/global_loading_in
 import 'package:delivery_app/presentation/views/global_widgets/global_no_deliveries_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../core/utils/functions/hive_functions.dart';
 
 class GlobalAvailableDeliveryCardsListWidget extends StatefulWidget {
   const GlobalAvailableDeliveryCardsListWidget({
@@ -52,6 +55,7 @@ class _GlobalAvailableDeliveryCardsListWidgetState
         ..getAvailableDeliveries(),
       child: BlocBuilder<GetAvailableDeliveryCubit, GetAvailableDeliveryStates>(
         builder: (context, state) {
+          var cubit = GetAvailableDeliveryCubit.get(context);
           if (state is GetAvailableDeliveryLoadingState) {
             return const Center(
               child: GlobalLoadingIndicator(),
@@ -65,23 +69,29 @@ class _GlobalAvailableDeliveryCardsListWidgetState
               return SizedBox(
                 width: double.infinity,
                 height: widget.height,
-                child: ListView.builder(
-                    itemCount: state.deliveries.length,
-                    itemBuilder: (context, index) {
-                      return GlobalDeliveryFilteredCardsWidget(
-                        deliveryFilteredCardsModel: DeliveryFilteredCardsModel(
-                            arrowOnTap: () {
-                              ///todo index == _selectedIndex navigate to chat details view
-                            },
-                            onTap: () {
-                              _onCardTap(index);
-                              widget.onSelectedDelivery
-                                  ?.call(state.deliveries[index]);
-                            },
-                            isSelected: index == _selectedIndex,
-                            deliveryModel: state.deliveries[index]),
-                      );
-                    }),
+                child: RefreshIndicator(
+                  onRefresh: ()async{
+                    await clearHiveBox(boxName: kAvailableDeliveryBox);
+                    cubit.getAvailableDeliveries();
+                  },
+                  child: ListView.builder(
+                      itemCount: state.deliveries.length,
+                      itemBuilder: (context, index) {
+                        return GlobalDeliveryFilteredCardsWidget(
+                          deliveryFilteredCardsModel: DeliveryFilteredCardsModel(
+                              arrowOnTap: () {
+                                ///todo index == _selectedIndex navigate to chat details view
+                              },
+                              onTap: () {
+                                _onCardTap(index);
+                                widget.onSelectedDelivery
+                                    ?.call(state.deliveries[index]);
+                              },
+                              isSelected: index == _selectedIndex,
+                              deliveryModel: state.deliveries[index]),
+                        );
+                      }),
+                ),
               );
             } else {
               return const GlobalNoDeliveriesWidget();

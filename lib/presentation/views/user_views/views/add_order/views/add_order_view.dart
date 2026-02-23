@@ -5,8 +5,12 @@ import 'package:delivery_app/presentation/views/global_widgets/global_custom_ord
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
 
 import '../../../../../../core/resources/routes_manager.dart';
+import '../../../../../../core/utils/constants.dart';
+import '../../../../../../core/utils/functions/hive_functions.dart';
+import '../../../../../../domain/entities/delivery_management_entities/delivery_entity.dart';
 
 class AddOrderView extends StatefulWidget {
   const AddOrderView({super.key,});
@@ -94,9 +98,10 @@ class _AddOrderViewState extends State<AddOrderView> {
             GlobalButtonWidget(
               isButtonEnabled: isButtonEnabled,
               text: "استمر",
-              onTap: () {
+              onTap: () async {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
+                  await  clearHiveBox<DeliveryEntity>(boxName: kAvailableDeliveryBox);
                   Navigator.pushNamed(
                       context, Routes.chooseDeliveryFromAddOrderRoute,
                       arguments: order);

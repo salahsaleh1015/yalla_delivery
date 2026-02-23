@@ -7,4 +7,33 @@ class AppConstant{
   static const int otpLength = 6;
   static const int otpTimeout = 30;
 
+  static  String? Function(String?)? emailValidation = (val) {
+    if (val == null || val.isEmpty) {
+      return "ادخل البريد الالكتروني";
+    }
+
+    // Email Regex
+    final emailRegex = RegExp(
+      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+    );
+
+    if (!emailRegex.hasMatch(val.trim())) {
+      return "ادخل البريد الالكتروني بشكل صحيح";
+    }
+
+    return null;
+  };
+
+
+  static  String? Function(String?)? phoneValidation = (value) {
+    if (value != null && value.isNotEmpty) {
+      final regex = RegExp(r'^01[0-2,5]{1}[0-9]{8}$');
+      if (!regex.hasMatch(value.trim())) {
+        return "أدخل رقم هاتف مصري صحيح مثل 01012345678";
+      }
+    }
+    return null;
+  };
 }
+
+

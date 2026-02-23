@@ -8,6 +8,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ThemeData getApplicationTheme(context) {
   return ThemeData(
+      inputDecorationTheme: const InputDecorationTheme(
+            hintStyle: TextStyle(fontSize: 2,fontWeight: FontWeight.w100),
+      ),
+
       scaffoldBackgroundColor: ColorManager.scaffoldBackgroundColor,
       textTheme: TextTheme(
         displaySmall: getMediumTextStyle(
