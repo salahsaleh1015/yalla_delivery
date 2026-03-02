@@ -236,6 +236,9 @@ class _EditAccountViewState extends State<EditAccountView> {
                                     userLocation: location,
                                     userName: name,
                                     phoneNumber: phoneNumber,
+                                    userMail: cubit.cachedUserModel.userMail,
+                                    userPassword: cubit.cachedUserModel.userPassword
+
                                   ),
                                 );
                               }

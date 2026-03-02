@@ -41,7 +41,7 @@ class SuccessAuthView extends StatelessWidget {
               SnackBar(
                 duration: const Duration(seconds: 5),
                 backgroundColor: ColorManager.primary,
-                content: Text(state.error),
+                content: Text("حدث خطا ما حاول في وقت لاحق"),
               ),
             );
             Future.delayed(const Duration(seconds: 5), () {

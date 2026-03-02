@@ -93,10 +93,13 @@ class RouteGenerator {
 
 
       case Routes.secondSignUpRoute:
-        final args = settings.arguments as UserModel;
+        final args = settings.arguments as FirstSignUpInfoModel;
         return MaterialPageRoute(builder: (_)=>SecondSignUpView(
-          userModel: args,
+          firstSignUpInfoModel: args,
         ));
+
+      case Routes.signInRoute:
+        return MaterialPageRoute(builder: (_)=>SignInView());
 
       // case Routes.signUpRoute:
       //   return MaterialPageRoute(

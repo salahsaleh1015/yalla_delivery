@@ -35,12 +35,15 @@ class DeliveryView extends StatelessWidget {
                     "كل المندوبين",
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
-                  GlobalCircularButtonWidget(
-                    onTap: () {
-                      //Navigator.pushNamed(context, CartView.id);
-                    },
-                    icon: Icons.shopping_cart_outlined,
+                  SizedBox(
+                    width: AppSize.s30.w,
                   ),
+                  // GlobalCircularButtonWidget(
+                  //   onTap: () {
+                  //     //Navigator.pushNamed(context, CartView.id);
+                  //   },
+                  //   icon: Icons.shopping_cart_outlined,
+                  // ),
                 ],
               ),
               SizedBox(

@@ -1,4 +1,5 @@
 import 'package:delivery_app/data/models/shop_model.dart';
+import 'package:delivery_app/presentation/views/global_widgets/global_pop_scope.dart';
 
 import '../../../../../../core/resources/assets_manager.dart';
 import '../../../../../../core/resources/colors_manager.dart';
@@ -16,33 +17,35 @@ class ShopDetailsView extends StatelessWidget {
   final ShopModel shop;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ShopImageItem(
-            image: shop.shopImage,
-          ),
-          SizedBox(
-            height: AppSize.s10.h,
-          ),
-          ShopInfoItemWidget(
-            shop: shop,
-          ),
-          Divider(
-            indent: AppSize.s20.w,
-            endIndent: AppSize.s20.w,
-            color: ColorManager.socialButtonColor,
-          ),
-          SizedBox(
-            height: AppSize.s10.h,
-          ),
-          ProductsSectionItemWidget(
-            shopId: shop.shopId,
-          ),
-        ],
+    return GlobalPopScope(
+      child: Scaffold(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ShopImageItem(
+              image: shop.shopImage,
+            ),
+            SizedBox(
+              height: AppSize.s10.h,
+            ),
+            ShopInfoItemWidget(
+              shop: shop,
+            ),
+            Divider(
+              indent: AppSize.s20.w,
+              endIndent: AppSize.s20.w,
+              color: ColorManager.socialButtonColor,
+            ),
+            SizedBox(
+              height: AppSize.s10.h,
+            ),
+            ProductsSectionItemWidget(
+              shopId: shop.shopId,
+            ),
+          ],
+        ),
+        // bottomNavigationBar: const PriceCardItemWidget(),
       ),
-      // bottomNavigationBar: const PriceCardItemWidget(),
     );
   }
 }

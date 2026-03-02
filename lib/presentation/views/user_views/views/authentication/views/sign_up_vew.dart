@@ -4,16 +4,20 @@ import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/data/models/user_model.dart';
 import 'package:delivery_app/data/models/verification_args_model.dart';
+import 'package:delivery_app/presentation/view_models/user_view_models/mail_auth_cubit/mail_auth_cubit.dart';
 
 import 'package:delivery_app/presentation/view_models/user_view_models/phone_auth_cubit/phone_auth_cubit.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_circular_button_widget.dart';
+import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_text_field_widget.dart';
+import 'package:delivery_app/presentation/views/user_views/views/authentication/authentication_widgets/mail_auth_register_and_login_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../../core/utils/popup_toast_helper.dart';
 import '../authentication_widgets/auth_dialog.dart';
 
 // class SignUpView extends StatefulWidget {
@@ -362,15 +366,14 @@ class _FirstSignUpViewState extends State<FirstSignUpView> {
                     width: double.infinity,
                     text: "متابعة",
                     onTap: () {
-                      if(_formKey.currentState!.validate()){
+                      if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
                         Navigator.pushNamed(context, Routes.secondSignUpRoute,
-                            arguments: UserModel(
-                                userLocation: location,
-                                userName: name,
+                            arguments: FirstSignUpInfoModel(
+                                location: location,
+                                name: name,
                                 phoneNumber: phoneNumber));
                       }
-
                     }),
                 SizedBox(
                   height: AppSize.s100.h,
@@ -385,9 +388,9 @@ class _FirstSignUpViewState extends State<FirstSignUpView> {
 }
 
 class SecondSignUpView extends StatefulWidget {
-  const SecondSignUpView({super.key, required this.userModel});
+  const SecondSignUpView({super.key, required this.firstSignUpInfoModel});
 
-  final UserModel userModel;
+  final FirstSignUpInfoModel firstSignUpInfoModel;
   @override
   State<SecondSignUpView> createState() => _SecondSignUpViewState();
 }
@@ -412,6 +415,8 @@ class _SecondSignUpViewState extends State<SecondSignUpView> {
     super.initState();
     _mailController.addListener(_checkIfFieldsAreFilled);
     _passwordController.addListener(_checkIfFieldsAreFilled);
+    print("//////////////////////////////////////");
+    print(widget.firstSignUpInfoModel.phoneNumber);
   }
 
   @override
@@ -477,7 +482,7 @@ class _SecondSignUpViewState extends State<SecondSignUpView> {
                 GlobalTextFieldWidget(
                   letterSpacing: 3.0,
                   validator: (value) {
-                    if (value != null && value.isNotEmpty) {
+                    if (value == null && value!.isEmpty) {
                       return "ادخل كلمه السر";
                     }
                     return null;
@@ -492,15 +497,62 @@ class _SecondSignUpViewState extends State<SecondSignUpView> {
                 SizedBox(
                   height: AppSize.s30.h,
                 ),
-                GlobalButtonWidget(
-                    isButtonEnabled: isButtonEnabled,
-                    width: double.infinity,
-                    text: "متابعة",
-                    onTap: () {
-                      Navigator.pushNamed(context, Routes.successAuthRoute,
+                BlocProvider<MailAuthCubit>(
+                  create: (context) => MailAuthCubit(),
+                  child: BlocConsumer<MailAuthCubit, MailAuthStates>(
+                    listener: (context, state) {
+                      if (state is MailAuthSignUpSuccessState) {
+                        Navigator.pushNamed(
+                          context,
+                          Routes.successAuthRoute,
                           arguments: VerificationArgs(
-                              isSignUpFlow: true, userModel: widget.userModel));
-                    }),
+                            isSignUpFlow: true,
+                            userModel: UserModel(
+                                userLocation:
+                                    widget.firstSignUpInfoModel.location,
+                                userName: widget.firstSignUpInfoModel.name,
+                                phoneNumber:
+                                    widget.firstSignUpInfoModel.phoneNumber,
+                                userMail: _mailController.text,
+                                userPassword: _passwordController.text),
+                          ),
+                        );
+                      }
+
+                      if (state is MailAuthSignUpErrorState) {
+                        print("////////////////////////");
+                        print("// ${state.errorMessage} /// ");
+                        if (state.errorMessage == '[firebase_auth/email-already-in-use] The email address is already in use by another account.') {
+                          showCustomToast(context, "هذا البريد موجود بالفعل");
+                        } else {
+                          showCustomToast(
+                              context, "حدث خطا ما حاول في وقت لاحق");
+                        }
+                      }
+                    },
+                    builder: (context, state) {
+                      var cubit = MailAuthCubit.get(context);
+                      // Logic fix: Show loader IF state is loading, otherwise show button
+                      if (state is MailAuthSignUpLoadingState) {
+                        return Center(child: const GlobalLoadingIndicator());
+                      }
+
+                      return GlobalButtonWidget(
+                        isButtonEnabled: isButtonEnabled,
+                        width: double.infinity,
+                        text: "متابعة",
+                        onTap: () {
+                          if (_formKey.currentState!.validate()) {
+                            _formKey.currentState!.save();
+                            cubit.registerWithEmailAndPassword(
+                                email: _mailController.text,
+                                password: _passwordController.text);
+                          }
+                        },
+                      );
+                    },
+                  ),
+                ),
                 SizedBox(
                   height: AppSize.s100.h,
                 ),
@@ -511,4 +563,11 @@ class _SecondSignUpViewState extends State<SecondSignUpView> {
       ),
     );
   }
+}
+
+class FirstSignUpInfoModel {
+  final String location, name, phoneNumber;
+
+  FirstSignUpInfoModel(
+      {required this.location, required this.name, required this.phoneNumber});
 }

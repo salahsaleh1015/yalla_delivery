@@ -16,9 +16,9 @@ class FirebaseUserServices {
     return await _userCollectionRef.doc(userId).set(userModel.toJson());
   }
 
-  Future<bool> checkUserExistsByPhone(String phoneNumber) async {
+  Future<bool> checkUserExistsGMail(String gMail) async {
     final querySnapshot = await _userCollectionRef
-        .where('phoneNumber', isEqualTo: phoneNumber)
+        .where('userMail', isEqualTo: gMail)
         .limit(1)
         .get();
 

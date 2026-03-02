@@ -71,7 +71,7 @@ class OnBoardingBodyTwoWidget extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            Navigator.pushNamed(context, Routes.secondSignUpRoute);
+            Navigator.pushNamed(context, Routes.signInRoute);
           },
           child: Text(
             "لدي حساب بالفعل",

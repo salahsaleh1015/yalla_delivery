@@ -23,7 +23,8 @@ class UserInfoCubit extends Cubit<UserInfoStates> {
 
     try {
       final exists = await _firebaseUserServices
-          .checkUserExistsByPhone(userModel.phoneNumber);
+          .checkUserExistsGMail(userModel.userMail);
+      print(userModel.userMail);
 
       if (isSignUpFlow && exists) {
         emit(UserInfoFoundedState());

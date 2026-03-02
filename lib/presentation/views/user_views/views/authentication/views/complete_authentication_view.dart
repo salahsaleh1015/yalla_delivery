@@ -16,7 +16,6 @@ import '../../../../../../core/resources/routes_manager.dart';
 import '../../../../../../domain/usecases/cache_user_usecase.dart';
 import '../../../../../../injection.dart';
 
-
 class CompleteAuthenticationView extends StatelessWidget {
   const CompleteAuthenticationView(
       {super.key, required this.userModel, required this.isSignUpFlow});
@@ -26,8 +25,8 @@ class CompleteAuthenticationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<UserCachingCubit>(
-      create: (context) => UserCachingCubit(
-          sl.get<CacheUserUseCase>(), sl.get<GetCachedUserUseCase>(),sl<UpdateCachedUserUseCase>()),
+      create: (context) => UserCachingCubit(sl.get<CacheUserUseCase>(),
+          sl.get<GetCachedUserUseCase>(), sl<UpdateCachedUserUseCase>()),
       child: Scaffold(
         backgroundColor: ColorManager.white,
         body: Center(
@@ -64,7 +63,6 @@ class CompleteAuthenticationView extends StatelessWidget {
               ),
               BlocBuilder<UserCachingCubit, UserCachingStates>(
                 builder: (context, state) {
-
                   var cubit = UserCachingCubit.get(context);
                   if (state is UserCachingLoadingState) {
                     return const GlobalLoadingIndicator();
@@ -86,7 +84,7 @@ class CompleteAuthenticationView extends StatelessWidget {
                           Navigator.pushNamedAndRemoveUntil(
                             context,
                             Routes.mainLayoutRoute,
-                                (route) => false,
+                            (route) => false,
                           );
                         } else {
                           print("////////////////////////////////////////");
@@ -94,7 +92,8 @@ class CompleteAuthenticationView extends StatelessWidget {
                           // Show error message
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                                content: Text("هناك خطأ ما حاول في وقت لاحق ")),
+                                content:
+                                    Text("هناك خطأ ما حاول في وقت لاحق ")),
                           );
                         }
                       },
@@ -119,15 +118,16 @@ class CompleteAuthenticationView extends StatelessWidget {
 
       if (isSignUpFlow) {
         cachedUserModel = CachedUserModel(
-          phoneNumber: userModel.phoneNumber,
-          userLocation: userModel.userLocation,
-          userName: userModel.userName,
-          userId: userModel.userId,
-        );
+            userPassword: userModel.userPassword,
+            phoneNumber: userModel.phoneNumber,
+            userLocation: userModel.userLocation,
+            userName: userModel.userName,
+            userId: userModel.userId,
+            userMail: userModel.userMail);
       } else {
         final doc = await FirebaseFirestore.instance
             .collection("Users")
-            .where("phoneNumber", isEqualTo: userModel.phoneNumber)
+            .where("userMail", isEqualTo: userModel.userMail)
             .get();
 
         if (doc.docs.isEmpty) {
@@ -137,6 +137,8 @@ class CompleteAuthenticationView extends StatelessWidget {
 
         final data = doc.docs.first.data();
         cachedUserModel = CachedUserModel(
+          userPassword: data['userPassword'],
+          userMail: data['userMail'],
           phoneNumber: data['phoneNumber'],
           userLocation: data['userLocation'],
           userName: data['userName'],

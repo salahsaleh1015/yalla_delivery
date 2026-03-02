@@ -11,7 +11,9 @@ class CachedUserModel with _$CachedUserModel {
     @HiveField(0) required String userLocation,
     @HiveField(1) required String userName,
     @HiveField(2) required String phoneNumber,
-    @HiveField(3) String? userId,
+    @HiveField(3) required String userMail,
+    @HiveField(4) required String userPassword,
+    @HiveField(5) String? userId,
   }) = _CachedUserModel;
 
   factory CachedUserModel.fromJson(Map<String, dynamic> json) =>
