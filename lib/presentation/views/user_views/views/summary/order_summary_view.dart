@@ -1,3 +1,4 @@
+import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/services/firebase_services/firestore_user_info_services.dart';
 import 'package:delivery_app/data/models/order_info_model.dart';
 import 'package:delivery_app/data/models/order_model.dart';
@@ -55,7 +56,9 @@ class OrderSummaryView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const GlobalAppBar(title: "ملخص الطلب"),
+                       GlobalAppBar(title: "ملخص الطلب",onTap: (){
+                        Navigator.pushReplacementNamed(context, Routes.mainLayoutRoute);
+                      },),
                       SizedBox(
                         height: AppSize.s30.h,
                       ),

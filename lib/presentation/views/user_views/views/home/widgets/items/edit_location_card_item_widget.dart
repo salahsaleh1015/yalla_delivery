@@ -1,11 +1,15 @@
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
+import 'package:delivery_app/core/services/firebase_services/firestore_user_info_services.dart';
+import 'package:delivery_app/domain/usecases/cache_user_usecase.dart';
+import 'package:delivery_app/presentation/view_models/user_view_models/user_caching_cubit/user_caching_cubit.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_info_cubit/user_info_cubit.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../../../injection.dart';
 
 class EditLocationCardItemWidget extends StatelessWidget {
   const EditLocationCardItemWidget({
@@ -17,9 +21,12 @@ class EditLocationCardItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<UserInfoCubit>(
-        create: (context) => UserInfoCubit()
-          ..getUserLocationByPhoneNumber(phoneNumber: userPhone),
+    return BlocProvider<UserCachingCubit>(
+        create: (context) => UserCachingCubit(
+            sl.get<CacheUserUseCase>(),
+            sl.get<GetCachedUserUseCase>(),
+            sl<UpdateCachedUserUseCase>(),
+            sl<FirebaseUserServices>())..loadCachedUser(),
         child: Card.outlined(
           color: ColorManager.white,
           elevation: AppSize.s5.r,
@@ -62,43 +69,16 @@ class EditLocationCardItemWidget extends StatelessWidget {
                     SizedBox(
                       height: AppSize.s10.h,
                     ),
-                    BlocBuilder<UserInfoCubit, UserInfoStates>(
+                    BlocBuilder<UserCachingCubit, UserCachingStates>(
                       builder: (context, state) {
-                        var cubit = UserInfoCubit.get(context);
-                        if (state is UserLocationLoadedSuccessfullyState) {
-                          return Text(
-                            cubit.userLocation,
-
-
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall!
-                                .copyWith(color: ColorManager.black),
-                          );
-                        }else if(state is UserLocationLoadingState){
-                          return const Center(child: GlobalLoadingIndicator(),);
-                        }else if(state is UserLocationErrorState){
-                          return Center(
-                            child: Text(
-                              state.error,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineSmall!
-                                  .copyWith(color: ColorManager.black),
-                            ),
-                          );
-                        }else{
-                          return  Center(child: Text(
-                            "هناك خطاء ما خاول في وقت لاحق",
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall!
-                                .copyWith(color: ColorManager.black),
-                          ),);
-                        }
-
-
-
+                        var cubit = UserCachingCubit.get(context);
+                        return Text(
+                          cubit.cachedUserModel.userLocation,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineSmall!
+                              .copyWith(color: ColorManager.black),
+                        );
                       },
                     ),
                   ],

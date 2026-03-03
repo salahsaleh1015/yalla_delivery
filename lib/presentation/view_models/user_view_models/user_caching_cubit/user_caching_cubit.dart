@@ -25,7 +25,6 @@ class UserCachingCubit extends Cubit<UserCachingStates> {
 
   Future<void> cacheUser(CachedUserModel userModel) async {
     emit(UserCachingLoadingState());
-
     await _cacheUserUseCase(userModel);
     cachedUserModel = userModel;
 

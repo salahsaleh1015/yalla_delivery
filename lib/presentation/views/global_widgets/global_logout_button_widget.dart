@@ -1,14 +1,17 @@
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
+import 'package:delivery_app/core/utils/constants.dart';
+import 'package:delivery_app/core/utils/functions/hive_functions.dart';
+import 'package:delivery_app/domain/entities/delivery_management_entities/delivery_entity.dart';
+import 'package:delivery_app/domain/entities/home_entities/home_banner_entity.dart';
+import 'package:delivery_app/domain/entities/home_entities/home_shop_entity.dart';
+import 'package:delivery_app/domain/entities/home_entities/home_shop_product_entity.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_dialogs/global_dialog.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_light_button_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hive/hive.dart';
-
-import '../../../core/services/firebase_services/firestore_user_info_services.dart';
 
 class GlobalLogoutButtonWidget extends StatelessWidget {
   const GlobalLogoutButtonWidget({
@@ -18,8 +21,10 @@ class GlobalLogoutButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GlobalLightButtonWidget(
-      onTap: () async {
-        await signOut(context);
+      onTap: () {
+        logoutDialog(context, actionButtonCall: () async {
+          await signOut(context);
+        });
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -45,13 +50,34 @@ class GlobalLogoutButtonWidget extends StatelessWidget {
 
   Future<void> signOut(BuildContext context) async {
     FirebaseAuth.instance.signOut();
-    await Hive.deleteFromDisk();
+    // Clear boxes
+    await clearHiveBox<HomeBannerEntity>(boxName: kBannersBox);
+    await clearHiveBox<HomeShopEntity>(boxName: kShopsBox);
+    await clearHiveBox<HomeShopProductEntity>(boxName: kProductsBox);
+    await clearHiveBox<DeliveryEntity>(boxName: kAllDeliveriesBox);
+    await clearHiveBox<DeliveryEntity>(boxName: kAvailableDeliveryBox);
+    await clearHiveBox<DeliveryEntity>(boxName: kUnAvailableDeliveryBox);
+    await clearHiveBox<DeliveryEntity>(boxName: kBusyDeliveryBox);
     Navigator.pushNamedAndRemoveUntil(
       context,
       Routes.onBoardingRoute,
-          (Route<dynamic> route) => false, // Removes all routes
+      (Route<dynamic> route) => false, // Removes all routes
     );
   }
+}
+
+void logoutDialog(
+  BuildContext context, {
+  required Function() actionButtonCall,
+}) {
+  showCustomDialog(
+    context,
+    dialogTitle: "تسجيل الخروج",
+    actionButtonColor: ColorManager.error,
+    actionButtonHint: "تسجيل الخروج",
+    actionButtonCallBack: actionButtonCall,
+    content: const LogoutDialogContent(),
+  );
 }
 
 class LogoutDialogContent extends StatelessWidget {
@@ -61,18 +87,14 @@ class LogoutDialogContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          height: AppSize.s20.h,
-        ),
+        SizedBox(height: AppSize.s20.h),
         Text(
           "هل أنت متأكد أنك تريد تسجيل الخروج؟",
-          style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                color: ColorManager.hintColor,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.headlineMedium!.copyWith(color: ColorManager.hintColor),
         ),
-        SizedBox(
-          height: AppSize.s20.h,
-        ),
+        SizedBox(height: AppSize.s20.h),
       ],
     );
   }
