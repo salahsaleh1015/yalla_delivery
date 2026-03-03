@@ -3,6 +3,7 @@ import 'package:delivery_app/data/models/delivery_model.dart';
 import 'package:delivery_app/data/models/order_info_model.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_app_bar.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
+import 'package:delivery_app/presentation/views/global_widgets/global_pop_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

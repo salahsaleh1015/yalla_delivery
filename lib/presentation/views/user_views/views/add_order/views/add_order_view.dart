@@ -12,7 +12,7 @@ import '../../../../../../core/utils/constants.dart';
 import '../../../../../../core/utils/functions/hive_functions.dart';
 import '../../../../../../domain/entities/delivery_management_entities/delivery_entity.dart';
 
-class AddOrderView extends StatefulWidget {
+class AddOrderView extends StatefulWidget     {
   const AddOrderView({super.key,});
 
 
@@ -42,77 +42,74 @@ class _AddOrderViewState extends State<AddOrderView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GlobalPaddingWidget(
-          child: Form(
-        key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  width: AppSize.s30.w,
-                ),
-                Text(
-                  "اضافة طلب",
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                // GlobalCircularButtonWidget(
-                //   onTap: () {
-                //     // Navigator.pushNamed(context, CartView.id);
-                //   },
-                //   icon: Icons.shopping_cart_outlined,
-                // ),
-                SizedBox(
-                  height: AppSize.s30.h,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: AppSize.s30.h,
-            ),
-            Text(
-              "أضف طلبك",
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            SizedBox(
-              height: AppSize.s30.h,
-            ),
-            GlobalCustomOrderTextField(
-              orderController: _orderController,
-              onSaved: (value) {
-                order = value!;
-              },
-              validator: (value) {
-                if (value!.length < 10) {
-                  return " يرجى ادخال الطلب كامل";
-                }
-                return null;
-              },
-            ),
-            SizedBox(
-              height: AppSize.s30.h,
-            ),
-            GlobalButtonWidget(
-              isButtonEnabled: isButtonEnabled,
-              text: "استمر",
-              onTap: () async {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState!.save();
-                  await  clearHiveBox<DeliveryEntity>(boxName: kAvailableDeliveryBox);
-                  Navigator.pushNamed(
-                      context, Routes.chooseDeliveryFromAddOrderRoute,
-                      arguments: order);
-                  _orderController.clear();
-                }
-              },
-              width: double.infinity,
-            ),
-          ],
-        ),
-      )),
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                width: AppSize.s30.w,
+              ),
+              Text(
+                "اضافة طلب",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              // GlobalCircularButtonWidget(
+              //   onTap: () {
+              //     // Navigator.pushNamed(context, CartView.id);
+              //   },
+              //   icon: Icons.shopping_cart_outlined,
+              // ),
+              SizedBox(
+                height: AppSize.s30.h,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: AppSize.s30.h,
+          ),
+          Text(
+            "أضف طلبك",
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+          SizedBox(
+            height: AppSize.s30.h,
+          ),
+          GlobalCustomOrderTextField(
+            orderController: _orderController,
+            onSaved: (value) {
+              order = value!;
+            },
+            validator: (value) {
+              if (value!.length < 10) {
+                return " يرجى ادخال الطلب كامل";
+              }
+              return null;
+            },
+          ),
+          SizedBox(
+            height: AppSize.s30.h,
+          ),
+          GlobalButtonWidget(
+            isButtonEnabled: isButtonEnabled,
+            text: "استمر",
+            onTap: () async {
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
+                await  clearHiveBox<DeliveryEntity>(boxName: kAvailableDeliveryBox);
+                Navigator.pushNamed(
+                    context, Routes.chooseDeliveryFromAddOrderRoute,
+                    arguments: order);
+                _orderController.clear();
+              }
+            },
+            width: double.infinity,
+          ),
+        ],
+      ),
     );
   }
 

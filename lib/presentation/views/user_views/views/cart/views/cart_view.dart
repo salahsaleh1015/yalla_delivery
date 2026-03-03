@@ -1,4 +1,5 @@
 
+import 'package:delivery_app/presentation/views/global_widgets/global_pop_scope.dart';
 import 'package:delivery_app/presentation/views/user_views/views/cart/views/cart_choose_delivery.dart';
 import 'package:delivery_app/presentation/views/user_views/views/cart/widgets/cart_app_bar.dart';
 import 'package:delivery_app/presentation/views/user_views/views/cart/widgets/cart_button.dart';

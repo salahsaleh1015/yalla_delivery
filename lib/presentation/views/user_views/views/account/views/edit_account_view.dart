@@ -7,6 +7,7 @@ import 'package:delivery_app/presentation/views/global_widgets/global_button_wid
 import 'package:delivery_app/presentation/views/global_widgets/global_circular_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
+import 'package:delivery_app/presentation/views/global_widgets/global_pop_scope.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_text_field_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_user_card_widget.dart';
 import 'package:flutter/material.dart';
@@ -102,10 +103,10 @@ class _EditAccountViewState extends State<EditAccountView> {
           var cubit = UserCachingCubit.get(context);
 
           return Scaffold(
-            body: GlobalPaddingWidget(
-              child: Form(
-                key: _formKey,
-                child: SingleChildScrollView(
+            body : Form(
+              key: _formKey,
+              child: SingleChildScrollView(
+                child: GlobalPaddingWidget(
                   child: Column(
                     children: [
                       Row(
@@ -147,7 +148,7 @@ class _EditAccountViewState extends State<EditAccountView> {
                         children: [
                           Text("الاسم بالكامل",
                               style:
-                                  Theme.of(context).textTheme.headlineMedium),
+                              Theme.of(context).textTheme.headlineMedium),
                           const Spacer(),
                         ],
                       ),
@@ -171,7 +172,7 @@ class _EditAccountViewState extends State<EditAccountView> {
                         children: [
                           Text("رقم الهاتف",
                               style:
-                                  Theme.of(context).textTheme.headlineMedium),
+                              Theme.of(context).textTheme.headlineMedium),
                           const Spacer(),
                         ],
                       ),
@@ -198,7 +199,7 @@ class _EditAccountViewState extends State<EditAccountView> {
                         children: [
                           Text("العنوان بالتفصيل",
                               style:
-                                  Theme.of(context).textTheme.headlineMedium),
+                              Theme.of(context).textTheme.headlineMedium),
                           const Spacer(),
                         ],
                       ),
@@ -232,12 +233,12 @@ class _EditAccountViewState extends State<EditAccountView> {
                                 _formKey.currentState!.save();
                                 cubit.updateUser(
                                   cachedUserModel: CachedUserModel(
-                                    userId: cubit.cachedUserModel.userId,
-                                    userLocation: location,
-                                    userName: name,
-                                    phoneNumber: phoneNumber,
-                                    userMail: cubit.cachedUserModel.userMail,
-                                    userPassword: cubit.cachedUserModel.userPassword
+                                      userId: cubit.cachedUserModel.userId,
+                                      userLocation: location,
+                                      userName: name,
+                                      phoneNumber: phoneNumber,
+                                      userMail: cubit.cachedUserModel.userMail,
+                                      userPassword: cubit.cachedUserModel.userPassword
 
                                   ),
                                 );

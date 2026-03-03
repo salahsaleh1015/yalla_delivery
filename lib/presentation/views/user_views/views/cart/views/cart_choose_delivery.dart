@@ -1,4 +1,4 @@
-
+import 'package:delivery_app/presentation/views/global_widgets/global_pop_scope.dart';
 import 'package:delivery_app/presentation/views/user_views/views/cart/views/cart_order_summary_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -1,5 +1,4 @@
 import 'package:delivery_app/presentation/views/user_views/views/home/view/summary_view.dart';
-
 import '../../../../../../core/resources/values_manager.dart';
 import '../../../../global_widgets/global_app_bar.dart';
 import '../../../../global_widgets/global_button_widget.dart';

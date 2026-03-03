@@ -1,4 +1,5 @@
 
+import 'package:delivery_app/presentation/views/global_widgets/global_pop_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -24,7 +25,7 @@ class CartEmptyView extends StatelessWidget {
             Padding(
               padding:  EdgeInsets.symmetric(horizontal: AppPadding.p8.w),
               child: Text("لم تقم بإضافة اي طلبات الي السلة... اضغط علي الزر اسفل للإضافة.",style: Theme.of(context).textTheme.labelSmall,textAlign: TextAlign.center,),
-              
+
             ),
             SizedBox(height: AppSize.s30.h,),
             Padding(
