@@ -20,3 +20,19 @@ final class UserCachingErrorState extends UserCachingStates {
 }
 
 final class UserCachingSavedState extends UserCachingStates {}
+
+final class UserCachingUpdateInCloudLoadingState extends UserCachingStates{}
+
+final class UserCachingUpdateInCloudErrorState extends UserCachingStates{
+
+  final String errorMessage;
+
+  UserCachingUpdateInCloudErrorState({required this.errorMessage});
+}
+
+
+final class UserCachingUpdateInCloudSuccessState extends UserCachingStates{
+  final CachedUserModel cachedUserModel;
+
+  UserCachingUpdateInCloudSuccessState({required this.cachedUserModel});
+}

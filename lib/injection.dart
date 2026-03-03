@@ -1,4 +1,4 @@
-
+import 'package:delivery_app/core/services/firebase_services/firestore_user_info_services.dart';
 import 'package:delivery_app/data/repos/cached_user_repository.dart';
 import 'package:delivery_app/data/models/cached_user_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_caching_cubit/user_caching_cubit.dart';
@@ -14,6 +14,10 @@ final sl = GetIt.instance;
 // void configureInjection(String env) => sl.init(environment: env);
 
 Future<void> init(Box<CachedUserModel> cachedUserBox) async {
+  // services
+
+  sl.registerLazySingleton<FirebaseUserServices>(() => FirebaseUserServices());
+
   // Repository
   sl.registerLazySingleton<ICachedUserRepository>(
     () => CachedUserRepository(cachedUserBox), // ✅ مرر الـ box
@@ -33,10 +37,9 @@ Future<void> init(Box<CachedUserModel> cachedUserBox) async {
   );
 
   // Cubit
-  sl.registerFactory<UserCachingCubit>(
-    () => UserCachingCubit(sl<CacheUserUseCase>(), sl<GetCachedUserUseCase>(),
-        sl<UpdateCachedUserUseCase>()),
-  );
+  sl.registerFactory<UserCachingCubit>(() => UserCachingCubit(
+      sl<CacheUserUseCase>(),
+      sl<GetCachedUserUseCase>(),
+      sl<UpdateCachedUserUseCase>(),
+      sl<FirebaseUserServices>()));
 }
-
-

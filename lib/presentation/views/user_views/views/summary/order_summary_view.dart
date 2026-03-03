@@ -1,3 +1,4 @@
+import 'package:delivery_app/core/services/firebase_services/firestore_user_info_services.dart';
 import 'package:delivery_app/data/models/order_info_model.dart';
 import 'package:delivery_app/data/models/order_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_caching_cubit/user_caching_cubit.dart';
@@ -30,8 +31,11 @@ class OrderSummaryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => UserCachingCubit(sl.get<CacheUserUseCase>(),
-          sl.get<GetCachedUserUseCase>(), sl<UpdateCachedUserUseCase>())
+      create: (context) => UserCachingCubit(
+          sl.get<CacheUserUseCase>(),
+          sl.get<GetCachedUserUseCase>(),
+          sl<UpdateCachedUserUseCase>(),
+          sl<FirebaseUserServices>())
         ..loadCachedUser(),
       child: BlocBuilder<UserCachingCubit, UserCachingStates>(
         builder: (context, state) {

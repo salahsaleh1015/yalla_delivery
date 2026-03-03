@@ -1,6 +1,7 @@
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
+import 'package:delivery_app/core/services/firebase_services/firestore_user_info_services.dart';
 import 'package:delivery_app/domain/usecases/cache_user_usecase.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_caching_cubit/user_caching_cubit.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_account_widgets/global_account_info_bar_widget.dart';
@@ -28,8 +29,12 @@ class _AccountViewState extends State<AccountView> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<UserCachingCubit>(
-      create: (context) => UserCachingCubit(sl.get<CacheUserUseCase>(),
-          sl.get<GetCachedUserUseCase>(), sl<UpdateCachedUserUseCase>())
+      create: (context) => UserCachingCubit(
+          sl.get<CacheUserUseCase>(),
+          sl.get<GetCachedUserUseCase>(),
+          sl<UpdateCachedUserUseCase>(),
+          sl<FirebaseUserServices>()
+          )
         ..loadCachedUser(),
       child: BlocBuilder<UserCachingCubit, UserCachingStates>(
         builder: (context, state) {
@@ -85,7 +90,7 @@ class _AccountViewState extends State<AccountView> {
                     ),
                     GlobalProfileCardWidget(
                       fieldName: "رقم الهاتف",
-                      fieldValue:cachedUserModel.phoneNumber,
+                      fieldValue: cachedUserModel.phoneNumber,
                     ),
                     SizedBox(
                       height: AppSize.s10.h,
@@ -103,8 +108,8 @@ class _AccountViewState extends State<AccountView> {
                     SizedBox(
                       height: AppSize.s50.h,
                     ),
-                     GlobalLogoutButtonWidget(
-                      actionButtonCall: (){},
+                    GlobalLogoutButtonWidget(
+
                     ),
                     SizedBox(
                       height: AppSize.s10.h,

@@ -1,4 +1,5 @@
 import 'package:delivery_app/core/services/firebase_services/firestore_user_info_services.dart';
+import 'package:delivery_app/data/models/cached_user_model.dart';
 import 'package:delivery_app/data/models/user_model.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,19 +57,7 @@ class UserInfoCubit extends Cubit<UserInfoStates> {
     }
   }
 
-  Future<void> updateUserByPhoneNumber({required UserModel updatedUser}) async {
-    emit(UserInfoLoadingState());
-    try {
-      await _firebaseUserServices.updateUserInfo(updatedUser);
 
-      user = updatedUser; // Update local user state
-      emit(UserInfoUpdatedState(
-        userModel: user,
-      ));
-    } catch (e) {
-      emit(UserInfoErrorState(error: e.toString()));
-    }
-  }
 
   Future<void> getUserLocationByPhoneNumber({required String phoneNumber}) async {
     emit(UserLocationLoadingState());

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
+import 'package:delivery_app/core/services/firebase_services/firestore_user_info_services.dart';
 import 'package:delivery_app/core/services/shared_preferences_services/shared_preferences_services.dart';
 import 'package:delivery_app/data/models/cached_user_model.dart';
 import 'package:delivery_app/data/models/user_model.dart';
@@ -26,7 +27,7 @@ class CompleteAuthenticationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<UserCachingCubit>(
       create: (context) => UserCachingCubit(sl.get<CacheUserUseCase>(),
-          sl.get<GetCachedUserUseCase>(), sl<UpdateCachedUserUseCase>()),
+          sl.get<GetCachedUserUseCase>(), sl<UpdateCachedUserUseCase>(), sl<FirebaseUserServices>()),
       child: Scaffold(
         backgroundColor: ColorManager.white,
         body: Center(

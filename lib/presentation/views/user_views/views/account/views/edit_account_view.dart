@@ -1,5 +1,7 @@
 import 'package:delivery_app/core/resources/colors_manager.dart';
+import 'package:delivery_app/core/resources/constants_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
+import 'package:delivery_app/core/services/firebase_services/firestore_user_info_services.dart';
 import 'package:delivery_app/data/models/cached_user_model.dart';
 import 'package:delivery_app/domain/usecases/cache_user_usecase.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_caching_cubit/user_caching_cubit.dart';
@@ -36,8 +38,8 @@ class _EditAccountViewState extends State<EditAccountView> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void _checkIfFieldsAreFilled() {
-    final isFilled = _nameController.text.isNotEmpty &&
-        _phoneController.text.isNotEmpty &&
+    final isFilled = _nameController.text.isNotEmpty ||
+        _phoneController.text.isNotEmpty ||
         _locationController.text.isNotEmpty;
 
     setState(() {
@@ -60,6 +62,7 @@ class _EditAccountViewState extends State<EditAccountView> {
         sl.get<CacheUserUseCase>(),
         sl.get<GetCachedUserUseCase>(),
         sl<UpdateCachedUserUseCase>(),
+          sl<FirebaseUserServices>()
       )..loadCachedUser(),
       // ✅ استخدمت BlocConsumer بدلاً من BlocBuilder
       child: BlocConsumer<UserCachingCubit, UserCachingStates>(
@@ -133,7 +136,7 @@ class _EditAccountViewState extends State<EditAccountView> {
                       ),
                       SizedBox(height: AppSize.s5.h),
                       Text(
-                        "انضم منذ 12 اكتوبر 2024",
+                          cubit.cachedUserModel.userMail,
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       SizedBox(height: AppSize.s20.h),
@@ -178,15 +181,7 @@ class _EditAccountViewState extends State<EditAccountView> {
                       ),
                       SizedBox(height: AppSize.s10.h),
                       GlobalTextFieldWidget(
-                        validator: (value) {
-                          if (value != null && value.isNotEmpty) {
-                            final regex = RegExp(r'^01[0-2,5]{1}[0-9]{8}$');
-                            if (!regex.hasMatch(value.trim())) {
-                              return "أدخل رقم هاتف مصري صحيح مثل 01012345678";
-                            }
-                          }
-                          return null;
-                        },
+                        validator:AppConstant.phoneValidation,
                         onSaved: (val) => phoneNumber = val!,
                         controller: _phoneController,
                         hintText: "رقم الهاتف",

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:delivery_app/data/models/cached_user_model.dart';
 import 'package:delivery_app/data/models/user_model.dart';
 
 
@@ -35,23 +36,23 @@ class FirebaseUserServices {
     return UserModel.fromJson(data);
   }
 
-  Future<void> updateUserInfo(UserModel userModel) async {
+  Future<void> updateUserInfo(CachedUserModel cachedUserModel) async {
 
     // Step 1: Search for user by phone number
     final querySnapshot = await _userCollectionRef
-        .where('phoneNumber', isEqualTo: userModel.phoneNumber)
+        .where('userMail', isEqualTo: cachedUserModel.userMail)
         .limit(1)
         .get();
 
     if (querySnapshot.docs.isEmpty) {
-      throw Exception("User with phone number ${userModel.phoneNumber} not found.");
+      throw Exception("User with phone number ${cachedUserModel.userMail} not found.");
     }
 
     // Step 2: Get the document ID
     final docId = querySnapshot.docs.first.id;
 
     // Step 3: Update the document
-    await _userCollectionRef.doc(docId).update(userModel.toJson());
+    await _userCollectionRef.doc(docId).update(cachedUserModel.toJson());
   }
 
 

@@ -18,4 +18,5 @@ class CachedUserModel with _$CachedUserModel {
 
   factory CachedUserModel.fromJson(Map<String, dynamic> json) =>
       _$CachedUserModelFromJson(json);
+
 }
