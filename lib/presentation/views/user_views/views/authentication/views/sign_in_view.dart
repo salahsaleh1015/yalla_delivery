@@ -7,6 +7,7 @@ import 'package:delivery_app/presentation/view_models/user_view_models/mail_auth
 
 import 'package:delivery_app/presentation/views/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_circular_button_widget.dart';
+import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_text_field_widget.dart';
 import 'package:flutter/material.dart';
@@ -156,8 +157,8 @@ class _SignInViewState extends State<SignInView> {
                           arguments: VerificationArgs(
                             isSignUpFlow: false,
                             userModel: UserModel(
-                              userPassword: _passwordController.text,
-                              userMail: _mailController.text,
+                                userPassword: _passwordController.text,
+                                userMail: _mailController.text,
                                 userLocation: 'existed user',
                                 userName: 'existed user',
                                 phoneNumber: 'existed user'),
@@ -171,19 +172,21 @@ class _SignInViewState extends State<SignInView> {
                     },
                     builder: (context, state) {
                       var cubit = MailAuthCubit.get(context);
-                      return GlobalButtonWidget(
-                        isButtonEnabled: isButtonEnabled,
-                        width: double.infinity,
-                        text: "متابعة",
-                        onTap: () {
-                          if(_formKey.currentState!.validate()){
-                            _formKey.currentState!.save();
-                            cubit.signInWithEmailAndPassword(
-                                email: _mailController.text,
-                                password: _passwordController.text);
-                          }
-                        },
-                      );
+                      return state is MailAuthSignUpLoadingState
+                          ? GlobalLoadingIndicator()
+                          : GlobalButtonWidget(
+                              isButtonEnabled: isButtonEnabled,
+                              width: double.infinity,
+                              text: "متابعة",
+                              onTap: () {
+                                if (_formKey.currentState!.validate()) {
+                                  _formKey.currentState!.save();
+                                  cubit.signInWithEmailAndPassword(
+                                      email: _mailController.text,
+                                      password: _passwordController.text);
+                                }
+                              },
+                            );
                     },
                   ),
                 ),

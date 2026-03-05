@@ -4,7 +4,6 @@ import 'package:delivery_app/data/models/order_info_model.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_app_bar.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
-import 'package:delivery_app/presentation/views/global_widgets/global_pop_scope.dart';
 import 'package:delivery_app/presentation/views/global_widgets/lists/global_delivery_cards_for_shop_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,12 +53,12 @@ class _ChooseDeliveryFromAddOrderViewState extends State<ChooseDeliveryFromAddOr
               });
 
             },
-            height: MediaQuery.of(context).size.height * 0.65,
+            height: MediaQuery.of(context).size.height * 0.62,
           ),
         ],
       )),
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.all(AppPadding.p8.r),
+        padding: EdgeInsets.symmetric(vertical: AppPadding.p16,horizontal: AppPadding.p8),
         child: GlobalButtonWidget(
           isButtonEnabled: isEnabled,
           text: "استمر",

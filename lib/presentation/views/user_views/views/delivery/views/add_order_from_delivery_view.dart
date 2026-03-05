@@ -48,51 +48,53 @@ class _AddOrderFromDeliveryViewState extends State<AddOrderFromDeliveryView> {
       body: GlobalPaddingWidget(
           child: Form(
         key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const GlobalAppBar(
-              title: "اضافة طلب",
-            ),
-            SizedBox(
-              height: AppSize.s30.h,
-            ),
-            Text(
-              "أضف طلبك",
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            SizedBox(
-              height: AppSize.s30.h,
-            ),
-            GlobalCustomOrderTextField(
-              orderController: _orderController,
-              onSaved: (value) {
-                order = value!;
-              },
-              validator: (value) {
-                if (value!.length < 10) {
-                  return " يرجى ادخال الطلب كامل";
-                }
-                return null;
-              },
-            ),
-            SizedBox(
-              height: AppSize.s30.h,
-            ),
-            GlobalButtonWidget(
-              isButtonEnabled: isButtonEnabled,
-              text: "استمر",
-              onTap: () {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState!.save();
-                  Navigator.pushNamed(context, Routes.orderSummaryRoute,
-                      arguments: OrderInfoModel(
-                          deliveryModel: widget.deliveryModel, order: order));
-                }
-              },
-              width: double.infinity,
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const GlobalAppBar(
+                title: "اضافة طلب",
+              ),
+              SizedBox(
+                height: AppSize.s30.h,
+              ),
+              Text(
+                "أضف طلبك",
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              SizedBox(
+                height: AppSize.s30.h,
+              ),
+              GlobalCustomOrderTextField(
+                orderController: _orderController,
+                onSaved: (value) {
+                  order = value!;
+                },
+                validator: (value) {
+                  if (value!.length < 10) {
+                    return " يرجى ادخال الطلب كامل";
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(
+                height: AppSize.s30.h,
+              ),
+              GlobalButtonWidget(
+                isButtonEnabled: isButtonEnabled,
+                text: "استمر",
+                onTap: () {
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
+                    Navigator.pushNamed(context, Routes.orderSummaryRoute,
+                        arguments: OrderInfoModel(
+                            deliveryModel: widget.deliveryModel, order: order));
+                  }
+                },
+                width: double.infinity,
+              ),
+            ],
+          ),
         ),
       )),
     );
