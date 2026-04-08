@@ -1,5 +1,6 @@
 import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/services/firebase_services/firestore_user_info_services.dart';
+import 'package:delivery_app/data/models/delivery_model.dart';
 import 'package:delivery_app/data/models/order_info_model.dart';
 import 'package:delivery_app/data/models/order_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_caching_cubit/user_caching_cubit.dart';
@@ -56,9 +57,13 @@ class OrderSummaryView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       GlobalAppBar(title: "ملخص الطلب",onTap: (){
-                        Navigator.pushReplacementNamed(context, Routes.mainLayoutRoute);
-                      },),
+                      GlobalAppBar(
+                        title: "ملخص الطلب",
+                        onTap: () {
+                          Navigator.pushReplacementNamed(
+                              context, Routes.mainLayoutRoute);
+                        },
+                      ),
                       SizedBox(
                         height: AppSize.s30.h,
                       ),
@@ -138,28 +143,30 @@ class OrderSummaryView extends StatelessWidget {
                                 .replaceAll('PM', 'م');
                             cubit
                                 .addOrder(
-                                    order: OrderModel(
-                              deliveryMail: orderInfoModel.deliveryModel.mail!,
-                              userName: cacheCubit.cachedUserModel.userName,
-                              userPhoneNumber:
-                                  cacheCubit.cachedUserModel.phoneNumber,
-                              userLocation:
-                                  cacheCubit.cachedUserModel.userLocation,
-                              userOrder: orderInfoModel.order,
-                              userOrderStatus: 'المعلقة',
-                              userOrderNotes: userNote ?? '',
-                              userOrderDate: formattedTime,
-                              deliveryName:
-                                  orderInfoModel.deliveryModel.deliveryName,
-                              deliveryPhone:
-                                  orderInfoModel.deliveryModel.phone!,
-                              deliveryLocation:
-                                  orderInfoModel.deliveryModel.location!,
-                              deliveryStatus:
-                                  orderInfoModel.deliveryModel.deliveryStatus,
-                              deliveryRate:
-                                  orderInfoModel.deliveryModel.deliveryRate,
-                            ))
+                              order: OrderModel(
+                                userName: cacheCubit.cachedUserModel.userName,
+                                userPhoneNumber:
+                                    cacheCubit.cachedUserModel.phoneNumber,
+                                userLocation:
+                                    cacheCubit.cachedUserModel.userLocation,
+                                userOrder: orderInfoModel.order,
+                                userOrderStatus: 'المعلقة',
+                                userOrderNotes: userNote ?? '',
+                                userOrderDate: formattedTime,
+
+                                /// 🔥 أهم تعديل هنا
+                                delivery: DeliveryModel(
+                                  id: orderInfoModel.deliveryModel.id,
+                                  name: orderInfoModel.deliveryModel.name,
+                                  phone: orderInfoModel.deliveryModel.phone,
+                                  location:
+                                      orderInfoModel.deliveryModel.location,
+                                  status: orderInfoModel.deliveryModel.status,
+                                  rate: orderInfoModel.deliveryModel.rate,
+                                  mail: orderInfoModel.deliveryModel.mail,
+                                ),
+                              ),
+                            )
                                 .then((_) {
                               confirmationDialog(context);
                             });
