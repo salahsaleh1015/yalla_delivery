@@ -3,12 +3,13 @@ import 'package:delivery_app/presentation/views/global_widgets/global_bottom_nav
 import 'package:delivery_app/presentation/views/global_widgets/global_pop_scope.dart';
 import 'package:delivery_app/presentation/views/user_views/views/account/views/account_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/add_order/views/add_order_view.dart';
-import 'package:delivery_app/presentation/views/user_views/views/chat/views/chats_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/delivery/views/delivery_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/home/view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../about_and_suggestions/views/about_and_suggestions_view.dart';
 
 class MainLayoutView extends StatelessWidget {
   const MainLayoutView({
@@ -19,7 +20,7 @@ class MainLayoutView extends StatelessWidget {
         const HomeView(),
         const DeliveryView(),
         const AddOrderView(),
-        const ChatsView(),
+        const AboutAndFeedbackView(),
         const AccountView(),
       ];
   @override

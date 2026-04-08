@@ -33,8 +33,7 @@ import 'package:delivery_app/presentation/views/user_views/views/on_boarding/vie
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../presentation/views/user_views/views/chat/views/chat_messages_view.dart';
-import '../../presentation/views/user_views/views/chat/views/chats_view.dart';
+import '../../presentation/views/user_views/views/about_and_suggestions/views/about_and_suggestions_view.dart';
 import '../../presentation/views/user_views/views/home/view/banner_details_view.dart';
 class AppPageRoute extends PageRouteBuilder {
   final Widget child;
@@ -97,7 +96,7 @@ class Routes {
   static const String vendorsRoute =
       "/vendors"; // This was commented out in map but added here for completeness
 
-  static const String userChatRoute = "/userChat";
+  static const String userAboutAndSuggestionsRoute = "/userAboutAndSuggestions";
   static const String userChatMessageRoute = "/userChatMessage";
   static const String summaryRoute = "/summary";
   static const String deliveryRoute = "/delivery";
@@ -232,13 +231,9 @@ class RouteGenerator {
                   order: args,
                 ));
 
-      case Routes.userChatRoute:
-        return AppPageRoute(child: const ChatsView());
+      case Routes.userAboutAndSuggestionsRoute:
+        return AppPageRoute(child: const AboutAndFeedbackView());
       case Routes.userChatMessageRoute:
-        final args = settings.arguments as ChatModel;
-        return AppPageRoute(child: ChatMessagesView(
-                  chatModel: args,
-                ));
 
       default:
         return _undefinedRoute();
