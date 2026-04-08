@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../../core/utils/popup_toast_helper.dart';
+
 
 
 class SuccessAuthView extends StatelessWidget {
@@ -34,6 +36,7 @@ class SuccessAuthView extends StatelessWidget {
                   arguments: VerificationArgs(
                       isSignUpFlow: isSignUpFlow, userModel: userModel));
             });
+            showCustomToast(context, "تم تسجيل الدخول بنجاح",type: ToastType.success);
           }
 
           if (state is UserInfoErrorState) {

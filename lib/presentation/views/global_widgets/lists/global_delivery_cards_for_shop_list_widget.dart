@@ -78,6 +78,7 @@ class _GlobalAvailableDeliveryCardsListWidgetState
                       itemCount: state.deliveries.length,
                       itemBuilder: (context, index) {
                         return GlobalDeliveryFilteredCardsWidget(
+                          index: index,
                           deliveryFilteredCardsModel: DeliveryFilteredCardsModel(
                               arrowOnTap: () {
                                 ///todo index == _selectedIndex navigate to chat details view

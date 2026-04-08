@@ -10,9 +10,7 @@ void confirmOrderDialog(BuildContext context) {
    showCustomDialog(
     context,
     content: const ConfirmOrderDialogContent(),
-    actionButtonCallBack: () {
-     Navigator.pop(context);
-    },
+
     actionButtonHint: "الرئيسية",
     dialogTitle: "تم استلام طلبك!",
   );

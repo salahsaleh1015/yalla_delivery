@@ -37,10 +37,11 @@ class MailAuthRegisterButton extends StatelessWidget {
               userModel: userModel,
             ),
           );
+
         }
 
         if (state is MailAuthSignUpErrorState) {
-          showCustomToast(context, "حدث خطا ما حاول في وقت لاحق");
+          showCustomToast(context, "حدث خطا ما حاول في وقت لاحق",type: ToastType.error);
         }
       },
       builder: (context, state) {
@@ -104,7 +105,7 @@ class MailAuthSignInButton extends StatelessWidget {
         }
 
         if (state is MailAuthSignUpErrorState) {
-          showCustomToast(context, "حدث خطا ما حاول في وقت لاحق");
+          showCustomToast(context, "حدث خطا ما حاول في وقت لاحق",type: ToastType.error);
         }
       },
       builder: (context, state) {

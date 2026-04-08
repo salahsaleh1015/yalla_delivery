@@ -70,7 +70,7 @@ class GlobalBusyDeliveryCardsListWidget extends StatelessWidget {
                     itemCount: state.busyDeliveries.length,
                     itemBuilder: (context, index) {
                       return  GlobalDeliveryFilteredCardsWidget(
-
+index: index,
                         deliveryFilteredCardsModel: DeliveryFilteredCardsModel(
                             arrowOnTap: isSelected ? () {} : () {},
                             onTap: isSelected

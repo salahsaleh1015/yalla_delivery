@@ -60,6 +60,7 @@ class GlobalUnAvailableDeliveryCardsListWidget extends StatelessWidget {
                     itemCount: state.deliveriesList.length,
                     itemBuilder: (context, index) {
                       return GlobalDeliveryFilteredCardsWidget(
+                        index: index,
                         deliveryFilteredCardsModel: DeliveryFilteredCardsModel(
                             arrowOnTap: isSelected ? () {} : () {},
                             onTap: isSelected

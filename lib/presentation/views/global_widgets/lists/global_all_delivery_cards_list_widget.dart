@@ -58,6 +58,7 @@ class GlobalAllDeliveryCardsListWidget extends StatelessWidget {
                     itemBuilder: (context, index) {
 
                       return GlobalDeliveryCardsWidget(
+                        index: index,
                         deliveryCardModel: DeliveryCardModel(
                           onTap: () {
                             Navigator.pushNamed(

@@ -1,5 +1,6 @@
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
+import 'package:delivery_app/presentation/views/global_widgets/global_custom_animation_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_secondary_decorated_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,40 +13,45 @@ class GlobalAdvertisementItemWidget extends StatelessWidget {
       this.height,
       this.width,
       required this.image,
-      required this.title});
+      required this.title, required this.index});
   final double? height, width;
 
   final String image, title;
+  final int index;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(AppSize.s12.r),
-            topRight: Radius.circular(AppSize.s12.r),
-          ),
-          child: Image.network(
-              fit: BoxFit.fill,
-              width: width ?? AppSize.s150.w,
-              height: height ?? AppSize.s90.h,
-             image ),
-        ),
-        GlobalSecondaryDecoratedContainer(
-          width: width ?? AppSize.s150.w,
-          height: AppSize.s40.h,
-          child: Center(
-            child: Text(
-              title,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(color: ColorManager.primary),
+    return GlobalCustomAnimationWidget(
+      isHorizontal: true,
+      index: index,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(AppSize.s12.r),
+              topRight: Radius.circular(AppSize.s12.r),
             ),
+            child: Image.network(
+                fit: BoxFit.fill,
+                width: width ?? AppSize.s150.w,
+                height: height ?? AppSize.s90.h,
+               image ),
           ),
-        )
-      ],
+          GlobalSecondaryDecoratedContainer(
+            width: width ?? AppSize.s150.w,
+            height: AppSize.s40.h,
+            child: Center(
+              child: Text(
+                title,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: ColorManager.primary),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

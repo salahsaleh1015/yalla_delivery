@@ -23,9 +23,9 @@ class GlobalVendorListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<GetShopsCubit>(
-      create: (context) => GetShopsCubit(
-          HomeGetShopsUseCase(getIt.get<HomeRepoImpl>())
-      )..fetchShops(),
+      create: (context) =>
+          GetShopsCubit(HomeGetShopsUseCase(getIt.get<HomeRepoImpl>()))
+            ..fetchShops(),
       child: BlocBuilder<GetShopsCubit, GetShopsStates>(
         builder: (context, state) {
           var cubit = GetShopsCubit.get(context);
@@ -37,47 +37,44 @@ class GlobalVendorListWidget extends StatelessWidget {
             return Center(
               child: Text(
                 // "حدث خطا من فضلك حاول مرة اخرى",
-                "حدث خطا من فضلك حاول مرة اخرى",
+                state.errorMessage,
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
             );
-          } else if(state is GetShopsLoadedState){
+          } else if (state is GetShopsLoadedState) {
             return SizedBox(
               width: double.infinity,
               height: AppSize.s408.h,
               child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                separatorBuilder: (context, index) => SizedBox(
-                  width: AppSize.s10.w,
-                ),
-                itemCount: state.shops.length,
-                itemBuilder: (context, index) {
-                  // var shop = ShopModel(
-                  //   shopId:  cubit.shopsList[index].shopId,
-                  //     shopName: cubit.shopsList[index].shopName,
-                  //     shopAddress: cubit.shopsList[index].shopAddress,
-                  //     shopPhoneNumber: cubit.shopsList[index].shopPhoneNumber,
-                  //     shopImage: AssetsManager.shopTest,
-                  //     shopRate: cubit.shopsList[index].shopRate);
-                 return GlobalVendorItemWidget(
-
-                  shop: state.shops[index],
-                  onTap: () {
-                    Navigator.pushNamed(context, Routes.shopDetailsRoute,
-                        arguments:
-                           state.shops[index]
-                        );
-                  },
-                );
-                  }
-              ),
+                  scrollDirection: Axis.horizontal,
+                  separatorBuilder: (context, index) => SizedBox(
+                        width: AppSize.s10.w,
+                      ),
+                  itemCount: state.shops.length,
+                  itemBuilder: (context, index) {
+                    // var shop = ShopModel(
+                    //   shopId:  cubit.shopsList[index].shopId,
+                    //     shopName: cubit.shopsList[index].shopName,
+                    //     shopAddress: cubit.shopsList[index].shopAddress,
+                    //     shopPhoneNumber: cubit.shopsList[index].shopPhoneNumber,
+                    //     shopImage: AssetsManager.shopTest,
+                    //     shopRate: cubit.shopsList[index].shopRate);
+                    return GlobalVendorItemWidget(
+                      index: index,
+                      shop: state.shops[index],
+                      onTap: () {
+                        Navigator.pushNamed(context, Routes.shopDetailsRoute,
+                            arguments: state.shops[index]);
+                      },
+                    );
+                  }),
             );
-          }else{
+          } else {
             return Center(
                 child: Text(
-                  "لا يوجد اعلانات",
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ));
+              "لا يوجد اعلانات",
+              style: Theme.of(context).textTheme.headlineSmall,
+            ));
           }
         },
       ),

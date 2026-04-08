@@ -11,7 +11,7 @@ void deleteOrderDialog(BuildContext context) {
   showCustomDialog(context,dialogTitle: "إالغاء الطلب",
 
       actionButtonColor: ColorManager.error,
-      actionButtonHint: "إلغاء الطلب",actionButtonCallBack: (){},
+      actionButtonHint: "إلغاء الطلب",
       content:const DeleteOrderDialogContent());
 }
 

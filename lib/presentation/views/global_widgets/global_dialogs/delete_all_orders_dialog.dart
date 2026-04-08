@@ -10,7 +10,7 @@ void deleteAllOrdersDialog(BuildContext context) {
   showCustomDialog(context,dialogTitle: "مسح الكل",
 
       actionButtonColor: ColorManager.error,
-      actionButtonHint: "مسح الكل",actionButtonCallBack: (){},
+      actionButtonHint: "مسح الكل",
       content:const DeleteAllOrdersDialogContent());
 }
 

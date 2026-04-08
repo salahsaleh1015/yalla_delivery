@@ -517,16 +517,17 @@ class _SecondSignUpViewState extends State<SecondSignUpView> {
                                 userPassword: _passwordController.text),
                           ),
                         );
+                        showCustomToast(context, "تم تسجيل الدخول بنجاح",type: ToastType.success);
                       }
 
                       if (state is MailAuthSignUpErrorState) {
                         print("////////////////////////");
                         print("// ${state.errorMessage} /// ");
                         if (state.errorMessage == '[firebase_auth/email-already-in-use] The email address is already in use by another account.') {
-                          showCustomToast(context, "هذا البريد موجود بالفعل");
+                          showCustomToast(context, "هذا البريد موجود بالفعل",type: ToastType.error);
                         } else {
                           showCustomToast(
-                              context, "حدث خطا ما حاول في وقت لاحق");
+                              context, "حدث خطا ما حاول في وقت لاحق",type: ToastType.error);
                         }
                       }
                     },

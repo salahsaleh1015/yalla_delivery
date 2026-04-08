@@ -75,7 +75,6 @@ void logoutDialog(
     dialogTitle: "تسجيل الخروج",
     actionButtonColor: ColorManager.error,
     actionButtonHint: "تسجيل الخروج",
-    actionButtonCallBack: actionButtonCall,
     content: const LogoutDialogContent(),
   );
 }

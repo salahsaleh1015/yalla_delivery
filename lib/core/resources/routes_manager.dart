@@ -36,6 +36,49 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../presentation/views/user_views/views/chat/views/chat_messages_view.dart';
 import '../../presentation/views/user_views/views/chat/views/chats_view.dart';
 import '../../presentation/views/user_views/views/home/view/banner_details_view.dart';
+class AppPageRoute extends PageRouteBuilder {
+  final Widget child;
+
+  AppPageRoute({required this.child})
+      : super(
+    transitionDuration: const Duration(milliseconds: 350),
+    reverseTransitionDuration: const Duration(milliseconds: 300),
+    pageBuilder: (context, animation, secondaryAnimation) => child,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      // Fade
+      final fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+        CurvedAnimation(
+          parent: animation,
+          curve: Curves.easeOut,
+        ),
+      );
+
+      // Slide (من تحت لفوق بسيط)
+      final slideAnimation = Tween<Offset>(
+        begin: const Offset(0, 0.1),
+        end: Offset.zero,
+      ).animate(
+        CurvedAnimation(
+          parent: animation,
+          curve: Curves.easeOutCubic,
+        ),
+      );
+
+      return FadeTransition(
+        opacity: fadeAnimation,
+        child: SlideTransition(
+          position: slideAnimation,
+          child: child,
+        ),
+      );
+    },
+  );
+}
+
+
+
+
+
 
 class Routes {
   static const String onBoardingRoute = "/";
@@ -86,20 +129,20 @@ class RouteGenerator {
   Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.onBoardingRoute:
-        return MaterialPageRoute(builder: (_) => OnBoardingView());
+        return AppPageRoute(child: OnBoardingView());
 
       case Routes.firstSignUpRoute:
-        return MaterialPageRoute(builder: (_)=>FirstSignUpView());
+        return AppPageRoute(child:FirstSignUpView());
 
 
       case Routes.secondSignUpRoute:
         final args = settings.arguments as FirstSignUpInfoModel;
-        return MaterialPageRoute(builder: (_)=>SecondSignUpView(
+        return AppPageRoute(child:SecondSignUpView(
           firstSignUpInfoModel: args,
         ));
 
       case Routes.signInRoute:
-        return MaterialPageRoute(builder: (_)=>SignInView());
+        return AppPageRoute(child:SignInView());
 
       // case Routes.signUpRoute:
       //   return MaterialPageRoute(
@@ -124,84 +167,76 @@ class RouteGenerator {
       //           ));
       case Routes.successAuthRoute:
         final args = settings.arguments as VerificationArgs;
-        return MaterialPageRoute(
-          builder: (_) => SuccessAuthView(
+        return AppPageRoute(child: SuccessAuthView(
             isSignUpFlow: args.isSignUpFlow,
             userModel: args.userModel,
           ),
         );
       case Routes.failureAuthRoute:
-        return MaterialPageRoute(builder: (_) => const FailureAuthView());
+        return AppPageRoute(child: const FailureAuthView());
       case Routes.completeAuthRoute:
         final args = settings.arguments as VerificationArgs;
-        return MaterialPageRoute(
-            builder: (_) => CompleteAuthenticationView(
+        return AppPageRoute(child: CompleteAuthenticationView(
                   userModel: args.userModel,
                   isSignUpFlow: args.isSignUpFlow,
                 ));
       case Routes.mainLayoutRoute:
-        return MaterialPageRoute(builder: (_) => const MainLayoutView());
+        return AppPageRoute(child: const MainLayoutView());
       case Routes.homeRoute:
-        return MaterialPageRoute(builder: (_) => const HomeView());
+        return AppPageRoute(child: const HomeView());
       case Routes.shopDetailsRoute:
         final args = settings.arguments as ShopModel;
-        return MaterialPageRoute(
-            builder: (_) => ShopDetailsView(
+        return AppPageRoute(child: ShopDetailsView(
                   shop: args,
                 ));
       case Routes.chooseDeliveryRoute:
-        return MaterialPageRoute(builder: (_) => const ChooseDeliveryView());
+        return AppPageRoute(child: const ChooseDeliveryView());
       case Routes.bannerDetailsRoute:
         final args = settings.arguments as BannerModel;
-        return MaterialPageRoute(
-            builder: (_) => BannerDetailsView(
+        return AppPageRoute(child: BannerDetailsView(
                   bannerModel: args,
                 ));
       case Routes.summaryRoute:
-        return MaterialPageRoute(builder: (_) => const SummaryView());
+        return AppPageRoute(child: const SummaryView());
       case Routes.deliveryRoute:
-        return MaterialPageRoute(builder: (_) => const DeliveryView());
+        return AppPageRoute(child: const DeliveryView());
       case Routes.accountRoute:
-        return MaterialPageRoute(builder: (_) => const AccountView());
+        return AppPageRoute(child: const AccountView());
       case Routes.editAccountRoute:
-        return MaterialPageRoute(builder: (_) => const EditAccountView());
+        return AppPageRoute(child: const EditAccountView());
       case Routes.adsPartnerRoute:
-        return MaterialPageRoute(builder: (_) => const AdsPartnerView());
+        return AppPageRoute(child: const AdsPartnerView());
       case Routes.addOrderRoute:
-        return MaterialPageRoute(builder: (_) => const AddOrderView());
+        return AppPageRoute(child: const AddOrderView());
       case Routes.allVendorsRoute:
-        return MaterialPageRoute(builder: (_) => const AllVendorsView());
+        return AppPageRoute(child: const AllVendorsView());
       case Routes.cartRoute:
-        return MaterialPageRoute(builder: (_) => const CartView());
+        return AppPageRoute(child: const CartView());
       case Routes.cartChooseDeliveryRoute:
-        return MaterialPageRoute(builder: (_) => const CartChooseDelivery());
+        return AppPageRoute(child: const CartChooseDelivery());
       case Routes.cartOrderSummaryRoute:
-        return MaterialPageRoute(builder: (_) => const CartOrderSummaryView());
+        return AppPageRoute(child: const CartOrderSummaryView());
       case Routes.addOrderFromDeliveryRoute:
         final args = settings.arguments as DeliveryModel;
-        return MaterialPageRoute(
-            builder: (_) => AddOrderFromDeliveryView(
+        return AppPageRoute(child: AddOrderFromDeliveryView(
                   deliveryModel: args,
                 ));
       case Routes.orderSummaryRoute:
         final args = settings.arguments as OrderInfoModel;
-        return MaterialPageRoute(
-            builder: (_) => OrderSummaryView(
+        return AppPageRoute(child: OrderSummaryView(
                   orderInfoModel: args,
                 ));
       case Routes.chooseDeliveryFromAddOrderRoute:
         final args = settings.arguments as String;
-        return MaterialPageRoute(
-            builder: (_) => ChooseDeliveryFromAddOrderView(
+        return AppPageRoute(child: ChooseDeliveryFromAddOrderView(
                   order: args,
                 ));
 
       case Routes.userChatRoute:
-        return MaterialPageRoute(builder: (_) => const ChatsView());
+        return AppPageRoute(child: const ChatsView());
       case Routes.userChatMessageRoute:
         final args = settings.arguments as ChatModel;
-        return MaterialPageRoute(
-            builder: (_) => ChatMessagesView(
+        return AppPageRoute(child: ChatMessagesView(
                   chatModel: args,
                 ));
 
@@ -211,8 +246,7 @@ class RouteGenerator {
   }
 
   static Route<dynamic> _undefinedRoute() {
-    return MaterialPageRoute(
-      builder: (_) => Scaffold(
+    return AppPageRoute(child: Scaffold(
         appBar: AppBar(title: const Text("No Route Found")),
         body: const Center(child: Text("Route not defined")),
       ),

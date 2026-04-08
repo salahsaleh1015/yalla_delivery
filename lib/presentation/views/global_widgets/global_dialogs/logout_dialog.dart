@@ -17,7 +17,7 @@ void logoutDialog(BuildContext context) {
   showCustomDialog(context,dialogTitle: "تسجيل الخروج",
 
       actionButtonColor: ColorManager.error,
-      actionButtonHint: "تسجيل الخروج",actionButtonCallBack: (){},
+      actionButtonHint: "تسجيل الخروج",
       content:const LogoutDialogContent());
 }
 
