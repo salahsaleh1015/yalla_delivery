@@ -31,8 +31,10 @@ class HomeRepoImpl implements HomeRepo {
       return Right(banners);
     } catch (e) {
       if (e is FirebaseException) {
+
         return Left(FirebaseFailure.fromFirebaseException(e));
       }
+
       return Left(FirebaseFailure.fromException(e.toString()));
     }
   }
@@ -50,8 +52,12 @@ class HomeRepoImpl implements HomeRepo {
       return Right(shops);
     } catch (e) {
       if (e is FirebaseException) {
+        debugPrint("ايه الكلمات");
+        debugPrint(e.message);
         return Left(FirebaseFailure.fromFirebaseException(e));
       }
+      debugPrint("ايه الكلمات");
+      debugPrint(e.toString());
       return Left(FirebaseFailure.fromException(e.toString()));
     }
   }

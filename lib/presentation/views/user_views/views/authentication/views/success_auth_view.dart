@@ -36,7 +36,7 @@ class SuccessAuthView extends StatelessWidget {
                   arguments: VerificationArgs(
                       isSignUpFlow: isSignUpFlow, userModel: userModel));
             });
-            showCustomToast(context, "تم تسجيل الدخول بنجاح",type: ToastType.success);
+
           }
 
           if (state is UserInfoErrorState) {

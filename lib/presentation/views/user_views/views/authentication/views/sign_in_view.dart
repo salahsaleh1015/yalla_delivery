@@ -123,29 +123,7 @@ class _SignInViewState extends State<SignInView> {
                 SizedBox(
                   height: AppSize.s30.h,
                 ),
-                // Text("رقم الهاتف",
-                //     style: Theme.of(context).textTheme.headlineMedium),
-                // SizedBox(
-                //   height: AppSize.s10.h,
-                // ),
-                // GlobalTextFieldWidget(
-                //   validator: (value) {
-                //     if (value != null && value.isNotEmpty) {
-                //       final regex = RegExp(r'^01[0-2,5]{1}[0-9]{8}$');
-                //       if (!regex.hasMatch(value.trim())) {
-                //         return "أدخل رقم هاتف مصري صحيح مثل 01012345678";
-                //       }
-                //     }
-                //     return null;
-                //   },
-                //   onSaved: (value) => phoneNumber = value!,
-                //   controller: _phoneNumberController,
-                //   hintText: "رقم الهاتف",
-                //   textInputType: TextInputType.phone,
-                // ),
-                // SizedBox(
-                //   height: AppSize.s30.h,
-                // ),
+
                 BlocProvider<MailAuthCubit>(
                   create: (context) => MailAuthCubit(),
                   child: BlocConsumer<MailAuthCubit, MailAuthStates>(
@@ -166,8 +144,8 @@ class _SignInViewState extends State<SignInView> {
                         );
                       }
 
-                      if (state is MailAuthSignUpErrorState) {
-                        showCustomToast(context, "حدث خطا ما حاول في وقت لاحق",type: ToastType.error);
+                      if (state is MailAuthSignInErrorState) {
+                        showCustomToast(context, state.errorMessage,type: ToastType.error);
                       }
                     },
                     builder: (context, state) {

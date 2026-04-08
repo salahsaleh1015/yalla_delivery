@@ -1,4 +1,5 @@
 
+import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/utils/functions/service_locator_setup.dart';
 import 'package:delivery_app/data/models/cached_user_model.dart';
 import 'package:delivery_app/translations/codegen_loader.g.dart';
@@ -48,8 +49,8 @@ Future<void> main() async {
       startLocale: const Locale('ar'),
       fallbackLocale: const Locale('ar'),
       child: YallaDeliveryApp(
-
-       startRoute: startRoute,
+startRoute: Routes.onBoardingRoute,
+       //startRoute: startRoute,
       ),
     ),
   );

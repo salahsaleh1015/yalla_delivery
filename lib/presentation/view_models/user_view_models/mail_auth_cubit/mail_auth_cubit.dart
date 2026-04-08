@@ -10,19 +10,39 @@ class MailAuthCubit extends Cubit<MailAuthStates> {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  void signInWithEmailAndPassword(
-      {required String email, required String password}) {
+  // void signInWithEmailAndPassword(
+  //     {required String email, required String password}) {
+  //   emit(MailAuthSignInLoadingState());
+  //
+  //   try {
+  //     _auth
+  //         .signInWithEmailAndPassword(email: email, password: password)
+  //         .then((value) async {
+  //       emit(MailAuthSignInSuccessState());
+  //     }).catchError((error) {
+  //       emit(MailAuthSignInErrorState());
+  //     });
+  //   } catch (e) {
+  //     emit(MailAuthSignInErrorState());
+  //     print(e.toString());
+  //   }
+  // }
+
+  Future<void> signInWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
     emit(MailAuthSignInLoadingState());
 
     try {
-      _auth
-          .signInWithEmailAndPassword(email: email, password: password)
-          .then((value) async {
-        emit(MailAuthSignInSuccessState());
-      }).catchError((error) {
-        emit(MailAuthSignInErrorState());
-      });
-    } catch (e) {
+    await _auth.signInWithEmailAndPassword(
+        email: email.trim(),
+        password: password.trim(),
+      );
+
+      emit(MailAuthSignInSuccessState());
+    }  catch (e) {
+      emit(MailAuthSignInErrorState(errorMessage: 'حدث خطأ راجع بياناتك'));
       print(e.toString());
     }
   }

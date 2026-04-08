@@ -38,6 +38,7 @@ class ProductCardsListWidget extends StatelessWidget {
                     child: ListView.builder(
                         itemCount: state.shopProductsList.length,
                         itemBuilder: (context, index) => ProductCardItemWidget(
+                          index: index,
                               product: state.shopProductsList[index],
                             )))
                 : const NoData();

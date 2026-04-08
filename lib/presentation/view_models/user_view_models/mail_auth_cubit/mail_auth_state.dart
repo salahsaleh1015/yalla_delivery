@@ -6,7 +6,11 @@ final class MailAuthInitialState extends MailAuthStates {}
 
 final class MailAuthSignInLoadingState extends MailAuthStates {}
 final class MailAuthSignInSuccessState extends MailAuthStates {}
-final class MailAuthSignInErrorState extends MailAuthStates {}
+final class MailAuthSignInErrorState extends MailAuthStates {
+  final String errorMessage;
+
+  MailAuthSignInErrorState({required this.errorMessage});
+}
 
 
 final class MailAuthSignUpLoadingState extends MailAuthStates {}

@@ -517,7 +517,7 @@ class _SecondSignUpViewState extends State<SecondSignUpView> {
                                 userPassword: _passwordController.text),
                           ),
                         );
-                        showCustomToast(context, "تم تسجيل الدخول بنجاح",type: ToastType.success);
+
                       }
 
                       if (state is MailAuthSignUpErrorState) {

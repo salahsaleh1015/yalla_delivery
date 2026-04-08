@@ -3,6 +3,7 @@ import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/core/services/firebase_services/firestore_user_info_services.dart';
 import 'package:delivery_app/core/services/shared_preferences_services/shared_preferences_services.dart';
+import 'package:delivery_app/core/utils/popup_toast_helper.dart';
 import 'package:delivery_app/data/models/cached_user_model.dart';
 import 'package:delivery_app/data/models/user_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_caching_cubit/user_caching_cubit.dart';
@@ -86,16 +87,13 @@ class CompleteAuthenticationView extends StatelessWidget {
                             context,
                             Routes.mainLayoutRoute,
                             (route) => false,
+
                           );
+                          showCustomToast(context, "تم تسجيل الدخول بنجاح",type: ToastType.success);
                         } else {
                           print("////////////////////////////////////////");
                           print(state.toString());
-                          // Show error message
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content:
-                                    Text("هناك خطأ ما حاول في وقت لاحق ")),
-                          );
+                          showCustomToast(context, "هناك خطأ ما حاول في وقت لاحق",type: ToastType.error);
                         }
                       },
                       width: MediaQuery.of(context).size.width * 0.5,
