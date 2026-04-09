@@ -1,7 +1,5 @@
-
-
-
 // ─── FEEDBACK CARD ────────────────────────────────────────
+import 'package:delivery_app/presentation/views/global_widgets/global_button_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/resources/colors_manager.dart';
@@ -29,10 +27,19 @@ class FeedbackCard extends StatefulWidget {
 
 class FeedbackCardState extends State<FeedbackCard> {
   bool _isFocused = false;
+  bool _isButtonEnabled = false;
+  void _checkIfFieldsAreFilled() {
+    final isFilled = widget.controller.text.isNotEmpty;
+
+    setState(() {
+      _isButtonEnabled = isFilled;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
+    widget.controller.addListener(_checkIfFieldsAreFilled);
     widget.focusNode.addListener(() {
       if (mounted) setState(() => _isFocused = widget.focusNode.hasFocus);
     });
@@ -85,9 +92,7 @@ class FeedbackCardState extends State<FeedbackCard> {
               color: ColorManager.scaffoldBackgroundColor,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: _isFocused
-                    ? ColorManager.primary
-                    : Colors.grey.shade200,
+                color: _isFocused ? ColorManager.primary : Colors.grey.shade200,
                 width: _isFocused ? 1.5 : 1.0,
               ),
             ),
@@ -100,15 +105,13 @@ class FeedbackCardState extends State<FeedbackCard> {
                 color: ColorManager.black,
               ),
               decoration: InputDecoration(
-
                 hintText: 'تساعدنا اقتراحاتكم على النمو والتطور يوميا....',
                 hintStyle: TextStyle(
                   fontSize: widget.bodyFontSize,
                   color: ColorManager.hintColor,
                 ),
                 prefixIcon: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 12, right: 8, top: 12),
+                  padding: const EdgeInsets.only(left: 12, right: 8, top: 12),
                   child: Icon(
                     Icons.chat_bubble_outline_rounded,
                     color: _isFocused
@@ -118,10 +121,9 @@ class FeedbackCardState extends State<FeedbackCard> {
                   ),
                 ),
                 prefixIconConstraints:
-                const BoxConstraints(minWidth: 0, minHeight: 0),
+                    const BoxConstraints(minWidth: 0, minHeight: 0),
                 border: InputBorder.none,
-                contentPadding:
-                const EdgeInsets.fromLTRB(0, 12, 14, 12),
+                contentPadding: const EdgeInsets.fromLTRB(0, 12, 14, 12),
               ),
             ),
           ),
@@ -130,8 +132,10 @@ class FeedbackCardState extends State<FeedbackCard> {
           // ── Send Button ───────────────────────────────
           SizedBox(
             width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
+            child: GlobalButtonWidget(
+              isButtonEnabled: _isButtonEnabled,
+              width: double.infinity,
+              onTap: () {
                 if (widget.controller.text.trim().isNotEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
@@ -147,22 +151,16 @@ class FeedbackCardState extends State<FeedbackCard> {
                 }
               },
 
-              child: Text(
-                'إرسال الملاحظات',
-                style: TextStyle(
-                  fontSize: isTablet ? 15 : 14,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: ColorManager.primary,
-                foregroundColor: Colors.white,
-                elevation: 0,
-                padding: EdgeInsets.symmetric(
-                    vertical: isTablet ? 16 : 14),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
-              ),
+              text: 'إرسال الملاحظات',
+              // style: ElevatedButton.styleFrom(
+              //   backgroundColor: ColorManager.primary,
+              //   foregroundColor: Colors.white,
+              //   elevation: 0,
+              //   padding: EdgeInsets.symmetric(
+              //       vertical: isTablet ? 16 : 14),
+              //   shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(12)),
+              // ),
             ),
           ),
         ],
