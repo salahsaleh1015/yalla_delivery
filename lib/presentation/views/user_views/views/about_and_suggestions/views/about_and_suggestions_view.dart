@@ -1,6 +1,8 @@
+import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
 import 'package:delivery_app/presentation/views/user_views/views/about_and_suggestions/widgets/animated_about_card.dart';
 import 'package:delivery_app/presentation/views/user_views/views/about_and_suggestions/widgets/or_divider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../data/models/about_item.dart';
@@ -80,29 +82,24 @@ class AboutAndFeedbackViewState extends State<AboutAndFeedbackView>
     final double maxContentWidth = isDesktop ? 720 : isTablet ? 600 : double.infinity;
     final double horizontalPadding = isDesktop ? 32 : isTablet ? 24 : 16;
     final double cardPadding = isTablet ? 22 : 18;
-    final double iconContainerSize = isTablet ? 50 : 42;
-    final double iconSize = isTablet ? 24 : 20;
-    final double titleFontSize = isTablet ? 16 : 14;
-    final double bodyFontSize = isTablet ? 14 : 13;
+    final double iconContainerSize = isTablet ? 50.r : 42.r;
+    final double iconSize = isTablet ? 24.r : 20.r;
+    final double titleFontSize = isTablet ? 16.sp : 14.sp;
+    final double bodyFontSize = isTablet ? 14.sp : 13.sp;
     final int textFieldMaxLines = isTablet ? 7 : 5;
 
-    return Scaffold(
-      backgroundColor: ColorManager.scaffoldBackgroundColor,
-      // appBar: _buildAppBar(context, isTablet: isTablet),
-      body: Center(
+    return  GlobalPaddingWidget(
+      child: Center(
         child: ConstrainedBox(
           constraints: BoxConstraints(maxWidth: maxContentWidth),
           child: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(
-              horizontal: horizontalPadding,
-              vertical: 8,
-            ),
+
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // ── About Us Section ────────────────────────
                 const SectionHeader(label: 'من نحن'),
-                const SizedBox(height: 12),
+                 SizedBox(height: 16.h),
                 ..._aboutItems.asMap().entries.map(
                       (e) => AnimatedAboutCard(
                     animation: _staggered(e.key, start: 0.05),
@@ -114,11 +111,11 @@ class AboutAndFeedbackViewState extends State<AboutAndFeedbackView>
                     bodyFontSize: bodyFontSize,
                   ),
                 ),
-
+      
                 const SizedBox(height: 20),
                 const OrDivider(),
                 const SizedBox(height: 20),
-
+      
                 // ── Feedback Section ────────────────────────
                 AnimatedFeedbackSection(
                   animation: _staggered(3, start: 0.4),

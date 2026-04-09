@@ -60,7 +60,7 @@ class FeedbackCardState extends State<FeedbackCard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "We'd love to hear from you",
+            "يسعدنا أن نسمع منك",
             style: TextStyle(
               fontSize: widget.titleFontSize,
               fontWeight: FontWeight.w600,
@@ -69,7 +69,7 @@ class FeedbackCardState extends State<FeedbackCard> {
           ),
           const SizedBox(height: 4),
           Text(
-            'Your suggestions help us grow and improve every day.',
+            'تساعدنا اقتراحاتكم على النمو والتطور يومياً.',
             style: TextStyle(
               fontSize: widget.bodyFontSize - 1,
               color: ColorManager.secondaryTextColor,
@@ -100,7 +100,8 @@ class FeedbackCardState extends State<FeedbackCard> {
                 color: ColorManager.black,
               ),
               decoration: InputDecoration(
-                hintText: 'Share your thoughts, ideas, or experience...',
+
+                hintText: 'تساعدنا اقتراحاتكم على النمو والتطور يوميا....',
                 hintStyle: TextStyle(
                   fontSize: widget.bodyFontSize,
                   color: ColorManager.hintColor,
@@ -129,7 +130,7 @@ class FeedbackCardState extends State<FeedbackCard> {
           // ── Send Button ───────────────────────────────
           SizedBox(
             width: double.infinity,
-            child: ElevatedButton.icon(
+            child: ElevatedButton(
               onPressed: () {
                 if (widget.controller.text.trim().isNotEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -145,10 +146,9 @@ class FeedbackCardState extends State<FeedbackCard> {
                   widget.focusNode.unfocus();
                 }
               },
-              icon: Icon(Icons.send_rounded,
-                  size: isTablet ? 18 : 16),
-              label: Text(
-                'Send Feedback',
+
+              child: Text(
+                'إرسال الملاحظات',
                 style: TextStyle(
                   fontSize: isTablet ? 15 : 14,
                   fontWeight: FontWeight.w600,

@@ -34,7 +34,7 @@ class AnimatedFeedbackSection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SectionHeader(label: 'Your Feedback'),
+            const SectionHeader(label: 'ملاحظاتك'),
             const SizedBox(height: 12),
             FeedbackCard(
               controller: feedbackController,

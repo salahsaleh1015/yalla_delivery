@@ -1,5 +1,7 @@
 // ─── SECTION HEADER ───────────────────────────────────────
+import 'package:delivery_app/core/resources/font_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/resources/colors_manager.dart';
 
@@ -27,7 +29,9 @@ class SectionHeader extends StatelessWidget {
         const SizedBox(width: 8),
         Text(
           label.toUpperCase(),
-          style: Theme.of(context).textTheme.bodySmall,
+          style: Theme.of(context).textTheme.bodySmall!.copyWith(
+            fontSize: FontSize.s20.sp,
+          ),
         ),
       ],
     );
