@@ -12,7 +12,7 @@ class GlobalOrderDetailsWidget extends StatelessWidget {
     return GlobalDecoratedContainer(
       child: Text(
         orderDetails,
-        maxLines: 10,
+        maxLines: 100,
         overflow: TextOverflow.ellipsis,
         style: Theme.of(context).textTheme.headlineSmall,
       ),

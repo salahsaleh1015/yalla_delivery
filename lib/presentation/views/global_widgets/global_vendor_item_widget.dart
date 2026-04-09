@@ -7,11 +7,19 @@ import 'package:delivery_app/presentation/views/global_widgets/global_button_wid
 import 'package:delivery_app/presentation/views/global_widgets/global_custom_animation_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'global_secondary_decorated_container.dart';
 
 class GlobalVendorItemWidget extends StatelessWidget {
-  const GlobalVendorItemWidget({super.key,  this.width, this.height, required this.onTap, required this.shop, required this.index, });
+  const GlobalVendorItemWidget({
+    super.key,
+    this.width,
+    this.height,
+    required this.onTap,
+    required this.shop,
+    required this.index,
+  });
   final double? height;
   final double? width;
   final VoidCallback onTap;
@@ -30,15 +38,28 @@ class GlobalVendorItemWidget extends StatelessWidget {
               topLeft: Radius.circular(AppSize.s12.r),
               topRight: Radius.circular(AppSize.s12.r),
             ),
-            child: Image.network(
-                fit: BoxFit.fill,
-                width:width?? AppSize.s250.w,
-                height:height?? AppSize.s160.h,
-                shop.shopImage),
+            child: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: SvgPicture.asset(
+                    AssetsManager.noData,
+                    fit: BoxFit.cover,
+                    width: width ?? AppSize.s150.w,
+                    height: height ?? AppSize.s90.h,
+                  ),
+                ),
+                Image.network(
+                    fit: BoxFit.fill,
+                    width: width ?? AppSize.s250.w,
+                    height: height ?? AppSize.s160.h,
+                    shop.shopImage),
+              ],
+            ),
           ),
           GlobalSecondaryDecoratedContainer(
-            width:width?? AppSize.s250.w,
-            height: height?? AppSize.s160.h,
+              width: width ?? AppSize.s250.w,
+              height: height ?? AppSize.s160.h,
               child: Padding(
                 padding: EdgeInsets.all(AppPadding.p16.r),
                 child: Column(
@@ -91,9 +112,7 @@ class GlobalVendorItemWidget extends StatelessWidget {
                     )
                   ],
                 ),
-              )
-          ),
-
+              )),
         ],
       ),
     );

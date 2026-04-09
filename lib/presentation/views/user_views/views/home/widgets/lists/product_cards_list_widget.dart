@@ -8,7 +8,9 @@ import 'package:delivery_app/presentation/views/global_widgets/no_data.dart';
 import 'package:delivery_app/presentation/views/user_views/views/home/widgets/items/product_card_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../../core/resources/routes_manager.dart';
 import '../../../../../../view_models/user_view_models/cart_cubit/cart_cubit.dart';
 import '../../../../../../view_models/user_view_models/home_cubits/get_shop_products_cubit/get_shop_products_state.dart';
@@ -43,15 +45,19 @@ class ProductCardsListWidget extends StatelessWidget {
             return state.shopProductsList.isNotEmpty
                 ? Column(
                   children: [
-                    SizedBox(
+            SizedBox(
+
                         width: double.infinity,
-                        height: MediaQuery.of(context).size.height * 0.3,
+                        height: MediaQuery.of(context).size.height * 0.4,
                         child: ListView.builder(
                             itemCount: state.shopProductsList.length,
                             itemBuilder: (context, index) => ProductCardItemWidget(
                                   index: index,
                                   product: state.shopProductsList[index],
                                 ))),
+                    SizedBox(
+                      height: 25,
+                    ),
                     _buildCheckoutButton(context),
                   ],
                 )
@@ -68,26 +74,46 @@ class ProductCardsListWidget extends StatelessWidget {
     return BlocBuilder<CartCubit, CartStates>(
       builder: (context, state) {
         var cartCubit = CartCubit.get(context);
-        return ElevatedButton(
-          onPressed: cartCubit.selectedProducts.isEmpty
-              ? null
-              : () {
-            Navigator.pushNamed(
-                context, Routes.chooseDeliveryFromAddOrderRoute,
-                arguments: cartCubit.getSelectedProductsAsString(),);
+        bool isEmpty = cartCubit.selectedProducts.isEmpty;
 
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (_) => NextPage(
-            //       // ✅ هنا بنبعت القيمتين للصفحة الجاية
-            //       productsString: cartCubit.getSelectedProductsAsString(),
-            //       totalPrice: cartCubit.getTotalPrice(),
-            //     ),
-            //   ),
-            // );
-          },
-          child: Text('متابعة (${cartCubit.getTotalPrice()} جنيه)'),
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: ElevatedButton(
+            onPressed: isEmpty
+                ? null
+                : () {
+              Navigator.pushNamed(
+                context,
+                Routes.chooseDeliveryFromAddOrderRoute,
+                arguments: cartCubit.getSelectedProductsAsString(),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              // ✅ لو فاضي يبقى رمادي، لو فيه منتجات يبقى primary
+              backgroundColor: isEmpty
+                  ? ColorManager.lightGrayColor
+                  : ColorManager.primary,
+              disabledBackgroundColor: ColorManager.lightGrayColor,
+              foregroundColor: ColorManager.white,
+              disabledForegroundColor: ColorManager.hintColor,
+              minimumSize: const Size(double.infinity, 52),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              elevation: isEmpty ? 0 : 3,
+              shadowColor: ColorManager.lightPrimary,
+            ),
+            child: Text(
+              isEmpty
+                  ? 'اختر منتجات أولاً'
+                  : 'متابعة (${cartCubit.getTotalPrice()} جنيه)',
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.bold,
+                color: isEmpty ? ColorManager.hintColor : ColorManager.white,
+              ),
+            ),
+          ),
         );
       },
     );
