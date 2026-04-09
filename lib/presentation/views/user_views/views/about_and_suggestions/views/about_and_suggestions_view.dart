@@ -10,7 +10,6 @@ import '../widgets/animated_feedback_section.dart';
 import '../widgets/pulsing_dot.dart';
 import '../widgets/section_header.dart';
 
-
 // ─── MAIN VIEW ────────────────────────────────────────────
 class AboutAndFeedbackView extends StatefulWidget {
   const AboutAndFeedbackView({super.key});
@@ -23,7 +22,8 @@ class AboutAndFeedbackViewState extends State<AboutAndFeedbackView>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   final TextEditingController _feedbackController = TextEditingController();
-  final FocusNode _focusNode = FocusNode();
+  final FocusNode _focusNode1 = FocusNode();
+  final FocusNode _focusNode2 = FocusNode();
 
   final List<AboutItem> _aboutItems = const [
     AboutItem(
@@ -56,7 +56,8 @@ class AboutAndFeedbackViewState extends State<AboutAndFeedbackView>
   void dispose() {
     _controller.dispose();
     _feedbackController.dispose();
-    _focusNode.dispose();
+    _focusNode1.dispose();
+    _focusNode2.dispose();
     super.dispose();
   }
 
@@ -79,8 +80,16 @@ class AboutAndFeedbackViewState extends State<AboutAndFeedbackView>
     final isDesktop = screenWidth > 900;
 
     // ── Responsive values ──────────────────────────────────
-    final double maxContentWidth = isDesktop ? 720 : isTablet ? 600 : double.infinity;
-    final double horizontalPadding = isDesktop ? 32 : isTablet ? 24 : 16;
+    final double maxContentWidth = isDesktop
+        ? 720
+        : isTablet
+            ? 600
+            : double.infinity;
+    final double horizontalPadding = isDesktop
+        ? 32
+        : isTablet
+            ? 24
+            : 16;
     final double cardPadding = isTablet ? 22 : 18;
     final double iconContainerSize = isTablet ? 50.r : 42.r;
     final double iconSize = isTablet ? 24.r : 20.r;
@@ -88,39 +97,38 @@ class AboutAndFeedbackViewState extends State<AboutAndFeedbackView>
     final double bodyFontSize = isTablet ? 14.sp : 13.sp;
     final int textFieldMaxLines = isTablet ? 7 : 5;
 
-    return  GlobalPaddingWidget(
+    return GlobalPaddingWidget(
       child: Center(
         child: ConstrainedBox(
           constraints: BoxConstraints(maxWidth: maxContentWidth),
           child: SingleChildScrollView(
-
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // ── About Us Section ────────────────────────
                 const SectionHeader(label: 'من نحن'),
-                 SizedBox(height: 16.h),
+                SizedBox(height: 16.h),
                 ..._aboutItems.asMap().entries.map(
                       (e) => AnimatedAboutCard(
-                    animation: _staggered(e.key, start: 0.05),
-                    item: e.value,
-                    cardPadding: cardPadding,
-                    iconContainerSize: iconContainerSize,
-                    iconSize: iconSize,
-                    titleFontSize: titleFontSize,
-                    bodyFontSize: bodyFontSize,
-                  ),
-                ),
-      
+                        animation: _staggered(e.key, start: 0.05),
+                        item: e.value,
+                        cardPadding: cardPadding,
+                        iconContainerSize: iconContainerSize,
+                        iconSize: iconSize,
+                        titleFontSize: titleFontSize,
+                        bodyFontSize: bodyFontSize,
+                      ),
+                    ),
+
                 const SizedBox(height: 20),
                 const OrDivider(),
                 const SizedBox(height: 20),
-      
+
                 // ── Feedback Section ────────────────────────
                 AnimatedFeedbackSection(
                   animation: _staggered(3, start: 0.4),
-                  feedbackController: _feedbackController,
-                  focusNode: _focusNode,
+                  feedbackFocusNode: _focusNode2,
+                  titleFocusNode: _focusNode1,
                   cardPadding: cardPadding,
                   titleFontSize: titleFontSize,
                   bodyFontSize: bodyFontSize,
@@ -134,15 +142,6 @@ class AboutAndFeedbackViewState extends State<AboutAndFeedbackView>
       ),
     );
   }
-
 }
 
-
-
-
-
-
 // ─── DIVIDER ──────────────────────────────────────────────
-
-
-

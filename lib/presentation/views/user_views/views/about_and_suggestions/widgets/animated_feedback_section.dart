@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 class AnimatedFeedbackSection extends StatelessWidget {
   final Animation<double> animation;
-  final TextEditingController feedbackController;
-  final FocusNode focusNode;
+  final FocusNode titleFocusNode;
+  final FocusNode feedbackFocusNode;
   final double cardPadding;
   final double titleFontSize;
   final double bodyFontSize;
@@ -14,8 +14,8 @@ class AnimatedFeedbackSection extends StatelessWidget {
 
   const AnimatedFeedbackSection({
     required this.animation,
-    required this.feedbackController,
-    required this.focusNode,
+    required this.feedbackFocusNode,
+    required this.titleFocusNode,
     required this.cardPadding,
     required this.titleFontSize,
     required this.bodyFontSize,
@@ -37,8 +37,10 @@ class AnimatedFeedbackSection extends StatelessWidget {
             const SectionHeader(label: 'ملاحظاتك'),
             const SizedBox(height: 12),
             FeedbackCard(
-              controller: feedbackController,
-              focusNode: focusNode,
+
+
+              titleFocusNode: titleFocusNode,
+              feedbackFocusNode: feedbackFocusNode,
               cardPadding: cardPadding,
               titleFontSize: titleFontSize,
               bodyFontSize: bodyFontSize,
