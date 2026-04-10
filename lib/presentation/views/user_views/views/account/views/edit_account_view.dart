@@ -2,6 +2,7 @@ import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/constants_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
 import 'package:delivery_app/core/services/firebase_services/firestore_user_info_services.dart';
+import 'package:delivery_app/core/utils/popup_toast_helper.dart';
 import 'package:delivery_app/data/models/cached_user_model.dart';
 import 'package:delivery_app/domain/usecases/cache_user_usecase.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_caching_cubit/user_caching_cubit.dart';
@@ -59,54 +60,35 @@ class _EditAccountViewState extends State<EditAccountView> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => UserCachingCubit(
-        sl.get<CacheUserUseCase>(),
-        sl.get<GetCachedUserUseCase>(),
-        sl<UpdateCachedUserUseCase>(),
-          sl<FirebaseUserServices>()
-      )..loadCachedUser(),
+          sl.get<CacheUserUseCase>(),
+          sl.get<GetCachedUserUseCase>(),
+          sl<UpdateCachedUserUseCase>(),
+          sl<FirebaseUserServices>())
+        ..loadCachedUser(),
       // ✅ استخدمت BlocConsumer بدلاً من BlocBuilder
       child: BlocConsumer<UserCachingCubit, UserCachingStates>(
         listener: (context, state) {
           // ✅ هنا حطيت الـ Navigator.pop عشان مايتناديش كل مرة الـ build يشتغل
           if (state is UserCachingLoadedState) {
-            Navigator.pushReplacementNamed(context, Routes.mainLayoutRoute,);
-
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: const Text("تم الحفظ بنجاح"),
-                  content: const Text("  سيتم استخدام  بياناتك الجديده اثناء الطلب "),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop(); // يقفل الـ Dialog
-                      },
-                      child: const Text("تم"),
-                    ),
-
-                  ],
-                );
-              },
+            Navigator.pushReplacementNamed(
+              context,
+              Routes.mainLayoutRoute,
             );
 
+            showCustomToast(context, "تم التعديل بنجاح",
+                type: ToastType.success);
           }
           // ✅ هنا SnackBar بيتعرض مرة واحدة بس مش مع كل rebuild
           else if (state is UserCachingErrorState) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                duration: const Duration(seconds: 5),
-                backgroundColor: ColorManager.primary,
-                content: const Text("حدث خطأ ما حاول مرة اخرى"),
-              ),
-            );
+            showCustomToast(context, "حدث خطأ ما حاول مرة اخرى",
+                type: ToastType.error);
           }
         },
         builder: (context, state) {
           var cubit = UserCachingCubit.get(context);
 
           return Scaffold(
-            body : Form(
+            body: Form(
               key: _formKey,
               child: SingleChildScrollView(
                 child: GlobalPaddingWidget(
@@ -136,7 +118,7 @@ class _EditAccountViewState extends State<EditAccountView> {
                       ),
                       SizedBox(height: AppSize.s5.h),
                       Text(
-                          cubit.cachedUserModel.userMail,
+                        cubit.cachedUserModel.userMail,
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       SizedBox(height: AppSize.s20.h),
@@ -151,7 +133,7 @@ class _EditAccountViewState extends State<EditAccountView> {
                         children: [
                           Text("الاسم بالكامل",
                               style:
-                              Theme.of(context).textTheme.headlineMedium),
+                                  Theme.of(context).textTheme.headlineMedium),
                           const Spacer(),
                         ],
                       ),
@@ -175,13 +157,13 @@ class _EditAccountViewState extends State<EditAccountView> {
                         children: [
                           Text("رقم الهاتف",
                               style:
-                              Theme.of(context).textTheme.headlineMedium),
+                                  Theme.of(context).textTheme.headlineMedium),
                           const Spacer(),
                         ],
                       ),
                       SizedBox(height: AppSize.s10.h),
                       GlobalTextFieldWidget(
-                        validator:AppConstant.phoneValidation,
+                        validator: AppConstant.phoneValidation,
                         onSaved: (val) => phoneNumber = val!,
                         controller: _phoneController,
                         hintText: "رقم الهاتف",
@@ -194,7 +176,7 @@ class _EditAccountViewState extends State<EditAccountView> {
                         children: [
                           Text("العنوان بالتفصيل",
                               style:
-                              Theme.of(context).textTheme.headlineMedium),
+                                  Theme.of(context).textTheme.headlineMedium),
                           const Spacer(),
                         ],
                       ),
@@ -233,9 +215,8 @@ class _EditAccountViewState extends State<EditAccountView> {
                                       userName: name,
                                       phoneNumber: phoneNumber,
                                       userMail: cubit.cachedUserModel.userMail,
-                                      userPassword: cubit.cachedUserModel.userPassword
-
-                                  ),
+                                      userPassword:
+                                          cubit.cachedUserModel.userPassword),
                                 );
                               }
                             },

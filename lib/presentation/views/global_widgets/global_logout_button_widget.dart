@@ -7,6 +7,7 @@ import 'package:delivery_app/domain/entities/delivery_management_entities/delive
 import 'package:delivery_app/domain/entities/home_entities/home_banner_entity.dart';
 import 'package:delivery_app/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:delivery_app/domain/entities/home_entities/home_shop_product_entity.dart';
+import 'package:delivery_app/presentation/views/global_widgets/global_button_widget.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_dialogs/global_dialog.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_light_button_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -75,13 +76,15 @@ void logoutDialog(
     dialogTitle: "تسجيل الخروج",
     actionButtonColor: ColorManager.error,
     actionButtonHint: "تسجيل الخروج",
-    content: const LogoutDialogContent(),
+    content: LogoutDialogContent(
+      actionButtonCall: actionButtonCall,
+    ),
   );
 }
 
 class LogoutDialogContent extends StatelessWidget {
-  const LogoutDialogContent({super.key});
-
+  const LogoutDialogContent({super.key, required this.actionButtonCall});
+  final Function() actionButtonCall;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -94,6 +97,11 @@ class LogoutDialogContent extends StatelessWidget {
           ).textTheme.headlineMedium!.copyWith(color: ColorManager.hintColor),
         ),
         SizedBox(height: AppSize.s20.h),
+        GlobalButtonWidget(
+            text: " تاكيد",
+            onTap: actionButtonCall,
+            width: double.infinity,
+            isButtonEnabled: true)
       ],
     );
   }

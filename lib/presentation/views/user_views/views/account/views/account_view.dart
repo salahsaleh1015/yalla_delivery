@@ -60,7 +60,7 @@ class _AccountViewState extends State<AccountView> {
                       height: AppSize.s30.h,
                     ),
                     GlobalAccountInfoSectionWidget(
-                      joinDate: "انضم منذ 12 اكتوبر 2024",
+                      joinDate:cubit.cachedUserModel.userMail,
                       userName: cubit.cachedUserModel.userName,
                     ),
                     SizedBox(

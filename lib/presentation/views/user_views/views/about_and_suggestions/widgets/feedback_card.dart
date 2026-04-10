@@ -10,6 +10,7 @@ import 'package:delivery_app/presentation/views/global_widgets/global_button_wid
 import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/resources/colors_manager.dart';
 
@@ -130,7 +131,8 @@ class FeedbackCardState extends State<FeedbackCard> {
                     focusNode: widget.titleFocusNode,
                     maxLines: 1,
                     style: TextStyle(
-                      fontSize: widget.bodyFontSize - 2, // أصغر شوية
+                      fontSize: 16.sp, // 👈 حجم الخط
+                      fontWeight: FontWeight.w400, // أصغر شوية
                       color: ColorManager.black,
                     ),
                     decoration: InputDecoration(
@@ -173,7 +175,8 @@ class FeedbackCardState extends State<FeedbackCard> {
                     focusNode: widget.feedbackFocusNode,
                     maxLines: widget.maxLines,
                     style: TextStyle(
-                      fontSize: widget.bodyFontSize,
+                      fontSize: 16.sp, // 👈 حجم الخط
+                      fontWeight: FontWeight.w400, // أصغر شوية
                       color: ColorManager.black,
                     ),
                     decoration: InputDecoration(

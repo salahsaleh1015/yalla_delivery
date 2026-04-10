@@ -40,6 +40,8 @@ class GlobalTextFieldWidget extends StatelessWidget {
           onSaved: onSaved,
           validator: validator,
           style:  TextStyle(
+            fontSize: 20.sp, // 👈 حجم الخط
+            fontWeight: FontWeight.w400, //
             letterSpacing: letterSpacing,
           ),
           keyboardType: textInputType,
@@ -62,6 +64,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
               hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
                     color: ColorManager.hintColor,
                   ),
+
               fillColor: ColorManager.inputFillColor,
               filled: true),
         ),
