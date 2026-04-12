@@ -138,7 +138,7 @@ json_annotation: ^4.9.0
 
 | Onboarding | Home | Order Tracking |
 |:---:|:---:|:---:|
-| ![](assets/screenshots/onboarding.png) | ![](assets/screenshots/home.png) | ![](assets/screenshots/tracking.png) |
+| ![](assets/images/on_boarding.jpg) | ![](assets/images/home.jpg) | ![](assets/images/summary.jpg) |
 
 ---
 
