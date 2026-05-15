@@ -52,7 +52,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCWB37XIwtnSN0-grMRllcYhBup-Wm-Nus',
-    appId: '1:387118286779:android:dee51a397676513fede69e',
+    appId: '1:387118286779:android:29004a5a1cb3b0b0ede69e',
     messagingSenderId: '387118286779',
     projectId: 'yalla-delivery-app-f5ce2',
     storageBucket: 'yalla-delivery-app-f5ce2.firebasestorage.app',

@@ -7,12 +7,14 @@ import 'package:delivery_app/presentation/view_models/user_view_models/user_cach
 import 'package:delivery_app/presentation/view_models/user_view_models/user_orders_cubit/user_orders_cubit.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_app_bar.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_padding_widget.dart';
+import 'package:delivery_app/presentation/views/user_views/views/summary/summary_widgets/approve_order_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/resources/colors_manager.dart';
 import '../../../../../core/resources/values_manager.dart';
+import '../../../../../data/models/approve_order_model.dart';
 import '../../../../../domain/usecases/cache_user_usecase.dart';
 import '../../../../../injection.dart';
 import '../../../global_widgets/global_button_widget.dart';
@@ -101,81 +103,18 @@ class OrderSummaryView extends StatelessWidget {
                         onSubmitted: (value) {
                           userNote = value;
                         },
-                      )
+                      ),
+                      SizedBox(
+                        height: AppSize.s20.h,
+                      ),
+                      ApproveOrderButton(
+                          approveOrderModel: ApproveOrderModel(
+                        orderInfoModel: orderInfoModel,
+                        userCachingCubit: cacheCubit,
+                        userNote: userNote ?? '',
+                      )),
                     ],
                   ),
-                ),
-              ),
-              bottomNavigationBar: BlocProvider<UserOrdersCubit>(
-                create: (context) => UserOrdersCubit(),
-                child: BlocBuilder<UserOrdersCubit, UserOrdersStates>(
-                  builder: (context, state) {
-                    var cubit = UserOrdersCubit.get(context);
-                    if (state is UserOrdersAddOrderLoadingState) {
-                      return const Center(
-                        child: GlobalLoadingIndicator(),
-                      );
-                    } else if (state is UserOrdersAddOrderErrorState) {
-                      return Center(
-                        child: Text(state.error),
-                      );
-                    } else if (state is UserOrdersAddOrderSuccessState) {
-                      return Padding(
-                        padding: EdgeInsets.all(AppPadding.p8.r),
-                        child: GlobalButtonWidget(
-                          isButtonEnabled: false,
-                          text: "تأكيد الطلب",
-                          onTap: () {},
-                          width: double.infinity,
-                        ),
-                      );
-                    } else {
-                      return Padding(
-                        padding: EdgeInsets.all(AppPadding.p8.r),
-                        child: GlobalButtonWidget(
-                          isButtonEnabled: true,
-                          text: "تأكيد الطلب",
-                          onTap: () {
-                            final now = DateTime.now();
-                            final formattedTime = DateFormat('hh:mm a', 'ar')
-                                .format(now)
-                                .replaceAll('AM', 'ص')
-                                .replaceAll('PM', 'م');
-                            cubit
-                                .addOrder(
-                              order: OrderModel(
-                                userName: cacheCubit.cachedUserModel.userName,
-                                userPhoneNumber:
-                                    cacheCubit.cachedUserModel.phoneNumber,
-                                userLocation:
-                                    cacheCubit.cachedUserModel.userLocation,
-                                userOrder: orderInfoModel.order,
-                                userOrderStatus: 'المعلقة',
-                                userOrderNotes: userNote ?? '',
-                                userOrderDate: formattedTime,
-
-                                /// 🔥 أهم تعديل هنا
-                                delivery: DeliveryModel(
-                                  id: orderInfoModel.deliveryModel.id,
-                                  name: orderInfoModel.deliveryModel.name,
-                                  phone: orderInfoModel.deliveryModel.phone,
-                                  location:
-                                      orderInfoModel.deliveryModel.location,
-                                  status: orderInfoModel.deliveryModel.status,
-                                  rate: orderInfoModel.deliveryModel.rate,
-                                  mail: orderInfoModel.deliveryModel.mail,
-                                ),
-                              ),
-                            )
-                                .then((_) {
-                              confirmationDialog(context);
-                            });
-                          },
-                          width: double.infinity,
-                        ),
-                      );
-                    }
-                  },
                 ),
               ),
             );
@@ -184,45 +123,8 @@ class OrderSummaryView extends StatelessWidget {
       ),
     );
   }
-
-  void confirmationDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) {
-        Future.delayed(const Duration(seconds: 4), () {
-          Navigator.of(context, rootNavigator: true).pop();
-        });
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppSize.s20.r),
-          ),
-          backgroundColor: Colors.white,
-          contentPadding: EdgeInsets.all(AppSize.s20.r),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                Icons.check_circle_outline,
-                color: ColorManager.primary,
-                size: AppSize.s50.r,
-              ),
-              SizedBox(
-                height: AppSize.s20.h,
-              ),
-              Text(
-                "تم ابلاغ المندوب بنجاح",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: AppSize.s20.sp,
-                  color: Colors.black87,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
 }
+
+
+
+
