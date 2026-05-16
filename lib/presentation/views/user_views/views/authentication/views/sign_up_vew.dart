@@ -2,6 +2,7 @@ import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/constants_manager.dart';
 import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
+import 'package:delivery_app/core/utils/app_extensions.dart';
 import 'package:delivery_app/data/models/user_model.dart';
 import 'package:delivery_app/data/models/verification_args_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/mail_auth_cubit/mail_auth_cubit.dart';
@@ -521,14 +522,11 @@ class _SecondSignUpViewState extends State<SecondSignUpView> {
                       }
 
                       if (state is MailAuthSignUpErrorState) {
-                        print("////////////////////////");
-                        print("// ${state.errorMessage} /// ");
-                        if (state.errorMessage == '[firebase_auth/email-already-in-use] The email address is already in use by another account.') {
-                          showCustomToast(context, "هذا البريد موجود بالفعل",type: ToastType.error);
-                        } else {
-                          showCustomToast(
-                              context, "حدث خطا ما حاول في وقت لاحق",type: ToastType.error);
-                        }
+                        showCustomToast(
+                          context,
+                          state.error.arabicMessage, // ✅ نظيف وبسيط
+                          type: ToastType.error,
+                        );
                       }
                     },
                     builder: (context, state) {

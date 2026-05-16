@@ -1,6 +1,7 @@
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/constants_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
+import 'package:delivery_app/core/utils/app_extensions.dart';
 import 'package:delivery_app/data/models/user_model.dart';
 import 'package:delivery_app/data/models/verification_args_model.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/mail_auth_cubit/mail_auth_cubit.dart';
@@ -145,7 +146,11 @@ class _SignInViewState extends State<SignInView> {
                       }
 
                       if (state is MailAuthSignInErrorState) {
-                        showCustomToast(context, state.errorMessage,type: ToastType.error);
+                        showCustomToast(
+                          context,
+                          state.error.arabicMessage, // ✅
+                          type: ToastType.error,
+                        );
                       }
                     },
                     builder: (context, state) {
