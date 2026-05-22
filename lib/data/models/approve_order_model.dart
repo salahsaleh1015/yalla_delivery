@@ -5,9 +5,12 @@ class ApproveOrderModel {
   final OrderInfoModel orderInfoModel;
   final UserCachingCubit userCachingCubit;
   final String userNote;
+  final String userLocation; // ← أضف دي
 
-  ApproveOrderModel(
-      {required this.orderInfoModel,
-        required this.userCachingCubit,
-        required this.userNote});
+  ApproveOrderModel({
+    required this.orderInfoModel,
+    required this.userCachingCubit,
+    required this.userNote,
+    required this.userLocation, // ← أضف دي
+  });
 }

@@ -4,6 +4,7 @@ import 'package:delivery_app/core/services/firebase_services/firestore_user_info
 import 'package:delivery_app/domain/usecases/cache_user_usecase.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_caching_cubit/user_caching_cubit.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/user_info_cubit/user_info_cubit.dart';
+import 'package:delivery_app/presentation/views/global_widgets/global_dialogs/edit_summary_location_dialog.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,13 +12,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../../injection.dart';
 
-class EditLocationCardItemWidget extends StatelessWidget {
+class EditLocationCardItemWidget extends StatefulWidget {
   const EditLocationCardItemWidget({
     super.key,
     required this.userPhone,
+    this.onLocationUpdated, // ← أضف دي
   });
 
   final String userPhone;
+  final ValueChanged<String>? onLocationUpdated; // ← أضف دي
+
+  @override
+  State<EditLocationCardItemWidget> createState() =>
+      _EditLocationCardItemWidgetState();
+}
+
+class _EditLocationCardItemWidgetState
+    extends State<EditLocationCardItemWidget> {
+  String? dialogLocation;
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +38,14 @@ class EditLocationCardItemWidget extends StatelessWidget {
             sl.get<CacheUserUseCase>(),
             sl.get<GetCachedUserUseCase>(),
             sl<UpdateCachedUserUseCase>(),
-            sl<FirebaseUserServices>())..loadCachedUser(),
+            sl<FirebaseUserServices>())
+          ..loadCachedUser(),
         child: Card.outlined(
           color: ColorManager.white,
           elevation: AppSize.s5.r,
           child: Padding(
             padding: EdgeInsets.all(AppPadding.p8.r),
             child: SizedBox(
-                //height: AppSize.s30.h,
                 width: double.infinity,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,24 +58,34 @@ class EditLocationCardItemWidget extends StatelessWidget {
                           style: Theme.of(context).textTheme.headlineSmall,
                         ),
                         const Spacer(),
-
-                        // TextButton(
-                        //   onPressed: () {
-                        //     locationDialog(context);
-                        //   },
-                        //   child: Row(
-                        //     children: [
-                        //       Text(
-                        //         "تغيير",
-                        //         style: Theme.of(context).textTheme.labelLarge,
-                        //       ),
-                        //       Icon(
-                        //         Icons.arrow_forward,
-                        //         color: ColorManager.primary,
-                        //       )
-                        //     ],
-                        //   ),
-                        // ),
+                        TextButton(
+                          onPressed: () {
+                            final cubit = UserCachingCubit.get(context);
+                            editSummaryLocationDialog(
+                              context,
+                              initialLocation: dialogLocation ??
+                                  cubit.cachedUserModel.userLocation,
+                              onLocationChanged: (String value) {
+                                setState(() {
+                                  dialogLocation = value;
+                                });
+                                widget.onLocationUpdated?.call(value); // ← ابعتها لبره
+                              },
+                            );
+                          },
+                          child: Row(
+                            children: [
+                              Text(
+                                "تغيير",
+                                style: Theme.of(context).textTheme.labelLarge,
+                              ),
+                              Icon(
+                                Icons.arrow_forward,
+                                color: ColorManager.primary,
+                              )
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                     SizedBox(
@@ -73,7 +95,7 @@ class EditLocationCardItemWidget extends StatelessWidget {
                       builder: (context, state) {
                         var cubit = UserCachingCubit.get(context);
                         return Text(
-                          cubit.cachedUserModel.userLocation,
+                          dialogLocation ?? cubit.cachedUserModel.userLocation,
                           style: Theme.of(context)
                               .textTheme
                               .headlineSmall!

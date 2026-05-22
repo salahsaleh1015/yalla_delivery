@@ -1,4 +1,3 @@
-
 import 'package:delivery_app/data/models/delivery_model.dart';
 
 import 'package:delivery_app/data/models/order_model.dart';
@@ -11,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 import 'package:intl/intl.dart';
 
 import '../../../../../../core/resources/colors_manager.dart';
@@ -20,9 +18,11 @@ import '../../../../../../data/models/approve_order_model.dart';
 import '../../../../global_widgets/global_button_widget.dart';
 
 class ApproveOrderButton extends StatelessWidget {
-  const ApproveOrderButton({super.key, required this.approveOrderModel});
+  const ApproveOrderButton(
+      {super.key, required this.approveOrderModel,});
 
   final ApproveOrderModel approveOrderModel;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<UserOrdersCubit>(
@@ -63,11 +63,14 @@ class ApproveOrderButton extends StatelessWidget {
                   cubit
                       .addOrder(
                     order: OrderModel(
-                      userName: approveOrderModel.userCachingCubit.cachedUserModel.userName,
-                      userPhoneNumber:
-                      approveOrderModel.userCachingCubit.cachedUserModel.phoneNumber,
-                      userLocation:
-                      approveOrderModel.userCachingCubit.cachedUserModel.userLocation,
+                      userName: approveOrderModel
+                          .userCachingCubit.cachedUserModel.userName,
+                      userPhoneNumber: approveOrderModel
+                          .userCachingCubit.cachedUserModel.phoneNumber,
+                      userLocation: approveOrderModel.userLocation == ''
+                          ? approveOrderModel
+                              .userCachingCubit.cachedUserModel.userLocation
+                          : approveOrderModel.userLocation,
                       userOrder: approveOrderModel.orderInfoModel.order,
                       userOrderStatus: 'المعلقة',
                       userOrderNotes: approveOrderModel.userNote ?? '',
@@ -76,12 +79,18 @@ class ApproveOrderButton extends StatelessWidget {
                       /// 🔥 أهم تعديل هنا
                       delivery: DeliveryModel(
                         id: approveOrderModel.orderInfoModel.deliveryModel.id,
-                        name: approveOrderModel.orderInfoModel.deliveryModel.name,
-                        phone: approveOrderModel.orderInfoModel.deliveryModel.phone,
-                        location: approveOrderModel.orderInfoModel.deliveryModel.location,
-                        status: approveOrderModel.orderInfoModel.deliveryModel.status,
-                        rate: approveOrderModel.orderInfoModel.deliveryModel.rate,
-                        mail: approveOrderModel.orderInfoModel.deliveryModel.mail,
+                        name:
+                            approveOrderModel.orderInfoModel.deliveryModel.name,
+                        phone: approveOrderModel
+                            .orderInfoModel.deliveryModel.phone,
+                        location: approveOrderModel
+                            .orderInfoModel.deliveryModel.location,
+                        status: approveOrderModel
+                            .orderInfoModel.deliveryModel.status,
+                        rate:
+                            approveOrderModel.orderInfoModel.deliveryModel.rate,
+                        mail:
+                            approveOrderModel.orderInfoModel.deliveryModel.mail,
                       ),
                     ),
                   )

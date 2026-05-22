@@ -21,7 +21,6 @@ class _NotesSectionItemWidgetState extends State<NotesSectionItemWidget> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Card.outlined(
@@ -59,7 +58,8 @@ class _NotesSectionItemWidgetState extends State<NotesSectionItemWidget> {
                                 submittedText = _controller.text.trim();
                                 isEditing = false;
                               });
-                              widget.onSubmitted?.call(submittedText); // <-- Trigger callback
+                              widget.onSubmitted
+                                  ?.call(submittedText); // <-- Trigger callback
                             },
                           ),
                     hintText: "هل هناك ملاحظات حول الاستلام؟",

@@ -25,13 +25,21 @@ import '../home/widgets/items/notes_section_item_widget.dart';
 import '../home/widgets/items/summary_delivery_item_widget.dart';
 import 'package:intl/intl.dart';
 
-class OrderSummaryView extends StatelessWidget {
-  OrderSummaryView({
+class OrderSummaryView extends StatefulWidget {
+  const OrderSummaryView({
     super.key,
     required this.orderInfoModel,
   });
   final OrderInfoModel orderInfoModel;
+
+  @override
+  State<OrderSummaryView> createState() => _OrderSummaryViewState();
+}
+
+class _OrderSummaryViewState extends State<OrderSummaryView> {
   String? userNote;
+  String? userLocation;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -49,9 +57,9 @@ class OrderSummaryView extends StatelessWidget {
           } else if (state is UserCachingErrorState) {
             return Center(
                 child: Text(
-              "هناك مشكلة حاول في وقت لاحق",
-              style: Theme.of(context).textTheme.headlineMedium,
-            ));
+                  "هناك مشكلة حاول في وقت لاحق",
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ));
           } else {
             return Scaffold(
               body: GlobalPaddingWidget(
@@ -66,53 +74,52 @@ class OrderSummaryView extends StatelessWidget {
                               context, Routes.mainLayoutRoute);
                         },
                       ),
-                      SizedBox(
-                        height: AppSize.s30.h,
-                      ),
+                      SizedBox(height: AppSize.s30.h),
                       EditLocationCardItemWidget(
                         userPhone: cacheCubit.cachedUserModel.phoneNumber,
-                        //location: orderInfoModel.userModel.userLocation,
-                      ),
-                      SizedBox(
-                        height: AppSize.s15.h,
-                      ),
-                      Text("تفاصيل الطلب",
-                          style: Theme.of(context).textTheme.bodyMedium),
-                      SizedBox(
-                        height: AppSize.s15.h,
-                      ),
-                      GlobalOrderDetailsWidget(
-                        orderDetails: orderInfoModel.order,
-                      ),
-                      SizedBox(
-                        height: AppSize.s20.h,
-                      ),
-                      Text("تفاصيل التوصيل",
-                          style: Theme.of(context).textTheme.bodyMedium),
-                      SizedBox(
-                        height: AppSize.s15.h,
-                      ),
-                      SummaryDeliveryItemWidget(
-                        deliveryName: orderInfoModel.deliveryModel.deliveryName,
-                        deliveryRate: orderInfoModel.deliveryModel.deliveryRate,
-                      ),
-                      SizedBox(
-                        height: AppSize.s15.h,
-                      ),
-                      NotesSectionItemWidget(
-                        onSubmitted: (value) {
-                          userNote = value;
+                        onLocationUpdated: (value) {
+                          setState(() {
+                            userLocation = value; // ← setState عشان يعمل rebuild
+                          });
                         },
                       ),
-                      SizedBox(
-                        height: AppSize.s20.h,
+                      SizedBox(height: AppSize.s15.h),
+                      Text("تفاصيل الطلب",
+                          style: Theme.of(context).textTheme.bodyMedium),
+                      SizedBox(height: AppSize.s15.h),
+                      GlobalOrderDetailsWidget(
+                        orderDetails: widget.orderInfoModel.order,
                       ),
+                      SizedBox(height: AppSize.s20.h),
+                      Text("تفاصيل التوصيل",
+                          style: Theme.of(context).textTheme.bodyMedium),
+                      SizedBox(height: AppSize.s15.h),
+                      SummaryDeliveryItemWidget(
+                        deliveryName:
+                        widget.orderInfoModel.deliveryModel.deliveryName,
+                        deliveryRate:
+                        widget.orderInfoModel.deliveryModel.deliveryRate,
+                      ),
+                      SizedBox(height: AppSize.s15.h),
+                      NotesSectionItemWidget(
+                        onSubmitted: (value) {
+                          setState(() {
+                            userNote = value; // ← setState هنا برضو
+                          });
+                        },
+                      ),
+                      SizedBox(height: AppSize.s20.h),
                       ApproveOrderButton(
-                          approveOrderModel: ApproveOrderModel(
-                        orderInfoModel: orderInfoModel,
-                        userCachingCubit: cacheCubit,
-                        userNote: userNote ?? '',
-                      )),
+                        approveOrderModel: ApproveOrderModel(
+                          orderInfoModel: widget.orderInfoModel,
+                          userCachingCubit: cacheCubit,
+                          userNote: userNote ?? '',
+                          userLocation: userLocation?.isNotEmpty == true
+                              ? userLocation!
+                              : cacheCubit.cachedUserModel.userLocation,
+                        ),
+                      ),
+                      SizedBox(height: AppSize.s50.h),
                     ],
                   ),
                 ),
@@ -124,7 +131,3 @@ class OrderSummaryView extends StatelessWidget {
     );
   }
 }
-
-
-
-

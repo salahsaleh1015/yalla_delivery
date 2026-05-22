@@ -1,5 +1,4 @@
 
-import 'package:delivery_app/core/resources/routes_manager.dart';
 import 'package:delivery_app/core/utils/functions/service_locator_setup.dart';
 import 'package:delivery_app/data/models/cached_user_model.dart';
 import 'package:delivery_app/translations/codegen_loader.g.dart';
@@ -15,9 +14,6 @@ import 'injection.dart';
 //late String initialRoute;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-
-
 
   // Step 1: Initialize core dependencies
   await AppInitializer.initCore();
@@ -49,8 +45,8 @@ Future<void> main() async {
       startLocale: const Locale('ar'),
       fallbackLocale: const Locale('ar'),
       child: YallaDeliveryApp(
-    startRoute: Routes.onBoardingRoute,
-      //startRoute: startRoute,
+    //startRoute: Routes.onBoardingRoute,
+     startRoute: startRoute,
       ),
     ),
   );
