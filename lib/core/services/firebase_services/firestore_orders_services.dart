@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delivery_app/data/models/order_model.dart';
 
-
 class FirestoreOrdersServices {
   final CollectionReference _ordersCollectionRef =
       FirebaseFirestore.instance.collection("Orders");
@@ -17,7 +16,6 @@ class FirestoreOrdersServices {
 
   Future<List<QueryDocumentSnapshot>> getDeliveryPendingOrdersByGmail({
     required String deliveryMail,
-
   }) async {
     QuerySnapshot querySnapshot = await _ordersCollectionRef
         .where("deliveryMail", isEqualTo: deliveryMail)
@@ -28,9 +26,18 @@ class FirestoreOrdersServices {
     return querySnapshot.docs;
   }
 
+  Future<List<QueryDocumentSnapshot>> getUserOrdersByPhoneNumber(
+      {required String userPhoneNumber}) async {
+    QuerySnapshot querySnapshot = await _ordersCollectionRef
+        .where("userPhoneNumber", isEqualTo: userPhoneNumber)
+        .get();
+
+    // Return the list of documents
+    return querySnapshot.docs;
+  }
+
   Future<List<QueryDocumentSnapshot>> getDeliveryAcceptedOrdersByGmail({
     required String deliveryMail,
-
   }) async {
     QuerySnapshot querySnapshot = await _ordersCollectionRef
         .where("deliveryMail", isEqualTo: deliveryMail)
@@ -41,11 +48,8 @@ class FirestoreOrdersServices {
     return querySnapshot.docs;
   }
 
-
-
   Future<List<QueryDocumentSnapshot>> getDeliveryCanceledOrdersByGmail({
     required String deliveryMail,
-
   }) async {
     QuerySnapshot querySnapshot = await _ordersCollectionRef
         .where("deliveryMail", isEqualTo: deliveryMail)
@@ -58,7 +62,6 @@ class FirestoreOrdersServices {
 
   Future<List<QueryDocumentSnapshot>> getDeliveryCompletedOrdersByGmail({
     required String deliveryMail,
-
   }) async {
     QuerySnapshot querySnapshot = await _ordersCollectionRef
         .where("deliveryMail", isEqualTo: deliveryMail)
@@ -68,7 +71,6 @@ class FirestoreOrdersServices {
     // Return the list of documents
     return querySnapshot.docs;
   }
-
 
   Future<void> editDeliveryOrderStatus(
       {required String orderId, required String newStatus}) async {
