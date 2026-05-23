@@ -1,9 +1,8 @@
-
-
+import 'package:delivery_app/domain/entities/cart_entities/order_entity.dart';
 
 import 'delivery_model.dart';
 
-class OrderModel {
+class OrderModel extends OrderEntity {
   String? userOrderId;
 
   final String userName;
@@ -26,7 +25,11 @@ class OrderModel {
     required this.userOrderNotes,
     required this.userOrderDate,
     required this.delivery,
-  });
+  }) : super(
+            orderStatus: userOrderStatus,
+            orderDetails: userOrder,
+            orderNotes: userOrderNotes,
+            orderDate: userOrderDate);
 
   /// 🔽 FROM JSON
   factory OrderModel.fromJson(Map<String, dynamic> json) {
