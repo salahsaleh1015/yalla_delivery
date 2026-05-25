@@ -56,7 +56,7 @@ class ApproveOrderButton extends StatelessWidget {
                 text: "تأكيد الطلب",
                 onTap: () {
                   final now = DateTime.now();
-                  final formattedTime = DateFormat('hh:mm a', 'ar')
+                  final formattedTime = DateFormat('EEEE d MMMM hh:mm a', 'ar')
                       .format(now)
                       .replaceAll('AM', 'ص')
                       .replaceAll('PM', 'م');
@@ -97,6 +97,7 @@ class ApproveOrderButton extends StatelessWidget {
                       .then((_) {
                     confirmationDialog(context);
                   });
+                  print(formattedTime);
                 },
                 width: double.infinity,
               ),

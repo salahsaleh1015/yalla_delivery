@@ -30,13 +30,13 @@ class HomeView extends StatelessWidget {
                 SizedBox(
                   width: AppSize.s10.w,
                 ),
-                // GlobalCircularButtonWidget(
-                //   onTap: () {
-                // Navigator.pushNamed(context, Routes.cartRoute);
-                //   },
-                //   icon: Icons.shopping_cart_outlined,
-                //   iconColor: ColorManager.black,
-                // ),
+                GlobalCircularButtonWidget(
+                  onTap: () {
+                Navigator.pushNamed(context, Routes.cartRoute);
+                  },
+                  icon: Icons.shopping_cart_outlined,
+                  iconColor: ColorManager.black,
+                ),
               ],
             ),
             SizedBox(
