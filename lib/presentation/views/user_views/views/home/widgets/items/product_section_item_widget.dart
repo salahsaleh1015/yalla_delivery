@@ -4,11 +4,11 @@ import 'package:delivery_app/presentation/views/global_widgets/global_search_car
 import 'package:delivery_app/presentation/views/user_views/views/home/widgets/lists/product_cards_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 class ProductsSectionItemWidget extends StatelessWidget {
   const ProductsSectionItemWidget({super.key, required this.shopId});
 
   final String shopId;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,10 +16,7 @@ class ProductsSectionItemWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          //const GlobalSearchCardItemWidget(hintText: 'البحث في القائمة',),
-          SizedBox(
-            height: AppSize.s10.h,
-          ),
+          SizedBox(height: AppSize.s10.h),
           Text(
             "المنتجات المقدمة",
             style: Theme.of(context)
@@ -27,13 +24,11 @@ class ProductsSectionItemWidget extends StatelessWidget {
                 .headlineLarge!
                 .copyWith(color: ColorManager.black),
           ),
-          SizedBox(
-            height: AppSize.s10.h,
+          SizedBox(height: AppSize.s10.h),
+          // ✅ Expanded شغالة دلوقتي لأن أبوها Expanded في الـ Scaffold
+          Expanded(
+            child: ProductCardsListWidget(shopId: shopId),
           ),
-
-           ProductCardsListWidget(
-             shopId: shopId,
-           ),
         ],
       ),
     );

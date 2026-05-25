@@ -15,6 +15,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ShopDetailsView extends StatelessWidget {
   const ShopDetailsView({super.key, required this.shop});
   final ShopModel shop;
+
   @override
   Widget build(BuildContext context) {
     return GlobalPopScope(
@@ -25,9 +26,7 @@ class ShopDetailsView extends StatelessWidget {
             ShopImageItem(
               image: shop.shopImage,
             ),
-            SizedBox(
-              height: AppSize.s10.h,
-            ),
+            SizedBox(height: AppSize.s10.h),
             ShopInfoItemWidget(
               shop: shop,
             ),
@@ -36,15 +35,15 @@ class ShopDetailsView extends StatelessWidget {
               endIndent: AppSize.s20.w,
               color: ColorManager.socialButtonColor,
             ),
-            SizedBox(
-              height: AppSize.s10.h,
-            ),
-            ProductsSectionItemWidget(
-              shopId: shop.shopId,
+            SizedBox(height: AppSize.s10.h),
+            // ✅ Expanded هنا شغال لأن الـ Scaffold بيديه height محددة
+            Expanded(
+              child: ProductsSectionItemWidget(
+                shopId: shop.shopId,
+              ),
             ),
           ],
         ),
-        // bottomNavigationBar: const PriceCardItemWidget(),
       ),
     );
   }
