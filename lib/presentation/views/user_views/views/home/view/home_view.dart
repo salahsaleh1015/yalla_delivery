@@ -4,7 +4,6 @@ import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
 import '../../../../global_widgets/global_circular_button_widget.dart';
 import '../../../../global_widgets/global_padding_widget.dart';
-import '../../../../global_widgets/global_search_card_item_widget.dart';
 import '../../../../global_widgets/global_user_card_widget.dart';
 import '../../../../global_widgets/lists/global_advertisement_list_widget.dart';
 import '../../../../global_widgets/lists/global_vendor_list_widget.dart';
