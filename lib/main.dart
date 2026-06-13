@@ -1,4 +1,3 @@
-
 import 'package:delivery_app/core/utils/functions/service_locator_setup.dart';
 import 'package:delivery_app/data/models/cached_user_model.dart';
 import 'package:delivery_app/translations/codegen_loader.g.dart';
@@ -8,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'core/init/app_initializer.dart';
 import 'injection.dart';
-
-
 
 //late String initialRoute;
 Future<void> main() async {
@@ -32,7 +29,6 @@ Future<void> main() async {
   // Step 6: Determine the start route
   final startRoute = AppInitializer.getStartRoute();
 
-
   final cachedUserBox = await Hive.openBox<CachedUserModel>('cachedUserBox');
   await init(cachedUserBox);
 
@@ -45,11 +41,9 @@ Future<void> main() async {
       startLocale: const Locale('ar'),
       fallbackLocale: const Locale('ar'),
       child: YallaDeliveryApp(
-    //startRoute: Routes.onBoardingRoute,
-     startRoute: startRoute,
+        //startRoute: Routes.onBoardingRoute,
+        startRoute: startRoute,
       ),
     ),
   );
 }
-
-

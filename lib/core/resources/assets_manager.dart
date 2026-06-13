@@ -26,6 +26,7 @@ class AssetsManager {
   static const String completeAuthImage2 = "$imagePath/complete_auth_image2.png";
   static const String emptyChat = "$imagePath/empty_chat.png";
   static const String noData = "$imagePath/no-data.svg";
+  static const String bannerTest = "$imagePath/banner_test.png";
 
 
 

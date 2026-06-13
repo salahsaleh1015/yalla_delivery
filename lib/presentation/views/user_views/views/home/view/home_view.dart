@@ -45,9 +45,7 @@ class HomeView extends StatelessWidget {
             // const GlobalSearchCardItemWidget(
             //   hintText: 'بحث',
             // ),
-            SizedBox(
-              height: AppSize.s30.h,
-            ),
+
             Text(
               "شركاء الإعلانات",
               style: Theme.of(context)
@@ -58,7 +56,7 @@ class HomeView extends StatelessWidget {
             SizedBox(
               height: AppSize.s10.h,
             ),
-            const GlobalAdvertisementListWidget(),
+      const GlobalAdvertisementListWidget(),
             Row(
               children: [
                 Text(

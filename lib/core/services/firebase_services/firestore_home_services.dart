@@ -5,7 +5,7 @@ import 'package:delivery_app/data/models/shop_model.dart';
 
 class FirestoreHomeServices {
   final CollectionReference _bannersCollectionRef =
-      FirebaseFirestore.instance.collection("Banners");
+      FirebaseFirestore.instance.collection("BannersV2");
 
   final CollectionReference _shopsCollectionRef =
       FirebaseFirestore.instance.collection("Shops");

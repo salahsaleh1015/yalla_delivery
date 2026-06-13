@@ -25,47 +25,26 @@ class GlobalAdvertisementItemWidget extends StatelessWidget {
     return GlobalCustomAnimationWidget(
       isHorizontal: true,
       index: index,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(AppSize.s12.r),
-              topRight: Radius.circular(AppSize.s12.r),
+      child: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(AppSize.s12.r),
+          topRight: Radius.circular(AppSize.s12.r),
+        ),
+        child: Stack(
+          children: [
+            SvgPicture.asset(
+              AssetsManager.noData,
+              fit: BoxFit.cover,
+              width: MediaQuery.sizeOf(context).width,
+              height: height ?? AppSize.s90.h,
             ),
-            child: Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SvgPicture.asset(
-                    AssetsManager.noData,
-                    fit: BoxFit.cover,
-                    width: width ?? AppSize.s150.w,
-                    height: height ?? AppSize.s90.h,
-                  ),
-                ),
-                Image.network(
-                    fit: BoxFit.fill,
-                    width: width ?? AppSize.s150.w,
-                    height: height ?? AppSize.s90.h,
-                    image),
-              ],
-            ),
-          ),
-          GlobalSecondaryDecoratedContainer(
-            width: width ?? AppSize.s150.w,
-            height: AppSize.s40.h,
-            child: Center(
-              child: Text(
-                title,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .copyWith(color: ColorManager.primary),
-              ),
-            ),
-          )
-        ],
+            Image.network(
+                fit: BoxFit.fill,
+                width: MediaQuery.sizeOf(context).width,
+                height: height ?? AppSize.s90.h,
+                image),
+          ],
+        ),
       ),
     );
   }
