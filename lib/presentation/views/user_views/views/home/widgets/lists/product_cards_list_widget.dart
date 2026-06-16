@@ -139,6 +139,7 @@ import '../../../../../../view_models/user_view_models/home_cubits/get_shop_prod
 import '../../../../../global_widgets/global_button_widget.dart';
 import '../../../../../global_widgets/global_decorated_bottom_container.dart';
 import '../../../../../global_widgets/global_loading_indicator.dart';
+
 class ProductCardsListWidget extends StatelessWidget {
   const ProductCardsListWidget({super.key, required this.shopId});
 
@@ -167,23 +168,23 @@ class ProductCardsListWidget extends StatelessWidget {
           } else if (state is GetShopProductsLoadedState) {
             return state.shopProductsList.isNotEmpty
                 ? Column(
-              children: [
-                Expanded(
-                  child: ListView.builder(
-                    // ✅ padding سفلي عشان اخر عنصر ميتغطاش من الزرار
-                    padding: EdgeInsets.only(bottom: AppSize.s80.h),
-                    itemCount: state.shopProductsList.length,
-                    itemBuilder: (context, index) =>
-                        ProductCardItemWidget(
-                          index: index,
-                          product: state.shopProductsList[index],
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          // ✅ padding سفلي عشان اخر عنصر ميتغطاش من الزرار
+                          padding: EdgeInsets.only(bottom: AppSize.s80.h),
+                          itemCount: state.shopProductsList.length,
+                          itemBuilder: (context, index) =>
+                              ProductCardItemWidget(
+                            index: index,
+                            product: state.shopProductsList[index],
+                          ),
                         ),
-                  ),
-                ),
-                // ✅ الزرار لازق في القاع طبيعي
-                _buildCheckoutBottomBar(context),
-              ],
-            )
+                      ),
+                      // ✅ الزرار لازق في القاع طبيعي
+                      _buildCheckoutBottomBar(context),
+                    ],
+                  )
                 : const NoData();
           } else {
             return const NoData();
