@@ -26,7 +26,7 @@ class FirestoreOrdersServices {
     return querySnapshot.docs;
   }
 
-  Future<List<QueryDocumentSnapshot>> getUserAcceptedOrdersByGmail({
+  Future<List<QueryDocumentSnapshot>> getUserAcceptedOrdersByPhoneNumber({
     required String phoneNumber,
   }) async {
     QuerySnapshot querySnapshot = await _ordersCollectionRef
@@ -38,7 +38,7 @@ class FirestoreOrdersServices {
     return querySnapshot.docs;
   }
 
-  Future<List<QueryDocumentSnapshot>> getUserCanceledOrdersByGmail({
+  Future<List<QueryDocumentSnapshot>> getUserCanceledOrdersByPhoneNumber({
     required String phoneNumber,
   }) async {
     QuerySnapshot querySnapshot = await _ordersCollectionRef
@@ -50,7 +50,7 @@ class FirestoreOrdersServices {
     return querySnapshot.docs;
   }
 
-  Future<List<QueryDocumentSnapshot>> getUserCompletedOrdersByGmail({
+  Future<List<QueryDocumentSnapshot>> getUserCompletedOrdersByPhoneNumber({
     required String phoneNumber,
   }) async {
     QuerySnapshot querySnapshot = await _ordersCollectionRef
