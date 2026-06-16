@@ -16,8 +16,8 @@ class OrdersRemoteDataSourceImpl implements OrdersRemoteDataSource {
   Future<List<OrderEntity>> getUserOrdersByPhoneNumber({
     required String userPhoneNumber,
   }) async {
-    var data = await firestoreOrdersServices.getUserOrdersByPhoneNumber(
-      userPhoneNumber: userPhoneNumber,
+    var data = await firestoreOrdersServices.getUserPendingOrdersByPhoneNumber(
+      phoneNumber: userPhoneNumber,
     );
 
     List<OrderEntity> orders = getOrdersList(data);
