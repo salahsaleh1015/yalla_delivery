@@ -1,6 +1,7 @@
 
 import 'package:delivery_app/core/utils/functions/hive_functions.dart';
 import 'package:delivery_app/data/models/cached_user_model.dart';
+import 'package:delivery_app/domain/entities/cart_entities/order_entity.dart';
 import 'package:delivery_app/domain/entities/delivery_management_entities/delivery_entity.dart';
 import 'package:delivery_app/domain/entities/home_entities/home_banner_entity.dart';
 import 'package:delivery_app/domain/entities/home_entities/home_shop_entity.dart';
@@ -32,7 +33,7 @@ class AppInitializer {
     Hive.registerAdapter(HomeShopEntityAdapter());
     Hive.registerAdapter(HomeShopProductEntityAdapter());
     Hive.registerAdapter(DeliveryEntityAdapter());
-
+    Hive.registerAdapter(OrderEntityAdapter());
 
     // Open boxes
     await Hive.openBox<CachedUserModel>('cachedUserBox');
@@ -43,6 +44,11 @@ class AppInitializer {
     await Hive.openBox<DeliveryEntity>(kAvailableDeliveryBox);
     await Hive.openBox<DeliveryEntity>(kUnAvailableDeliveryBox);
     await Hive.openBox<DeliveryEntity>(kBusyDeliveryBox);
+    await Hive.openBox<DeliveryEntity>(kPendingOrdersBox);
+    await Hive.openBox<DeliveryEntity>(kCompletedOrdersBox);
+    await Hive.openBox<DeliveryEntity>(kCanceledOrdersBox);
+    await Hive.openBox<DeliveryEntity>(kAcceptedOrdersBox);
+
 
     // Clear boxes
     await clearHiveBox<HomeBannerEntity>(boxName: kBannersBox);
@@ -52,6 +58,11 @@ class AppInitializer {
     await clearHiveBox<DeliveryEntity>(boxName: kAvailableDeliveryBox);
     await clearHiveBox<DeliveryEntity>(boxName: kUnAvailableDeliveryBox);
     await clearHiveBox<DeliveryEntity>(boxName: kBusyDeliveryBox);
+    await clearHiveBox<DeliveryEntity>(boxName: kPendingOrdersBox);
+    await clearHiveBox<DeliveryEntity>(boxName: kCompletedOrdersBox);
+    await clearHiveBox<DeliveryEntity>(boxName: kCanceledOrdersBox);
+    await clearHiveBox<DeliveryEntity>(boxName: kAcceptedOrdersBox);
+
 
   }
 

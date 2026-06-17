@@ -1,5 +1,6 @@
 import 'package:delivery_app/core/services/firebase_services/firestore_feed_back_services.dart';
 import 'package:delivery_app/core/services/firebase_services/firestore_home_services.dart';
+import 'package:delivery_app/data/data_sources/cart_data_sources/cart_local_data_source.dart';
 import 'package:delivery_app/data/data_sources/cart_data_sources/cart_remote_data_source.dart';
 import 'package:delivery_app/data/data_sources/delivery_management_data_sources/delivery_management_local_data_sources/delivery_management_local_data_sources.dart';
 import 'package:delivery_app/data/data_sources/delivery_management_data_sources/delivery_management_remote_data_sources/delivery_management_remote_data_sources.dart';
@@ -56,8 +57,9 @@ void serviceLocatorSetup() {
 
   getIt.registerSingleton<CartRepoImpl>(
     CartRepoImpl(
-      ordersRemoteDataSource:
-          OrdersRemoteDataSourceImpl(getIt.get<FirestoreOrdersServices>()),
+      cartLocalDataSource: CartLocalDataSourceImpl(),
+      cartRemoteDataSource:
+          CartRemoteDataSourceImpl(getIt.get<FirestoreOrdersServices>()),
     ),
   );
 }
