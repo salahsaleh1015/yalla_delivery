@@ -13,8 +13,8 @@ class UserFetchAcceptedOrdersUseCase
   Future<Either<Failure, List<OrderEntity>>> call(
       String param) async {
     // check permission
-    return await cartRepo.userFetchAcceptedOrders(
-      userPhoneNumber: param,
+    return await cartRepo.fetchAcceptedOrders(
+      phoneNumber: param,
     );
   }
 }
