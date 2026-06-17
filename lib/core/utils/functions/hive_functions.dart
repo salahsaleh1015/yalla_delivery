@@ -2,6 +2,7 @@
 
 
 
+import 'package:delivery_app/domain/entities/cart_entities/order_entity.dart';
 import 'package:delivery_app/domain/entities/delivery_management_entities/delivery_entity.dart';
 import 'package:delivery_app/domain/entities/home_entities/home_banner_entity.dart';
 import 'package:delivery_app/domain/entities/home_entities/home_shop_entity.dart';
@@ -32,4 +33,13 @@ void saveDeliveriesData({required List<DeliveryEntity> deliveries, required Stri
 Future<void> clearHiveBox<T>({required String boxName}) async {
   final box = Hive.box<T>(boxName);
   await box.clear();
+}
+
+
+void saveOrdersData({
+  required List<OrderEntity> orders,
+  required String boxName,
+}) {
+  var box = Hive.box<OrderEntity>(boxName);
+  box.addAll(orders);
 }

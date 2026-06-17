@@ -26,10 +26,15 @@ class OrderModel extends OrderEntity {
     required this.userOrderDate,
     required this.delivery,
   }) : super(
-            orderStatus: userOrderStatus,
-            orderDetails: userOrder,
-            orderNotes: userOrderNotes,
-            orderDate: userOrderDate);
+    userLocation: userLocation ?? '',
+    orderDetails: userOrder ?? '',
+    orderRequestTime: userOrderDate ?? '',
+    userPhone: userPhoneNumber ?? '',
+    orderStatus: userOrderStatus ?? '',
+    userName: userName ?? '',
+    orderNotes: userOrderNotes ?? '',
+    deliveryName: delivery.name ?? '',
+    orderId: userOrderId ?? '',);
 
   /// 🔽 FROM JSON
   factory OrderModel.fromJson(Map<String, dynamic> json) {
