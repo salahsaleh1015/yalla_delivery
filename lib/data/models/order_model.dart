@@ -12,6 +12,7 @@ class OrderModel extends OrderEntity {
   final String userOrderStatus;
   final String userOrderNotes;
   final String userOrderDate;
+   num? userOrderNumber;
 
   final DeliveryModel delivery;
 
@@ -25,6 +26,7 @@ class OrderModel extends OrderEntity {
     required this.userOrderNotes,
     required this.userOrderDate,
     required this.delivery,
+     this.userOrderNumber
   }) : super(
     userLocation: userLocation ?? '',
     orderDetails: userOrder ?? '',
@@ -32,6 +34,7 @@ class OrderModel extends OrderEntity {
     userPhone: userPhoneNumber ?? '',
     orderStatus: userOrderStatus ?? '',
     userName: userName ?? '',
+    orderNumber: userOrderNumber ?? 0,
     orderNotes: userOrderNotes ?? '',
     deliveryName: delivery.name ?? '',
     orderId: userOrderId ?? '',);
@@ -47,6 +50,7 @@ class OrderModel extends OrderEntity {
       userOrderStatus: json['userOrderStatus'] ?? '',
       userOrderNotes: json['userOrderNotes'] ?? '',
       userOrderDate: json['userOrderDate'] ?? '',
+      userOrderNumber: json["userOrderNumber"],
 
       /// 🔥 أهم نقطة
       delivery: DeliveryModel.fromJson(json),
@@ -64,6 +68,8 @@ class OrderModel extends OrderEntity {
       'userOrderStatus': userOrderStatus,
       'userOrderNotes': userOrderNotes,
       'userOrderDate': userOrderDate,
+      'userOrderNumber':userOrderNumber,
+
 
       /// 🔥 merge delivery data
       ...delivery.toJson(),

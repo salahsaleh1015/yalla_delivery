@@ -34,8 +34,11 @@ class CartOrderCard extends StatelessWidget {
                     .headlineMedium!
                     .copyWith(color: ColorManager.darkGrayColor),
               ),
+              SizedBox(
+                width: AppSize.s5.w,
+              ),
               Text(
-                "50#",
+                "# ${cartOrderCardModel.orderEntity.orderNumber} ",
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
               const Spacer(),
@@ -56,7 +59,7 @@ class CartOrderCard extends StatelessWidget {
                     .copyWith(color: ColorManager.darkGrayColor),
               ),
               Text(
-                "محمد علي",
+                cartOrderCardModel.orderEntity.userName,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ],
@@ -72,27 +75,27 @@ class CartOrderCard extends StatelessWidget {
                     .copyWith(color: ColorManager.darkGrayColor),
               ),
               Text(
-                "ابن البلد",
+                cartOrderCardModel.orderEntity.deliveryName,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                "العنوان: ",
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineMedium!
-                    .copyWith(color: ColorManager.darkGrayColor),
-              ),
-              Text(
-                "مدينة 6 أكتوبر, محافظة الجيزة",
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-            ],
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.start,
+          //   children: [
+          //     Text(
+          //       "العنوان: ",
+          //       style: Theme.of(context)
+          //           .textTheme
+          //           .headlineMedium!
+          //           .copyWith(color: ColorManager.darkGrayColor),
+          //     ),
+          //     Text(
+          //       cartOrderCardModel.orderEntity.userLocation,
+          //       style: Theme.of(context).textTheme.headlineMedium,
+          //     ),
+          //   ],
+          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -104,7 +107,7 @@ class CartOrderCard extends StatelessWidget {
                     .copyWith(color: ColorManager.darkGrayColor),
               ),
               Text(
-                "03:00 م",
+                cartOrderCardModel.orderEntity.orderRequestTime,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ],

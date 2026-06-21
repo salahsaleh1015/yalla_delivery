@@ -40,8 +40,30 @@ class OrderSummaryCard extends StatelessWidget {
               title: "عنوان المستخدم",
               value: order.userLocation),
           const GlobalDividerWidget(),
-          buildContentSection(
-              context: context, title: "الطلب", value: order.orderDetails),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "الطلب",
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+            SizedBox(
+              height: AppSize.s5.h,
+            ),
+            SizedBox(
+              width: AppSize.s180.w,
+              child: Text(
+                order.orderDetails,
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall!
+                    .copyWith(color: ColorManager.black),
+               textAlign: TextAlign.center,
+              ),
+            )
+          ],
+        ),
+
           const GlobalDividerWidget(),
           buildContentSection(
             context: context,

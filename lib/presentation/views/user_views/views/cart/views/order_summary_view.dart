@@ -1,5 +1,9 @@
+import 'package:delivery_app/core/resources/colors_manager.dart';
+import 'package:delivery_app/core/resources/font_manager.dart';
 import 'package:delivery_app/core/utils/app_extensions.dart';
 import 'package:delivery_app/domain/entities/cart_entities/order_entity.dart';
+import 'package:delivery_app/presentation/views/global_widgets/global_light_button_widget.dart';
+import 'package:delivery_app/presentation/views/user_views/views/cart/widgets/delete_order_button.dart';
 import 'package:delivery_app/presentation/views/user_views/views/cart/widgets/order_status_card.dart';
 import 'package:delivery_app/presentation/views/user_views/views/cart/widgets/order_summary_card.dart';
 import 'package:flutter/material.dart';
@@ -53,14 +57,7 @@ class OrderSummaryView extends StatelessWidget {
               OrderSummaryCard(order: order),
               SizedBox(height: AppSize.s10.h),
               SizedBox(height: AppSize.s50.h),
-              // order.orderStatus == "مكتملة"
-              //     ? const SizedBox()
-              //     : DeliveryDeleteOrderButton(
-              //   deliveryOrderStatusModel: DeliveryOrderStatusModel(
-              //     newStatus: order.orderStatus,
-              //     orderId: order.orderId,
-              //   ),
-              // ),
+              DeleteOrderButton(),
               SizedBox(height: AppSize.s50.h),
             ],
           ),

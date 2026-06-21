@@ -22,12 +22,15 @@ class OrderEntity {
   final String orderNotes;
   @HiveField(8)
   final String orderId;
+  @HiveField(9)
+  final num orderNumber;
 
  OrderEntity(
       {required this.userName,
         required this.orderId,
         required this.userLocation,
         required this.userPhone,
+        required this.orderNumber,
         required this.deliveryName,
         required this.orderDetails,
         required this.orderStatus,

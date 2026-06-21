@@ -64,6 +64,7 @@ class DeliveryCancelledOrdersCardListView extends StatelessWidget {
                     SliverChildBuilderDelegate((context, index) {
                       return CartOrderCard(
                         cartOrderCardModel: CartOrderCardModel(
+                          orderEntity:  state.cancelledOrders[index],
                             deliveryStatus: "الملغيه",
                             actionButtonTitle: "ملخص الطلب",
                             backButtonTitle: "مسح",
