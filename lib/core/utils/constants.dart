@@ -10,4 +10,4 @@ const kBusyDeliveryBox = 'busy_delivery_box';
 const kPendingOrdersBox = 'pending_orders_box';
 const kCompletedOrdersBox = 'completed_orders_box';
 const kCanceledOrdersBox = 'canceled_orders_box';
-const kAcceptedOrdersBox = 'rejected_orders_box';
+const kAcceptedOrdersBox = 'accepted_orders_box';

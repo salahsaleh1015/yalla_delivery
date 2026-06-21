@@ -44,10 +44,10 @@ class AppInitializer {
     await Hive.openBox<DeliveryEntity>(kAvailableDeliveryBox);
     await Hive.openBox<DeliveryEntity>(kUnAvailableDeliveryBox);
     await Hive.openBox<DeliveryEntity>(kBusyDeliveryBox);
-    await Hive.openBox<DeliveryEntity>(kPendingOrdersBox);
-    await Hive.openBox<DeliveryEntity>(kCompletedOrdersBox);
-    await Hive.openBox<DeliveryEntity>(kCanceledOrdersBox);
-    await Hive.openBox<DeliveryEntity>(kAcceptedOrdersBox);
+    await Hive.openBox<OrderEntity>(kPendingOrdersBox);
+    await Hive.openBox<OrderEntity>(kCompletedOrdersBox);
+    await Hive.openBox<OrderEntity>(kCanceledOrdersBox);
+    await Hive.openBox<OrderEntity>(kAcceptedOrdersBox);
 
 
     // Clear boxes
@@ -58,10 +58,10 @@ class AppInitializer {
     await clearHiveBox<DeliveryEntity>(boxName: kAvailableDeliveryBox);
     await clearHiveBox<DeliveryEntity>(boxName: kUnAvailableDeliveryBox);
     await clearHiveBox<DeliveryEntity>(boxName: kBusyDeliveryBox);
-    await clearHiveBox<DeliveryEntity>(boxName: kPendingOrdersBox);
-    await clearHiveBox<DeliveryEntity>(boxName: kCompletedOrdersBox);
-    await clearHiveBox<DeliveryEntity>(boxName: kCanceledOrdersBox);
-    await clearHiveBox<DeliveryEntity>(boxName: kAcceptedOrdersBox);
+    await clearHiveBox<OrderEntity>(boxName: kPendingOrdersBox);
+    await clearHiveBox<OrderEntity>(boxName: kCompletedOrdersBox);
+    await clearHiveBox<OrderEntity>(boxName: kCanceledOrdersBox);
+    await clearHiveBox<OrderEntity>(boxName: kAcceptedOrdersBox);
 
 
   }

@@ -20,12 +20,13 @@ class CartAppBar extends StatelessWidget {
           icon: Icons.arrow_back,
         ),
         Text(
-          "سلتك",
+          "طلباتي",
           style: Theme.of(context).textTheme.titleMedium,
         ),
         SizedBox(
           width: AppSize.s30.w,
         ),
+
       ],
     );
   }

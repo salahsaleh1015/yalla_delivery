@@ -24,5 +24,6 @@ class ColorManager {
   static Color transparent = Colors.transparent;
   static Color greenColor = const Color(0xff4ce154);
   static Color lightGreenColor = const Color(0xffcff7d1);
+  static Color lightError = const Color(0xffF6D5D5);
 
 }

@@ -30,9 +30,14 @@ class CartRepoImpl extends CartRepo {
       return Right(orders);
     } catch (e) {
       if (e is FirebaseException) {
+        debugPrint("cart error////////////1");
+        debugPrint(e.message.toString());
         return Left(FirebaseFailure.fromFirebaseException(e));
       }
+      debugPrint("cart error////////////2");
+      debugPrint(e.toString());
       return Left(FirebaseFailure.fromException(e.toString()));
+
     }
   }
 

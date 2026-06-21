@@ -1,5 +1,6 @@
+import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/utils/app_enums.dart';
-
+import 'package:flutter/material.dart';
 extension SignUpAuthErrorExtension on SignUpAuthError {
 
   // يحول الـ Firebase error code لـ enum value
@@ -87,5 +88,35 @@ extension SignInAuthErrorExtension on SignInAuthError {
       case SignInAuthError.unknown:
         return 'حدث خطأ، حاول مرة أخرى';
     }
+  }
+}
+
+Color getStatusBadgeColor(String status) {
+  switch (status) {
+    case "المعلقة":
+      return ColorManager.lightGrayColor;
+    case "المقبولة":
+      return ColorManager.lightSecondary;
+    case "الملغية":
+      return ColorManager.lightPrimary;
+    case "مكتملة":
+      return ColorManager.lightGreenColor;
+    default:
+      return ColorManager.primary;
+  }
+}
+
+Color getStatusTextColor(String status) {
+  switch (status) {
+    case "المعلقة":
+      return ColorManager.darkGrayColor;
+    case "المقبولة":
+      return ColorManager.primary;
+    case "الملغية":
+      return ColorManager.error;
+    case "مكتملة":
+      return ColorManager.greenColor;
+    default:
+      return ColorManager.white;
   }
 }

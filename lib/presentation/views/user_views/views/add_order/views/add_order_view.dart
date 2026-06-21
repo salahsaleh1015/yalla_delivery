@@ -60,7 +60,7 @@ class _AddOrderViewState extends State<AddOrderView> {
                 ),
                 GlobalCircularButtonWidget(
                   onTap: () {
-                   Navigator.pushNamed(context, Routes.cartRoute);
+                   Navigator.pushNamed(context, Routes.cartRoute,arguments: "01127504745");
                   },
                   icon: Icons.shopping_cart_outlined,
                 ),

@@ -1,0 +1,21 @@
+
+
+
+import 'package:flutter/material.dart';
+
+class CartOrderCardModel {
+  final Color statusColor;
+  final String deliveryStatus;
+  final Color deliveryStatusColor;
+  final String? actionButtonTitle;
+  final String? backButtonTitle;
+  final VoidCallback onActionButtonTap;
+
+  CartOrderCardModel(
+      {required this.statusColor,
+        required this.deliveryStatus,
+        required this.deliveryStatusColor,
+        required this.actionButtonTitle,
+        required this.backButtonTitle,
+        required this.onActionButtonTap});
+}
