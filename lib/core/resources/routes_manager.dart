@@ -17,8 +17,6 @@ import 'package:delivery_app/presentation/views/user_views/views/authentication/
 import 'package:delivery_app/presentation/views/user_views/views/authentication/views/sign_up_vew.dart';
 import 'package:delivery_app/presentation/views/user_views/views/authentication/views/success_auth_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/authentication/views/verification_view.dart';
-import 'package:delivery_app/presentation/views/user_views/views/cart/views/cart_choose_delivery.dart';
-import 'package:delivery_app/presentation/views/user_views/views/cart/views/cart_order_summary_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/cart/views/cart_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/delivery/views/add_order_from_delivery_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/delivery/views/delivery_view.dart';
@@ -34,7 +32,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../presentation/views/user_views/views/about_and_suggestions/views/about_and_suggestions_view.dart';
-import '../../presentation/views/user_views/views/cart/views/order_summary_view.dart' show OrderSummaryView;
+import '../../presentation/views/user_views/views/cart/views/order_summary_view.dart' show CartOrderSummaryView, OrderSummaryView;
 import '../../presentation/views/user_views/views/home/view/banner_details_view.dart';
 
 class AppPageRoute extends PageRouteBuilder {
@@ -108,6 +106,7 @@ class Routes {
   static const String cartOrderSummaryRoute = "/cartOrderSummary";
   static const String addOrderFromDeliveryRoute = "/addOrderFromDelivery";
   static const String orderSummaryRoute = "/orderSummary";
+  static const String cartSummaryRoute = "/cartSummaryRoute";
   static const String chooseDeliveryFromAddOrderRoute =
       "/chooseDeliveryFromAddOrder";
   static const String orderSummaryFromAddOrderRoute =
@@ -213,15 +212,10 @@ class RouteGenerator {
       case Routes.allVendorsRoute:
         return AppPageRoute(child: const AllVendorsView());
       case Routes.cartRoute:
-        final args = settings.arguments as String;
         return AppPageRoute(
             child: CartView(
-          phoneNumber: args,
+
         ));
-      case Routes.cartChooseDeliveryRoute:
-        return AppPageRoute(child: const CartChooseDelivery());
-      case Routes.cartOrderSummaryRoute:
-        return AppPageRoute(child: const CartOrderSummaryView());
       case Routes.addOrderFromDeliveryRoute:
         final args = settings.arguments as DeliveryModel;
         return AppPageRoute(
@@ -229,10 +223,10 @@ class RouteGenerator {
           deliveryModel: args,
         ));
       case Routes.orderSummaryRoute:
-        final args = settings.arguments as OrderEntity;
+        final args = settings.arguments as OrderInfoModel;
         return AppPageRoute(
             child: OrderSummaryView(
-          order: args,
+          orderInfoModel: args,
         ));
       case Routes.chooseDeliveryFromAddOrderRoute:
         final args = settings.arguments as String;
@@ -243,6 +237,11 @@ class RouteGenerator {
 
       case Routes.userAboutAndSuggestionsRoute:
         return AppPageRoute(child: const AboutAndFeedbackView());
+      case Routes.cartSummaryRoute:
+        final args = settings.arguments as OrderEntity;
+        return AppPageRoute(
+            child: CartOrderSummaryView(order: args,
+            ));
       case Routes.userChatMessageRoute:
       default:
         return _undefinedRoute();

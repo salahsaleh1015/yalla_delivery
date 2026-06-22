@@ -62,7 +62,7 @@ class _AddOrderViewState extends State<AddOrderView> {
                   onTap: () async {
                     await clearOrders();
                     Navigator.pushNamed(context, Routes.cartRoute,
-                        arguments: "01127504745");
+                    );
                   },
                   icon: Icons.shopping_cart_outlined,
                 ),

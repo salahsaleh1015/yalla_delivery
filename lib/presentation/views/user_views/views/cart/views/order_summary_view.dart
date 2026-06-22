@@ -13,8 +13,8 @@ import '../../../../../../core/resources/values_manager.dart';
 import '../../../../global_widgets/global_circular_button_widget.dart';
 import '../../../../global_widgets/global_padding_widget.dart';
 
-class OrderSummaryView extends StatelessWidget {
-  const OrderSummaryView({super.key, required this.order});
+class CartOrderSummaryView extends StatelessWidget {
+  const CartOrderSummaryView({super.key, required this.order});
   final OrderEntity order;
 
   @override

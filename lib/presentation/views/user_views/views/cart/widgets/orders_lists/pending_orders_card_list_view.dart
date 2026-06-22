@@ -61,13 +61,13 @@ class DeliveryPendingOrdersCardListView extends StatelessWidget {
                       return CartOrderCard(
                         cartOrderCardModel: CartOrderCardModel(
                           orderEntity:  state.pendingOrders[index],
-                            deliveryStatus: "المقبوله",
+                            deliveryStatus: "المعلقه",
                             actionButtonTitle: "ملخص الطلب",
                             backButtonTitle: "مسح",
                             deliveryStatusColor: ColorManager.darkGrayColor,
                             onActionButtonTap: (){
                               Navigator.pushNamed(
-                                  context, Routes.orderSummaryRoute,
+                                  context, Routes.cartSummaryRoute,
                                   arguments:
                                   state.pendingOrders[index]);
                             },
