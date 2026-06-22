@@ -11,16 +11,18 @@ class GlobalLoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SizedBox(
-      height: AppSize.s30.h,
-      width: AppSize.s50.w,
-      child: LoadingIndicator(
-        indicatorType: Indicator.lineScalePulseOutRapid,
-        colors: [
-          ColorManager.primary,
-        ],
-        backgroundColor: ColorManager.scaffoldBackgroundColor,
-        pathBackgroundColor: ColorManager.primary,
+    return  Center(
+      child: SizedBox(
+        height: AppSize.s30.h,
+        width: AppSize.s50.w,
+        child: LoadingIndicator(
+          indicatorType: Indicator.lineScalePulseOutRapid,
+          colors: [
+            ColorManager.primary,
+          ],
+          backgroundColor: ColorManager.scaffoldBackgroundColor,
+          pathBackgroundColor: ColorManager.primary,
+        ),
       ),
     );
   }

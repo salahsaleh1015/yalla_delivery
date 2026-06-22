@@ -57,7 +57,9 @@ class OrderSummaryView extends StatelessWidget {
               OrderSummaryCard(order: order),
               SizedBox(height: AppSize.s10.h),
               SizedBox(height: AppSize.s50.h),
-              DeleteOrderButton(),
+              DeleteOrderButton(
+                orderId: order.orderId,
+              ),
               SizedBox(height: AppSize.s50.h),
             ],
           ),
