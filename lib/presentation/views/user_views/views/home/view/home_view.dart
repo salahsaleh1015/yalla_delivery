@@ -1,4 +1,5 @@
 import 'package:delivery_app/core/resources/routes_manager.dart';
+import 'package:delivery_app/core/utils/functions/hive_functions.dart';
 
 import '../../../../../../core/resources/colors_manager.dart';
 import '../../../../../../core/resources/values_manager.dart';
@@ -30,8 +31,10 @@ class HomeView extends StatelessWidget {
                   width: AppSize.s10.w,
                 ),
                 GlobalCircularButtonWidget(
-                  onTap: () {
-                Navigator.pushNamed(context, Routes.cartRoute);
+                  onTap: ()   async {
+                    await clearOrders();
+                    Navigator.pushNamed(context, Routes.cartRoute,
+                        arguments: "01127504745");
                   },
                   icon: Icons.shopping_cart_outlined,
                   iconColor: ColorManager.black,

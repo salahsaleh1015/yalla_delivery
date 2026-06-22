@@ -27,6 +27,7 @@ class CartRepoImpl extends CartRepo {
       }
       orders = await cartRemoteDataSource.fetchAcceptedOrders(
           phoneNumber: phoneNumber);
+      debugPrint("cart from internet");
       return Right(orders);
     } catch (e) {
       if (e is FirebaseException) {
@@ -52,6 +53,7 @@ class CartRepoImpl extends CartRepo {
       }
       orders = await cartRemoteDataSource.fetchCanceledOrders(
           phoneNumber: phoneNumber);
+      debugPrint("cart from internet");
       return Right(orders);
     } catch (e) {
       if (e is FirebaseException) {
@@ -72,6 +74,7 @@ class CartRepoImpl extends CartRepo {
       }
       orders = await cartRemoteDataSource.fetchCompletedOrders(
           phoneNumber: phoneNumber);
+      debugPrint("cart from internet");
       return Right(orders);
     } catch (e) {
       if (e is FirebaseException) {
@@ -92,6 +95,7 @@ class CartRepoImpl extends CartRepo {
       }
       orders = await cartRemoteDataSource.fetchPendingOrders(
           phoneNumber: phoneNumber);
+      debugPrint("cart from internet");
       return Right(orders);
     } catch (e) {
       if (e is FirebaseException) {

@@ -12,10 +12,10 @@ import '../../../../../../core/utils/constants.dart';
 import '../../../../../../core/utils/functions/hive_functions.dart';
 import '../../../../../../domain/entities/delivery_management_entities/delivery_entity.dart';
 
-class AddOrderView extends StatefulWidget     {
-  const AddOrderView({super.key,});
-
-
+class AddOrderView extends StatefulWidget {
+  const AddOrderView({
+    super.key,
+  });
 
   @override
   State<AddOrderView> createState() => _AddOrderViewState();
@@ -59,12 +59,13 @@ class _AddOrderViewState extends State<AddOrderView> {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 GlobalCircularButtonWidget(
-                  onTap: () {
-                   Navigator.pushNamed(context, Routes.cartRoute,arguments: "01127504745");
+                  onTap: () async {
+                    await clearOrders();
+                    Navigator.pushNamed(context, Routes.cartRoute,
+                        arguments: "01127504745");
                   },
                   icon: Icons.shopping_cart_outlined,
                 ),
-
               ],
             ),
             SizedBox(
@@ -98,7 +99,8 @@ class _AddOrderViewState extends State<AddOrderView> {
               onTap: () async {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
-                  await  clearHiveBox<DeliveryEntity>(boxName: kAvailableDeliveryBox);
+                  await clearHiveBox<DeliveryEntity>(
+                      boxName: kAvailableDeliveryBox);
                   Navigator.pushNamed(
                       context, Routes.chooseDeliveryFromAddOrderRoute,
                       arguments: order);

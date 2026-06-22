@@ -9,6 +9,7 @@ class FetchAcceptOrdersCubit extends Cubit<FetchAcceptOrdersStates> {
 
   UserFetchAcceptedOrdersUseCase fetchAcceptedOrdersUseCase;
 
+
   static FetchAcceptOrdersCubit get(context) => BlocProvider.of(context);
 
   Future<void> fetchAcceptedOrders({required String phoneNumber}) async {
