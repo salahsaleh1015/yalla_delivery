@@ -55,6 +55,7 @@ class DeliveryAcceptedOrdersCardListView extends StatelessWidget {
                           delegate:
                               SliverChildBuilderDelegate((context, index) {
                             return CartOrderCard(
+                              index: index,
                               cartOrderCardModel: CartOrderCardModel(
                                 orderEntity:  state.acceptedOrders[index],
                                 deliveryStatus: "المقبوله",

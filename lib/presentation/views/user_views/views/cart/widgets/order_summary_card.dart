@@ -76,6 +76,11 @@ class OrderSummaryCard extends StatelessWidget {
             title: "الوقت",
             value: order.orderRequestTime,
           ),
+          const GlobalDividerWidget(),
+          buildContentSection(
+              context: context,
+              title: "اي ملحوظه",
+              value: order.orderNotes),
         ],
       ),
     );

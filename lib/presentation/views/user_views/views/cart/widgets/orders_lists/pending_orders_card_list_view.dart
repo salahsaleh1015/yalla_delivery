@@ -59,6 +59,7 @@ class DeliveryPendingOrdersCardListView extends StatelessWidget {
                     delegate:
                     SliverChildBuilderDelegate((context, index) {
                       return CartOrderCard(
+                        index: index,
                         cartOrderCardModel: CartOrderCardModel(
                           orderEntity:  state.pendingOrders[index],
                             deliveryStatus: "المعلقه",

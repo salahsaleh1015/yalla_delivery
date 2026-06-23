@@ -55,11 +55,13 @@ class CartOrderSummaryView extends StatelessWidget {
               ),
               SizedBox(height: AppSize.s15.h),
               OrderSummaryCard(order: order),
-              SizedBox(height: AppSize.s10.h),
+
               SizedBox(height: AppSize.s50.h),
-              DeleteOrderButton(
-                orderId: order.orderId,
-              ),
+              order.orderStatus != "المعلقه"
+                  ? DeleteOrderButton(
+                      orderId: order.orderId,
+                    )
+                  : SizedBox(),
               SizedBox(height: AppSize.s50.h),
             ],
           ),
