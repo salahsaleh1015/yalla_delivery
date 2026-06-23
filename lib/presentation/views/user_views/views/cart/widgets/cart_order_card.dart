@@ -27,18 +27,11 @@ class CartOrderCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "رقم الطلب: ",
+                "حاله الطلب ",
                 style: Theme.of(context)
                     .textTheme
                     .headlineMedium!
                     .copyWith(color: ColorManager.darkGrayColor),
-              ),
-              SizedBox(
-                width: AppSize.s5.w,
-              ),
-              Text(
-                "# ${cartOrderCardModel.orderEntity.orderNumber} ",
-                style: Theme.of(context).textTheme.headlineMedium,
               ),
               const Spacer(),
               DeliveryStatusBadge(

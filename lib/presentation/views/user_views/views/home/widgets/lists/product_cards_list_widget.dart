@@ -122,6 +122,7 @@
 import 'package:delivery_app/core/resources/assets_manager.dart';
 import 'package:delivery_app/core/utils/functions/service_locator_setup.dart';
 import 'package:delivery_app/data/repos/home_repo/home_repo_impl.dart';
+import 'package:delivery_app/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:delivery_app/domain/usecases/home_usecases/home_get_shop_products_usecase.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/cart_cubit/cart_state.dart';
 import 'package:delivery_app/presentation/view_models/user_view_models/home_cubits/get_shop_products_cubit/get_shop_products_cubit.dart';
@@ -141,9 +142,9 @@ import '../../../../../global_widgets/global_decorated_bottom_container.dart';
 import '../../../../../global_widgets/global_loading_indicator.dart';
 
 class ProductCardsListWidget extends StatelessWidget {
-  const ProductCardsListWidget({super.key, required this.shopId});
+  const ProductCardsListWidget({super.key, required this.shop});
 
-  final String shopId;
+  final HomeShopEntity shop;
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +153,7 @@ class ProductCardsListWidget extends StatelessWidget {
         BlocProvider<GetShopProductsCubit>(
           create: (context) => GetShopProductsCubit(
             HomeGetShopProductsUseCase(getIt.get<HomeRepoImpl>()),
-          )..fetchShopProducts(shopId: shopId),
+          )..fetchShopProducts(shopId: shop.shopId),
         ),
         BlocProvider<CartCubit>(
           create: (context) => CartCubit(),
@@ -226,8 +227,18 @@ class ProductCardsListWidget extends StatelessWidget {
                     if (!isEmpty) {
                       Navigator.pushNamed(
                         context,
-                        Routes.chooseDeliveryFromAddOrderRoute,
-                        arguments: cartCubit.getSelectedProductsAsString(),
+                        Routes.chooseDeliveryFromShopRoute,
+                        arguments: ShopOrderBodyModel(
+                          shopNumber: shop.shopId ?? '',
+                          shopName: shop.shopName ?? '',
+                          shopAddress: shop.shopAddress ?? '',
+                          products: cartCubit.getOrderSummary(
+                            shopName: shop.shopName ?? '',
+                            shopAddress: shop.shopAddress ?? '',
+                            shopPhone: shop.shopPhoneNumber
+                          ),
+                          totalPrice: cartCubit.getTotalPrice(),
+                        ),
                       );
                     }
                   },
@@ -240,4 +251,21 @@ class ProductCardsListWidget extends StatelessWidget {
       },
     );
   }
+}
+
+
+class ShopOrderBodyModel {
+  final String shopName;
+  final String shopAddress;
+  final String shopNumber;
+  final String products;
+  final double totalPrice;
+
+  ShopOrderBodyModel({
+    required this.shopNumber,
+    required this.shopName,
+    required this.shopAddress,
+    required this.products,
+    required this.totalPrice,
+  });
 }

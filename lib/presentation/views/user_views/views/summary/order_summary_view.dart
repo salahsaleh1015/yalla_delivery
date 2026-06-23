@@ -112,6 +112,7 @@ class _OrderSummaryViewState extends State<OrderSummaryView> {
                       ApproveOrderButton(
                         approveOrderModel: ApproveOrderModel(
                           orderInfoModel: widget.orderInfoModel,
+
                           userCachingCubit: cacheCubit,
                           userNote: userNote ?? '',
                           userLocation: userLocation?.isNotEmpty == true

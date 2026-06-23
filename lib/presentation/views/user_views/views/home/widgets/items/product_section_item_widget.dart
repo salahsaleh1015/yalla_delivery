@@ -1,13 +1,14 @@
 import 'package:delivery_app/core/resources/colors_manager.dart';
 import 'package:delivery_app/core/resources/values_manager.dart';
+import 'package:delivery_app/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:delivery_app/presentation/views/global_widgets/global_search_card_item_widget.dart';
 import 'package:delivery_app/presentation/views/user_views/views/home/widgets/lists/product_cards_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ProductsSectionItemWidget extends StatelessWidget {
-  const ProductsSectionItemWidget({super.key, required this.shopId});
+  const ProductsSectionItemWidget({super.key, required this.shop});
 
-  final String shopId;
+  final HomeShopEntity shop;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class ProductsSectionItemWidget extends StatelessWidget {
           SizedBox(height: AppSize.s10.h),
           // ✅ Expanded شغالة دلوقتي لأن أبوها Expanded في الـ Scaffold
           Expanded(
-            child: ProductCardsListWidget(shopId: shopId),
+            child: ProductCardsListWidget(shop: shop),
           ),
         ],
       ),

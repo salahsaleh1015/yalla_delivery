@@ -20,6 +20,7 @@ import 'package:delivery_app/presentation/views/user_views/views/authentication/
 import 'package:delivery_app/presentation/views/user_views/views/cart/views/cart_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/delivery/views/add_order_from_delivery_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/delivery/views/delivery_view.dart';
+import 'package:delivery_app/presentation/views/user_views/views/home/widgets/lists/product_cards_list_widget.dart';
 import 'package:delivery_app/presentation/views/user_views/views/summary/order_summary_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/home/view/all_vendors_view.dart';
 import 'package:delivery_app/presentation/views/user_views/views/home/view/choose_delivery_view.dart';
@@ -109,6 +110,9 @@ class Routes {
   static const String cartSummaryRoute = "/cartSummaryRoute";
   static const String chooseDeliveryFromAddOrderRoute =
       "/chooseDeliveryFromAddOrder";
+
+  static const String chooseDeliveryFromShopRoute =
+      "/chooseDeliveryFromShop";
   static const String orderSummaryFromAddOrderRoute =
       "/orderSummaryFromAddOrder";
 
@@ -235,6 +239,12 @@ class RouteGenerator {
           order: args,
         ));
 
+      case Routes.chooseDeliveryFromShopRoute:
+        final args = settings.arguments as ShopOrderBodyModel;
+        return AppPageRoute(
+            child: ChooseDeliveryFromShopView(
+              shopOrderBodyModel: args,
+            ));
       case Routes.userAboutAndSuggestionsRoute:
         return AppPageRoute(child: const AboutAndFeedbackView());
       case Routes.cartSummaryRoute:

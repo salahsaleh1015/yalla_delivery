@@ -50,5 +50,5 @@ Future<void> clearOrders() async {
   await clearHiveBox<OrderEntity>(boxName: kCompletedOrdersBox);
   await clearHiveBox<OrderEntity>(boxName: kCanceledOrdersBox);
   await clearHiveBox<OrderEntity>(boxName: kAcceptedOrdersBox);
-
 }
+

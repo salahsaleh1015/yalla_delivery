@@ -39,7 +39,7 @@ class ShopDetailsView extends StatelessWidget {
             // ✅ Expanded هنا شغال لأن الـ Scaffold بيديه height محددة
             Expanded(
               child: ProductsSectionItemWidget(
-                shopId: shop.shopId,
+                shop: shop,
               ),
             ),
           ],

@@ -1,3 +1,4 @@
+import 'package:delivery_app/core/utils/functions/hive_functions.dart';
 import 'package:delivery_app/data/models/delivery_model.dart';
 
 import 'package:delivery_app/data/models/order_model.dart';
@@ -63,6 +64,7 @@ class ApproveOrderButton extends StatelessWidget {
                   cubit
                       .addOrder(
                     order: OrderModel(
+
                       userName: approveOrderModel
                           .userCachingCubit.cachedUserModel.userName,
                       userPhoneNumber: approveOrderModel
