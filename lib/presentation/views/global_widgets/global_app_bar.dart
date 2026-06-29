@@ -32,13 +32,13 @@ class GlobalAppBar extends StatelessWidget {
           title,
           style: Theme.of(context).textTheme.titleMedium,
         ),
-        // SizedBox(width: AppSize.s30.w,)
-        GlobalCircularButtonWidget(
-          onTap: () {
-            Navigator.pushNamed(context, Routes.cartRoute);
-          },
-          icon: Icons.shopping_cart_outlined,
-        ),
+        SizedBox(width: AppSize.s30.w,)
+        // GlobalCircularButtonWidget(
+        //   onTap: () {
+        //     Navigator.pushNamed(context, Routes.cartRoute);
+        //   },
+        //   icon: Icons.shopping_cart_outlined,
+        // ),
       ],
     );
   }

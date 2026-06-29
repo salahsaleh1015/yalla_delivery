@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delivery_app/core/utils/functions/hive_functions.dart';
 import 'package:delivery_app/data/models/delivery_model.dart';
 
@@ -19,8 +20,10 @@ import '../../../../../../data/models/approve_order_model.dart';
 import '../../../../global_widgets/global_button_widget.dart';
 
 class ApproveOrderButton extends StatelessWidget {
-  const ApproveOrderButton(
-      {super.key, required this.approveOrderModel,});
+  const ApproveOrderButton({
+    super.key,
+    required this.approveOrderModel,
+  });
 
   final ApproveOrderModel approveOrderModel;
 
@@ -64,7 +67,7 @@ class ApproveOrderButton extends StatelessWidget {
                   cubit
                       .addOrder(
                     order: OrderModel(
-
+                      timeStamp: Timestamp.now(),
                       userName: approveOrderModel
                           .userCachingCubit.cachedUserModel.userName,
                       userPhoneNumber: approveOrderModel

@@ -20,6 +20,7 @@ class FirestoreOrdersServices {
     QuerySnapshot querySnapshot = await _ordersCollectionRef
         .where("userPhoneNumber", isEqualTo: phoneNumber)
         .where("userOrderStatus", isEqualTo: "المعلقة")
+        .orderBy("timeStamp", descending: true)
         .get();
 
     // Return the list of documents
@@ -32,6 +33,7 @@ class FirestoreOrdersServices {
     QuerySnapshot querySnapshot = await _ordersCollectionRef
         .where("userPhoneNumber", isEqualTo: phoneNumber)
         .where("userOrderStatus", isEqualTo: "المقبولة")
+        .orderBy("timeStamp", descending: true)
         .get();
 
     // Return the list of documents
@@ -44,6 +46,7 @@ class FirestoreOrdersServices {
     QuerySnapshot querySnapshot = await _ordersCollectionRef
         .where("userPhoneNumber", isEqualTo: phoneNumber)
         .where("userOrderStatus", isEqualTo: "الملغية")
+        .orderBy("timeStamp", descending: true)
         .get();
 
     // Return the list of documents
@@ -56,6 +59,7 @@ class FirestoreOrdersServices {
     QuerySnapshot querySnapshot = await _ordersCollectionRef
         .where("userPhoneNumber", isEqualTo: phoneNumber)
         .where("userOrderStatus", isEqualTo: "المكتملة")
+        .orderBy("timeStamp", descending: true)
         .get();
 
     // Return the list of documents

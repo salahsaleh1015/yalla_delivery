@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delivery_app/domain/entities/cart_entities/order_entity.dart';
 
 import 'delivery_model.dart';
@@ -12,32 +13,34 @@ class OrderModel extends OrderEntity {
   final String userOrderStatus;
   final String userOrderNotes;
   final String userOrderDate;
-   num? userOrderNumber;
-
+  num? userOrderNumber;
+  final Timestamp timeStamp;
   final DeliveryModel delivery;
 
-  OrderModel({
-    this.userOrderId,
-    required this.userName,
-    required this.userPhoneNumber,
-    required this.userLocation,
-    required this.userOrder,
-    required this.userOrderStatus,
-    required this.userOrderNotes,
-    required this.userOrderDate,
-    required this.delivery,
-     this.userOrderNumber
-  }) : super(
-    userLocation: userLocation ?? '',
-    orderDetails: userOrder ?? '',
-    orderRequestTime: userOrderDate ?? '',
-    userPhone: userPhoneNumber ?? '',
-    orderStatus: userOrderStatus ?? '',
-    userName: userName ?? '',
-    orderNumber: userOrderNumber ?? 0,
-    orderNotes: userOrderNotes ?? '',
-    deliveryName: delivery.name ?? '',
-    orderId: userOrderId ?? '',);
+  OrderModel(
+      {this.userOrderId,
+      required this.userName,
+      required this.userPhoneNumber,
+      required this.userLocation,
+      required this.userOrder,
+      required this.userOrderStatus,
+      required this.userOrderNotes,
+      required this.userOrderDate,
+      required this.delivery,
+      required this.timeStamp,
+      this.userOrderNumber})
+      : super(
+          userLocation: userLocation ?? '',
+          orderDetails: userOrder ?? '',
+          orderRequestTime: userOrderDate ?? '',
+          userPhone: userPhoneNumber ?? '',
+          orderStatus: userOrderStatus ?? '',
+          userName: userName ?? '',
+          orderNumber: userOrderNumber ?? 0,
+          orderNotes: userOrderNotes ?? '',
+          deliveryName: delivery.name ?? '',
+          orderId: userOrderId ?? '',
+        );
 
   /// 🔽 FROM JSON
   factory OrderModel.fromJson(Map<String, dynamic> json) {
@@ -51,6 +54,7 @@ class OrderModel extends OrderEntity {
       userOrderNotes: json['userOrderNotes'] ?? '',
       userOrderDate: json['userOrderDate'] ?? '',
       userOrderNumber: json["userOrderNumber"],
+      timeStamp: json['timeStamp']as Timestamp,
 
       /// 🔥 أهم نقطة
       delivery: DeliveryModel.fromJson(json),
@@ -68,8 +72,8 @@ class OrderModel extends OrderEntity {
       'userOrderStatus': userOrderStatus,
       'userOrderNotes': userOrderNotes,
       'userOrderDate': userOrderDate,
-      'userOrderNumber':userOrderNumber,
-
+      'userOrderNumber': userOrderNumber,
+      'timeStamp': timeStamp,
 
       /// 🔥 merge delivery data
       ...delivery.toJson(),
