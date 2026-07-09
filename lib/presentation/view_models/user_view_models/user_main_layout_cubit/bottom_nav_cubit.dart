@@ -24,7 +24,7 @@ class BottomNavCubit extends Cubit<BottomNavStates> {
 
 
   List<TabItem> bottomNavTabs =[
-    const TabItem(icon: FontAwesomeIcons.house, title: 'الرئيسية'),
+    const TabItem(icon:const FaIcon(FontAwesomeIcons.house), title: 'الرئيسية'),
     const TabItem(icon: Icons.delivery_dining, title: 'الديلفرات'),
     const TabItem(icon: Icons.add, title: 'اضف'),
     const TabItem(icon:  Icons.chat, title: 'ملاحظات'),
