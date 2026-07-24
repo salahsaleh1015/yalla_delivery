@@ -139,15 +139,15 @@ class _EditAccountViewState extends State<EditAccountView> {
                       ),
                       SizedBox(height: AppSize.s10.h),
                       GlobalTextFieldWidget(
-                        validator: (val) {
-                          if (val!.length < 10) {
-                            return "ادخل الاسم بالكامل";
-                          }
-                          return null;
-                        },
+                        // validator: (val) {
+                        //   if (val!.length < 10) {
+                        //     return "ادخل الاسم بالكامل";
+                        //   }
+                        //   return null;
+                        // },
                         onSaved: (val) => name = val!,
                         controller: _nameController,
-                        hintText: "الاسم بالكامل",
+                        hintText: cubit.cachedUserModel.userName,
                         textInputType: TextInputType.text,
                       ),
                       SizedBox(height: AppSize.s30.h),
@@ -166,7 +166,7 @@ class _EditAccountViewState extends State<EditAccountView> {
                         validator: AppConstant.phoneValidation,
                         onSaved: (val) => phoneNumber = val!,
                         controller: _phoneController,
-                        hintText: "رقم الهاتف",
+                        hintText: cubit.cachedUserModel.phoneNumber,
                         textInputType: TextInputType.phone,
                       ),
                       SizedBox(height: AppSize.s30.h),
@@ -182,16 +182,16 @@ class _EditAccountViewState extends State<EditAccountView> {
                       ),
                       SizedBox(height: AppSize.s10.h),
                       GlobalTextFieldWidget(
-                        validator: (val) {
-                          if (val!.length < 30) {
-                            return "ادخل عنوانك بالتفصيل";
-                          }
-                          return null;
-                        },
+                        // validator: (val) {
+                        //   if (val!.length < 30 ) {
+                        //     return "ادخل عنوانك بالتفصيل";
+                        //   }
+                        //   return null;
+                        // },
                         onSaved: (val) => location = val!,
                         controller: _locationController,
                         height: AppSize.s100.h,
-                        hintText: "العنوان بالتفصيل",
+                        hintText: cubit.cachedUserModel.userLocation,
                         textInputType: TextInputType.text,
                       ),
                       SizedBox(height: AppSize.s20.h),
@@ -211,9 +211,15 @@ class _EditAccountViewState extends State<EditAccountView> {
                                 cubit.updateUser(
                                   cachedUserModel: CachedUserModel(
                                       userId: cubit.cachedUserModel.userId,
-                                      userLocation: location,
-                                      userName: name,
-                                      phoneNumber: phoneNumber,
+                                      userLocation: location == ''
+                                          ? cubit.cachedUserModel.userLocation
+                                          : location,
+                                      userName: name == ''
+                                          ? cubit.cachedUserModel.userName
+                                          : name,
+                                      phoneNumber: phoneNumber == ''
+                                          ? cubit.cachedUserModel.phoneNumber
+                                          : phoneNumber,
                                       userMail: cubit.cachedUserModel.userMail,
                                       userPassword:
                                           cubit.cachedUserModel.userPassword),
