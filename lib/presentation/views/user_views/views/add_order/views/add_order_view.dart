@@ -55,7 +55,7 @@ class _AddOrderViewState extends State<AddOrderView> {
                   width: AppSize.s30.w,
                 ),
                 Text(
-                  "اضافة طلب",
+                  "اطلب طلبك",
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 GlobalCircularButtonWidget(
@@ -72,7 +72,7 @@ class _AddOrderViewState extends State<AddOrderView> {
               height: AppSize.s30.h,
             ),
             Text(
-              "أضف طلبك",
+              "اطلب طلبك",
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             SizedBox(
