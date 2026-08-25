@@ -17,9 +17,9 @@ class MainLayoutView extends StatelessWidget {
   });
 
   List<Widget> get screens => [
-        const HomeView(),
-        const DeliveryView(),
         const AddOrderView(),
+        const DeliveryView(),
+        const HomeView(),
         const AboutAndFeedbackView(),
         const AccountView(),
       ];

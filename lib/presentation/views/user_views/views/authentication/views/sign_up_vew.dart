@@ -349,7 +349,7 @@ class _FirstSignUpViewState extends State<FirstSignUpView> {
                 GlobalTextFieldWidget(
                   validator: (val) {
                     if (val!.length < 30) {
-                      return "ادخل عنوانك بالتفصيل";
+                      return "لا يقل العنوان عن ثلاثون حرف !!";
                     }
                     return null;
                   },
@@ -359,6 +359,12 @@ class _FirstSignUpViewState extends State<FirstSignUpView> {
                   hintText: "أدخل عنوانك",
                   textInputType: TextInputType.multiline,
                 ),
+                SizedBox(
+                  height: AppSize.s5.h,
+                ),
+                Text(
+                    "لا يقل العنوان عن ثلاثون حرف !!",
+                    style: Theme.of(context).textTheme.labelSmall),
                 SizedBox(
                   height: AppSize.s30.h,
                 ),
@@ -376,6 +382,7 @@ class _FirstSignUpViewState extends State<FirstSignUpView> {
                                 phoneNumber: phoneNumber));
                       }
                     }),
+
                 SizedBox(
                   height: AppSize.s100.h,
                 ),

@@ -15,6 +15,7 @@ Future<void> main() async {
   // Step 1: Initialize core dependencies
   await AppInitializer.initCore();
 
+
   // Step 2: Initialize local storage
   await AppInitializer.initHive();
 

@@ -34,7 +34,7 @@ class _EditAccountViewState extends State<EditAccountView> {
 
   bool isButtonEnabled = false;
 
-  late String name, phoneNumber, location;
+   String name = '', phoneNumber = '', location = '';
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -182,19 +182,34 @@ class _EditAccountViewState extends State<EditAccountView> {
                       ),
                       SizedBox(height: AppSize.s10.h),
                       GlobalTextFieldWidget(
-                        // validator: (val) {
-                        //   if (val!.length < 30 ) {
-                        //     return "ادخل عنوانك بالتفصيل";
-                        //   }
-                        //   return null;
-                        // },
-                        onSaved: (val) => location = val!,
+                        validator: (val) {
+                          if (val == null || val.trim().isEmpty) {
+                            return null;
+                          }
+
+                          if (val.trim().length < 30) {
+                            return "لا يقل العنوان عن 30 حرف";
+                          }
+
+                          return null;
+                        },
+                        //onSaved: (val) => location = val!,
                         controller: _locationController,
                         height: AppSize.s100.h,
                         hintText: cubit.cachedUserModel.userLocation,
                         textInputType: TextInputType.text,
                       ),
-                      SizedBox(height: AppSize.s20.h),
+                      SizedBox(
+                        height: AppSize.s5.h,
+                      ),
+                      Row(
+                        children: [
+                          Text("لا يقل العنوان عن ثلاثون حرف !!",
+                              style: Theme.of(context).textTheme.labelSmall),
+                          const Spacer(),
+                        ],
+                      ),
+                      SizedBox(height: AppSize.s10.h),
 
                       // ====== Update Button ======
                       if (state is UserCachingLoadingState)
@@ -229,6 +244,8 @@ class _EditAccountViewState extends State<EditAccountView> {
                             width: double.infinity,
                           ),
                         ),
+
+                      SizedBox(height: AppSize.s20.h),
                     ],
                   ),
                 ),
