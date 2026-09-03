@@ -99,7 +99,7 @@ Color getStatusBadgeColor(String status) {
       return ColorManager.lightSecondary;
     case "الملغية":
       return ColorManager.lightPrimary;
-    case "مكتملة":
+    case "المكتملة":
       return ColorManager.lightGreenColor;
     default:
       return ColorManager.primary;
@@ -114,7 +114,7 @@ Color getStatusTextColor(String status) {
       return ColorManager.primary;
     case "الملغية":
       return ColorManager.error;
-    case "مكتملة":
+    case "المكتملة":
       return ColorManager.greenColor;
     default:
       return ColorManager.white;
