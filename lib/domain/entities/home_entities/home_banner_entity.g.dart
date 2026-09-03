@@ -25,14 +25,7 @@ class HomeBannerEntityAdapter extends TypeAdapter<HomeBannerEntity> {
 
   @override
   void write(BinaryWriter writer, HomeBannerEntity obj) {
-    writer
-      ..writeByte(3)
-      ..writeByte(0)
-      ..write(obj.bannerImage)
-      ..writeByte(1)
-      ..write(obj.bannerLanguage)
-      ..writeByte(2)
-      ..write(obj.bannerId);
+    writer..writeByte(0);
   }
 
   @override

@@ -24,6 +24,8 @@ class OrderEntity {
   final String orderId;
   @HiveField(9)
   final num orderNumber;
+  @HiveField(10)
+  final String deliveryNumber;
 
  OrderEntity(
       {required this.userName,
@@ -34,6 +36,7 @@ class OrderEntity {
         required this.deliveryName,
         required this.orderDetails,
         required this.orderStatus,
+        required this.deliveryNumber,
         required this.orderRequestTime,
         required this.orderNotes});
 }

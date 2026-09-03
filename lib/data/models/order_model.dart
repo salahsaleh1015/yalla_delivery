@@ -32,6 +32,7 @@ class OrderModel extends OrderEntity {
       : super(
           userLocation: userLocation ?? '',
           orderDetails: userOrder ?? '',
+          deliveryNumber: delivery.phone ?? '',
           orderRequestTime: userOrderDate ?? '',
           userPhone: userPhoneNumber ?? '',
           orderStatus: userOrderStatus ?? '',

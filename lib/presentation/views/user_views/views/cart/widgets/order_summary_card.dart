@@ -34,11 +34,11 @@ class OrderSummaryCard extends StatelessWidget {
             title: "الموزع",
             value: order.deliveryName,
           ),
-          const GlobalDividerWidget(),
+
        order.orderStatus == "المقبولة" ?  buildContentSection(
             context: context,
             title: " رقم الموزع",
-            value: order.orderStatus,
+            value: order.deliveryNumber,
           ): SizedBox(),
           const GlobalDividerWidget(),
           buildContentSection(

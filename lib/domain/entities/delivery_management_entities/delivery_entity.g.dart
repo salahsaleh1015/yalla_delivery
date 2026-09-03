@@ -25,14 +25,7 @@ class DeliveryEntityAdapter extends TypeAdapter<DeliveryEntity> {
 
   @override
   void write(BinaryWriter writer, DeliveryEntity obj) {
-    writer
-      ..writeByte(3)
-      ..writeByte(0)
-      ..write(obj.deliveryName)
-      ..writeByte(1)
-      ..write(obj.deliveryStatus)
-      ..writeByte(2)
-      ..write(obj.deliveryRate);
+    writer..writeByte(0);
   }
 
   @override
