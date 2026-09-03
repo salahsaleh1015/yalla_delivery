@@ -35,6 +35,12 @@ class OrderSummaryCard extends StatelessWidget {
             value: order.deliveryName,
           ),
           const GlobalDividerWidget(),
+       order.orderStatus == "المقبولة" ?  buildContentSection(
+            context: context,
+            title: " رقم الموزع",
+            value: order.orderStatus,
+          ): SizedBox(),
+          const GlobalDividerWidget(),
           buildContentSection(
               context: context,
               title: "عنوان المستخدم",
