@@ -72,7 +72,7 @@ class DeliveryCancelledOrdersCardListView extends StatelessWidget {
                             deliveryStatusColor: ColorManager.error,
                             onActionButtonTap: () {
                               Navigator.pushNamed(
-                                  context, Routes.orderSummaryRoute,
+                                  context,  Routes.cartSummaryRoute,
                                   arguments:
                                   state.cancelledOrders[index]);
                             },

@@ -64,7 +64,7 @@ class DeliveryAcceptedOrdersCardListView extends StatelessWidget {
                                 deliveryStatusColor: ColorManager.primary,
                                 onActionButtonTap: (){
                                   Navigator.pushNamed(
-                                      context, Routes.orderSummaryRoute,
+                                      context,  Routes.cartSummaryRoute,
                                       arguments:
                                       state.acceptedOrders[index]);
                                 },

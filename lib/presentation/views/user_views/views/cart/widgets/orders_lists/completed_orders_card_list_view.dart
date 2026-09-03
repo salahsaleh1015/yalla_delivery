@@ -70,7 +70,7 @@ class DeliveryCompletedOrdersCardListView extends StatelessWidget {
                                   onActionButtonTap: () {
 
                                     Navigator.pushNamed(
-                                        context, Routes.orderSummaryRoute,
+                                        context,  Routes.cartSummaryRoute,
                                         arguments:
                                             state.completedOrders[index]);
                                   },
