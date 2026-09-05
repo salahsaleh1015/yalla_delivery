@@ -20,6 +20,7 @@ class DeliveryEntityAdapter extends TypeAdapter<DeliveryEntity> {
       deliveryName: fields[0] as String,
       deliveryStatus: fields[1] as String,
       deliveryRate: fields[2] as int,
+      deliveryImage: fields[3] as String,
     );
   }
 

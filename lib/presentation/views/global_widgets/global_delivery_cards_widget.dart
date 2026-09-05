@@ -10,7 +10,8 @@ import '../../../core/resources/assets_manager.dart';
 import '../../../core/resources/colors_manager.dart';
 
 class GlobalDeliveryCardsWidget extends StatelessWidget {
-  const GlobalDeliveryCardsWidget({super.key, required this.deliveryCardModel, required this.index});
+  const GlobalDeliveryCardsWidget(
+      {super.key, required this.deliveryCardModel, required this.index});
 
   final DeliveryCardModel deliveryCardModel;
   final int index;
@@ -43,10 +44,16 @@ class GlobalDeliveryCardsWidget extends StatelessWidget {
             child: Row(
               children: [
                 CircleAvatar(
+
                   radius: AppSize.s30.r,
-                  backgroundImage: const AssetImage(
-                    AssetsManager.deliveryAvatar,
-                  ),
+                  backgroundImage:
+                      deliveryCardModel.deliveryModel.deliveryImage == ""
+                          ? const AssetImage(
+
+                              AssetsManager.deliveryAvatar,
+                            )
+                          : NetworkImage(
+                              deliveryCardModel.deliveryModel.deliveryImage,),
                 ),
                 SizedBox(
                   width: AppSize.s10.w,
@@ -58,8 +65,8 @@ class GlobalDeliveryCardsWidget extends StatelessWidget {
                     Text(deliveryCardModel.deliveryModel.deliveryName!,
                         style: Theme.of(context).textTheme.headlineMedium),
                     RatingStars(
-                      value:
-                          deliveryCardModel.deliveryModel.deliveryRate!.toDouble(),
+                      value: deliveryCardModel.deliveryModel.deliveryRate!
+                          .toDouble(),
                       starCount: 5,
                       starSize: AppSize.s20.r,
                       starOffColor: ColorManager.inActiveRateColor,
@@ -78,8 +85,9 @@ class GlobalDeliveryCardsWidget extends StatelessWidget {
                       : () {},
                   icon: Icon(
                     Icons.arrow_forward,
-                    color:  deliveryCardModel.deliveryStatus == 'متاح'
-                        ?ColorManager.primary:ColorManager.inActiveRateColor,
+                    color: deliveryCardModel.deliveryStatus == 'متاح'
+                        ? ColorManager.primary
+                        : ColorManager.inActiveRateColor,
                     size: AppSize.s25.r,
                   ),
                 )

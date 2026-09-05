@@ -16,9 +16,13 @@ class DeliveryEntity {
   final String deliveryStatus;
   @HiveField(2)
   final int deliveryRate;
+  @HiveField(3)
+  final String deliveryImage;
+
 
   DeliveryEntity(
       {required this.deliveryName,
       required this.deliveryStatus,
-      required this.deliveryRate});
+      required this.deliveryRate,
+        required this.deliveryImage});
 }

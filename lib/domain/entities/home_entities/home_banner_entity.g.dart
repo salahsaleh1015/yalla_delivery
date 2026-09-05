@@ -34,7 +34,7 @@ class HomeBannerEntityAdapter extends TypeAdapter<HomeBannerEntity> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is HomeBannerEntityAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
+          other is HomeBannerEntityAdapter &&
+              runtimeType == other.runtimeType &&
+              typeId == other.typeId;
 }

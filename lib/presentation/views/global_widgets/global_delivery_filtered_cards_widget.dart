@@ -44,9 +44,13 @@ class GlobalDeliveryFilteredCardsWidget extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: AppSize.s30.r,
-                  backgroundImage: const AssetImage(
+                  backgroundImage:
+                  deliveryFilteredCardsModel.deliveryModel.deliveryImage == ""
+                      ? const AssetImage(
                     AssetsManager.deliveryAvatar,
-                  ),
+                  )
+                      : NetworkImage(
+                      deliveryFilteredCardsModel.deliveryModel.deliveryImage),
                 ),
                 SizedBox(
                   width: AppSize.s10.w,
