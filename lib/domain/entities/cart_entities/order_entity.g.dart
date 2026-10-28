@@ -33,7 +33,30 @@ class OrderEntityAdapter extends TypeAdapter<OrderEntity> {
 
   @override
   void write(BinaryWriter writer, OrderEntity obj) {
-    writer..writeByte(0);
+    writer
+      ..writeByte(11)
+      ..writeByte(0)
+      ..write(obj.userName)
+      ..writeByte(1)
+      ..write(obj.userLocation)
+      ..writeByte(2)
+      ..write(obj.userPhone)
+      ..writeByte(3)
+      ..write(obj.deliveryName)
+      ..writeByte(4)
+      ..write(obj.orderDetails)
+      ..writeByte(5)
+      ..write(obj.orderStatus)
+      ..writeByte(6)
+      ..write(obj.orderRequestTime)
+      ..writeByte(7)
+      ..write(obj.orderNotes)
+      ..writeByte(8)
+      ..write(obj.orderId)
+      ..writeByte(9)
+      ..write(obj.orderNumber)
+      ..writeByte(10)
+      ..write(obj.deliveryNumber);
   }
 
   @override

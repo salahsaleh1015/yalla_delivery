@@ -26,7 +26,20 @@ class HomeShopEntityAdapter extends TypeAdapter<HomeShopEntity> {
 
   @override
   void write(BinaryWriter writer, HomeShopEntity obj) {
-    writer..writeByte(0);
+    writer
+      ..writeByte(6)
+      ..writeByte(0)
+      ..write(obj.shopName)
+      ..writeByte(1)
+      ..write(obj.shopId)
+      ..writeByte(2)
+      ..write(obj.shopAddress)
+      ..writeByte(3)
+      ..write(obj.shopPhoneNumber)
+      ..writeByte(4)
+      ..write(obj.shopImage)
+      ..writeByte(5)
+      ..write(obj.shopRate);
   }
 
   @override

@@ -27,9 +27,19 @@ class HomeShopProductEntityAdapter extends TypeAdapter<HomeShopProductEntity> {
 
   @override
   void write(BinaryWriter writer, HomeShopProductEntity obj) {
-    writer..writeByte(0);
+    writer
+      ..writeByte(5)
+      ..writeByte(0)
+      ..write(obj.productId)
+      ..writeByte(1)
+      ..write(obj.productName)
+      ..writeByte(2)
+      ..write(obj.productImage)
+      ..writeByte(3)
+      ..write(obj.productPrice)
+      ..writeByte(4)
+      ..write(obj.productDescription);
   }
-
   @override
   int get hashCode => typeId.hashCode;
 
